@@ -12,7 +12,7 @@ typedef struct __mlfw_row_vec_double
 	dimension_t size;
 }mlfw_row_vec_double;
 
-// column vector function prototypes
+// column vector function implementations
 
 mlfw_column_vec_double * mlfw_column_vec_double_create_new(dimension_t size)
 {
@@ -75,7 +75,23 @@ dimension_t mlfw_column_vec_double_get_size(mlfw_column_vec_double *vector)
 }
 
 
-// row vector function prototypes
+
+double mlfw_column_vec_double_get_mean(mlfw_column_vec_double *vector)
+{
+	index_t i;
+	double sum;
+	double mean;
+	if(vector==NULL) return 0.0;
+	sum=0.0;
+	for(i=0;i<vector->size;++i)
+	{
+		sum=sum+vector->data[i];
+	}
+	mean=sum/(double)vector->size;
+	return mean;
+}
+
+// row vector function implementations
 
 mlfw_row_vec_double * mlfw_row_vec_double_create_new(dimension_t size)
 {
@@ -136,3 +152,13 @@ dimension_t mlfw_row_vec_double_get_size(mlfw_row_vec_double *vector)
 	return vector->size;
 }
 
+
+double mlfw_row_vec_double_get_mean(mlfw_row_vec_double *vector)
+{
+	index_t i;
+	double mean,sum;
+	if(vector==NULL) return 0.0;
+	for(i=0,sum=0.0;i<vector->size;++i) sum+=vector->data[i];
+	mean=sum/(double)vector->size;
+	return mean;
+}
