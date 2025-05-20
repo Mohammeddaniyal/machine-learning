@@ -78,8 +78,8 @@ void score_it(char *result_file_name)
 		return;	
 	}
 	SSR=mlfw_column_vec_double_get(RTR,0);
-	means_of_actuals=mlfw_column_vec_double_get_mean(A);
-	M=mlfw_column_vec_double_create_new_filled(dataset_rows,means_of_actuals);
+	mean_of_actuals=mlfw_column_vec_double_get_mean(A);
+	M=mlfw_column_vec_double_create_new_filled(dataset_rows,mean_of_actuals);
 	if(M==NULL)
 	{
 		printf("Low memory\n");
