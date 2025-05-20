@@ -119,7 +119,7 @@ void score_it(char *result_file_name)
 		mlfw_column_vec_double_destroy(AM);
 		return;
 	}
-	AMTAM=mlfw_multiply_double_row_vector_with_double_column_vector(AMT,AM);
+	AMTAM=mlfw_multiply_double_row_vector_with_column_vector(AMT,AM);
 	if(AMTAM==NULL)
 	{
 		printf("Low memory\n");
