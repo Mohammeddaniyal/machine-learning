@@ -31,7 +31,7 @@ void score_it(char *result_file_name)
 	}
 	mlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
 
-	A=mlfw_mat_double_get_column_vec(dataset,1); // 2nd column of results file
+	A=mlfw_mat_double_create_column_vec(dataset,1); // 2nd column of results file
 	if(A==NULL)
 	{
 		printf("Low memory\n");
