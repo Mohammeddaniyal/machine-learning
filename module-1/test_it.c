@@ -102,7 +102,7 @@ void test_it()
 	
 	// store dataset amd predicted value in result_file
 	result_file=fopen(RESULT_FILE_NAME,"w");
-	fprintf(result_file,"input(1),actual_output,predicted_output");	
+	fprintf(result_file,"input(1),actual_output,predicted_output\n");	
 
 	for(r=0;r<dataset_rows;++r)
 	{
