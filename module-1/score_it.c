@@ -38,7 +38,7 @@ void score_it(char *result_file_name)
 		mlfw_mat_double_destroy(dataset);
 		return;
 	}
-	P=mlfw_mat_double_get_column_vec(dataset,2); // 3rd column of result file
+	P=mlfw_mat_double_create_column_vec(dataset,2); // 3rd column of result file
 	if(P==NULL)
 	{
 		printf("Low memory\n");
