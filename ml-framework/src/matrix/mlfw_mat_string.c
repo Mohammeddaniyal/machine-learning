@@ -2,6 +2,7 @@
 #include<mlfw_vector.h>
 #include<stdlib.h>
 #include<stdio.h>
+#include<string.h>
 typedef struct __mlfw_mat_string{
 	char ***data;
 	dimension_t rows;
@@ -60,7 +61,7 @@ void mlfw_mat_string_destroy(mlfw_mat_string *matrix)
 }
 mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name)
 {
-	mlfw_mat_double *matrix;
+	mlfw_mat_string *matrix;
 	int index;
 	char m;
 	index_t r,c;
@@ -83,7 +84,7 @@ mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name)
 		if(m=='\n') rows++;
 	}
 	columns++; // if 7 commas in a line, that means 8 columns
-	matrix=mlfw_mat_double_create_new(rows,columns);
+	matrix=mlfw_mat_string_create_new(rows,columns);
        if(matrix==NULL)
        {
 	       printf("Unable to create matrix");
