@@ -13,7 +13,7 @@ int main()
 		printf("Low memory or unable to load the file\n");
 		return 0;
 	}
-	mlfw_mat_string_get_dimesnions(matrix,&rows,&columns);
+	mlfw_mat_string_get_dimenions(matrix,&rows,&columns);
 	for(r=0;r<rows;++r)
 	{
 		for(c=0;c<columns;++c)
