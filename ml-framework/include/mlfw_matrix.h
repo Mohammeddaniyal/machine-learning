@@ -9,4 +9,5 @@
 
 #include<mlfw_vector.h>
 #include <matrix/mlfw_mat_double.h>
+#include<matrix/mlfw_mat_string.h>
 #endif
