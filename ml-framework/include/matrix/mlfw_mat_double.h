@@ -22,4 +22,8 @@ mlfw_mat_double * mlfw_mat_double_shuffle(mlfw_mat_double *matrix,uint8_t how_ma
 void mlfw_mat_double_to_csv(mlfw_mat_double *matrix,const char *csv_file_name);
 
 mlfw_mat_double * mlfw_mat_double_transpose(mlfw_mat_double *matrix);
+
+double mlfw_mat_double_get_minimum(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index);
+
+double mlfw_mat_double_get_maximum(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index);
 #endif
