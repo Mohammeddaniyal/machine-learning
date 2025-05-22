@@ -90,8 +90,8 @@ mlfw_mat_double * mlfw_scale_double_wit_given_min_max(mlfw_mat_double *matrix,in
 {
 	double scaled_value;
 	double value;
-	double *max;
-	double *min;
+	double max;
+	double min;
 	index_t r,c;
 	index_t new_matrix_r,new_matrix_c;
 	dimension_t matrix_rows,matrix_columns;
