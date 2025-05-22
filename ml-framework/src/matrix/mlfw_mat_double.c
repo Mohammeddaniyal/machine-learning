@@ -324,9 +324,9 @@ double mlfw_mat_double_get_minimum(mlfw_mat_double *matrix,index_t start_row_ind
 	if(start_row_index>end_row_index) return 0.0;
 	if(start_column_index>end_column_index) return 0.0;
 	minimum=matrix->data[start_row_index][start_column_index];
-	for(r=start_row_index;r<end_row_index;++r)
+	for(r=start_row_index;r<=end_row_index;++r)
 	{
-		for(c=start_column_index;c<end_column_index;++c)
+		for(c=start_column_index;c<=end_column_index;++c)
 		{
 			if(matrix->data[r][c]<minimum) minimum=matrix->data[r][c];
 		}
@@ -346,9 +346,9 @@ double mlfw_mat_double_get_maximum(mlfw_mat_double *matrix,index_t start_row_ind
 	if(start_row_index>end_row_index) return 0.0;
 	if(start_column_index>end_column_index) return 0.0;
 	maximum=matrix->data[start_row_index][start_column_index];
-	for(r=start_row_index;r<end_row_index;++r)
+	for(r=start_row_index;r<=end_row_index;++r)
 	{
-		for(c=start_column_index;c<end_column_index;++c)
+		for(c=start_column_index;c<=end_column_index;++c)
 		{
 			if(matrix->data[r][c]>maximum) maximum=matrix->data[r][c];
 		}
