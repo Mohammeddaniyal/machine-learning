@@ -5,9 +5,11 @@
 #include<mlfw_set.h>
 void mlfw_encoder_encode_one_hot(char *source,char *target,int *encode_columns,int size,int header_exists)
 {
+	FILE *target_file;
 	mlfw_mat_string *matrix;
 	mlfw_set_string **sets;
 	char *string;
+	char *set_string;
 	dimension_t set_size;
 	index_t r,c;
 	index_t data_start_row_index;
@@ -85,7 +87,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,int *encode_columns,i
 	} // outer-for loop ends
 
 	// code to test the contents of the set
-	for(i=0;i<size;++i)
+	/*for(i=0;i<size;++i)
 	{
 		set_size=mlfw_set_string_get_size(sets[i]);
 		for(j=0;j<set_size;++j)
@@ -97,6 +99,69 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,int *encode_columns,i
 				free(string);
 			}
 		}
+	}*/
+	
+       // logic to create the file starts here	
+	
+	target_file=fopen(target,"w");
+	if(target_file==NULL)
+	{
+		for(j=0;j<i;++i) mlfw_set_string_destroy(sets[j]);
+		free(sets);
+		mlfw_mat_string_destroy(matrix);
+		return;
 	}
-
+	if(header_exists)
+	{
+		for(c=0;c<matrix_columns;++c)
+		{
+			mlfw_mat_string_get(matrix,0,c,&string);
+			if(string==NULL)
+			{
+			for(j=0;j<i;++i) mlfw_set_string_destroy(sets[j]);
+			free(sets);
+			mlfw_mat_string_destroy(matrix);
+			fclose(target_file);
+			target_file=fopen(target,"w"); // create blank file, reason to erase all the written 
+			fclose(target_file);
+			return;
+			}
+			for(i=0;i<size;++i)
+			{
+				if(c==encode_columns[i]) break;
+			}
+			if(i<size) // found, cth column is to be hot encoded
+			{
+				set_size=mlfw_set_string_get_size(sets[i]);
+				for(j=0;j<set_size;++j)
+				{
+					mlfw_set_string_get(sets[i],j,&set_string);
+					if(set_string==NULL)
+					{
+					free(string);
+					for(j=0;j<i;++i) mlfw_set_string_destroy(sets[j]);
+					free(sets);
+					mlfw_mat_string_destroy(matrix);
+					fclose(target_file);
+					target_file=fopen(target,"w"); 
+					fclose(target_file);
+					return;
+					}
+					fputs(string,target_file);
+					fputc('_',target_file);
+					fputs(set_string,target_file);
+					free(set_string);
+					if(j<set_size-1) fputc(',',target_file);
+				}
+			}
+			else // not found, the column not to be hot encoded
+			{
+			fputs(string,target_file);
+			}
+			free(string);
+			if(c==matrix_columns-1) fputc('\n',target_file);
+			else fputc(',',target_file);
+		}
+	}
+	fclose(target_file);
 }
