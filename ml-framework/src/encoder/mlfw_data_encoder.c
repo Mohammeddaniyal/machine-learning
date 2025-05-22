@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<mlfw_matrix.h>
 #include<mlfw_encoder.h>
 #include<mlfw_set.h>
