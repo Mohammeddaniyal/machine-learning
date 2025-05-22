@@ -163,5 +163,67 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,int *encode_columns,i
 			else fputc(',',target_file);
 		}
 	}
+
+	// encode data
+	
+	for(r=data_start_row_index;r<matrix_rows;++r)
+	{
+		for(c=0;c<matrix_columns;++c)
+		{
+			mlfw_mat_string_get(matrix,r,c,&string);
+			if(string==NULL)
+			{
+			for(j=0;j<i;++i) mlfw_set_string_destroy(sets[j]);
+			free(sets);
+			mlfw_mat_string_destroy(matrix);
+			fclose(target_file);
+			target_file=fopen(target,"w"); // create blank file, reason to erase all the written 
+			fclose(target_file);
+			return;
+			}
+			for(i=0;i<size;++i)
+			{
+				if(c==encode_columns[i]) break;
+			}
+			if(i<size) // found, cth column is to be hot encoded
+			{
+				set_size=mlfw_set_string_get_size(sets[i]);
+				for(j=0;j<set_size;++j)
+				{
+					mlfw_set_string_get(sets[i],j,&set_string);
+					if(set_string==NULL)
+					{
+					free(string);
+					for(j=0;j<i;++i) mlfw_set_string_destroy(sets[j]);
+					free(sets);
+					mlfw_mat_string_destroy(matrix);
+					fclose(target_file);
+					target_file=fopen(target,"w"); 
+					fclose(target_file);
+					return;
+					}
+					if(strcmp(string,set_string)==0)
+					{
+						fputc('1',target_file);
+					}
+					else
+					{
+						fputc('0',target_file);
+					}
+					free(set_string);
+					if(j<set_size-1) fputc(',',target_file);
+				}
+			}
+			else // not found, the column not to be hot encoded
+			{
+			fputs(string,target_file);
+			}
+			free(string);
+			if(c==matrix_columns-1) fputc('\n',target_file);
+			else fputc(',',target_file);
+		}
+	
+	}
+
 	fclose(target_file);
 }
