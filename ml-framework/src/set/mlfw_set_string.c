@@ -25,7 +25,7 @@ void mlfw_set_string_destroy(mlfw_set_string *set)
 	{
 		free(set->data[i]);
 	}
-	free(set->data);
+	if(set->data!=NULL) free(set->data);
 	free(set);
 }
 
