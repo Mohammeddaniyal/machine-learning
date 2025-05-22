@@ -7,4 +7,6 @@
 #define index_t uint32_t
 #endif
 
+#include<encoder/mlfw_data_encoder.h>
+
 #endif
