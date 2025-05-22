@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct __mlfw_set_string mlfw_set_string
+typedef struct __mlfw_set_string 
 {
 	char **data;
 	dimension_t size;
@@ -50,7 +50,7 @@ void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 	strcpy(*string,set->data[i]);
 }
 // returns -1 in case of low memory or 0 incase of added or not added because of duplicate
-int  mlfw_set_string_set(mlfw_set_string *set,char *string)
+int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 {
 	char *str;
 	char **tmp;
@@ -75,10 +75,11 @@ int  mlfw_set_string_set(mlfw_set_string *set,char *string)
 	{
 		for(i=0;i<set->size;++i)
 		{
-			if(strcmp(set->data[i],string==0)
+			if(strcmp(set->data[i],string)==0)
 				{
 					return 0;
 				}
+		}
 				str=(char *)malloc(sizeof(char)*(strlen(string)+1));
 				if(str==NULL) return -1;
 				strcpy(str,string);
@@ -92,8 +93,8 @@ int  mlfw_set_string_set(mlfw_set_string *set,char *string)
 				set->data[set->size]=str;
 				set->size++;
 				return 0;
-		}
 	}
+	return 0;
 }
 
 dimension_t mlfw_set_string_get_size(mlfw_set_string *set)
