@@ -9,6 +9,6 @@
 #endif
 
 
-#include<scale/mlfw_scale_double.h>
+#include<scaling/mlfw_scale_double.h>
 
 #endif
