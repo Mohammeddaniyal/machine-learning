@@ -51,7 +51,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 		for(new_matrix_c=0;new_matrix_c<new_matrix_columns;++new_matrix_c)
 		{
 			value=mlfw_mat_double_get(matrix,r,c);
-			scaled_value=(value-min[c])/(max[c]-min[c]);
+			scaled_value=(value-min[new_matrix_c])/(max[new_matrix_c]-min[new_matrix_c]);
 			mlfw_mat_double_set(new_matrix,new_matrix_r,new_matrix_c,scaled_value);
 			++c;
 		}
