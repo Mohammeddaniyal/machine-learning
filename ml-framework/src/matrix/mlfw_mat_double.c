@@ -311,3 +311,47 @@ mlfw_mat_double * mlfw_mat_double_transpose(mlfw_mat_double *matrix)
 	}
 	return transposed_matrix;
 }
+
+double mlfw_mat_double_get_minimum(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index)
+{
+	double minimum;
+	index_t r,c;
+	if(matrix==NULL) return 0.0;
+	if(start_row_index<0) start_row_index=0;
+	if(start_column_index<0) start_column_index=0;
+	if(end_row_index>=matrix->rows) end_row_index=matrix->rows-1;
+	if(end_column_index>=matrix->columns) end_column_index=matrix->columns-1;
+	if(start_row_index>end_row_index) return 0.0;
+	if(start_column_index>end_column_index) return 0.0;
+	minimum=matrix->data[start_row_index][start_column_index];
+	for(r=start_row_index;r<end_row_index;++r)
+	{
+		for(c=start_column_index;c<end_column_index;++c)
+		{
+			if(matrix->data[r][c]<minimum) minimum=matrix->data[r][c];
+		}
+	}
+	return minimum;
+}
+
+double mlfw_mat_double_get_maximum(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index)
+{
+	double maximum;
+	index_t r,c;
+	if(matrix==NULL) return 0.0;
+	if(start_row_index<0) start_row_index=0;
+	if(start_column_index<0) start_column_index=0;
+	if(end_row_index>=matrix->rows) end_row_index=matrix->rows-1;
+	if(end_column_index>=matrix->columns) end_column_index=matrix->columns-1;
+	if(start_row_index>end_row_index) return 0.0;
+	if(start_column_index>end_column_index) return 0.0;
+	maximum=matrix->data[start_row_index][start_column_index];
+	for(r=start_row_index;r<end_row_index;++r)
+	{
+		for(c=start_column_index;c<end_column_index;++c)
+		{
+			if(matrix->data[r][c]>maximum) maximum=matrix->data[r][c];
+		}
+	}
+	return maximum;
+}
