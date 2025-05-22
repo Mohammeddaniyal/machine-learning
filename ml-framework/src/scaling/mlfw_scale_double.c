@@ -68,13 +68,13 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 	}
 	for(i=0;i<new_matrix_columns;++i)
 	{
-		fprintf(file,"%lf",min[i];
+		fprintf(file,"%lf",min[i]);
 		if(i==new_matrix_columns-1) fputc('\n',file);
 		else fputc(',',file);
 	}
 	for(i=0;i<new_matrix_columns;++i)
 	{
-		fprintf(file,"%lf",max[i];
+		fprintf(file,"%lf",max[i]);
 		if(i==new_matrix_columns-1) fputc('\n',file);
 		else fputc(',',file);	
 	}
