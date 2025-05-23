@@ -12,6 +12,8 @@ typedef struct __mlfw_row_vec_double
 	dimension_t size;
 }mlfw_row_vec_double;
 
+
+
 // column vector function implementations
 
 mlfw_column_vec_double * mlfw_column_vec_double_create_new(dimension_t size)
