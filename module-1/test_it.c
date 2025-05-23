@@ -5,8 +5,8 @@
 #include<stdio.h>
 // global variable
 char *DATASET_FILE_NAME=NULL;
-char *RESULT_FILE_NAME=NULL;
-
+char *RESULTS_FILE_NAME=NULL;
+char *PARAMETERS_FILE_NAME=NULL;
 void test_it()
 {
 	index_t r,c;
@@ -68,17 +68,9 @@ void test_it()
 	 */
 
 	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
-
-
-	/*
-	1st arg : source matrix
-	2nd arg : which column to use to create column vector
-	 */
-
-	// But we had also discussed that value of m and c can be anything
-	// hence we're taking c as 0 and m also as 0
 	
-	m=mlfw_column_vec_double_create_new(I_columns);
+	m=mlfw_column_vec_double_from_csv(PARAMETERS_FILE_NAME);
+	
 	if(m==NULL)
 	{
 		printf("Low memory\n");
@@ -87,8 +79,6 @@ void test_it()
 		return;
 	}
 
-	mlfw_column_vec_double_set(m,0,-33.657860);
-	mlfw_column_vec_double_set(m,1,1.191902);
 	P=mlfw_multiply_double_matrix_with_column_vector(I,m);
 	if(P==NULL)
 	{
@@ -101,7 +91,7 @@ void test_it()
 	}
 	
 	// store dataset amd predicted value in result_file
-	result_file=fopen(RESULT_FILE_NAME,"w");
+	result_file=fopen(RESULTS_FILE_NAME,"w");
 	fprintf(result_file,"input(1),actual_output,predicted_output\n");	
 
 	for(r=0;r<dataset_rows;++r)
@@ -125,13 +115,14 @@ void test_it()
 
 int main(int argc,char *argv[])
 {
-	if(argc!=3)
+	if(argc!=4)
 	{
-		printf("[Usage : train_it.out dataset_name result_file_name] \n");
+		printf("[Usage : train_it.out dataset_name parameters_file_name result_file_name] \n");
 	}
 	DATASET_FILE_NAME=argv[1];
-	RESULT_FILE_NAME=argv[2];
+	PARAMETERS_FILE_NAME=argv[2];
+	RESULTS_FILE_NAME=argv[3];
 	test_it();
-	printf("Results are stored in %s\n",argv[2]);
+	printf("Results are stored in %s\n",RESULTS_FILE_NAME);
 	return 0;
 }
