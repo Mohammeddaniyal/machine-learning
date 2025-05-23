@@ -122,7 +122,8 @@ int main(int argc,char *argv[])
 {
 	if(argc!=4)
 	{
-		printf("[Usage : train_it.out dataset_name parameters_file_name result_file_name] \n");
+		printf("[Usage : test_it.out dataset_name parameters_file_name result_file_name] \n");
+		return 0;
 	}
 	DATASET_FILE_NAME=argv[1];
 	PARAMETERS_FILE_NAME=argv[2];
