@@ -89,7 +89,11 @@ void train_it()
 	 7th arg : source_to_row_index
 	 8th arg : source_to_column_index
 	 */
-	mlfw_mat_double_copy(I,dataset,0,1,0,0,dataset_rows-1,0);
+	// about 8th argument
+	// it means, from 0 to columns-2 are input columns and columns-1 is output column
+	// so here we're copying dataset 0th column to last input column 
+	// In I matrix 1 index column to last index copying 
+	mlfw_mat_double_copy(I,dataset,0,1,0,0,dataset_rows-1,dataset_columns-2);
 
 	/*
 	 1st arg : matrix to fill
@@ -116,7 +120,7 @@ void train_it()
 	2nd arg : which column to use to create column vector
 	 */
 
-	A=mlfw_mat_double_create_column_vec(dataset,1);
+	A=mlfw_mat_double_create_column_vec(dataset,dataset_columns-1); // last column is the output feature
 	if(A==NULL)
 	{
 		printf("Unable to create column vector\n");
