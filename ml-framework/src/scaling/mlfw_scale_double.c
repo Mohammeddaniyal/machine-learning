@@ -40,7 +40,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 		return NULL;
 	}
 	i=0;
-	for(c=start_column_index;c<=end_column_index;++i)
+	for(c=start_column_index;c<=end_column_index;++c)
 	{
 		min[i]=mlfw_mat_double_get_minimum(matrix,start_row_index,c,end_row_index,c);
 		max[i]=mlfw_mat_double_get_maximum(matrix,start_row_index,c,end_row_index,c);
