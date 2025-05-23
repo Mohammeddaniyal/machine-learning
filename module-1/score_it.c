@@ -31,14 +31,14 @@ void score_it(char *result_file_name)
 	}
 	mlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
 
-	A=mlfw_mat_double_create_column_vec(dataset,1); // 2nd column of results file
+	A=mlfw_mat_double_create_column_vec(dataset,dataset_columns-2); // 2nd last column of results file
 	if(A==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
 		return;
 	}
-	P=mlfw_mat_double_create_column_vec(dataset,2); // 3rd column of result file
+	P=mlfw_mat_double_create_column_vec(dataset,dataset_columns-1); // last column of result file
 	if(P==NULL)
 	{
 		printf("Low memory\n");
