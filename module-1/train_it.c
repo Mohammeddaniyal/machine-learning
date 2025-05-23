@@ -380,6 +380,7 @@ int main(int argc,char *argv[])
 	if(argc!=7 && argc!=8)
 	{
 		printf("[Usage : train_it.out dataset_name learning_rate history_size histroy_file_name parameters_file_name graph_data_file_name number_of_iterations(optional)] \n");
+	return 0;
 	}
 	DATASET_FILE_NAME=argv[1];
 	ptr=NULL; // reason lec 15 module 1 (A15) 9:00  
