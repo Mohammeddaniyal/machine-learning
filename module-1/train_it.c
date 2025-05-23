@@ -10,6 +10,10 @@ char *DATASET_FILE_NAME=NULL;
 double LEARNING_RATE=1.0;
 dimension_t HISTORY_SIZE=0;
 char *HISTORY_FILE_NAME=NULL;
+char *PARAMETERS_FILE_NAME=NULL;
+char *GRAPH_FILE_NAME=NULL;
+
+
 
 uint8_t STOP_FLAG=0;
 
@@ -159,7 +163,7 @@ void train_it()
 
 	history_index=0;
 
-	graph_file=fopen("graph.csv","w");
+	graph_file=fopen(GRAPH_FILE_NAME,"w");
 
 	// Operations start
 	
@@ -369,9 +373,9 @@ int main(int argc,char *argv[])
 	int result;
 	char m;
 	char *ptr;
-	if(argc!=5 && argc!=6)
+	if(argc!=7 && argc!=8)
 	{
-		printf("[Usage : train_it.out dataset_name learning_rate history_size histroy_file_name number_of_iterations(optional)] \n");
+		printf("[Usage : train_it.out dataset_name learning_rate history_size histroy_file_name parameters_file_name graph_data_file_name number_of_iterations(optional)] \n");
 	}
 	DATASET_FILE_NAME=argv[1];
 	ptr=NULL; // reason lec 15 module 1 (A15) 9:00  
@@ -384,12 +388,14 @@ int main(int argc,char *argv[])
 		return 0;
 	}
 	HISTORY_FILE_NAME=argv[4];
-	if(argc==6)
+	PARAMETERS_FILE_NAME=argv[5];
+	GRAPH_FILE_NAME=argv[6];
+	if(argc==8)
 	{
 		ptr=NULL;
 		// ull means unsigned long log
 		// passing 10, because string is in decimal form
-		NUMBER_OF_ITERATIONS=strtoull(argv[5],&ptr,10);
+		NUMBER_OF_ITERATIONS=strtoull(argv[7],&ptr,10);
 	}
 	
 	result=pthread_create(&thread_id,NULL,thread_function,NULL);
