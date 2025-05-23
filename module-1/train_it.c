@@ -348,7 +348,7 @@ void train_it()
 	// code to store the contents of  (m vector) to csv file
 	
 		mlfw_mat_double_to_csv(history,HISTORY_FILE_NAME);
-	
+		mlfw_column_vec_double_to_csv(m,PARAMETERS_FILE_NAME);	
 	// release resources
 	
                 mlfw_mat_double_destroy(dataset);
