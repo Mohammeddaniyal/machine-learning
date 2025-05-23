@@ -8,12 +8,14 @@ int main(int argc,char *argv[])
 	char *min_max_file;
 	double min;
 	double max;
-	double scale_value;
+	double scaled_value;
 	double value;
+	mlfw_mat_double *matrix;
 	dimension_t matrix_rows,matrix_columns;
+	mlfw_mat_double *min_max_matrix;
 	dimension_t min_max_rows,min_max_columns;
 	index_t r,c;
-	if(argc!=3)
+	if(argc!=4)
 	{
 		printf("Usage : [reverse_scale_output.out input_file output_file min_max_file]\n");
 		return 0;
@@ -42,8 +44,8 @@ int main(int argc,char *argv[])
 	
 	// last column is the output (min and max values)
 	// and we only care about the output not input columns
-	min=mlfw_mat_double_get(min_max_matrix,0,min_matrix_columns-1);
-	max=mlfw_mat_double_get(min_max_matrix,1,min_matrix_columns-1);
+	min=mlfw_mat_double_get(min_max_matrix,0,min_max_columns-1);
+	max=mlfw_mat_double_get(min_max_matrix,1,min_max_columns-1);
 
 
 	for(r=0;r<matrix_rows;++r)
