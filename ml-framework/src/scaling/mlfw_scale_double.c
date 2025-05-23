@@ -86,7 +86,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 }
 
 
-mlfw_mat_double * mlfw_scale_double_wit_given_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *min_max_matrix)
+mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *min_max_matrix)
 {
 	double scaled_value;
 	double value;
@@ -102,8 +102,8 @@ mlfw_mat_double * mlfw_scale_double_wit_given_min_max(mlfw_mat_double *matrix,in
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	mlfw_mat_double_get_dimensions(min_max_matrix,&min_max_rows,&min_max_columns);
 	if(min_max_rows!=2) return NULL; // reason lec 19 module 1
-	if(start_row_index<=0 || end_row_index>=matrix_rows) return NULL;
-	if(start_column_index<=0 || end_column_index>=matrix_columns) return NULL;
+	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
+	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
 	if(start_row_index>end_row_index) return NULL;
 	if(start_column_index>end_column_index) return NULL;
 
