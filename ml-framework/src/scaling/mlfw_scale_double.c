@@ -17,8 +17,8 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 	mlfw_mat_double *new_matrix;
 	if(matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
-	if(start_row_index<=0 || end_row_index>=matrix_rows) return NULL;
-	if(start_column_index<=0 || end_column_index>=matrix_columns) return NULL;
+	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
+	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
 	if(start_row_index>end_row_index) return NULL;
 	if(start_column_index>end_column_index) return NULL;
 
@@ -40,7 +40,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 		return NULL;
 	}
 	i=0;
-	for(c=start_column_index;c<end_column_index;++i)
+	for(c=start_column_index;c<=end_column_index;++i)
 	{
 		min[i]=mlfw_mat_double_get_minimum(matrix,start_row_index,c,end_row_index,c);
 		max[i]=mlfw_mat_double_get_maximum(matrix,start_row_index,c,end_row_index,c);
