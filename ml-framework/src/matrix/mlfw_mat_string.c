@@ -125,6 +125,25 @@ mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name)
 	fclose(file);
  return matrix;
 }
+void mlfw_mat_string_to_csv(mlfw_mat_string *matrix,const char *csv_file_name)
+{
+	FILE *file;
+	index_t r,c;
+	if(matrix==NULL || csv_file_name==NULL) return;
+	file=fopen(csv_file_name,"w");
+	if(file==NULL) return;
+	
+	for(r=0;r<matrix->rows;++r)
+	{
+		for(c=0;c<matrix->columns;++c)
+		{
+			fputs(matrix->data[r][c],file);
+			if(c==matrix->columns-1) fputc('\n',file);
+			else fputc(',',file);
+		}
+	}
+	fclose(file);
+}
 void mlfw_mat_string_get(mlfw_mat_string *matrix,index_t row,index_t column,char **string)
 {
 	if(string==NULL) return;
