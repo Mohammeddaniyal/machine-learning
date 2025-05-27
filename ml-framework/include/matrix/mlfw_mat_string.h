@@ -12,4 +12,6 @@ void mlfw_mat_string_set(mlfw_mat_string *matrix,index_t row,index_t column,char
 
 void mlfw_mat_string_get_dimensions(mlfw_mat_string *matrix,dimension_t *rows,dimension_t *columns);
 
+mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix);
+
 #endif
