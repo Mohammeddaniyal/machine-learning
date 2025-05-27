@@ -198,3 +198,22 @@ void mlfw_mat_string_get_dimensions(mlfw_mat_string *matrix,dimension_t *rows,di
 	}
 }
 
+mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix)
+{
+	mlfw_mat_string *transposed_matrix;
+	index_t r,c;
+	char &ptr;
+	if(matrix==NULL) return NULL;
+	transposed_matrix=mlfw_mat_string_create_new(matrix->columns,matrix->rows);
+	if(transposed_matrix==NULL) return NULL;
+	for(r=0;r<matrix->rows;++r)
+	{
+		for(c=0;c<matrix->columns;++c)
+		{
+			mlfw_mat_string_get(matrix,r,c,&ptr);
+			mlfw_mat_string_set(transposed_matrix,c,r,ptr);
+			free(ptr);
+		}
+	}
+	return transposed_matrix;
+}
