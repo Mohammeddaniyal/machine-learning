@@ -218,7 +218,6 @@ void mlfw_mat_double_fill(mlfw_mat_double *matrix,index_t from_row_index,index_t
 mlfw_column_vec_double * mlfw_mat_double_create_column_vec(mlfw_mat_double *matrix,index_t column_index,mlfw_column_vec_double *vector)
 {
 	index_t r;
-	dimension_t vector_size;
 	if(matrix==NULL) return NULL;
 	if(column_index<0 || column_index>=matrix->columns) return NULL;
 	if(vector==NULL)
@@ -228,8 +227,7 @@ mlfw_column_vec_double * mlfw_mat_double_create_column_vec(mlfw_mat_double *matr
 	}
 	else
 	{
-		vector_size=mlfw_column_vec_double_get_size(vector);
-		if(vector_size!=matrix->rows) return NULL;
+		if(mlfw_column_vec_double_get_size(vector)!=matrix->rows) return NULL;
 	}
 	for(r=0;r<matrix->rows;++r)
 	{
