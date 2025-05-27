@@ -51,9 +51,8 @@ void mlfw_mat_double_destroy(mlfw_mat_double *matrix)
 	free(matrix->data);
 	free(matrix);
 }
-mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name)
+mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name,mlfw_mat_double *matrix)
 {
-	mlfw_mat_double *matrix;
 	int index;
 	char m;
 	index_t r,c;
@@ -77,13 +76,20 @@ mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name)
 		if(m=='\n') rows++;
 	}
 	columns++; // if 7 commas in a line, that means 8 columns
-	matrix=mlfw_mat_double_create_new(rows,columns);
-       if(matrix==NULL)
-       {
-	       printf("Unable to create matrix");
-	       fclose(file);
-	       return NULL;
-       }
+	if(matrix==NULL)
+	{
+		matrix=mlfw_mat_double_create_new(rows,columns);
+       		if(matrix==NULL)
+       		{
+		       printf("Unable to create matrix");
+	       	fclose(file);
+	       	return NULL;
+       		}
+	}
+	else
+	{
+		if(matrix->rows!=rows || matrix->columns!=columns) return NULL;
+	}
 	rewind(file); // move the internal pointer to the first byte
 	// logic to populate matrix starts
 	r=0;
@@ -209,14 +215,22 @@ void mlfw_mat_double_fill(mlfw_mat_double *matrix,index_t from_row_index,index_t
 	}
 }
 
-mlfw_column_vec_double * mlfw_mat_double_create_column_vec(mlfw_mat_double *matrix,index_t column_index)
+mlfw_column_vec_double * mlfw_mat_double_create_column_vec(mlfw_mat_double *matrix,index_t column_index,mlfw_column_vec_double *vector)
 {
-	mlfw_column_vec_double *vector;
 	index_t r;
+	dimension_t vector_size;
 	if(matrix==NULL) return NULL;
 	if(column_index<0 || column_index>=matrix->columns) return NULL;
+	if(vector==NULL)
+	{
 	vector=mlfw_column_vec_double_create_new(matrix->rows);
 	if(vector==NULL) return NULL;
+	}
+	else
+	{
+		vector_size=mlfw_column_vec_double_get_size(vector);
+		if(vector_size!=matrix->rows) return NULL;
+	}
 	for(r=0;r<matrix->rows;++r)
 	{
 		mlfw_column_vec_double_set(vector,r,matrix->data[r][column_index]);
@@ -225,9 +239,8 @@ mlfw_column_vec_double * mlfw_mat_double_create_column_vec(mlfw_mat_double *matr
 }
 
 
-mlfw_mat_double * mlfw_mat_double_shuffle(mlfw_mat_double *matrix,uint8_t how_many_times_to_shuffle)
+mlfw_mat_double * mlfw_mat_double_shuffle(mlfw_mat_double *matrix,uint8_t how_many_times_to_shuffle,mlfw_mat_double *shuffled_matrix)
 {
-	mlfw_mat_double *shuffled_matrix;
 	// idx= (r%(b-a+1))+a
 	int r;
 	index_t a,b;
@@ -239,10 +252,16 @@ mlfw_mat_double * mlfw_mat_double_shuffle(mlfw_mat_double *matrix,uint8_t how_ma
 	double tmp_var;
 	if(matrix==NULL) return NULL;
 	if(how_many_times_to_shuffle==0) return NULL;
-	
+
+	if(shuffled_matrix==NULL)
+	{	
 	shuffled_matrix=mlfw_mat_double_create_new(matrix->rows,matrix->columns);
 	if(shuffled_matrix==NULL) return NULL;
-
+	}
+	else
+	{
+	if(shuffled_matrix->rows!=matrix->rows || shuffled_matrix->columns!=matrix->columns) return NULL;
+	}
 	mlfw_mat_double_copy(shuffled_matrix,matrix,0,0,0,0,matrix->rows-1,matrix->columns-1);
 
 	// b is the lower bound means last index
@@ -295,13 +314,19 @@ void mlfw_mat_double_to_csv(mlfw_mat_double *matrix,const char *csv_file_name)
 	fclose(file);
 }
 
-mlfw_mat_double * mlfw_mat_double_transpose(mlfw_mat_double *matrix)
+mlfw_mat_double * mlfw_mat_double_transpose(mlfw_mat_double *matrix,mlfw_mat_double *transposed_matrix)
 {
-	mlfw_mat_double *transposed_matrix;
 	index_t r,c;
 	if(matrix==NULL) return NULL;
+	if(transposed_matrix==NULL)
+	{
 	transposed_matrix=mlfw_mat_double_create_new(matrix->columns,matrix->rows);
 	if(transposed_matrix==NULL) return NULL;
+	}
+	else
+	{
+	if(transposed_matrix->rows!=matrix->rows || transposed_matrix->columns!=matrix->columns) return NULL;
+	}
 	for(r=0;r<matrix->rows;++r)
 	{
 		for(c=0;c<matrix->columns;++c)
