@@ -202,7 +202,7 @@ mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix)
 {
 	mlfw_mat_string *transposed_matrix;
 	index_t r,c;
-	char &ptr;
+	char *ptr;
 	if(matrix==NULL) return NULL;
 	transposed_matrix=mlfw_mat_string_create_new(matrix->columns,matrix->rows);
 	if(transposed_matrix==NULL) return NULL;
