@@ -106,7 +106,7 @@ mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name)
 			matrix->data[r][c]=(char *)malloc(sizeof(char)*(strlen(string)+1)); 
 			if(matrix->data[r][c]!=NULL)
 			{
-				strcpy(matrix->data[r][c],string);
+					strcpy(matrix->data[r][c],string);
 			}
 			index=0;
 			c++;
@@ -137,7 +137,7 @@ void mlfw_mat_string_to_csv(mlfw_mat_string *matrix,const char *csv_file_name)
 	{
 		for(c=0;c<matrix->columns;++c)
 		{
-			fputs(matrix->data[r][c],file);
+			if(matrix->data[r][c]!=NULL)fputs(matrix->data[r][c],file);
 			if(c==matrix->columns-1) fputc('\n',file);
 			else fputc(',',file);
 		}
