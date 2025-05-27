@@ -14,8 +14,8 @@ mlfw_row_vec_string * mlfw_row_vec_string_from_csv(const char *csv_file_name);
 void mlfw_row_vec_string_to_csv(mlfw_row_vec_string *vector,const char *csv_file_name);
 void mlfw_row_vec_string_get(mlfw_row_vec_string *vector,index_t index,char **string);
 void mlfw_row_vec_string_set(mlfw_row_vec_string *vector,index_t index,char *string);
-void mlfw_row_vec_string_get_size(mlfw_row_vec_string *vector);
-mlfw_column_vec_string mlfw_row_vec_string_transpose(mlfw_row_vec_string *vector);
+dimension_t mlfw_row_vec_string_get_size(mlfw_row_vec_string *vector);
+mlfw_column_vec_string * mlfw_row_vec_string_transpose(mlfw_row_vec_string *vector);
 
 
 // column vector functions
@@ -25,8 +25,8 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 void mlfw_column_vec_string_to_csv(mlfw_column_vec_string *vector,const char *csv_file_name);
 void mlfw_column_vec_string_get(mlfw_column_vec_string *vector,index_t index,char **string);
 void mlfw_column_vec_string_set(mlfw_column_vec_string *vector,index_t index,char *string);
-void mlfw_column_vec_string_get_size(mlfw_column_vec_string *vector);
-mlfw_row_vec_string mlfw_column_vec_string_transpose(mlfw_column_vec_string *vector);
+dimension_t mlfw_column_vec_string_get_size(mlfw_column_vec_string *vector);
+mlfw_row_vec_string * mlfw_column_vec_string_transpose(mlfw_column_vec_string *vector);
 
 
 
