@@ -167,6 +167,7 @@ mlfw_column_vec_string * mlfw_row_vec_string_transpose(mlfw_row_vec_string *vect
 	{
 		mlfw_row_vec_string_get(vector,i,&ptr);
 		mlfw_column_vec_string_set(transposed_vector,i,ptr);
+		free(ptr);
 	}
 
 	return transposed_vector;
@@ -328,6 +329,7 @@ mlfw_row_vec_string * mlfw_column_vec_string_transpose(mlfw_column_vec_string *v
 	{
 		mlfw_column_vec_string_get(vector,i,&ptr);
 		mlfw_row_vec_string_set(transposed_vector,i,ptr);
+		free(ptr);
 	}
 
 	return transposed_vector;
