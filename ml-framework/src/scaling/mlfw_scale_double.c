@@ -106,7 +106,6 @@ mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,i
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
 	dimension_t min_max_rows,min_max_columns;
-	mlfw_mat_double *new_matrix;
 	if(matrix==NULL || min_max_matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	mlfw_mat_double_get_dimensions(min_max_matrix,&min_max_rows,&min_max_columns);
