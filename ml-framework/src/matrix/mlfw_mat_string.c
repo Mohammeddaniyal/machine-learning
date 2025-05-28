@@ -59,9 +59,8 @@ void mlfw_mat_string_destroy(mlfw_mat_string *matrix)
 	free(matrix->data);
 	free(matrix);
 }
-mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name)
+mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name,mlfw_mat_string *matrix)
 {
-	mlfw_mat_string *matrix;
 	int index;
 	char m;
 	index_t r,c;
@@ -84,13 +83,20 @@ mlfw_mat_string * mlfw_mat_string_from_csv(const char *csv_file_name)
 		if(m=='\n') rows++;
 	}
 	columns++; // if 7 commas in a line, that means 8 columns
-	matrix=mlfw_mat_string_create_new(rows,columns);
-       if(matrix==NULL)
-       {
-	       printf("Unable to create matrix");
-	       fclose(file);
-	       return NULL;
-       }
+	if(matrix==NULL)
+	{
+		matrix=mlfw_mat_string_create_new(rows,columns);
+      		if(matrix==NULL)
+      		 {
+	       	   	printf("Unable to create matrix");
+	       		fclose(file);
+	       		return NULL;
+       		}
+	}
+	else
+	{
+		if(matrix->rows!=rows || matrix->columns!=columns) return NULL;
+	}
 	rewind(file); // move the internal pointer to the first byte
 	// logic to populate matrix starts
 	r=0;
@@ -198,14 +204,20 @@ void mlfw_mat_string_get_dimensions(mlfw_mat_string *matrix,dimension_t *rows,di
 	}
 }
 
-mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix)
+mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix,mlfw_mat_string *transposed_matrix)
 {
-	mlfw_mat_string *transposed_matrix;
 	index_t r,c;
 	char *ptr;
 	if(matrix==NULL) return NULL;
+	if(transposed_matrix==NULL)
+	{
 	transposed_matrix=mlfw_mat_string_create_new(matrix->columns,matrix->rows);
 	if(transposed_matrix==NULL) return NULL;
+	}
+	else
+	{
+	if(transposed_matrix->rows!=matrix->rows || transposed_matrix->columns!=matrix->columns) return NULL;
+	}
 	for(r=0;r<matrix->rows;++r)
 	{
 		for(c=0;c<matrix->columns;++c)
