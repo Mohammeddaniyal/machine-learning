@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<mlfw_scale.h>
 
-mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,char *min_max_file)
+mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,char *min_max_file,mlfw_mat_double *new_matrix)
 {
 	FILE *file;
 	double scaled_value;
@@ -14,7 +14,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 	index_t i;
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
-	mlfw_mat_double *new_matrix;
+	dimension_t rows,columns;
 	if(matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
@@ -24,8 +24,16 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 
 	new_matrix_rows=end_row_index-start_row_index+1;
 	new_matrix_columns=end_column_index-start_column_index+1;
+	if(new_matrix==NULL)
+	{
 	new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
 	if(new_matrix==NULL) return NULL;
+	}
+	else
+	{
+		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
+		if(rows!=new_matrix_rows || columns!=new_matrix_columns) return NULL;
+	}
 	max=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(max==NULL)
 	{
@@ -86,7 +94,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 }
 
 
-mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *min_max_matrix)
+mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *min_max_matrix,mlfw_mat_double *new_matrix)
 {
 	double scaled_value;
 	double value;
@@ -96,6 +104,7 @@ mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,i
 	index_t new_matrix_r,new_matrix_c;
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
+	dimension_t rows,columns;
 	dimension_t min_max_rows,min_max_columns;
 	mlfw_mat_double *new_matrix;
 	if(matrix==NULL || min_max_matrix==NULL) return NULL;
@@ -110,8 +119,17 @@ mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,i
 	new_matrix_rows=end_row_index-start_row_index+1;
 	new_matrix_columns=end_column_index-start_column_index+1;
 	if(min_max_columns!=new_matrix_columns) return NULL; // reason lec 19
-	new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
-	if(new_matrix==NULL) return NULL;
+	
+	if(new_matrix==NULL)
+	{
+		new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
+		if(new_matrix==NULL) return NULL;
+	}
+	else
+	{
+		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
+		if(new_matrix_rows!=rows || new_matrix_columns!=columns) return NULL;
+	}
 	r=start_row_index;
 	for(new_matrix_r=0;r<new_matrix_rows;++new_matrix_r)
 	{
