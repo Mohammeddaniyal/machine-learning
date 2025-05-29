@@ -49,23 +49,36 @@ void mlfw_column_vec_double_set(mlfw_column_vec_double *vector,index_t index,dou
 	if(index<0 || index>=vector->size) return;
 	vector->data[index]=value;
 }
-mlfw_column_vec_double * mlfw_column_vec_double_create_new_filled(dimension_t size,double value)
+mlfw_column_vec_double * mlfw_column_vec_double_create_new_filled(dimension_t size,double value,mlfw_column_vec_double *vector)
 {
 	index_t i;
 	mlfw_column_vec_double *vector;
 	if(size<=0) return NULL;
-	vector=mlfw_column_vec_double_create_new(size);
-	if(vector==NULL) return NULL;
+	if(vector==NULL)
+	{
+		vector=mlfw_column_vec_double_create_new(size);
+		if(vector==NULL) return NULL;
+	}
+	else
+	{
+		if(vector->size!=size) return NULL;
+	}
 	for(i=0;i<vector->size;++i) vector->data[i]=value;
 	return vector;
 }
-mlfw_row_vec_double * mlfw_column_vec_double_transpose(mlfw_column_vec_double *vector)
+mlfw_row_vec_double * mlfw_column_vec_double_transpose(mlfw_column_vec_double *vector,mlfw_row_vec_double *transposed_vector)
 {
 	index_t i;
-	mlfw_row_vec_double *transposed_vector;
 	if(vector==NULL) return NULL;
+	if(transposed_vector==NULL)
+	{
 	transposed_vector=mlfw_row_vec_double_create_new(vector->size);
 	if(transposed_vector==NULL) return NULL;
+	}
+	else
+	{
+	if(transposed_vector->size!=size) return NULL;
+	}	
 	for(i=0;i<vector->size;++i) transposed_vector->data[i]=vector->data[i];
 	return transposed_vector;
 
