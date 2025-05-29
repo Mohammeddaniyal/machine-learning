@@ -218,23 +218,35 @@ void mlfw_row_vec_double_set(mlfw_row_vec_double *vector,index_t index,double va
 	if(index<0 || index>=vector->size) return;
 	vector->data[index]=value;
 }
-mlfw_row_vec_double * mlfw_row_vec_double_create_new_filled(dimension_t size,double value)
+mlfw_row_vec_double * mlfw_row_vec_double_create_new_filled(dimension_t size,double value,mlfw_row_vec_double *vector)
 {
 	index_t i;
-	mlfw_row_vec_double *vector;
 	if(size<=0) return NULL;
+	if(vector==NULL)
+	{
 	vector=mlfw_row_vec_double_create_new(size);
 	if(vector==NULL) return NULL;
+	}
+	else
+	{
+	if(vector->size!=size) return NULL;
+	}
 	for(i=0;i<vector->size;i++) vector->data[i]=value;
 	return vector;
 }
-mlfw_column_vec_double * mlfw_row_vec_double_transpose(mlfw_row_vec_double *vector)
+mlfw_column_vec_double * mlfw_row_vec_double_transpose(mlfw_row_vec_double *vector,mlfw_column_vec_double *transposed_vector)
 {
 	index_t i;
-	mlfw_column_vec_double *transposed_vector;
 	if(vector==NULL) return NULL;
+	if(transposed_vector==NULL)
+	{
 	transposed_vector=mlfw_column_vec_double_create_new(vector->size);
 	if(transposed_vector==NULL) return NULL;
+	}
+	else
+	{
+ 	if(transposed_vector->size!=size) return NULL;	
+	}
 	for(i=0;i<vector->size;++i) transposed_vector->data[i]=vector->data[i];
 	return transposed_vector;
 }
@@ -269,9 +281,8 @@ void mlfw_row_vec_double_to_csv(mlfw_row_vec_double *vector,char *csv_file_name)
 	}
 	fclose(file);
 }
-mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name)
+mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name,mlfw_row_vec_double *vector)
 {
-	mlfw_row_vec_double *vector;
 	FILE *file;
 	index_t i;
 	index_t j;
@@ -292,11 +303,18 @@ mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name)
 	}
 	size++; // 10 commas means, 11 elements
 	rewind(file);
+	if(vector==NULL)
+	{
 	vector=mlfw_row_vec_double_create_new(size);
 	if(vector==NULL)
 	{
 		fclose(file);
 		return NULL;
+	}
+	}
+	else
+	{
+	if(vector->size!=size) return NULL;
 	}
 	i=0;
 	j=0;
