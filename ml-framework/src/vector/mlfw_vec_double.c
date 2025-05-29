@@ -121,9 +121,8 @@ void mlfw_column_vec_double_to_csv(mlfw_column_vec_double *vector,char *csv_file
 	}
 	fclose(file);
 }
-mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name)
+mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlfw_column_vec_double *vector)
 {
-	mlfw_column_vec_double *vector;
 	FILE *file;
 	index_t i;
 	index_t j;
@@ -143,11 +142,18 @@ mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name)
 		if(m==',') size++;
 	}
 	size++; // 10 commas means, 11 elements
+	if(vector==NULL)
+	{
 	vector=mlfw_column_vec_double_create_new(size);
 	if(vector==NULL)
 	{
 		fclose(file);
 		return NULL;
+	}
+	}
+	else
+	{
+	if(vector->size!=size) return NULL;
 	}
 	rewind(file);
 	i=0;
