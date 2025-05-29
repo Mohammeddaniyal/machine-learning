@@ -77,7 +77,7 @@ mlfw_row_vec_double * mlfw_column_vec_double_transpose(mlfw_column_vec_double *v
 	}
 	else
 	{
-	if(transposed_vector->size!=size) return NULL;
+	if(transposed_vector->size!=vector->size) return NULL;
 	}	
 	for(i=0;i<vector->size;++i) transposed_vector->data[i]=vector->data[i];
 	return transposed_vector;
@@ -245,7 +245,7 @@ mlfw_column_vec_double * mlfw_row_vec_double_transpose(mlfw_row_vec_double *vect
 	}
 	else
 	{
- 	if(transposed_vector->size!=size) return NULL;	
+ 	if(transposed_vector->size!=vector->size) return NULL;	
 	}
 	for(i=0;i<vector->size;++i) transposed_vector->data[i]=vector->data[i];
 	return transposed_vector;
