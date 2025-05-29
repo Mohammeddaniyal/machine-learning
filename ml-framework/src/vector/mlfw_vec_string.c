@@ -207,9 +207,8 @@ void mlfw_column_vec_string_destroy(mlfw_column_vec_string *vector)
 	free(vector->data);
 	free(vector);
 }
-mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_name)
+mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_name,mlfw_column_vec_string *vector)
 {
-	mlfw_column_vec_string *vector;
 	FILE *file;
 	char m;
 	dimension_t size;
@@ -227,11 +226,18 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 		if(feof(file)) break;
 		if(m==',' || m=='\n') size++;
 	}
+	if(vector==NULL)
+	{
 	vector=mlfw_column_vec_string_create_new(size);
 	if(vector==NULL)
 	{
 		fclose(file);
 		return NULL;
+	}
+	}
+	else
+	{
+	if(vector->size!=size) return NULL;
 	}
 	rewind(file); 
 	i=0;
@@ -317,14 +323,20 @@ dimension_t mlfw_column_vec_string_get_size(mlfw_column_vec_string *vector)
 	if(vector==NULL) return 0;
 	return vector->size;
 }
-mlfw_row_vec_string * mlfw_column_vec_string_transpose(mlfw_column_vec_string *vector)
+mlfw_row_vec_string * mlfw_column_vec_string_transpose(mlfw_column_vec_string *vector,mlfw_row_vec_string *transposed_vector)
 {
-	mlfw_row_vec_string *transposed_vector;
 	index_t i;
 	char *ptr;
 	if(vector==NULL) return NULL;
+	if(transposed_vector==NULL)
+	{
 	transposed_vector=mlfw_row_vec_string_create_new(vector->size);
 	if(transposed_vector==NULL) return NULL;
+	}
+	else
+	{
+	if(transposed_vector->size!=vector->size) return NULL;
+	}
 	for(i=0;i<vector->size;++i)
 	{
 		mlfw_column_vec_string_get(vector,i,&ptr);
