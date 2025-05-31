@@ -52,7 +52,6 @@ void mlfw_column_vec_double_set(mlfw_column_vec_double *vector,index_t index,dou
 mlfw_column_vec_double * mlfw_column_vec_double_create_new_filled(dimension_t size,double value,mlfw_column_vec_double *vector)
 {
 	index_t i;
-	mlfw_column_vec_double *vector;
 	if(size<=0) return NULL;
 	if(vector==NULL)
 	{
