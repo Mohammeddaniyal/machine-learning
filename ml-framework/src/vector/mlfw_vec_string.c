@@ -173,7 +173,7 @@ mlfw_column_vec_string * mlfw_row_vec_string_transpose(mlfw_row_vec_string *vect
 	}
 	else
 	{
-	if(tranposed_vector->size!=vector->size) return NULL;
+	if(transposed_vector->size!=vector->size) return NULL;
 	}
 	for(i=0;i<vector->size;++i)
 	{
@@ -249,7 +249,7 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 	}
 	else
 	{
-	if(vector->size!=vector->size) return NULL;
+	if(vector->size!=size) return NULL;
 	}
 	rewind(file); 
 	i=0;
