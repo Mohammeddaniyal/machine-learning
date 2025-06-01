@@ -7,6 +7,7 @@
 void score_it(char *result_file_name)
 {
 	mlfw_mat_double *dataset;
+	mlfw_row_vec_string *dataset_header;
 	dimension_t dataset_rows,dataset_columns;
 	mlfw_column_vec_double *A;
 	mlfw_column_vec_double *P;
@@ -23,7 +24,7 @@ void score_it(char *result_file_name)
 	double SST;
 	double r2score;
 
-	dataset=mlfw_mat_double_from_csv(result_file_name);
+	dataset=mlfw_mat_double_from_csv(result_file_name,NULL,&dataset_header);
 	if(dataset==NULL)
 	{
 		printf("Low memory or unable to load the results file\n");
@@ -31,46 +32,51 @@ void score_it(char *result_file_name)
 	}
 	mlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
 
-	A=mlfw_mat_double_create_column_vec(dataset,dataset_columns-2); // 2nd last column of results file
+	A=mlfw_mat_double_create_column_vec(dataset,dataset_columns-2,NULL); // 2nd last column of results file
 	if(A==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
-	P=mlfw_mat_double_create_column_vec(dataset,dataset_columns-1); // last column of result file
+	P=mlfw_mat_double_create_column_vec(dataset,dataset_columns-1,NULL); // last column of result file
 	if(P==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		return;	
 	}
-	R=mlfw_subtract_double_column_vector(A,P);
+	R=mlfw_subtract_double_column_vector(A,P,NULL);
 	if(R==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		return;	
 	}
-	RT=mlfw_column_vec_double_transpose(R);	
+	RT=mlfw_column_vec_double_transpose(R,NULL);	
 	if(RT==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
 		return;	
 	}
 
-	RTR=mlfw_multiply_double_row_vector_with_column_vector(RT,R);
+	RTR=mlfw_multiply_double_row_vector_with_column_vector(RT,R,NULL);
 	if(RTR==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
@@ -79,11 +85,12 @@ void score_it(char *result_file_name)
 	}
 	SSR=mlfw_column_vec_double_get(RTR,0);
 	mean_of_actuals=mlfw_column_vec_double_get_mean(A);
-	M=mlfw_column_vec_double_create_new_filled(dataset_rows,mean_of_actuals);
+	M=mlfw_column_vec_double_create_new_filled(dataset_rows,mean_of_actuals,NULL);
 	if(M==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
@@ -91,11 +98,12 @@ void score_it(char *result_file_name)
 		mlfw_column_vec_double_destroy(RTR);
 		return;	
 	}
-	AM=mlfw_subtract_double_column_vector(A,M);
+	AM=mlfw_subtract_double_column_vector(A,M,NULL);
 	if(AM==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
@@ -105,11 +113,12 @@ void score_it(char *result_file_name)
 		return;
 	}
 
-	AMT=mlfw_column_vec_double_transpose(AM);
+	AMT=mlfw_column_vec_double_transpose(AM,NULL);
 	if(AMT==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
@@ -119,11 +128,12 @@ void score_it(char *result_file_name)
 		mlfw_column_vec_double_destroy(AM);
 		return;
 	}
-	AMTAM=mlfw_multiply_double_row_vector_with_column_vector(AMT,AM);
+	AMTAM=mlfw_multiply_double_row_vector_with_column_vector(AMT,AM,NULL);
 	if(AMTAM==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
@@ -139,6 +149,7 @@ void score_it(char *result_file_name)
 	r2score=1-(SSR/SST);
 	printf("R2Score of the test is %lf\n",r2score);
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_column_vec_double_destroy(A);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(R);
@@ -155,7 +166,7 @@ int main(int argc,char *argv[])
 {
 	if(argc!=2)
 	{
-		printf("Usage : [score_it.out result_file]\n");
+		printf("Usage : [r2score result_file]\n");
 		return 0;
 	}
 	score_it(argv[1]);
