@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<time.h>
+#include<math.h>
 typedef struct __mlfw_mat_double{
 	double **data;
 	dimension_t rows;
@@ -51,8 +52,10 @@ void mlfw_mat_double_destroy(mlfw_mat_double *matrix)
 	free(matrix->data);
 	free(matrix);
 }
-mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name,mlfw_mat_double *matrix)
+mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name,mlfw_mat_double *matrix,mlfw_row_vec_string **header)
 {
+	char header_string[1025];
+	index_t header_index;
 	int index;
 	char m;
 	index_t r,c;
@@ -60,15 +63,59 @@ mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name,mlfw_mat_do
 	char double_string[1025]; //1 extra for \0 (string terminator)
 	dimension_t rows,columns;
 	FILE *file;
-	if(csv_file_name==NULL) return NULL;
+	if(csv_file_name==NULL || header==NULL) return NULL;
 	file=fopen(csv_file_name,"r");
 	if(file==NULL) return NULL;
+
+	// logic to read the first line starts here
+	columns=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',') columns++;
+		if(m=='\n') break;
+		
+	}
+	columns++; // if 0 commas, then 1 column, if 3 commas then 4 columns
+	*header=mlfw_row_vec_string_create_new(columns);
+	if(*header==NULL) return NULL;
+	rewind(file);
+	index=0;
+	header_index=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',')
+		{
+			header_string[index]='\0';
+			mlfw_row_vec_string_set(*header,header_index,header_string);
+			header_index++;
+			index=0;
+			continue;
+		}
+		if(m=='\n')
+		{
+			header_string[index]='\0';
+			mlfw_row_vec_string_set(*header,header_index,header_string);
+			break;
+		}
+				
+			header_string[index]=m;
+			++index;
+	}
+	// logic to read the first line ends here
+
 	rows=0;
 	columns=0;
 	while(1)
 	{
 		m=fgetc(file);
 		if(feof(file)) break;
+		if(m=='\r') continue;
 		if(rows==0)
 		{
 			if(m==',') columns++;
@@ -76,21 +123,47 @@ mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name,mlfw_mat_do
 		if(m=='\n') rows++;
 	}
 	columns++; // if 7 commas in a line, that means 8 columns
+	if(columns!=mlfw_row_vec_string_get_size(*header))
+	{
+		mlfw_row_vec_string_destroy(*header);
+		*header=NULL;
+		fclose(file);
+		return NULL;
+	}
 	if(matrix==NULL)
 	{
 		matrix=mlfw_mat_double_create_new(rows,columns);
        		if(matrix==NULL)
        		{
-		       printf("Unable to create matrix");
-	       	fclose(file);
-	       	return NULL;
+			fclose(file);
+			mlfw_row_vec_string_destroy(*header);
+			*header=NULL;
+	       		return NULL;
        		}
 	}
 	else
 	{
-		if(matrix->rows!=rows || matrix->columns!=columns) return NULL;
+		if(matrix->rows!=rows || matrix->columns!=columns)
+		{
+			fclose(file);
+			mlfw_row_vec_string_destroy(*header);
+			*header=NULL;
+			return NULL;
+		}
 	}
+	
+
+	
 	rewind(file); // move the internal pointer to the first byte
+	// skip the first line of the file
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m=='\n') break;
+	}
+	
 	// logic to populate matrix starts
 	r=0;
 	c=0;
@@ -99,6 +172,7 @@ mlfw_mat_double * mlfw_mat_double_from_csv(const char *csv_file_name,mlfw_mat_do
 	{
 		m=fgetc(file);
 		if(feof(file)) break;
+		if(m=='\r') continue;
 		if(m==',' || m=='\n')
 		{
 			double_string[index]='\0';
@@ -285,14 +359,37 @@ mlfw_mat_double * mlfw_mat_double_shuffle(mlfw_mat_double *matrix,uint8_t how_ma
 	}
 	return shuffled_matrix;
 }
-void mlfw_mat_double_to_csv(mlfw_mat_double *matrix,const char *csv_file_name)
+void mlfw_mat_double_to_csv(mlfw_mat_double *matrix,const char *csv_file_name,mlfw_row_vec_string *header)
 {
+	index_t index;
 	index_t r,c;
+	dimension_t header_size;
+	char *ptr;
 	char separator;
 	FILE *file;
-	if(matrix==NULL || csv_file_name==NULL) return;
+	if(matrix==NULL || csv_file_name==NULL || header==NULL) return;
+	header_size=mlfw_row_vec_string_get_size(header);
+	if(header_size!=matrix->columns) return;
 	file=fopen(csv_file_name,"w");
 	if(file==NULL) return;
+
+	// code to write header
+
+	
+
+	for(index=0;index<header_size;++index)
+	{
+		mlfw_row_vec_string_get(header,index,&ptr);
+		if(ptr!=NULL) 
+		{
+			fputs(ptr,file);
+			free(ptr);
+		}
+		if(index<header_size-1) fputc(',',file);
+		else fputc('\n',file);
+	}
+
+	// code to write data
 	for(r=0;r<matrix->rows;++r)
 	{
 		for(c=0;c<matrix->columns;++c)
@@ -378,3 +475,73 @@ double mlfw_mat_double_get_maximum(mlfw_mat_double *matrix,index_t start_row_ind
 	}
 	return maximum;
 }
+
+
+
+double mlfw_mat_double_get_mean(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index)
+{
+	double mean;
+	dimension_t elements_count;
+	double sum;
+	index_t r,c;
+	if(matrix==NULL) return 0.0;
+	if(start_row_index<0) start_row_index=0;
+	if(start_column_index<0) start_column_index=0;
+	if(end_row_index>=matrix->rows) end_row_index=matrix->rows-1;
+	if(end_column_index>=matrix->columns) end_column_index=matrix->columns-1;
+	if(start_row_index>end_row_index) return 0.0;
+	if(start_column_index>end_column_index) return 0.0;
+	sum=0.0;
+	elements_count=0;
+	for(r=start_row_index;r<=end_row_index;++r)
+	{
+		for(c=start_column_index;c<=end_column_index;++c)
+		{
+			sum=sum+matrix->data[r][c];
+			++elements_count;
+		}
+	}
+	mean=sum/elements_count;
+	return mean;
+
+}
+
+double mlfw_mat_double_get_standard_deviation(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index)
+{
+	double standard_deviation;
+	double mean;
+	double sum;
+	double square;
+	double diff;
+	dimension_t elements_count;
+	index_t r,c;
+	if(matrix==NULL) return 0.0;
+	if(start_row_index<0) start_row_index=0;
+	if(start_column_index<0) start_column_index=0;
+	if(end_row_index>=matrix->rows) end_row_index=matrix->rows-1;
+	if(end_column_index>=matrix->columns) end_column_index=matrix->columns-1;
+	if(start_row_index>end_row_index) return 0.0;
+	if(start_column_index>end_column_index) return 0.0;
+	
+	mean=mlfw_mat_double_get_mean(matrix,start_row_index,start_column_index,end_row_index,end_column_index);
+	
+	sum=0.0;
+	elements_count=0;
+
+	for(r=start_row_index;r<=end_row_index;++r)
+	{
+		for(c=start_column_index;c<=end_column_index;++c)
+		{
+			diff=matrix->data[r][c]-mean;
+			square=diff*diff;
+			sum=sum+square;
+			++elements_count;
+		}
+	}
+	mean=sum/elements_count;
+	standard_deviation=sqrt(mean);
+	return standard_deviation;
+
+}
+
+
