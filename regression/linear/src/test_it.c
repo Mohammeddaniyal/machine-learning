@@ -14,18 +14,21 @@ void test_it()
 	mlfw_mat_double *dataset;
 	dimension_t dataset_rows;
 	dimension_t dataset_columns;
-	
+
+	mlfw_row_vec_string *dataset_header;
+
 	mlfw_mat_double *I;
 	dimension_t I_rows;
 	dimension_t I_columns;
 
 
 	mlfw_column_vec_double *m;
+	mlfw_row_vec_string *m_header;
 
 	mlfw_column_vec_double *P;
 
 
-	dataset=mlfw_mat_double_from_csv(DATASET_FILE_NAME);
+	dataset=mlfw_mat_double_from_csv(DATASET_FILE_NAME,NULL,&dataset_header);
 	if(dataset==NULL)
 	{
 		printf("Unable to load dataset from %s\n",DATASET_FILE_NAME);
@@ -41,6 +44,7 @@ void test_it()
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
@@ -74,17 +78,18 @@ void test_it()
 
 	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
 	
-	m=mlfw_column_vec_double_from_csv(PARAMETERS_FILE_NAME);
+	m=mlfw_column_vec_double_from_csv(PARAMETERS_FILE_NAME,NULL,&m_header);
 	
 	if(m==NULL)
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(dataset);
+		mlfw_row_vec_string_destroy(dataset_header);
 		mlfw_mat_double_destroy(I);
 		return;
 	}
 
-	P=mlfw_multiply_double_matrix_with_column_vector(I,m);
+	P=mlfw_multiply_double_matrix_with_column_vector(I,m,NULL);
 	if(P==NULL)
 	{
 	
@@ -92,6 +97,8 @@ void test_it()
 		mlfw_mat_double_destroy(dataset);
 		mlfw_mat_double_destroy(I);
 		mlfw_column_vec_double_destroy(m);
+		mlfw_row_vec_string_destroy(dataset_header);
+		mlfw_row_vec_string_destroy(m_header);
 		return;
 	}
 	
@@ -114,6 +121,8 @@ void test_it()
                 mlfw_mat_double_destroy(I);
                 mlfw_column_vec_double_destroy(m); // the last m which was actually UM
 		mlfw_column_vec_double_destroy(P);
+		mlfw_row_vec_string_destroy(dataset_header);
+		mlfw_row_vec_string_destroy(m_header);
 }
 
 
