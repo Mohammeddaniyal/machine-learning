@@ -7,7 +7,6 @@
 #define index_t uint32_t
 #endif
 
-#include <vector/mlfw_vec_double.h>
 #include<vector/mlfw_vec_string.h>
-
+#include <vector/mlfw_vec_double.h>
 #endif
