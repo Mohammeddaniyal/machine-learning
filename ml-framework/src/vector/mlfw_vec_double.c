@@ -105,13 +105,35 @@ double mlfw_column_vec_double_get_mean(mlfw_column_vec_double *vector)
 	return mean;
 }
 
-void mlfw_column_vec_double_to_csv(mlfw_column_vec_double *vector,char *csv_file_name)
+void mlfw_column_vec_double_to_csv(mlfw_column_vec_double *vector,char *csv_file_name,mlfw_row_vec_string *header)
 {
+	index_t index;
+	dimension_t header_size;
+	char *ptr;
 	FILE *file;
 	index_t i;
-	if(vector==NULL || csv_file_name==NULL) return;
+	if(vector==NULL || csv_file_name==NULL || header==NULL) return;
+	header_size=mlfw_row_vec_string_get_size(header);
+	if(header_size!=1) return;
 	file=fopen(csv_file_name,"w");
 	if(file==NULL) return;
+	// code to write header
+		
+		for(index=0;index<header_size;++index)
+		{
+			mlfw_row_vec_string_get(header,index,&ptr);
+			if(ptr!=NULL) 
+			{
+				fputs(ptr,file);
+				free(ptr);
+			}
+			if(index<header_size-1) fputc(',',file);
+			else fputc('\n',file);
+		}
+
+	// code to write data
+
+
 	for(i=0;i<vector->size;++i)
 	{
 		fprintf(file,"%lf",vector->data[i]);
@@ -120,8 +142,12 @@ void mlfw_column_vec_double_to_csv(mlfw_column_vec_double *vector,char *csv_file
 	}
 	fclose(file);
 }
-mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlfw_column_vec_double *vector)
+mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlfw_column_vec_double *vector,mlfw_row_vec_string **header)
 {
+	char header_string[1025];
+	index_t header_index;
+	index_t index;
+	dimension_t columns;
 	FILE *file;
 	index_t i;
 	index_t j;
@@ -130,37 +156,105 @@ mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlf
 	char m;
 	char *end;
 	double value;
-	if(csv_file_name==NULL) return NULL;
+	if(csv_file_name==NULL || header==NULL) return NULL;
 	file=fopen(csv_file_name,"r");
 	if(file==NULL) return NULL;
+	// logic to read the first line starts here
+	columns=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',') columns++;
+		if(m=='\n') break;
+		
+	}
+	columns++; // if 0 commas, then 1 column, if 3 commas then 4 columns
+	*header=mlfw_row_vec_string_create_new(columns);
+	if(*header==NULL) return NULL;
+	rewind(file);
+	index=0;
+	header_index=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',')
+		{
+			header_string[index]='\0';
+			mlfw_row_vec_string_set(*header,header_index,header_string);
+			header_index++;
+			index=0;
+			continue;
+		}
+		if(m=='\n')
+		{
+			header_string[index]='\0';
+			mlfw_row_vec_string_set(*header,header_index,header_string);
+			break;
+		}
+				
+			header_string[index]=m;
+			++index;
+	}
+	// logic to read the first line ends here
+
+
 	size=0;
 	while(1)
 	{
 		m=fgetc(file);
 		if(feof(file)) break;
+		if(m=='\r') continue;
 		if(m==',') size++;
 	}
 	size++; // 10 commas means, 11 elements
+	if(size!=mlfw_row_vec_string_get_size(*header))
+	{
+		mlfw_row_vec_string_destroy(*header);
+		*header=NULL;
+		fclose(file);
+		return NULL;
+	}
 	if(vector==NULL)
 	{
 	vector=mlfw_column_vec_double_create_new(size);
 	if(vector==NULL)
 	{
 		fclose(file);
+		mlfw_row_vec_string_destroy(*header);
+		*header=NULL;
 		return NULL;
 	}
 	}
 	else
 	{
-	if(vector->size!=size) return NULL;
+	if(vector->size!=size)
+	{
+		fclose(file);
+		mlfw_row_vec_string_destroy(*header);
+		*header=NULL;
+		return NULL;
+	}
 	}
 	rewind(file);
+	// skip the first line of the file
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m=='\n') break;
+	}
 	i=0;
 	j=0;
 	while(1)
 	{
 		m=fgetc(file);
 		if(feof(file)) break;
+		if(m=='\r') continue;
 		if(m==',' || m=='\n')
 		{
 			double_string[i]='\0';
@@ -265,13 +359,34 @@ double mlfw_row_vec_double_get_mean(mlfw_row_vec_double *vector)
 	mean=sum/(double)vector->size;
 	return mean;
 }
-void mlfw_row_vec_double_to_csv(mlfw_row_vec_double *vector,char *csv_file_name)
+void mlfw_row_vec_double_to_csv(mlfw_row_vec_double *vector,char *csv_file_name,mlfw_row_vec_string *header)
 {
+	index_t index;
+	dimension_t header_size;
+	char *ptr;
 	FILE *file;
 	index_t i;
-	if(vector==NULL || csv_file_name==NULL) return;
+	if(vector==NULL || csv_file_name==NULL || header==NULL) return;
+	header_size=mlfw_row_vec_string_get_size(header);
+	if(header_size!=vector->size) return;
 	file=fopen(csv_file_name,"w");
 	if(file==NULL) return;
+	// code to write header
+	for(index=0;index<header_size;++index)
+		{
+			mlfw_row_vec_string_get(header,index,&ptr);
+			if(ptr!=NULL) 
+			{
+				fputs(ptr,file);
+				free(ptr);
+			}
+			if(index<header_size-1) fputc(',',file);
+			else fputc('\n',file);
+		}
+
+	// code to write data
+
+
 	for(i=0;i<vector->size;++i)
 	{
 		fprintf(file,"%lf",vector->data[i]);
@@ -280,8 +395,12 @@ void mlfw_row_vec_double_to_csv(mlfw_row_vec_double *vector,char *csv_file_name)
 	}
 	fclose(file);
 }
-mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name,mlfw_row_vec_double *vector)
+mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name,mlfw_row_vec_double *vector,mlfw_row_vec_string **header)
 {
+	char header_string[1025];
+	index_t header_index;
+	dimension_t columns;
+	index_t index;
 	FILE *file;
 	index_t i;
 	index_t j;
@@ -290,37 +409,105 @@ mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name,mlfw_row_
 	char m;
 	double value;
 	char *end;
-	if(csv_file_name==NULL) return NULL;
+	if(csv_file_name==NULL || header==NULL) return NULL;
 	file=fopen(csv_file_name,"r");
 	if(file==NULL) return NULL;
+	// logic to read the first line starts here
+	columns=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',') columns++;
+		if(m=='\n') break;
+		
+	}
+	columns++; // if 0 commas, then 1 column, if 3 commas then 4 columns
+	if(columns!=1)
+	{
+		fclose(file);
+		*header=NULL;
+		return NULL;
+	}
+	*header=mlfw_row_vec_string_create_new(columns);
+	if(*header==NULL) return NULL;
+	rewind(file);
+	index=0;
+	header_index=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',')
+		{
+			header_string[index]='\0';
+			mlfw_row_vec_string_set(*header,header_index,header_string);
+			header_index++;
+			index=0;
+			continue;
+		}
+		if(m=='\n')
+		{
+			header_string[index]='\0';
+			mlfw_row_vec_string_set(*header,header_index,header_string);
+			break;
+		}
+				
+			header_string[index]=m;
+			++index;
+	}
+	// logic to read the first line ends here
+
+
 	size=0;
 	while(1)
 	{
 		m=fgetc(file);
 		if(feof(file)) break;
+		if(m=='\r') continue;
 		if(m==',') size++;
 	}
 	size++; // 10 commas means, 11 elements
-	rewind(file);
 	if(vector==NULL)
 	{
 	vector=mlfw_row_vec_double_create_new(size);
 	if(vector==NULL)
 	{
 		fclose(file);
+		mlfw_row_vec_string_destroy(*header);
+		*header=NULL;
 		return NULL;
 	}
 	}
 	else
 	{
-	if(vector->size!=size) return NULL;
+	if(vector->size!=size)
+	{
+		fclose(file);
+		mlfw_row_vec_string_destroy(*header);
+		*header=NULL;
+		return NULL;
 	}
+	}
+	rewind(file);
+	// skip the first line of the file
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m=='\n') break;
+	}
+	
 	i=0;
 	j=0;
 	while(1)
 	{
 		m=fgetc(file);
 		if(feof(file)) break;
+		if(m=='\r') continue;
 		if(m==',' || m=='\n')
 		{
 			double_string[i]='\0';

@@ -30,7 +30,7 @@ mlfw_column_vec_double * mlfw_multiply_double_row_vector_with_column_vector(mlfw
 	}
 	else
 	{
-		if(mlfw_column_vec_get_size(product_vector)!=1) return NULL;
+		if(mlfw_column_vec_double_get_size(product_vector)!=1) return NULL;
 	}
 	product=0.0;
 	for(i=0;i<left_vector_size;++i)
