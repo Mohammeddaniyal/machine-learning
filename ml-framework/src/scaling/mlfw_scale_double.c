@@ -240,19 +240,21 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 
 mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *mean_standard_deviation_matrix,mlfw_mat_double *new_matrix)
 {
+	
 	double scaled_value;
 	double value;
 	double mean;
 	double standard_deviation;
-
-	
 	index_t r,c;
 	index_t new_matrix_r,new_matrix_c;
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
-	if(matrix==NULL) return NULL;
+	dimension_t mean_standard_deviation_matrix_rows,mean_standard_deviation_matrix_columns;
+	if(matrix==NULL || mean_standard_deviation_matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	mlfw_mat_double_get_dimensions(mean_standard_deviation_matrix,&mean_standard_deviation_matrix_rows,&mean_standard_deviation_matrix_columns);
+	if(mean_standard_deviation_matrix_rows!=2) return NULL; // reason lec 19 module 1 20:00
 	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
 	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
 	if(start_row_index>end_row_index) return NULL;
@@ -260,15 +262,17 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 
 	new_matrix_rows=end_row_index-start_row_index+1;
 	new_matrix_columns=end_column_index-start_column_index+1;
+	if(mean_standard_deviation_matrix_columns!=new_matrix_columns) return NULL; // reason lec 19
+	
 	if(new_matrix==NULL)
 	{
-	new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
-	if(new_matrix==NULL) return NULL;
+		new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
+		if(new_matrix==NULL) return NULL;
 	}
 	else
 	{
 		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
-		if(rows!=new_matrix_rows || columns!=new_matrix_columns) return NULL;
+		if(new_matrix_rows!=rows || new_matrix_columns!=columns) return NULL;
 	}
 	r=start_row_index;
 	for(new_matrix_r=0;new_matrix_r<new_matrix_rows;++new_matrix_r)
