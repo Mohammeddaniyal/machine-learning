@@ -238,7 +238,7 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 }
 
 
-mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *mean_standard_deviation_matrix,mlfw_mat_double *scaled_matrix)
+mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double *mean_standard_deviation_matrix,mlfw_mat_double *new_matrix)
 {
 	double scaled_value;
 	double value;
@@ -248,7 +248,6 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 	
 	index_t r,c;
 	index_t new_matrix_r,new_matrix_c;
-	index_t i;
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
