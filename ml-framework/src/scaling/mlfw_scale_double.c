@@ -277,8 +277,8 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 		c=start_column_index;
 		for(new_matrix_c=0;new_matrix_c<new_matrix_columns;++new_matrix_c)
 		{
-			mean=mlfw_mat_double_get(mean_standard_deviation_matrix,0,c);
-			standard_deviation=mlfw_mat_double_get(mean_standard_deviation_matrix,1,c);
+			mean=mlfw_mat_double_get(mean_standard_deviation_matrix,0,new_matrix_c);
+			standard_deviation=mlfw_mat_double_get(mean_standard_deviation_matrix,1,new_matrix_c);
 			value=mlfw_mat_double_get(matrix,r,c);
 			scaled_value=(value-mean)/(standard_deviation);
 			mlfw_mat_double_set(new_matrix,new_matrix_r,new_matrix_c,scaled_value);
