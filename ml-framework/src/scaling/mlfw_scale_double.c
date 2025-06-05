@@ -72,6 +72,13 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 		free(max);
 		return NULL;
 	}
+	for(c=start_column_index;c<=end_column_index;++c)
+	{
+		fprintf(file,"column_%d",(c+1));
+		if(c<end_column_index) fputc(',',file);
+		else fputc('\n',file);
+	}
+
 	for(i=0;i<new_matrix_columns;++i)
 	{
 		fprintf(file,"%lf",min[i]);
@@ -218,6 +225,14 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 		free(standard_deviation);
 		return NULL;
 	}
+	
+	for(c=start_column_index;c<=end_column_index;++c)
+	{
+		fprintf(file,"column_%d",(c+1));
+		if(c<end_column_index) fputc(',',file);
+		else fputc('\n',file);
+	}
+
 	for(i=0;i<new_matrix_columns;++i)
 	{
 		fprintf(file,"%lf",mean[i]);
