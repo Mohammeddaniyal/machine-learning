@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<mlfw_scale.h>
-
+#include<mlfw_utils.h>
 mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double **min_max_matrix,mlfw_mat_double *new_matrix)
 {
 	double scaled_value;
@@ -285,7 +285,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 {
 	mlfw_mat_double *matrix;
 	mlfw_row_vec_string *matrix_header;
-	dimension_t rows,columns;
+	dimension_t matrix_rows,matrix_columns;
 	dimension_t matrix_header_size;
 	
 	index_t i,j;
@@ -323,7 +323,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 	
 	if(algorithm_code==MIN_MAX_ALGORITHM)
 	{
-		parameter_matrix=mlfw_mat_double_create_new(2,columns_to_scale_size);
+		parameters_matrix=mlfw_mat_double_create_new(2,columns_to_scale_size);
 		// if fails, do something
 	}else if(algorithm_code==Z_SCORE_ALGORITHM)
 	{
@@ -336,7 +336,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 	mlfw_mat_double_get_dimensions(matrix,&rows,&columns);
 	matrix_header_size=mlfw_row_vec_string_get_size(matrix_header_size);
 
-	scaled_column_maxtrix=mlfw_mat_double_create_new(matrix_rows,1);
+	scaled_column_matrix=mlfw_mat_double_create_new(matrix_rows,1);
 	// if fails, return NULL and release memory
 	
 	// iterate the column the scale vector
