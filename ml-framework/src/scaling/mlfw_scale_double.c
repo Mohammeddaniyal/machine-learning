@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<mlfw_scale.h>
 
-mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,cmlfw_mat_double **min_max_matrix,mlfw_mat_double *new_matrix)
+mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double **min_max_matrix,mlfw_mat_double *new_matrix)
 {
 	double scaled_value;
 	double value;
@@ -189,7 +189,7 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 	if(standard_deviation==NULL)
 	{
 		mlfw_mat_double_destroy(*mean_standard_deviation_matrix);
-		*mean_standard_deviation_matrix=NULL
+		*mean_standard_deviation_matrix=NULL;
 		free(mean);
 		return NULL;
 	}
