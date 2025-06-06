@@ -17,7 +17,7 @@ int main()
 	mlfw_row_vec_string_set(columns_to_scale,1,"height");
 	mlfw_row_vec_string_set(columns_to_scale,2,"salary");
 	mlfw_row_vec_string_set(columns_to_scale,3,"incentive");
-	scaled_matrix=mlfw_scale_double("dummy.csv",columns_to_scale,"min_max.csv","min-max");
+	scaled_matrix=mlfw_scale_double("dummy.csv",columns_to_scale,"mean_sd.csv","z-score");
 	if(scaled_matrix==NULL)
 	{
 		printf("Low memory or some other reason, scaling not done\n");
