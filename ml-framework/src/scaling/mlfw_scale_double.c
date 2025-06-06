@@ -182,7 +182,7 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 	if(mean==NULL)
 	{
 		mlfw_mat_double_destroy(*mean_standard_deviation_matrix);
-		*mean_standard_deviation_matrix=NULL
+		*mean_standard_deviation_matrix=NULL;
 		return NULL;
 	}
 	standard_deviation=(double *)malloc(sizeof(double)*new_matrix_columns);
@@ -217,7 +217,7 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 	for(i=0;i<new_matrix_columns;++i)
 	{
 		mlfw_mat_double_set(*mean_standard_deviation_matrix,0,i,mean[i]);
-		mlfw_mat_double_set(*mean_standard_deviation_matrox,1,i,standard_deviation[i]);
+		mlfw_mat_double_set(*mean_standard_deviation_matrix,1,i,standard_deviation[i]);
 	}
 	free(mean);
 	free(standard_deviation);
