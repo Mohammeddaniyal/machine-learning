@@ -77,7 +77,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 	for(i=0;i<new_matrix_columns;++i)
 	{
 		mlfw_mat_double_set(*min_max_matrix,0,i,min[i]);
-		mlfw_mat_double_set(*min_max_matrix,0,i,max[i]);
+		mlfw_mat_double_set(*min_max_matrix,1,i,max[i]);
 	}
 	free(min);
 	free(max);
