@@ -7,15 +7,16 @@ int main()
 	mlfw_mat_double *scaled_matrix;
 	mlfw_row_vec_string *columns_to_scale;
 	mlfw_row_vec_string *matrix_header;
-	columns_to_scale=mlfw_row_vec_string_create_new(2);
+	columns_to_scale=mlfw_row_vec_string_create_new(4);
 	if(columns_to_scale==NULL)
 	{
 		printf("Low memory\n");
 		return 0;
 	}
 	mlfw_row_vec_string_set(columns_to_scale,0,"age");
-	mlfw_row_vec_string_set(columns_to_scale,1,"salary");
-
+	mlfw_row_vec_string_set(columns_to_scale,1,"height");
+	mlfw_row_vec_string_set(columns_to_scale,2,"salary");
+	mlfw_row_vec_string_set(columns_to_scale,3,"incentive");
 	scaled_matrix=mlfw_scale_double("dummy.csv",columns_to_scale,"min_max.csv","min-max");
 	if(scaled_matrix==NULL)
 	{
