@@ -327,14 +327,14 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 		// if fails, do something
 	}else if(algorithm_code==Z_SCORE_ALGORITHM)
 	{
-		parameter_matrix=mlfw_mat_double_create_new(2,columns_to_scale_size);
+		parameters_matrix=mlfw_mat_double_create_new(2,columns_to_scale_size);
 		// if fails, do something
 	}
 
 	matrix=mlfw_mat_double_from_csv(dataset_file_name,NULL,&matrix_header);
 	// if failed return NULL
-	mlfw_mat_double_get_dimensions(matrix,&rows,&columns);
-	matrix_header_size=mlfw_row_vec_string_get_size(matrix_header_size);
+	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	matrix_header_size=mlfw_row_vec_string_get_size(matrix_header);
 
 	scaled_column_matrix=mlfw_mat_double_create_new(matrix_rows,1);
 	// if fails, return NULL and release memory
@@ -356,7 +356,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 			{
 	if(mlfw_scale_double_min_max(matrix,0,j,matrix_rows-1,j,&tmp_matrix,scaled_column_matrix)!=NULL)
 			{
-				mlfw_mat_double_copy(dataset,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
+				mlfw_mat_double_copy(matrix,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
 				mlfw_mat_double_set(parameters_matrix,0,i,mlfw_mat_double_get(tmp_matrix,0,0));
 				mlfw_mat_double_set(parameters_matrix,1,i,mlfw_mat_double_get(tmp_matrix,1,0));
 				mlfw_mat_double_destroy(tmp_matrix);	
@@ -369,7 +369,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 			{
 	if(mlfw_scale_double_z_score(matrix,0,j,matrix_rows-1,j,&tmp_matrix,scaled_column_matrix)!=NULL)
 			{
-				mlfw_mat_double_copy(dataset,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
+				mlfw_mat_double_copy(matrix,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
 				mlfw_mat_double_set(parameters_matrix,0,i,mlfw_mat_double_get(tmp_matrix,0,0));
 				mlfw_mat_double_set(parameters_matrix,1,i,mlfw_mat_double_get(tmp_matrix,1,0));
 				mlfw_mat_double_destroy(tmp_matrix);	
@@ -386,7 +386,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 			}
 		
 		}// inner loop ends
-		free(scaler_column_name);
+		free(scale_column_name);
 		if(j==matrix_header_size) // the column name in columns_to_scale is incorrect
 		{
 			// release everything created till now and return
