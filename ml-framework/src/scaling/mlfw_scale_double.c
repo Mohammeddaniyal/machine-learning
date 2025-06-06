@@ -2,9 +2,8 @@
 #include<stdlib.h>
 #include<mlfw_scale.h>
 
-mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,char *min_max_file,mlfw_mat_double *new_matrix)
+mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,cmlfw_mat_double **min_max_matrix,mlfw_mat_double *new_matrix)
 {
-	FILE *file;
 	double scaled_value;
 	double value;
 	double *max;
@@ -15,7 +14,7 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
-	if(matrix==NULL) return NULL;
+	if(matrix==NULL || min_max_matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
 	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
@@ -34,15 +33,24 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
 		if(rows!=new_matrix_rows || columns!=new_matrix_columns) return NULL;
 	}
+	*min_max_matrix=mlfw_mat_double_create_new(2,new_matrix_columns);
+	if(*min_max_matrix==NULL)
+	{
+		return NULL;
+	}
 	max=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(max==NULL)
 	{
+		mlfw_mat_double_destroy(*min_max_matrix);
+		*min_max_matrix=NULL;
 		return NULL;
 	}
 	min=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(min==NULL)
 	{
 		free(max);
+		mlfw_mat_double_destroy(*min_max_matrix);
+		*min_max_matrix=NULL;
 		return NULL;
 	}
 	i=0;
@@ -65,33 +73,12 @@ mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t star
 		}
 		++r;
 	}
-	file=fopen(min_max_file,"w");
-	if(file==NULL)
-	{
-		free(min);
-		free(max);
-		return NULL;
-	}
-	for(c=start_column_index;c<=end_column_index;++c)
-	{
-		fprintf(file,"column_%d",(c+1));
-		if(c<end_column_index) fputc(',',file);
-		else fputc('\n',file);
-	}
-
+	
 	for(i=0;i<new_matrix_columns;++i)
 	{
-		fprintf(file,"%lf",min[i]);
-		if(i==new_matrix_columns-1) fputc('\n',file);
-		else fputc(',',file);
+		mlfw_mat_double_set(*min_max_matrix,0,i,min[i]);
+		mlfw_mat_double_set(*min_max_matrix,0,i,max[i]);
 	}
-	for(i=0;i<new_matrix_columns;++i)
-	{
-		fprintf(file,"%lf",max[i]);
-		if(i==new_matrix_columns-1) fputc('\n',file);
-		else fputc(',',file);	
-	}
-	fclose(file);
 	free(min);
 	free(max);
 	return new_matrix;
