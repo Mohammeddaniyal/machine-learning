@@ -140,9 +140,8 @@ mlfw_mat_double * mlfw_scale_double_with_given_min_max(mlfw_mat_double *matrix,i
 
 
 
-mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,char *mean_standard_deviation_file,mlfw_mat_double *new_matrix)
+mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double **mean_standard_deviation_matrix,mlfw_mat_double *new_matrix)
 {
-	FILE *file;
 	double scaled_value;
 	double value;
 	
@@ -155,7 +154,7 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
-	if(matrix==NULL) return NULL;
+	if(matrix==NULL || mean_standard_deviation_matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
 	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
@@ -174,14 +173,23 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
 		if(rows!=new_matrix_rows || columns!=new_matrix_columns) return NULL;
 	}
+	*mean_standard_deviation_matrix=mlfw_mat_double_create_new(2,new_matrix_columns);
+	if(*mean_standard_deviation_matrix==NULL)
+	{
+		return NULL;
+	}
 	mean=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(mean==NULL)
 	{
+		mlfw_mat_double_destroy(*mean_standard_deviation_matrix);
+		*mean_standard_deviation_matrix=NULL
 		return NULL;
 	}
 	standard_deviation=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(standard_deviation==NULL)
 	{
+		mlfw_mat_double_destroy(*mean_standard_deviation_matrix);
+		*mean_standard_deviation_matrix=NULL
 		free(mean);
 		return NULL;
 	}
@@ -205,34 +213,12 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 		}
 		++r;
 	}
-	file=fopen(mean_standard_deviation_file,"w");
-	if(file==NULL)
-	{
-		free(mean);
-		free(standard_deviation);
-		return NULL;
-	}
-	
-	for(c=start_column_index;c<=end_column_index;++c)
-	{
-		fprintf(file,"column_%d",(c+1));
-		if(c<end_column_index) fputc(',',file);
-		else fputc('\n',file);
-	}
 
 	for(i=0;i<new_matrix_columns;++i)
 	{
-		fprintf(file,"%lf",mean[i]);
-		if(i==new_matrix_columns-1) fputc('\n',file);
-		else fputc(',',file);
+		mlfw_mat_double_set(*mean_standard_deviation_matrix,0,i,mean[i]);
+		mlfw_mat_double_set(*mean_standard_deviation_matrox,1,i,standard_deviation[i]);
 	}
-	for(i=0;i<new_matrix_columns;++i)
-	{
-		fprintf(file,"%lf",standard_deviation[i]);
-		if(i==new_matrix_columns-1) fputc('\n',file);
-		else fputc(',',file);	
-	}
-	fclose(file);
 	free(mean);
 	free(standard_deviation);
 	return new_matrix;
