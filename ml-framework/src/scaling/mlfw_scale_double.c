@@ -279,3 +279,126 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 	}
 	return new_matrix;
 }
+
+
+mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string *columns_to_scale,char *parameters_file_name,char *algorithm)
+{
+	mlfw_mat_double *matrix;
+	mlfw_row_vec_string *matrix_header;
+	dimension_t rows,columns;
+	dimension_t matrix_header_size;
+	
+	index_t i,j;
+	dimension_t columns_to_scale_size;
+
+	char *scale_column_name;
+	char *column_name;
+
+	mlfw_mat_double *scaled_column_matrix;
+	mlfw_mat_double *parameters_matrix;
+	mlfw_mat_double *tmp_matrix;
+
+	uint8_t algorithm_code;
+	uint8_t MIN_MAX_ALGORITHM=1;
+	uint8_t Z_SCORE_ALGORITHM=2;
+	
+	
+	if(dataset_file_name==NULL || columns_to_scale==NULL || parameters_file_name==NULL || algorithm==NULL)
+	{
+		return NULL;
+	}
+	if(mlfw_strcmp_case_insensitive(algorithm,"min-max")==0)
+	{
+		algorithm_code=MIN_MAX_ALGORITHM;
+	}else if(mlfw_strcmp_case_insensitive(algorithm,"z-score")==0)
+	{
+		algorithm_code=Z_SCORE_ALGORITHM;
+	}else
+	{
+		return NULL;
+	}
+	
+	columns_to_scale_size=mlfw_row_vec_string_get_size(columns_to_scale);
+	if(columns_to_scale_size==0) return NULL;
+	
+	if(algorithm_code==MIN_MAX_ALGORITHM)
+	{
+		parameter_matrix=mlfw_mat_double_create_new(2,columns_to_scale_size);
+		// if fails, do something
+	}else if(algorithm_code==Z_SCORE_ALGORITHM)
+	{
+		parameter_matrix=mlfw_mat_double_create_new(2,columns_to_scale_size);
+		// if fails, do something
+	}
+
+	matrix=mlfw_mat_double_from_csv(dataset_file_name,NULL,&matrix_header);
+	// if failed return NULL
+	mlfw_mat_double_get_dimensions(matrix,&rows,&columns);
+	matrix_header_size=mlfw_row_vec_string_get_size(matrix_header_size);
+
+	scaled_column_maxtrix=mlfw_mat_double_create_new(matrix_rows,1);
+	// if fails, return NULL and release memory
+	
+	// iterate the column the scale vector
+	for(i=0;i<columns_to_scale_size;++i)
+	{
+		// extract column name from columns_to_scale
+		mlfw_row_vec_string_get(columns_to_scale,i,&scale_column_name);
+		// if fails, release and return NULL
+		for(j=0;j<matrix_header_size;++j)
+		{
+			mlfw_row_vec_string_get(matrix_header,j,&column_name);
+			// if fails, release and return NULL
+			if(mlfw_strcmp_case_insensitive(scale_column_name,column_name)==0)
+			{
+				// scale j(th) column over here
+			if(algorithm_code==MIN_MAX_ALGORITHM)
+			{
+	if(mlfw_scale_double_min_max(matrix,0,j,matrix_rows-1,j,&tmp_matrix,scaled_column_matrix)!=NULL)
+			{
+				mlfw_mat_double_copy(dataset,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
+				mlfw_mat_double_set(parameters_matrix,0,i,mlfw_mat_double_get(tmp_matrix,0,0));
+				mlfw_mat_double_set(parameters_matrix,1,i,mlfw_mat_double_get(tmp_matrix,1,0));
+				mlfw_mat_double_destroy(tmp_matrix);	
+			}
+			else
+			{
+				// release everything created and return NULL
+			}
+			} else if(algorithm_code==Z_SCORE_ALGORITHM)
+			{
+	if(mlfw_scale_double_z_score(matrix,0,j,matrix_rows-1,j,&tmp_matrix,scaled_column_matrix)!=NULL)
+			{
+				mlfw_mat_double_copy(dataset,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
+				mlfw_mat_double_set(parameters_matrix,0,i,mlfw_mat_double_get(tmp_matrix,0,0));
+				mlfw_mat_double_set(parameters_matrix,1,i,mlfw_mat_double_get(tmp_matrix,1,0));
+				mlfw_mat_double_destroy(tmp_matrix);	
+			}
+			else
+			{
+			
+				// release everything created and return NULL
+			}
+			}
+		       	
+			free(column_name);
+			break;	
+			}
+		
+		}// inner loop ends
+		free(scaler_column_name);
+		if(j==matrix_header_size) // the column name in columns_to_scale is incorrect
+		{
+			// release everything created till now and return
+		}
+	
+	} // outer loop ends
+
+	// create parameters file
+	mlfw_mat_double_to_csv(parameters_matrix,parameters_file_name,columns_to_scale);
+
+	// release / destroy
+return matrix;
+}
+
+
