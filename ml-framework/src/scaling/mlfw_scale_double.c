@@ -445,3 +445,6 @@ return matrix;
 }
 
 
+mlfw_mat_double * mlfw_scale_double_with_given_parameters(char *dataset_file_name,char *parameters_file_name,char *algorithm)
+{
+}
