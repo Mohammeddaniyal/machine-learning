@@ -516,7 +516,7 @@ mlfw_mat_double * mlfw_scale_double_with_given_parameters(char *dataset_file_nam
 		mlfw_row_vec_string_destroy(columns_to_scale);
 		mlfw_mat_double_destroy(matrix);
 		mlfw_row_vec_string_destroy(matrix_header);
-		mlfw_mat_double_destroy(scaled_matrix);
+		mlfw_mat_double_destroy(scaled_column_matrix);
 		return NULL;
 	}
 	// iterate the column the scale vector
