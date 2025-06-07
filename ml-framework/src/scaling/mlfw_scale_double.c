@@ -374,7 +374,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 				mlfw_mat_double_destroy(parameters_matrix);
 				mlfw_mat_double_destroy(matrix);
 				mlfw_row_vec_string_destroy(matrix_header);
-				mlfw_mat_double_destroy(scale_column_matrix);
+				mlfw_mat_double_destroy(scaled_column_matrix);
 				free(scale_column_name);
 				return NULL;
 			}
@@ -395,7 +395,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 				mlfw_mat_double_destroy(parameters_matrix);
 				mlfw_mat_double_destroy(matrix);
 				mlfw_row_vec_string_destroy(matrix_header);
-				mlfw_mat_double_destroy(scale_column_matrix);
+				mlfw_mat_double_destroy(scaled_column_matrix);
 				free(scale_column_name);
 				free(column_name);
 				return NULL;
@@ -414,7 +414,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 				mlfw_mat_double_destroy(parameters_matrix);
 				mlfw_mat_double_destroy(matrix);
 				mlfw_row_vec_string_destroy(matrix_header);
-				mlfw_mat_double_destroy(scale_column_matrix);
+				mlfw_mat_double_destroy(scaled_column_matrix);
 				free(scale_column_name);
 				free(column_name);
 				return NULL;
@@ -440,7 +440,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 	// release / destroy
 	mlfw_row_vec_string_destroy(matrix_header);
 	mlfw_mat_double_destroy(parameters_matrix);
-	mlfw_mat_double_destroy(scale_column_matrix);
+	mlfw_mat_double_destroy(scaled_column_matrix);
 return matrix;
 }
 
