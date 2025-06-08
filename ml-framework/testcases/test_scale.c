@@ -37,5 +37,9 @@ int main()
 	mlfw_row_vec_string_set(matrix_header,2,"salary");
 	mlfw_row_vec_string_set(matrix_header,3,"incentive");
 	mlfw_mat_double_to_csv(scaled_matrix,"scaled_dummy.csv",matrix_header);
+	
+	mlfw_row_vec_string_destroy(columns_to_scale);
+	mlw_mat_double_destroy(scaled_matrix);
+	mlfw_mat_double_destroy(matrix_header);
 	return 0;
 }
