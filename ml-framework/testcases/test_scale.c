@@ -7,17 +7,15 @@ int main()
 	mlfw_mat_double *scaled_matrix;
 	mlfw_row_vec_string *columns_to_scale;
 	mlfw_row_vec_string *matrix_header;
-	columns_to_scale=mlfw_row_vec_string_create_new(4);
+	columns_to_scale=mlfw_row_vec_string_create_new(2);
 	if(columns_to_scale==NULL)
 	{
 		printf("Low memory\n");
 		return 0;
 	}
 	mlfw_row_vec_string_set(columns_to_scale,0,"age");
-	mlfw_row_vec_string_set(columns_to_scale,1,"height");
-	mlfw_row_vec_string_set(columns_to_scale,2,"salary");
-	mlfw_row_vec_string_set(columns_to_scale,3,"incentive");
-	scaled_matrix=mlfw_scale_double("dummy.csv",columns_to_scale,"mean_sd.csv","z-score");
+	mlfw_row_vec_string_set(columns_to_scale,1,"salary");
+	scaled_matrix=mlfw_scale_double("dummy.csv",columns_to_scale,"mean_sd.csv","z-score",NULL);
 	if(scaled_matrix==NULL)
 	{
 		printf("Low memory or some other reason, scaling not done\n");
@@ -39,7 +37,7 @@ int main()
 	mlfw_mat_double_to_csv(scaled_matrix,"scaled_dummy.csv",matrix_header);
 	
 	mlfw_row_vec_string_destroy(columns_to_scale);
-	mlw_mat_double_destroy(scaled_matrix);
-	mlfw_mat_double_destroy(matrix_header);
+	mlfw_mat_double_destroy(scaled_matrix);
+	mlfw_row_vec_string_destroy(matrix_header);
 	return 0;
 }
