@@ -444,10 +444,9 @@ return matrix;
 }
 
 
-mlfw_mat_double * mlfw_scale_double_with_given_parameters(char *dataset_file_name,char *parameters_file_name,char *algorithm)
+mlfw_mat_double * mlfw_scale_double_with_given_parameters(char *dataset_file_name,char *parameters_file_name,char *algorithm,mlfw_mat_double *matrix)
 {
 	mlfw_row_vec_string *columns_to_scale;
-	mlfw_mat_double *matrix;
 	mlfw_row_vec_string *matrix_header;
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t matrix_header_size;
@@ -487,7 +486,7 @@ mlfw_mat_double * mlfw_scale_double_with_given_parameters(char *dataset_file_nam
 
 	if(parameters_matrix==NULL) return NULL;
 	columns_to_scale_size=mlfw_row_vec_string_get_size(columns_to_scale);
-	matrix=mlfw_mat_double_from_csv(dataset_file_name,NULL,&matrix_header);
+	matrix=mlfw_mat_double_from_csv(dataset_file_name,matrix,&matrix_header);
 	if(matrix==NULL)
 	{
 		mlfw_mat_double_destroy(parameters_matrix);
