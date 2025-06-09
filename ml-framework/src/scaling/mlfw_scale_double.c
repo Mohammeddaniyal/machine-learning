@@ -281,9 +281,8 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 }
 
 
-mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string *columns_to_scale,char *parameters_file_name,char *algorithm)
+mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string *columns_to_scale,char *parameters_file_name,char *algorithm,mlfw_mat_double *matrix)
 {
-	mlfw_mat_double *matrix;
 	mlfw_row_vec_string *matrix_header;
 	dimension_t matrix_rows,matrix_columns;
 	dimension_t matrix_header_size;
@@ -331,7 +330,7 @@ mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string 
 
 	if(parameters_matrix==NULL) return NULL;
 	
-	matrix=mlfw_mat_double_from_csv(dataset_file_name,NULL,&matrix_header);
+	matrix=mlfw_mat_double_from_csv(dataset_file_name,matrix,&matrix_header);
 	if(matrix==NULL)
 	{
 		mlfw_mat_double_destroy(parameters_matrix);
