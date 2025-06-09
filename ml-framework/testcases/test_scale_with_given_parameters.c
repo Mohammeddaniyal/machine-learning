@@ -6,7 +6,7 @@ int main()
 {
 	mlfw_mat_double *scaled_matrix;
 	mlfw_row_vec_string *matrix_header;
-	scaled_matrix=mlfw_scale_double_with_given_parameters("dummy.csv","mean_sd.csv","z-score");
+	scaled_matrix=mlfw_scale_double_with_given_parameters("dummy.csv","mean_sd.csv","z-score",NULL);
 	if(scaled_matrix==NULL)
 	{
 		printf("Low memory or some other reason, scaling not done\n");
