@@ -659,3 +659,30 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 }
 
 
+void mlfw_encoder_encode(char *source,char *target,mlfw_row_vec_string *columns_to_encode,char *algorithm)
+{
+	uint8_t algorithm_code;
+	uint8_t ONE_HOT_ENCODING=1;
+	uint8_t BINARY_ENCODING=2;
+
+	if(mlfw_strcmp_case_insensitive(algorithm,"one-hot")==0)
+	{
+		algorithm=ONE_HOT_ENCODING;
+	}else 
+	if(mlfw_strcmp_case_insensitive(algorithm,"binary")==0)
+	{
+		algorithm=BINARY_ENCODING;
+	}
+	else
+	{
+		return; // later on we will be introducing something to notify error
+	}
+
+	if(algorithm==ONE_HOT_ENCODING)
+	{
+		mlfw_encoder_encode_one_hot(source,target,columns_to_encode);
+	}else if(algorithm==BINARY_ENCODING)
+	{
+		mlfw_encoder_encode_binary(source,target,columns_to_encode);
+	}
+}
