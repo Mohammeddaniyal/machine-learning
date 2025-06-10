@@ -545,3 +545,7 @@ double mlfw_mat_double_get_standard_deviation(mlfw_mat_double *matrix,index_t st
 }
 
 
+void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_double **training_data_matrix,mlfw_mat_double **testing_data_matrix)
+{
+
+}
