@@ -667,21 +667,21 @@ void mlfw_encoder_encode(char *source,char *target,mlfw_row_vec_string *columns_
 
 	if(mlfw_strcmp_case_insensitive(algorithm,"one-hot")==0)
 	{
-		algorithm=ONE_HOT_ENCODING;
+		algorithm_code=ONE_HOT_ENCODING;
 	}else 
 	if(mlfw_strcmp_case_insensitive(algorithm,"binary")==0)
 	{
-		algorithm=BINARY_ENCODING;
+		algorithm_code=BINARY_ENCODING;
 	}
 	else
 	{
 		return; // later on we will be introducing something to notify error
 	}
 
-	if(algorithm==ONE_HOT_ENCODING)
+	if(algorithm_code==ONE_HOT_ENCODING)
 	{
 		mlfw_encoder_encode_one_hot(source,target,columns_to_encode);
-	}else if(algorithm==BINARY_ENCODING)
+	}else if(algorithm_code==BINARY_ENCODING)
 	{
 		mlfw_encoder_encode_binary(source,target,columns_to_encode);
 	}
