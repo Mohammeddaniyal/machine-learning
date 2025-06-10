@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+#include<time.h>
 typedef struct __mlfw_mat_string{
 	char ***data;
 	dimension_t rows;
@@ -36,7 +37,7 @@ mlfw_mat_string * mlfw_mat_string_create_new(dimension_t rows,dimension_t column
 		}
 		else
 		{
-			for(c=0;c<columns;c++) matrix->data[r][c]=NULL; // very veryy IMP reason lec18 12:15
+			for(c=0;c<columns;c++) matrix->data[r][c]=NULL; // very veryy IMP reason M1 lec18 12:15
 		}
 
 	}
@@ -318,4 +319,107 @@ mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix,mlfw_mat_str
 		}
 	}
 	return transposed_matrix;
+}
+
+void mlfw_mat_string_copy(mlfw_mat_string *target,mlfw_mat_string *source,index_t target_row_index,index_t target_column_index,index_t source_from_row_index,index_t source_from_column_index,index_t source_to_row_index,index_t source_to_column_index)
+{
+	index_t target_r;
+	index_t target_c;
+
+	index_t source_r;
+	index_t source_c;
+	
+	char *ptr;
+
+	if(target==NULL || source==NULL) return;
+
+	if(target_row_index<0 || target_row_index>=target->rows) return;
+	if(target_column_index<0 ||  target_column_index>=target->columns) return;
+
+	if(source_from_row_index<0 || source_from_row_index>=source->rows) return;
+	if(source_from_column_index<0 || source_from_column_index>=source->columns) return;
+
+	if(source_to_row_index<0 || source_to_row_index>=source->rows) return;
+	if(source_to_column_index<0 || source_to_column_index>=source->columns) return;
+
+	if(source_from_row_index>source_to_row_index) return;
+	if(source_from_column_index>source_to_column_index) return;
+
+	target_r=target_row_index;
+	source_r=source_from_row_index;
+	while(source_r<=source_to_row_index)
+	{
+		target_c=target_column_index;
+		source_c=source_from_column_index;
+		while(source_c<=source_to_column_index)
+		{
+			//precaution measure to avoid out of bounds case
+			if(target_r>=0 && target_r<target->rows && target_c>=0 && target_c<target->columns)
+			{
+				if(target->data[target_r][target_c]!=NULL)
+				{
+					free(target->data[target_r][target_c];
+					target->data[target_r][target_c]=NULL;
+				}
+				mlfw_mat_string_get(source,source_r,source_c,&ptr);
+				if(ptr!=NULL)
+				{
+					mlfw_mat_string_set(target,target_r,target_c,ptr);
+					free(ptr);
+				}			
+			}
+			++source_c;
+			++target_c;
+		}
+		++source_r;
+		++target_r;
+	}
+}
+mlfw_mat_string * mlfw_mat_string_shuffle(mlfw_mat_string *matrix,uint8_t how_many_times_to_shuffle,mlfw_mat_string *shuffled_matrix)
+{
+	// idx= (r%(b-a+1))+a
+	int r;
+	index_t a,b;
+	index_t c;
+	index_t u;
+	index_t idx;
+	index_t end_at_index;
+	uint8_t j;
+	char *tmp_var;
+	if(matrix==NULL) return NULL;
+	if(how_many_times_to_shuffle==0) return NULL;
+
+	if(shuffled_matrix==NULL)
+	{	
+	shuffled_matrix=mlfw_mat_string_create_new(matrix->rows,matrix->columns);
+	if(shuffled_matrix==NULL) return NULL;
+	}
+	else
+	{
+	if(shuffled_matrix->rows!=matrix->rows || shuffled_matrix->columns!=matrix->columns) return NULL;
+	}
+	mlfw_mat_string_copy(shuffled_matrix,matrix,0,0,0,0,matrix->rows-1,matrix->columns-1);
+
+	// b is the lower bound means last index
+	b=shuffled_matrix->rows-1; // last row index
+	srand(time(NULL));
+	end_at_index=shuffled_matrix->rows-3;
+
+	for(j=0;j<how_many_times_to_shuffle;++j)
+	{
+		for(u=0;u<=end_at_index;++u)
+		{
+			a=u+1; // upper bound 
+			r=rand();
+			idx=(r%(b-a+1))+a;
+			//swap the data at u and idx row
+			for(c=0;c<shuffled_matrix->columns;++c)
+			{
+				tmp_var=shuffled_matrix->data[u][c];
+				shuffled_matrix->data[u][c]=shuffled_matrix->data[idx][c];
+				shuffled_matrix->data[idx][c]=tmp_var;
+			}
+		}
+	}
+	return shuffled_matrix;
 }
