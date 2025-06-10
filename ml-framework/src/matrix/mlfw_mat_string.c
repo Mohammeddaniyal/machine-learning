@@ -358,7 +358,7 @@ void mlfw_mat_string_copy(mlfw_mat_string *target,mlfw_mat_string *source,index_
 			{
 				if(target->data[target_r][target_c]!=NULL)
 				{
-					free(target->data[target_r][target_c];
+					free(target->data[target_r][target_c]);
 					target->data[target_r][target_c]=NULL;
 				}
 				mlfw_mat_string_get(source,source_r,source_c,&ptr);
