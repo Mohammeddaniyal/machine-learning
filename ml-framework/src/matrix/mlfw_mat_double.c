@@ -648,7 +648,7 @@ void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_doub
 	{
 		mlfw_mat_double_destroy(matrix);
 		mlfw_row_vec_string_destroy(header);
-		mlfw_mat_double_string(shuffled_matrix);
+		mlfw_mat_double_destroy(shuffled_matrix);
 		free(major_matrix->data);
 		free(major_matrix);
 		free(minor_matrix);
