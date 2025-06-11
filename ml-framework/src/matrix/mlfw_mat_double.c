@@ -658,7 +658,7 @@ void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_doub
 	}
 	for(i=0;i<minor_rows;++i,++j)
 	{
-		major_matrix->data[i]=shuffled_matrix->data[j];
+		minor_matrix->data[i]=shuffled_matrix->data[j];
 	}
 
 	
