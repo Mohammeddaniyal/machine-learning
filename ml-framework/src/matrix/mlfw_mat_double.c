@@ -597,7 +597,7 @@ void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_doub
 	}
 	mlfw_mat_double_get_dimensions(shuffled_matrix,&shuffled_matrix_rows,&shuffled_matrix_columns);
 	
-	minor_rows=(minor_percentage*shuffled_matrix_rows)/100;
+	minor_rows=(testing_data_percentage*shuffled_matrix_rows)/100;
 	major_rows=shuffled_matrix_rows-minor_rows;
 
 
@@ -667,6 +667,6 @@ void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_doub
 
 	mlfw_mat_double_destroy(matrix);
 	mlfw_row_vec_string_destroy(header);
-	*training_data_matrix=major_matrox;
+	*training_data_matrix=major_matrix;
 	*testing_data_matrix=minor_matrix;	
 }
