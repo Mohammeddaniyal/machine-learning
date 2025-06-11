@@ -545,7 +545,128 @@ double mlfw_mat_double_get_standard_deviation(mlfw_mat_double *matrix,index_t st
 }
 
 
-void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_double **training_data_matrix,mlfw_mat_double **testing_data_matrix)
+void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_double **training_data_matrix,mlfw_mat_double **testing_data_matrix,uint8_t testing_data_percentage)
 {
+	mlfw_row_vec_string *header;
 
+	mlfw_mat_double *matrix;
+	mlfw_mat_double *shuffled_matrix;
+	
+	mlfw_mat_double *minor_matrix;
+	mlfw_mat_double *major_matrix;
+	
+	dimension_t shuffled_matrix_rows;
+	dimension_t shuffled_matrix_columns;
+	dimension_t minor_rows;
+	dimension_t major_rows;
+
+	index_t i,j;	
+
+	if(csv_file_name==NULL) 
+	{
+		return;
+	}
+	if(training_data_matrix==NULL || testing_data_matrix==NULL)
+	{
+		if(training_data_matrix!=NULL) *training_data_matrix=NULL;
+		if(testing_data_matrix!=NULL) *testing_data_matrix=NULL;
+		return;
+	}
+	
+	if(testing_data_percentage<=0 || testing_data_percentage>=100)
+	{
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	matrix=mlfw_mat_double_from_csv(csv_file_name,NULL,&header);
+	if(matrix==NULL)
+	{
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	shuffled_matrix=mlfw_mat_double_shuffle(matrix,3,NULL); // shuffle 3 times
+	if(shuffled_matrix==NULL)
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	mlfw_mat_double_get_dimensions(shuffled_matrix,&shuffled_matrix_rows,&shuffled_matrix_columns);
+	
+	minor_rows=(minor_percentage*shuffled_matrix_rows)/100;
+	major_rows=shuffled_matrix_rows-minor_rows;
+
+
+	major_matrix=(mlfw_mat_double *)malloc(sizeof(mlfw_mat_double));
+	if(major_matrix==NULL)
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		mlfw_mat_double_destroy(shuffled_matrix);
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	major_matrix->rows=major_rows;
+	major_matrix->columns=shuffled_matrix->columns;
+	major_matrix->data=(double **)malloc(sizeof(double *)*major_rows);
+	if(major_matrix->data==NULL)
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		mlfw_mat_double_destroy(shuffled_matrix);
+		free(major_matrix);
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	for(i=0,j=0;i<major_rows;++i,++j)
+	{
+		major_matrix->data[i]=shuffled_matrix->data[j];
+	}
+	
+	minor_matrix=(mlfw_mat_double *)malloc(sizeof(mlfw_mat_double));
+	if(minor_matrix==NULL)
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		mlfw_mat_double_destroy(shuffled_matrix);
+		free(major_matrix->data);
+		free(major_matrix);
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	minor_matrix->rows=minor_rows;
+	minor_matrix->columns=shuffled_matrix->columns;
+	minor_matrix->data=(double **)malloc(sizeof(double *)*minor_rows);
+	if(minor_matrix->data==NULL)
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		mlfw_mat_double_string(shuffled_matrix);
+		free(major_matrix->data);
+		free(major_matrix);
+		free(minor_matrix);
+		*training_data_matrix=NULL;
+		*testing_data_matrix=NULL;
+		return;
+	}
+	for(i=0;i<minor_rows;++i,++j)
+	{
+		major_matrix->data[i]=shuffled_matrix->data[j];
+	}
+
+	
+	free(shuffled_matrix->data);
+	free(shuffled_matrix);
+
+	mlfw_mat_double_destroy(matrix);
+	mlfw_row_vec_string_destroy(header);
+	*training_data_matrix=major_matrox;
+	*testing_data_matrix=minor_matrix;	
 }
