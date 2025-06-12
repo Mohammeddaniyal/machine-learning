@@ -1,5 +1,5 @@
-#ifndef __MLFW__SCALE
-#define __MLFW__SCALE
+#ifndef __MLFW__SCALE__
+#define __MLFW__SCALE__
 #include<inttypes.h>
 
 
