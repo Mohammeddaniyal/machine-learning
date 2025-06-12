@@ -26,6 +26,12 @@ double get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_column_vec
 	{
 		return 0.0; // later on we will introduce something to notify error
 	}
+	target_values_vector_size=mlfw_column_vec_double_get_size(target_values_vector_size);
+	predicted_values_vector_size=mlfw_column_vec_double_get_size(predicted_values_vector_size);
+	if(target_values_vector_size!=predicted_values_vector_size)
+	{
+		return 0.0;
+	}
 	A=target_values_vector;
 	P=predicted_values_vector;
 
@@ -50,7 +56,7 @@ double get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_column_vec
 	}
 	SSR=mlfw_column_vec_double_get(RTR,0);
 	mean_of_actuals=mlfw_column_vec_double_get_mean(A);
-	M=mlfw_column_vec_double_create_new_filled(dataset_rows,mean_of_actuals,NULL);
+	M=mlfw_column_vec_double_create_new_filled(target_values_vector_size,mean_of_actuals,NULL);
 	if(M==NULL)
 	{
 		mlfw_column_vec_double_destroy(R);
