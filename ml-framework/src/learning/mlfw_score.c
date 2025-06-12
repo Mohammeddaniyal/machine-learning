@@ -26,8 +26,8 @@ double get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_column_vec
 	{
 		return 0.0; // later on we will introduce something to notify error
 	}
-	target_values_vector_size=mlfw_column_vec_double_get_size(target_values_vector_size);
-	predicted_values_vector_size=mlfw_column_vec_double_get_size(predicted_values_vector_size);
+	target_values_vector_size=mlfw_column_vec_double_get_size(target_values_vector);
+	predicted_values_vector_size=mlfw_column_vec_double_get_size(predicted_values_vector);
 	if(target_values_vector_size!=predicted_values_vector_size)
 	{
 		return 0.0;
