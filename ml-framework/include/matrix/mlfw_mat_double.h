@@ -36,4 +36,7 @@ double mlfw_mat_double_get_standard_deviation(mlfw_mat_double *matrix,index_t st
 
 void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_double **training_data_matrix,mlfw_mat_double **testing_data_matrix,uint8_t testing_data_percentage);
 
+
+void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new_rows_count,dimension_t new_columns_count);
+
 #endif
