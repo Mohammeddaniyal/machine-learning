@@ -39,4 +39,6 @@ void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_doub
 
 void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new_rows_count,dimension_t new_columns_count);
 
+void mlfw_mat_double_right_shift(mlfw_mat_double *matrix,dimension_t how_many_places_to_shift);
+
 #endif
