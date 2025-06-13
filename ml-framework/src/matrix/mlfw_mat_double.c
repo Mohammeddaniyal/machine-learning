@@ -670,3 +670,76 @@ void mlfw_mat_double_get_training_testing_data(char *csv_file_name,mlfw_mat_doub
 	*training_data_matrix=major_matrix;
 	*testing_data_matrix=minor_matrix;	
 }
+
+
+void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new_rows_count,dimension_t new_columns_count)
+{
+	mlfw_mat_double *matrix;
+	double **new_data_array;
+	double *new_row;
+	index_t i;
+
+	if(matrix_to_reshape==NULL) return;
+	if(*matrix_to_reshape==NULL) return; // added by me not by sir
+	if(new_rows_count<=0 || new_columns_count<=0)
+	{
+		mlfw_mat_double_destroy(*matrix_to_reshape);
+		*matrix_to_reshape=NULL;
+		return;
+	}	
+	matrix=*matrix_to_reshape;
+	if(matrix->rows==new_rows_count && matrix->columns==new_columns_count) return;
+	
+
+	if(new_rows_count>matrix->rows) // increase number of rows
+	{
+		new_data_array=(double **)realloc(sizeof(double *)*new_rows_count);
+		if(new_data_array==NULL)
+		{
+			mlfw_mat_double_destroy(matrix);
+			*matrix_to_reshape=NULL;
+			return;
+		}
+		matrix->data=new_data_array;
+		for(i=matrix->rows;i<new_rows_count;++i) matrix->data[i]=NULL;
+		matrix->rows=new_rows_count;
+	}else if(new_rows_count<matrix->rows)
+	{
+		for(i=new_rows_count;i<matrix->rows;++i)
+		{
+			free(matrix->data[i]);
+		}
+		new_data_array=(double **)realloc(sizeof(double *)*new_rows_count);
+		if(new_data_array==NULL)
+		{
+			for(i=0;i<new_rows_count;++i)
+			{
+				free(matrix->data[i]);
+			}
+			free(matrix->data);
+			free(matrix);
+			*matrix_to_reshape=NULL;
+			return;
+		}
+		matrix->data=new_data_array;
+		matrix->rows=new_rows_count;
+	}
+
+	// now let's work on columns
+	if(matrix->columns==new_columns_count) return;
+
+	// logic to reshape content of each row
+	for(i=0;i<matrix->rows;++i)
+	{
+		new_row=(double *)realloc(sizeof(double)*new_columns_count);
+		if(new_row==NULL)
+		{
+			mlfw_mat_double_destroy(matrix);
+			*matrix_to_reshape=NULL;
+			return;
+		}
+		matrix->data[i]=new_row;
+	}
+	matrix->columns=new_columns_count;
+
+}
