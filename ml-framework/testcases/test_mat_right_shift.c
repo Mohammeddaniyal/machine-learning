@@ -31,7 +31,7 @@ int main()
 		printf("\n");
 	}
 
-	mlfw_mat_double_reshape(matrix,1);
+	mlfw_mat_double_right_shift(matrix,1);
 	printf("After applying right shift\n");
 	for(r=0;r<rows;++r)
 	{
