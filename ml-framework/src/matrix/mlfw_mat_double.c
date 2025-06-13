@@ -753,7 +753,7 @@ void mlfw_mat_double_right_shift(mlfw_mat_double *matrix,dimension_t how_many_pl
 	for(r=0;r<matrix->rows;++r)
 	{
 		c=matrix->columns-1;
-		while(1)
+		while(1) // reason of infinite loop M2L19 51:00, because c is unsigned it will never become -ve
 		{
 			new_c=how_many_places_to_shift+c;
 			if(new_c<matrix->columns)
