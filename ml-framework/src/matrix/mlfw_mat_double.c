@@ -766,3 +766,24 @@ void mlfw_mat_double_right_shift(mlfw_mat_double *matrix,dimension_t how_many_pl
 		}
 	}
 }
+void mlfw_mat_double_left_shift(mlfw_mat_double *matrix,dimension_t how_many_places_to_shift)
+{
+	index_t r,c,new_c;
+	if(matrix==NULL) return;
+	if(how_many_places_to_shift<=0) return;
+	if(matrix->columns<how_many_places_to_shift) how_many_places_to_shift=matrix->columns;
+	for(r=0;r<matrix->rows;++r)
+	{
+		c=0;
+		while(c<matrix->columns)
+		{
+			new_c=c-how_many_places_to_shift;
+			if(new_c>=0)
+			{
+				matrix->data[r][new_c]=matrix->data[r][c];
+			}
+			matrix->data[r][c]=0.0;
+			c++;
+		}
+	}
+}
