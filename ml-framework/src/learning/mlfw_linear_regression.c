@@ -1,5 +1,6 @@
 #include<mlfw_matrix.h>
 #include<mlfw_vector.h>
+#include<mlfw_operations.h>
 #include<inttypes.h>
 #include<stdio.h>
 mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double error_value))
@@ -264,7 +265,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	// one iteration completed, so if on_each_iteration is not NULL, call the callback
 	if(on_each_iteration!=NULL)
 	{
-		if(on_each_iteration(k,error_number)==0) break;
+		if(on_each_iteration(k,final_error_value)==0) break;
 	}
 	++k;
 	}// operation loop ends
@@ -296,7 +297,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP);
 		mlfw_column_vec_double_destroy(UM);
-		trained_parameters_m=mlfw_column_vec_double_transpose(m,NULL);
+		trained_parameters=mlfw_column_vec_double_transpose(m,NULL);
 		mlfw_column_vec_double_destroy(m);
 
 		return trained_parameters;
