@@ -39,6 +39,9 @@ return (void *)trained_parameter;
 
 int main(int argc,char *argv[])
 {
+	pthread_t thread_id;
+	char m;
+	struct thread_args wrapper;
 	mlfw_mat_double *training_examples_matrix;
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
 	mlfw_column_vec_double *training_examples_target_values_vector;
@@ -85,6 +88,26 @@ int main(int argc,char *argv[])
 		return 0;
 	}
 	training_examples_matrix_columns=training_examples_matrix_columns-1;
+
+	wrapper.matrix=training_examples_matrix;
+	wrapper.target_values_vector=training_examples_target_values_vector;
+	wrapper.learning_rate=0.0003;
+	wrapper.iteration_number=atoi(argv[1]);
+	wrapper.callback=screen_logger;
+	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
+	while(1)
+	{
+		m=getchar();
+		__fpurge(stdin);
+		if(m=='\n') 
+		{
+			KEEP_RUNNING=0;
+			break;
+		}
+	}
+	
+	// this below line is very very very very important
+	pthread_join(&thread_id,(void **)&trained_parameters);
 
 	if(trained_parameters==NULL)
 	{
