@@ -29,7 +29,7 @@ mlfw_row_vec_double *trained_parameters;
 struct thread_args *args;
 args=(struct thread_args *)d;
 
-trained_parameters=mlfw_linear_regression_gradient_descent_fit_line(args->matrix,args->target_values_vectorr,args->learning_rate,args->iteration_number,args->callback);
+trained_parameters=mlfw_linear_regression_gradient_descent_fit_line(args->matrix,args->target_values_vector,args->learning_rate,args->iteration_number,args->callback);
 
 sleep(1); // just so that even after the fit line ends, the thread should not end immediately
 
