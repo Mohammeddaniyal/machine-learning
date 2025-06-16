@@ -3,7 +3,7 @@
 #include<mlfw_matrix.h>
 #include<mlfw_operations.h>
 #include<stdio.h>
-double get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_column_vec_double *predicted_values_vector)
+double mlfw_get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_column_vec_double *predicted_values_vector)
 {
 	dimension_t target_values_vector_size;
 	dimension_t predicted_values_vector_size;
