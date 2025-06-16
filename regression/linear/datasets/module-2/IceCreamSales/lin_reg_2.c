@@ -109,7 +109,7 @@ int main(int argc,char *argv[])
 	}
 	
 	// this below line is very very very very important
-	pthread_join(&thread_id,(void **)&trained_parameters);
+	pthread_join(thread_id,(void **)&trained_parameters);
 
 	if(trained_parameters==NULL)
 	{
