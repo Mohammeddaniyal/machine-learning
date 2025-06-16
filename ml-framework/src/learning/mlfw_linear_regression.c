@@ -348,7 +348,7 @@ mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *input_f
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
 		mlfw_column_vec_double_destroy(m);
-		return;
+		return NULL;
 	}
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
