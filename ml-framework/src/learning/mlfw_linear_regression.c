@@ -42,7 +42,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	double final_error_value;
 
 	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
-	if(number_of_iterations==0 || on_each_iteration==NULL) return NULL;
+	if(number_of_iterations==0 && on_each_iteration==NULL) return NULL;
 	
 	I=input_features_matrix;
 	A=target_values_vector;
