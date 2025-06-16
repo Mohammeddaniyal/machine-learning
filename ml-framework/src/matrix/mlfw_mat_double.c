@@ -768,7 +768,7 @@ void mlfw_mat_double_right_shift(mlfw_mat_double *matrix,dimension_t how_many_pl
 }
 void mlfw_mat_double_left_shift(mlfw_mat_double *matrix,dimension_t how_many_places_to_shift)
 {
-	index_t r,c,new_c;
+	int64_t r,c,new_c; // reason for int64_t M2 L21 2:34
 	if(matrix==NULL) return;
 	if(how_many_places_to_shift<=0) return;
 	if(matrix->columns<how_many_places_to_shift) how_many_places_to_shift=matrix->columns;
