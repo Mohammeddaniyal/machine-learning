@@ -19,7 +19,7 @@ int main(int argc,char *argv[])
 	mlfw_column_vec_double *test_examples_target_values_vector;
 	dimension_t test_examples_matrix_rows,test_examples_matrix_columns;
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
-
+	double r2_score;
 	index_t i;
 	if(argc!=2)
 	{
@@ -31,7 +31,7 @@ int main(int argc,char *argv[])
 	mlfw_mat_double_get_training_testing_data("IceCreamSales.csv",&training_examples_matrix,&test_examples_matrix,20);
 	if(training_examples_matrix==NULL)
 	{
-		printf("Low memory\n");
+		printf("Unable to load IceCreamSale.csv\n");
 		return 0;
 	}
 
@@ -43,6 +43,7 @@ int main(int argc,char *argv[])
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(training_examples_matrix);
+		mlfw_mat_double_destroy(test_examples_matrix);
 		return 0;
 	}
 	mlfw_mat_double_reshape(&training_examples_matrix,training_examples_matrix_rows,training_examples_matrix_columns-1);
@@ -50,6 +51,7 @@ int main(int argc,char *argv[])
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(training_examples_matrix);
+		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(training_examples_target_values_vector);
 		return 0;
 	}
@@ -60,6 +62,7 @@ int main(int argc,char *argv[])
 	{
 		printf("Low memory\n");
 		mlfw_mat_double_destroy(training_examples_matrix);
+		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(training_examples_target_values_vector);
 		return 0;
 	}
@@ -107,14 +110,15 @@ int main(int argc,char *argv[])
 	
 	// prediction part ends here
 
+	r2_score=mlfw_get_r2_score(test_examples_target_values_vector,test_examples_predicted_values_vector);
+	printf("Good accuracy score is anything greater than or equal to 0.7\n)");
 
-
-
-	printf("Result is (0-1) : %40.15lf \n",mlfw_get_r2_score(test_examples_target_values_vector,test_examples_predicted_values_vector));
+	printf("Accuracy score (0-1) is : %lf \n",r2_score);
 	
 	mlfw_row_vec_double_destroy(trained_parameters);
-	mlfw_column_vec_double_destroy(test_examples_target_values_vector);
 	mlfw_mat_double_destroy(test_examples_matrix);
+	mlfw_column_vec_double_destroy(test_examples_target_values_vector);
+	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
 
 	return 0;
 }
