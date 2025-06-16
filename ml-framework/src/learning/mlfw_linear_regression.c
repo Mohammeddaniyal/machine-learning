@@ -306,5 +306,52 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 
 mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *input_features_matrix,mlfw_row_vec_double *trained_parameters)
 {
+	dimension_t trained_parameters_size;
+	mlfw_mat_double *I;
+	dimension_t I_rows;
+	dimension_t I_columns;
 
+	mlfw_column_vec_double *m;
+
+	mlfw_column_vec_double *P;
+
+
+	if(input_features_matrix==NULL || trained_parameters==NULL) return NULL;
+	
+	I=input_features_matrix;
+
+	mlfw_mat_double_get_dimensions(I,&I_rows,&I_columns);
+	trained_parameters_size=mlfw_row_vec_double_get_size(trained_parameters);
+	if(trained_parameters_size!=I_columns+1) return NULL;
+
+	mlfw_mat_double_reshape(&I,I_rows,I_columns+1);
+	if(I==NULL)
+	{
+		return NULL;
+	}
+	I_columns=I_columns+1;
+	mlfw_mat_double_right_shift(I,1);
+	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
+	
+
+	m=mlfw_row_vec_double_transpose(trained_parameters,NULL);
+	if(m==NULL)
+	{
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		return NULL;
+	}
+
+	P=mlfw_multiply_double_matrix_with_column_vector(I,m,NULL);
+	if(P==NULL)
+	{
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		mlfw_column_vec_double_destroy(m);
+		return;
+	}
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		mlfw_column_vec_double_destroy(m);
+		return P; // return the column vector with the predicted values
 }
