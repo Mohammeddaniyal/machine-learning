@@ -35,7 +35,7 @@ trained_parameters=mlfw_linear_regression_gradient_descent_fit_line(args->matrix
 
 sleep(1); // just so that even after the fit line ends, the thread should not end immediately
 
-return (void *)trained_parameter;
+return (void *)trained_parameters;
 
 }
 
