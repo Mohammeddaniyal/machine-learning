@@ -4,6 +4,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<pthread.h>
+#include<stdio_ext.h>
+#include<unistd.h>
 
 uint8_t KEEP_RUNNING=1;
 
