@@ -21,7 +21,50 @@ uint8_t (*callback)(uint64_t,double);
 
 uint8_t screen_logger(uint64_t iteration_number,double error_value)
 {
+	FILE *f;
+	index_t r;
+	double value1,value2;
+	static mlfw_mat_double *matrix=NULL; // since static, when the function gets called
+					     // for the first time, this declaration will
+					     // be implemented, and when the function ends
+					     // the variable matrix won't die
+	if(iteration_number==1)
+	{
+		matrix=mlfw_mat_double_create_new(100,2);
+	}
+
 	printf("Iteration : %" PRIu64 ",Error : %40.15lf\n",iteration_number,error_value);
+	
+	if(iteration_number<100)
+	{
+		if(matrix!=NULL)
+		{
+			mlfw_mat_double_set(matrix,(index_t)(iteration_number-1),0,(double)iteration_number);
+			mlfw_mat_double_set(matrix,(index_t)(iteration_number-1),1,error_value);
+		}
+	}else if(iteration_number==100)
+	{
+		if(matrix!=NULL)
+		{
+			mlfw_mat_double_set(matrix,(index_t)(iteration_number-1),0,(double)iteration_number);
+			mlfw_mat_double_set(matrix,(index_t)(iteration_number-1),1,error_value);
+			// now write the data into the file
+			f=fopen("graph.data","w");
+			if(f!=NULL)
+			{
+				for(r=0;r<100;++r)
+				{
+					value1=mlfw_mat_double_get(matrix,r,0);
+					value2=mlfw_mat_double_get(matrix,r,1);
+					fprintf(f,"%lf,%lf\n",value1,value2);
+				}
+				fclose(f);
+			}
+		mlfw_mat_double_destroy(matrix);
+		matrix=NULL;
+		}
+	}
+
 	return KEEP_RUNNING;// keep running
 }
 
