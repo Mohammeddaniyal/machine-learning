@@ -29,6 +29,7 @@ void draw_graph(int window_width,int window_height)
 	f=fopen("graph.data","r");
 	if(f==NULL)
 	{
+		printf("Unable to open graph.data\n");
 		return;	
 	}
 	glPointSize(2);
