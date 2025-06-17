@@ -55,7 +55,7 @@ void draw_graph_paper(int window_width,int window_height)
 void update_view(int window_width,int window_height)
 {
 	draw_graph_paper(window_width,window_height);
-	//draw_graph(window_width,window_height);
+	draw_graph(window_width,window_height);
 }
 int main()
 {
