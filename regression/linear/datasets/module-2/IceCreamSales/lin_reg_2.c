@@ -21,6 +21,7 @@ uint8_t (*callback)(uint64_t,double);
 
 uint8_t screen_logger(uint64_t iteration_number,double error_value)
 {
+	FILE *gnuplot;
 	FILE *f;
 	index_t r;
 	double value1,value2;
@@ -59,6 +60,12 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value)
 					fprintf(f,"%lf,%lf\n",value1,value2);
 				}
 				fclose(f);
+				gnuplot=popen("gnuplot","w");
+				fprintf(gnuplot,"set datafile separator ','\n");
+				fprintf(gnuplot,"plot 'graph.data'\n");
+				fprintf(gnuplot,"exit\n");
+				pclose(gnuplot);
+				sleep(3);
 			}
 		mlfw_mat_double_destroy(matrix);
 		matrix=NULL;
