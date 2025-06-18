@@ -677,7 +677,7 @@ void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new
 	mlfw_mat_double *matrix;
 	double **new_data_array;
 	double *new_row;
-	index_t i;
+	index_t i,j;
 
 	if(matrix_to_reshape==NULL) return;
 	if(*matrix_to_reshape==NULL) return; // added by me not by sir
@@ -728,6 +728,24 @@ void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new
 	// now let's work on columns
 	if(matrix->columns==new_columns_count) 
 	{
+		for(i=0;i<matrix->rows;++i)
+		{
+			if(matrix->data[i]==NULL)
+			{
+				matrix->data[i]=(double *)malloc(sizeof(double)*matrix->columns);
+				if(matrix->data[i]==NULL)
+				{
+					for(j=0;j<i;++j)
+					{
+						free(matrix->data[j]);
+					}
+					free(matrix->data);
+					free(matrix);
+					*matrix_to_reshape=NULL;
+					return
+				}
+			}
+		}
 		return;
 	}
 	// logic to reshape content of each row
