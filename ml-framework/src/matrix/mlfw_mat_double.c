@@ -787,3 +787,21 @@ void mlfw_mat_double_left_shift(mlfw_mat_double *matrix,dimension_t how_many_pla
 		}
 	}
 }
+
+
+mlfw_mat_double * mlfw_mat_double_create_identity_matrix(dimension_t rows)
+{
+	mlfw_mat_double *matrix;
+	index_t r,c;
+	if(rows<=0) return NULL;
+	matrix=mlfw_mat_double_create_new(rows,rows);
+	if(matrix==NULL) return NULL;
+	for(r=0;r<matrix->rows;++r)
+	{
+		for(c=0;c<matrix->columns;++c)
+		{
+			matrix->data[r][c]=(double)(r==c);
+		}
+	}
+	return matrix;
+}
