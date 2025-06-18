@@ -726,8 +726,10 @@ void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new
 	}
 
 	// now let's work on columns
-	if(matrix->columns==new_columns_count) return;
-
+	if(matrix->columns==new_columns_count) 
+	{
+		return;
+	}
 	// logic to reshape content of each row
 	for(i=0;i<matrix->rows;++i)
 	{
