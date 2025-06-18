@@ -42,4 +42,5 @@ void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new
 void mlfw_mat_double_right_shift(mlfw_mat_double *matrix,dimension_t how_many_places_to_shift);
 void mlfw_mat_double_left_shift(mlfw_mat_double *matrix,dimension_t how_many_places_to_shift);
 
+mlfw_mat_double * mlfw_mat_double_create_identity_matrix(dimension_t rows);
 #endif
