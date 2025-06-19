@@ -742,7 +742,7 @@ void mlfw_mat_double_reshape(mlfw_mat_double **matrix_to_reshape,dimension_t new
 					free(matrix->data);
 					free(matrix);
 					*matrix_to_reshape=NULL;
-					return
+					return;
 				}
 			}
 		}
