@@ -838,7 +838,7 @@ mlfw_mat_double * mlfw_mat_double_clone(mlfw_mat_double *matrix_to_clone,mlfw_ma
 	}
 	else
 	{
-	if(new_matrix->rows!=matrix_to_clone->rows && new_matrix->columns!=matrix_to_clone->columns) 
+	if(new_matrix->rows!=matrix_to_clone->rows || new_matrix->columns!=matrix_to_clone->columns) 
 	{
 		return NULL;
 	}
