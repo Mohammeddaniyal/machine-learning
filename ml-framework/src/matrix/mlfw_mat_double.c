@@ -880,7 +880,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 	}
 	else
 	{
-		if(new_matrix->rows!=matrix->rows && new_matrix->columns!=matrix->columns)
+		if(new_matrix->rows!=matrix->rows || new_matrix->columns!=matrix->columns)
 		{
 			mlfw_mat_double_destroy(matrix);
 			return NULL;
