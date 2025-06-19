@@ -46,4 +46,6 @@ mlfw_mat_double * mlfw_mat_double_create_identity_matrix(dimension_t rows);
 
 mlfw_mat_double * mlfw_mat_double_clone(mlfw_mat_double *matrix_to_clone,mlfw_mat_double *new_matrix);
 
+mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlfw_mat_double *new_matrix);
+
 #endif
