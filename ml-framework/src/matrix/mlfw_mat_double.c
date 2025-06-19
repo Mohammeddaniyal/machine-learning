@@ -825,3 +825,26 @@ mlfw_mat_double * mlfw_mat_double_create_identity_matrix(dimension_t rows)
 	}
 	return matrix;
 }
+
+
+mlfw_mat_double * mlfw_mat_double_clone(mlfw_mat_double *matrix_to_clone,mlfw_mat_double *new_matrix)
+{
+	mlfw_mat_double *matrix;
+	if(matrix_to_clone==NULL) return NULL;
+	if(new_matrix==NULL)
+	{
+	matrix=mlfw_mat_double_create_new(matrix_to_clone->rows,matrix_to_clone->columns);
+	if(matrix==NULL) return NULL;
+	}
+	else
+	{
+	if(new_matrix->rows!=matrix_to_clone->rows && new_matrix->columns!=matrix_to_clone->columns) 
+	{
+		return NULL;
+	}
+	matrix=new_matrix;
+	}
+	mlfw_mat_double_copy(matrix,matrix_to_clone,0,0,0,0,matrix_to_clone->rows-1,matrix_to_clone->columns-1); 
+	
+	return matrix;
+}
