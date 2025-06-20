@@ -935,7 +935,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		
 		// formule will be Rn -> Rn - (Pivot_Row * (Rn_value_to_eliminate/Pivot_row_value(in the same column as the number to eliminate)))
 
-		for(i=0;i<matrix->rows;i++)
+		for(i=0;i<r;i++)
 		{
 			matrix_value_to_eliminate=matrix->data[i][pivot_column_index];
 			for(c=0;c<matrix->columns;++c)
