@@ -862,7 +862,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 	double pivot_value;
 	double largest;
 	double value;
-	double elimitate_value;
+	double eliminate_value;
 	double multiply_by;
 	if(matrix_to_inverse==NULL) return NULL;
 	if(matrix_to_inverse->rows!=matrix_to_inverse->columns) return NULL;
