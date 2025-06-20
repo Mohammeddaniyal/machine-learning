@@ -856,10 +856,13 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 	mlfw_mat_double *identity_matrix;
 	mlfw_mat_double *matrix;
 	index_t pivot_row_index,pivot_column_index;
-	index_t r;
+	index_t r,c;
+	index_t i;
 	index_t row_index_of_largest;
+	double *tmp;
 	double pivot_value;
 	double largest;
+	double matrix_value_to_eliminate;
 
 	if(matrix_to_inverse==NULL) return NULL;
 	if(matrix_to_inverse->rows!=matrix_to_inverse->columns) return NULL;
@@ -891,21 +894,25 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
 		largest=pivot_value;
 		if(largest<0) largest=largest*(-1); // making it as absolute value
-		index_row_of_largest=r;
+		row_index_of_largest=r;
 		// loop to find the index of largest absolute below r
 		for(i=pivot_row_index+1;i<matrix->rows;++i)
 		{
-			if(largest<matrix->data[i][r]) index_row_of_largest=i;
+			if(largest<matrix->data[i][pivot_column_index])
+			{
+				largest=matrix->data[i][pivot_column_index];
+				row_index_of_largest=i;
+			}
 		}	
 		// if r!=index_of_largest then swap rows of matrix as well as identity matrix
-		if(pivot_row_index!=index_row_of_largest)
+		if(pivot_row_index!=row_index_of_largest)
 		{
 			tmp=matrix->data[pivot_row_index];
-			matrix->data[pivot_row_index]=matrix->data[index_row_of_largest];
+			matrix->data[pivot_row_index]=matrix->data[row_index_of_largest];
 			matrix->data[index_row_of_largest]=tmp;
 			tmp=identity_matrix->data[pivot_row_index];
-			identity_matrix->data[pivot_row_index]=identity_matrix->data[index_row_of_index];
-			identity_matrix->data[index_row_of_index]=tmp;
+			identity_matrix->data[pivot_row_index]=identity_matrix->data[row_index_of_largest];
+			identity_matrix->data[row_index_of_largest]=tmp;
 			
 			pivot_value=matrix->data[pivot_row_index][pivot_column_index];
 		}
