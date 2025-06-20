@@ -960,14 +960,6 @@ identity_matrix->data[i][c]=identity_matrix->data[i][c]-(identity_matrix->data[p
 		}
 	}// outer loop to traverse on all rows ends here
 		
-	for(r=0;r<matrix->rows;++r)
-	{
-		for(c=0;c<matrix->columns;++c)
-		{
-			printf("%lf ",matrix->data[r][c]);
-		}
-		printf("\n");
-	}
 
 	return identity_matrix;
 }
