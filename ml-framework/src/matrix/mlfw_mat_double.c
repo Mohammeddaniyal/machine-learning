@@ -870,7 +870,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 	if(matrix==NULL) return NULL;
 	if(new_matrix==NULL)
 	{
-		identity_matrix=mlfw_mat_double_identity_matrix(matrix->rows);
+		identity_matrix=mlfw_mat_double_create_identity_matrix(matrix->rows);
 		if(identity_matrix==NULL)
 		{
 			mlfw_mat_double_destroy(matrix);
@@ -909,7 +909,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		{
 			tmp=matrix->data[pivot_row_index];
 			matrix->data[pivot_row_index]=matrix->data[row_index_of_largest];
-			matrix->data[index_row_of_largest]=tmp;
+			matrix->data[row_index_of_largest]=tmp;
 			tmp=identity_matrix->data[pivot_row_index];
 			identity_matrix->data[pivot_row_index]=identity_matrix->data[row_index_of_largest];
 			identity_matrix->data[row_index_of_largest]=tmp;
@@ -923,7 +923,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		for(c=0;c<matrix->columns;++c)
 		{
 		matrix->data[pivot_row_index][c]=matrix->data[pivot_row_index][c]/pivot_value;
-		identity_matrix->data[pivot_row_index][c]=identity_matrix->data[pivot_row_index]/pivot_value;
+		identity_matrix->data[pivot_row_index][c]=identity_matrix->data[pivot_row_index][c]/pivot_value;
 		}
 
 		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
@@ -938,7 +938,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 			for(c=0;c<matrix->columns;++c)
 			{
 matrix->data[i][c]=matrix->data[i][c]-(matrix->data[pivot_row_index][c]*matrix_value_to_eliminate/pivot_value);
-identity_matrix->data[i][c]=identity_matrix->[i][c]-(identity_matrix->data[pivot_row_index][c]*matrix_value_eliminate/pivot_value);
+identity_matrix->data[i][c]=identity_matrix->data[i][c]-(identity_matrix->data[pivot_row_index][c]*matrix_value_to_eliminate/pivot_value);
 			}
 		
 		}
@@ -951,7 +951,7 @@ identity_matrix->data[i][c]=identity_matrix->[i][c]-(identity_matrix->data[pivot
 			for(c=0;c<matrix->columns;++c)
 			{
 matrix->data[i][c]=matrix->data[i][c]-(matrix->data[pivot_row_index][c]*matrix_value_to_eliminate/pivot_value);
-identity_matrix->data[i][c]=identity_matrix->[i][c]-(identity_matrix->data[pivot_row_index][c]*matrix_value_eliminate/pivot_value);
+identity_matrix->data[i][c]=identity_matrix->data[i][c]-(identity_matrix->data[pivot_row_index][c]*matrix_value_to_eliminate/pivot_value);
 			}
 		
 		}
