@@ -848,3 +848,107 @@ mlfw_mat_double * mlfw_mat_double_clone(mlfw_mat_double *matrix_to_clone,mlfw_ma
 	
 	return matrix;
 }
+
+
+
+mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlfw_mat_double *new_matrix)
+{
+	mlfw_mat_double *identity_matrix;
+	mlfw_mat_double *matrix;
+	index_t pivot_row_index,pivot_column_index;
+	index_t r;
+	index_t row_index_of_largest;
+	double pivot_value;
+	double largest;
+
+	if(matrix_to_inverse==NULL) return NULL;
+	if(matrix_to_inverse->rows!=matrix_to_inverse->columns) return NULL;
+	matrix=mlfw_mat_double_clone(matrix_to_inverse,NULL);
+	if(matrix==NULL) return NULL;
+	if(new_matrix==NULL)
+	{
+		identity_matrix=mlfw_mat_double_identity_matrix(matrix->rows);
+		if(identity_matrix==NULL)
+		{
+			mlfw_mat_double_destroy(matrix);
+			return NULL;
+		}
+	}
+	else
+	{
+		if(new_matrix->rows!=matrix->rows && new_matrix->columns!=matrix->columns)
+		{
+			mlfw_mat_double_destroy(matrix);
+			return NULL;
+		}
+		identity_matrix=new_matrix;
+	}
+	
+	for(r=0;r<matrix->rows;++r)
+	{
+		pivot_row_index=r;
+		pivot_column_index=r;
+		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
+		largest=pivot_value;
+		if(largest<0) largest=largest*(-1); // making it as absolute value
+		index_row_of_largest=r;
+		// loop to find the index of largest absolute below r
+		for(i=pivot_row_index+1;i<matrix->rows;++i)
+		{
+			if(largest<matrix->data[i][r]) index_row_of_largest=i;
+		}	
+		// if r!=index_of_largest then swap rows of matrix as well as identity matrix
+		if(pivot_row_index!=index_row_of_largest)
+		{
+			tmp=matrix->data[pivot_row_index];
+			matrix->data[pivot_row_index]=matrix->data[index_row_of_largest];
+			matrix->data[index_row_of_largest]=tmp;
+			tmp=identity_matrix->data[pivot_row_index];
+			identity_matrix->data[pivot_row_index]=identity_matrix->data[index_row_of_index];
+			identity_matrix->data[index_row_of_index]=tmp;
+			
+			pivot_value=matrix->data[pivot_row_index][pivot_column_index];
+		}
+		
+		// make the pivot point value as 1 by dividing all elements of rth row by 
+		// pivot point value
+
+		for(c=0;c<matrix->columns;++c)
+		{
+		matrix->data[pivot_row_index][c]=matrix->data[pivot_row_index][c]/pivot_value;
+		identity_matrix->data[pivot_row_index][c]=identity_matrix->data[pivot_row_index]/pivot_value;
+		}
+
+		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
+		// loop to elimintate all values above rth row in pivot_column_index column
+		// Note that identity matrix should also be updated
+		
+		// formule will be Rn -> Rn - (Pivot_Row * (Rn_value_to_eliminate/Pivot_row_value(in the same column as the number to eliminate)))
+
+		for(i=0;i<r;i++)
+		{
+			matrix_value_to_eliminate=matrix->data[i][pivot_column_index];
+			for(c=0;c<matrix->columns;++c)
+			{
+matrix->data[i][c]=matrix->data[i][c]-(matrix->data[pivot_row_index][c]*matrix_value_to_eliminate/pivot_value);
+identity_matrix->data[i][c]=identity_matrix->[i][c]-(identity_matrix->data[pivot_row_index][c]*matrix_value_eliminate/pivot_value);
+			}
+		
+		}
+
+		// loop to elimintate all values below rth row in pivot_column_index column
+		// Note that identity matrix should also be updated
+		for(i=r+1;i<r;i++)
+		{
+			matrix_value_to_eliminate=matrix->data[i][pivot_column_index];
+			for(c=0;c<matrix->columns;++c)
+			{
+matrix->data[i][c]=matrix->data[i][c]-(matrix->data[pivot_row_index][c]*matrix_value_to_eliminate/pivot_value);
+identity_matrix->data[i][c]=identity_matrix->[i][c]-(identity_matrix->data[pivot_row_index][c]*matrix_value_eliminate/pivot_value);
+			}
+		
+		}
+	}// outer loop to traverse on all rows ends here
+
+	return identity_matrix;
+}
