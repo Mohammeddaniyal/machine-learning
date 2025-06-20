@@ -862,6 +862,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 	double *tmp;
 	double pivot_value;
 	double largest;
+	double value;
 	double matrix_value_to_eliminate;
 
 	if(matrix_to_inverse==NULL) return NULL;
@@ -898,9 +899,11 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		// loop to find the index of largest absolute below r
 		for(i=pivot_row_index+1;i<matrix->rows;++i)
 		{
-			if(largest<matrix->data[i][pivot_column_index])
+			value=matrix->data[i][pivot_column_index];
+			if(value<0) value=value*(-1);
+			if(largest<value)
 			{
-				largest=matrix->data[i][pivot_column_index];
+				largest=value;
 				row_index_of_largest=i;
 			}
 		}	
@@ -932,7 +935,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		
 		// formule will be Rn -> Rn - (Pivot_Row * (Rn_value_to_eliminate/Pivot_row_value(in the same column as the number to eliminate)))
 
-		for(i=0;i<r;i++)
+		for(i=0;i<matrix->rows;i++)
 		{
 			matrix_value_to_eliminate=matrix->data[i][pivot_column_index];
 			for(c=0;c<matrix->columns;++c)
@@ -945,7 +948,7 @@ identity_matrix->data[i][c]=identity_matrix->data[i][c]-(identity_matrix->data[p
 
 		// loop to elimintate all values below rth row in pivot_column_index column
 		// Note that identity matrix should also be updated
-		for(i=r+1;i<r;i++)
+		for(i=r+1;i<matrix->rows;i++)
 		{
 			matrix_value_to_eliminate=matrix->data[i][pivot_column_index];
 			for(c=0;c<matrix->columns;++c)
@@ -956,6 +959,15 @@ identity_matrix->data[i][c]=identity_matrix->data[i][c]-(identity_matrix->data[p
 		
 		}
 	}// outer loop to traverse on all rows ends here
+		
+	for(r=0;r<matrix->rows;++r)
+	{
+		for(c=0;c<matrix->columns;++c)
+		{
+			printf("%lf ",matrix->data[r][c]);
+		}
+		printf("\n");
+	}
 
 	return identity_matrix;
 }
