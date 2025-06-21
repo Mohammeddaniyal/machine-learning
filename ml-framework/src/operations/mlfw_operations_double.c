@@ -192,6 +192,7 @@ mlfw_mat_double * mlfw_mat_double_multiply_matrix_with_matrix(mlfw_mat_double *l
 			value_3=0.0;
 			for(c1=0;c1<m_1_columns;++c1)
 			{
+				if(value_1==0 || value_2==0) continue;
 				value_1=mlfw_mat_double_get(m1,r3,c1);
 				value_2=mlfw_mat_double_get(m2,c1,c3);
 				value_3=value_3+(value_1*value_2);
