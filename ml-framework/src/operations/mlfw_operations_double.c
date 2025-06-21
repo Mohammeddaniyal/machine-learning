@@ -149,3 +149,53 @@ mlfw_column_vec_double * mlfw_multiply_double_scalar_with_column_vector(double s
 	}
 	return product_vector;
 }
+
+
+
+mlfw_mat_double * mlfw_mat_double_multiply_matrix_with_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *product_matrix)
+{
+	dimension_t m_1_rows,m_1_columns;
+	dimension_t m_2_rows,m_2_columns;
+	dimension_t m_3_rows,m_3_columns;
+	index_t r1,c1;
+	index_t r2,c2;
+	index_t r3,c3;
+	double value;
+	mlfw_mat_double *m1,m2,*m3;
+	if(left_matrix==NULL || right_matrix==NULL) return NULL;
+	m1=left_matrix;
+	m2=right_matrix;
+	mlfw_mat_double_get_dimensions(m1,&m_1_rows,&m_1_columns);
+	mlfw_mat_double_get_dimensions(m2,&m_2_rows,&m_2_columns);
+	if(m_1_columns!=m_2_rows) return NULL;
+
+	if(product_matrix==NULL)
+	{
+		m_3_rows=m_1_rows;
+		m_3_columns=m_2_columns;
+		m3=mlfw_mat_double_create_new(m_3_rows,m_3_columns);
+		if(m3==NULL) return NULL;
+	}
+	else
+	{
+		mlfw_mat_double_get_dimensions(product_matrix,&m_3_rows,&m_3_columns);
+		if(m_3_rows!=m_1_rows || m_3_columns!=m_2_columns) return NULL;
+		m3=product_matrix;
+	}
+
+
+ 	for(r3=0;r3<m_3_rows;++r3)
+	{
+		for(c3=0;c3<m_3_columns:++c3)
+		{
+			value=0.0;
+			for(c1=0;c1<m_1_columns;++c1)
+			{
+				value=value+(m1[r3][c1]*m2[c1][c3]);
+			}
+		m3->data[r3][c3]=value;
+		}
+	}
+
+	return m3;
+}
