@@ -157,11 +157,12 @@ mlfw_mat_double * mlfw_mat_double_multiply_matrix_with_matrix(mlfw_mat_double *l
 	dimension_t m_1_rows,m_1_columns;
 	dimension_t m_2_rows,m_2_columns;
 	dimension_t m_3_rows,m_3_columns;
-	index_t r1,c1;
-	index_t r2,c2;
+	index_t c1;
 	index_t r3,c3;
-	double value;
-	mlfw_mat_double *m1,m2,*m3;
+	double value_1;
+	double value_2;
+	double value_3;
+	mlfw_mat_double *m1,*m2,*m3;
 	if(left_matrix==NULL || right_matrix==NULL) return NULL;
 	m1=left_matrix;
 	m2=right_matrix;
@@ -183,17 +184,19 @@ mlfw_mat_double * mlfw_mat_double_multiply_matrix_with_matrix(mlfw_mat_double *l
 		m3=product_matrix;
 	}
 
-
+	// for logic checkout M3 L5 from begin of the lecture
  	for(r3=0;r3<m_3_rows;++r3)
 	{
-		for(c3=0;c3<m_3_columns:++c3)
+		for(c3=0;c3<m_3_columns;++c3)
 		{
-			value=0.0;
+			value_3=0.0;
 			for(c1=0;c1<m_1_columns;++c1)
 			{
-				value=value+(m1[r3][c1]*m2[c1][c3]);
+				value_1=mlfw_mat_double_get(m1,r3,c1);
+				value_2=mlfw_mat_double_get(m2,c1,c3);
+				value_3=value_3+(value_1*value_2);
 			}
-		m3->data[r3][c3]=value;
+			mlfw_mat_double_set(m3,r3,c3,value_3);
 		}
 	}
 
