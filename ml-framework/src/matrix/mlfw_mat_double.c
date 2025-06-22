@@ -901,7 +901,6 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		pivot_row_index=r;
 		pivot_column_index=r;
 		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
-		printf("Pivot Value %lf\n",pivot_value);
 		largest=pivot_value;
 		if(largest<0) largest=largest*(-1); // making it as absolute value
 		row_index_of_largest=r;
