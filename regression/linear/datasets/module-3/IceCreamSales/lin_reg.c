@@ -3,12 +3,7 @@
 #include<mlfw_learning.h>
 #include<stdlib.h>
 #include<stdio.h>
-uint8_t screen_logger(uint64_t iteration_number,double error_value)
-{
-	printf("Iteration : %" PRIu64 ",Error : %40.15lf\n",iteration_number,error_value);
-	return 1;// keep running
-}
-int main(int argc,char *argv[])
+int main()
 {
 	mlfw_mat_double *training_examples_matrix;
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
@@ -20,13 +15,7 @@ int main(int argc,char *argv[])
 	dimension_t test_examples_matrix_rows,test_examples_matrix_columns;
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
 	double r2_score;
-	index_t i;
-	if(argc!=2)
-	{
-		printf("Pass numbers of iteration as command line argument\n");
-		return 0;
-	}
-		
+	index_t i;		
 	
 	mlfw_mat_double_get_training_testing_data("IceCreamSales.csv",&training_examples_matrix,&test_examples_matrix,20);
 	if(training_examples_matrix==NULL)
@@ -57,10 +46,10 @@ int main(int argc,char *argv[])
 	}
 	training_examples_matrix_columns=training_examples_matrix_columns-1;
 
-	trained_parameters=mlfw_linear_regression_gradient_descent_fit_line(training_examples_matrix,training_examples_target_values_vector,0.0003,atoi(argv[1]),screen_logger);
+	trained_parameters=mlfw_linear_regression_normal_equation_fit_line(training_examples_matrix,training_examples_target_values_vector);
 	if(trained_parameters==NULL)
 	{
-		printf("Low memory\n");
+		printf("Low memory,unable to create trained parameters\n");
 		mlfw_mat_double_destroy(training_examples_matrix);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(training_examples_target_values_vector);
