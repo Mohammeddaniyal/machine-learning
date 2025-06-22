@@ -61,7 +61,7 @@ int main()
 		printf("\n");
 	}
 
-	product_matrix=mlfw_mat_double_multiply_matrix_with_matrix(matrix,inverse_matrix,NULL);
+	product_matrix=mlfw_multiply_double_matrix_with_matrix(matrix,inverse_matrix,NULL);
 	if(product_matrix==NULL)
 	{
 		mlfw_mat_double_destroy(matrix);
