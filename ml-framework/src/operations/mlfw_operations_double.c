@@ -152,7 +152,7 @@ mlfw_column_vec_double * mlfw_multiply_double_scalar_with_column_vector(double s
 
 
 
-mlfw_mat_double * mlfw_double_multiply_matrix_with_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *product_matrix)
+mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *product_matrix)
 {
 	dimension_t m_1_rows,m_1_columns;
 	dimension_t m_2_rows,m_2_columns;
