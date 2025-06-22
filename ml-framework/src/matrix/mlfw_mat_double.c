@@ -896,12 +896,12 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		}
 		identity_matrix=new_matrix;
 	}
-	
 	for(r=0;r<matrix->rows;++r)
 	{
 		pivot_row_index=r;
 		pivot_column_index=r;
 		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
+		printf("Pivot Value %lf\n",pivot_value);
 		largest=pivot_value;
 		if(largest<0) largest=largest*(-1); // making it as absolute value
 		row_index_of_largest=r;
@@ -954,7 +954,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		}
 
 		// pivot value will becomes 1 
-		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
+//		pivot_value=matrix->data[pivot_row_index][pivot_column_index];
 
 
 		// loop to elimintate all values above rth row in pivot_column_index column
@@ -984,7 +984,7 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		// loop to elimintate all values below rth row in pivot_column_index column
 		// Note that identity matrix should also be updated
 	
-		for(i=r+1;i<matrix->columns;i++)
+		for(i=r+1;i<matrix->rows;i++)
 		{
 			eliminate_value=matrix->data[i][pivot_column_index];
 			multiply_by=eliminate_value; // so ignoring settng up pivot point
@@ -1004,7 +1004,6 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 		}
 
 	}// outer loop to traverse on all rows ends here
-		
 	mlfw_mat_double_destroy(matrix);
 	return identity_matrix; // identity matrix is now the inverse of matrix_to_inverse
 }

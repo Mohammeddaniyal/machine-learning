@@ -311,6 +311,7 @@ mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *input_f
 	dimension_t I_rows;
 	dimension_t I_columns;
 
+
 	mlfw_column_vec_double *m;
 
 	mlfw_column_vec_double *P;
@@ -367,6 +368,7 @@ mlfw_row_vec_double * mlfw_linear_regression_normal_equation_fit_line(mlfw_mat_d
 
 	dimension_t X_rows;
 	dimension_t X_columns;
+	
 
 	mlfw_column_vec_double *Y;
 	mlfw_column_vec_double *XTY;
@@ -377,9 +379,9 @@ mlfw_row_vec_double * mlfw_linear_regression_normal_equation_fit_line(mlfw_mat_d
 
 	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
 	
-	X=mlfw_mat_double_clone(input_features_matrix;,NULL);
+	X=mlfw_mat_double_clone(input_features_matrix,NULL);
 	if(X==NULL) return NULL;
-	A=target_values_vector;
+	Y=target_values_vector;
 	
 	mlfw_mat_double_get_dimensions(X,&X_rows,&X_columns);
 	Y_size=mlfw_column_vec_double_get_size(Y);
@@ -387,7 +389,7 @@ mlfw_row_vec_double * mlfw_linear_regression_normal_equation_fit_line(mlfw_mat_d
 	{
 		return NULL;
 	}
-	mlfw_mat_double_reshape(&I,I_rows,I_columns+1);
+	mlfw_mat_double_reshape(&X,X_rows,X_columns+1);
 	if(X==NULL)
 	{
 		return NULL;
@@ -404,14 +406,13 @@ mlfw_row_vec_double * mlfw_linear_regression_normal_equation_fit_line(mlfw_mat_d
 		return NULL; 
 	}
 
-	XTX=mlfw_multiply_double_matrix_with_matrix(X,XT,NULL);
+	XTX=mlfw_multiply_double_matrix_with_matrix(XT,X,NULL);
 	if(XTX==NULL)
 	{
 		mlfw_mat_double_destroy(X);
 		mlfw_mat_double_destroy(XT);
 		return NULL;
 	}
-	
 	INV_XTX=mlfw_mat_double_inverse(XTX,NULL);
 	if(INV_XTX==NULL)
 	{
