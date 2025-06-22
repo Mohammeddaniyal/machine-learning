@@ -152,7 +152,7 @@ mlfw_column_vec_double * mlfw_multiply_double_scalar_with_column_vector(double s
 
 
 
-mlfw_mat_double * mlfw_mat_double_multiply_matrix_with_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *product_matrix)
+mlfw_mat_double * mlfw_double_multiply_matrix_with_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *product_matrix)
 {
 	dimension_t m_1_rows,m_1_columns;
 	dimension_t m_2_rows,m_2_columns;
@@ -194,7 +194,6 @@ mlfw_mat_double * mlfw_mat_double_multiply_matrix_with_matrix(mlfw_mat_double *l
 			{
 				value_1=mlfw_mat_double_get(m1,r3,c1);
 				value_2=mlfw_mat_double_get(m2,c1,c3);
-				if(value_1==0 || value_2==0) continue;
 				value_3=value_3+(value_1*value_2);
 			}
 			mlfw_mat_double_set(m3,r3,c3,value_3);
