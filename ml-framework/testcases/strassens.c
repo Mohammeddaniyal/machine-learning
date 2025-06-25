@@ -15,7 +15,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 
 	mlfw_mat_double *A,*B,*C,*D,*E,*F,*G,*H;
-	mlfw_mat_double *E1,*E2,*E3,*E4,E5,*E6,*E7;
+	mlfw_mat_double *E1,*E2,*E3,*E4,*E5,*E6,*E7;
 	mlfw_mat_double *CELL_0_0,*CELL_0_1,*CELL_1_0,*CELL_1_1;
 	mlfw_mat_double *t1,*t2;
 
