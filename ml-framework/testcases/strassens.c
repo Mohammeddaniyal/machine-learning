@@ -106,7 +106,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		// (A-C)*(E+F)
 		t1=mlfw_subtract_double_matrix_from_matrix(A,C,NULL);
 		t2=mlfw_add_double_matrix_with_matrix(E,F,NULL);
-		E6=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2);
+		E7=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2);
 		mlfw_mat_double_destroy(t1);
 		mlfw_mat_double_destroy(t2);
 
