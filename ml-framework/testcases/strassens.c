@@ -69,10 +69,10 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_copy(C,m1,0,0,half,0,n-1,half-1);
 		mlfw_mat_double_copy(D,m1,0,0,half,half,n-1,n-1);
 		
-		mlfw_mat_double_copy(E,m1,0,0,0,0,half-1,half-1);
-		mlfw_mat_double_copy(F,m1,0,0,0,half,half-1,n-1);
-		mlfw_mat_double_copy(G,m1,0,0,half,0,n-1,half-1);
-		mlfw_mat_double_copy(H,m1,0,0,half,half,n-1,n-1);
+		mlfw_mat_double_copy(E,m2,0,0,0,0,half-1,half-1);
+		mlfw_mat_double_copy(F,m2,0,0,0,half,half-1,n-1);
+		mlfw_mat_double_copy(G,m2,0,0,half,0,n-1,half-1);
+		mlfw_mat_double_copy(H,m2,0,0,half,half,n-1,n-1);
 
 		// A*(F-H)
 		t1=mlfw_subtract_double_matrix_from_matrix(F,H,NULL);
