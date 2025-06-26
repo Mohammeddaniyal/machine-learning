@@ -344,7 +344,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t1);
 		// (A+D)*(E+H)
 		t1=mlfw_add_double_matrix_with_matrix(A,D,NULL);
-		if(==NULL)
+		if(t1==NULL)
 		{
 			if(new_matrix==NULL)
 			{
@@ -358,23 +358,15 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(F);
 			mlfw_mat_double_destroy(G);
 			mlfw_mat_double_destroy(H);
-			mlfw_mat_double_destroy(CELL_0_0);
-			mlfw_mat_double_destroy(CELL_0_1);
-			mlfw_mat_double_destroy(CELL_1_0);
 			mlfw_mat_double_destroy(E1);
 			mlfw_mat_double_destroy(E2);
 			mlfw_mat_double_destroy(E3);
 			mlfw_mat_double_destroy(E4);
-			mlfw_mat_double_destroy(E5);
-			mlfw_mat_double_destroy(E6);
-			mlfw_mat_double_destroy(E7);
-			mlfw_mat_double_destroy(t1);
-			mlfw_mat_double_destroy(t2);
 			return NULL;
 		}
 
 		t2=mlfw_add_double_matrix_with_matrix(E,H,NULL);
-		if(==NULL)
+		if(t2==NULL)
 		{
 			if(new_matrix==NULL)
 			{
@@ -388,23 +380,16 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(F);
 			mlfw_mat_double_destroy(G);
 			mlfw_mat_double_destroy(H);
-			mlfw_mat_double_destroy(CELL_0_0);
-			mlfw_mat_double_destroy(CELL_0_1);
-			mlfw_mat_double_destroy(CELL_1_0);
 			mlfw_mat_double_destroy(E1);
 			mlfw_mat_double_destroy(E2);
 			mlfw_mat_double_destroy(E3);
 			mlfw_mat_double_destroy(E4);
-			mlfw_mat_double_destroy(E5);
-			mlfw_mat_double_destroy(E6);
-			mlfw_mat_double_destroy(E7);
 			mlfw_mat_double_destroy(t1);
-			mlfw_mat_double_destroy(t2);
 			return NULL;
 		}
 
 		E5=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2);
-		if(==NULL)
+		if(E5==NULL)
 		{
 			if(new_matrix==NULL)
 			{
@@ -418,16 +403,10 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(F);
 			mlfw_mat_double_destroy(G);
 			mlfw_mat_double_destroy(H);
-			mlfw_mat_double_destroy(CELL_0_0);
-			mlfw_mat_double_destroy(CELL_0_1);
-			mlfw_mat_double_destroy(CELL_1_0);
 			mlfw_mat_double_destroy(E1);
 			mlfw_mat_double_destroy(E2);
 			mlfw_mat_double_destroy(E3);
 			mlfw_mat_double_destroy(E4);
-			mlfw_mat_double_destroy(E5);
-			mlfw_mat_double_destroy(E6);
-			mlfw_mat_double_destroy(E7);
 			mlfw_mat_double_destroy(t1);
 			mlfw_mat_double_destroy(t2);
 			return NULL;
