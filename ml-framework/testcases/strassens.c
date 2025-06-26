@@ -271,7 +271,6 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(H);
 			mlfw_mat_double_destroy(E1);
 			mlfw_mat_double_destroy(E2);
-			mlfw_mat_double_destroy(t1);
 			return NULL;
 		}
 
@@ -300,7 +299,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// D*(G-E)
 		t1=mlfw_subtract_double_matrix_from_matrix(G,E,NULL);
-		if(==NULL)
+		if(t1==NULL)
 		{
 			if(new_matrix==NULL)
 			{
@@ -314,23 +313,14 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(F);
 			mlfw_mat_double_destroy(G);
 			mlfw_mat_double_destroy(H);
-			mlfw_mat_double_destroy(CELL_0_0);
-			mlfw_mat_double_destroy(CELL_0_1);
-			mlfw_mat_double_destroy(CELL_1_0);
 			mlfw_mat_double_destroy(E1);
 			mlfw_mat_double_destroy(E2);
 			mlfw_mat_double_destroy(E3);
-			mlfw_mat_double_destroy(E4);
-			mlfw_mat_double_destroy(E5);
-			mlfw_mat_double_destroy(E6);
-			mlfw_mat_double_destroy(E7);
-			mlfw_mat_double_destroy(t1);
-			mlfw_mat_double_destroy(t2);
 			return NULL;
 		}
 
 		E4=_mlfw_multiply_double_matrix_with_matrix_strassens(D,t1);
-		if(==NULL)
+		if(E4==NULL)
 		{
 			if(new_matrix==NULL)
 			{
@@ -344,18 +334,10 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(F);
 			mlfw_mat_double_destroy(G);
 			mlfw_mat_double_destroy(H);
-			mlfw_mat_double_destroy(CELL_0_0);
-			mlfw_mat_double_destroy(CELL_0_1);
-			mlfw_mat_double_destroy(CELL_1_0);
 			mlfw_mat_double_destroy(E1);
 			mlfw_mat_double_destroy(E2);
 			mlfw_mat_double_destroy(E3);
-			mlfw_mat_double_destroy(E4);
-			mlfw_mat_double_destroy(E5);
-			mlfw_mat_double_destroy(E6);
-			mlfw_mat_double_destroy(E7);
 			mlfw_mat_double_destroy(t1);
-			mlfw_mat_double_destroy(t2);
 			return NULL;
 		}
 
