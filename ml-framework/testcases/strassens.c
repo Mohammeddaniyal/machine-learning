@@ -801,10 +801,20 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_copy(product,CELL_1_0,half,0,0,0,half-1,half-1);
 		mlfw_mat_double_copy(product,CELL_1_1,half,half,0,0,half-1,half-1);
 
+		mlfw_mat_double_destroy(A);
+		mlfw_mat_double_destroy(B);
+		mlfw_mat_double_destroy(C);
+		mlfw_mat_double_destroy(D);
+		mlfw_mat_double_destroy(E);
+		mlfw_mat_double_destroy(F);
+		mlfw_mat_double_destroy(G);
+		mlfw_mat_double_destroy(H);
+	
 		mlfw_mat_double_destroy(CELL_0_0);
 		mlfw_mat_double_destroy(CELL_0_1);
 		mlfw_mat_double_destroy(CELL_1_0);
 		mlfw_mat_double_destroy(CELL_1_1);
+	
 		mlfw_mat_double_destroy(E1);
 		mlfw_mat_double_destroy(E2);
 		mlfw_mat_double_destroy(E3);
