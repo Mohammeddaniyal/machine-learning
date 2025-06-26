@@ -175,54 +175,780 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// A*(F-H)
 		t1=mlfw_subtract_double_matrix_from_matrix(F,H,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E1=_mlfw_multiply_double_matrix_with_matrix_strassens(A,t1);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		// (A+B)*H
 		t1=mlfw_add_double_matrix_with_matrix(A,B,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E2=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,H);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		// (C+D)*E
 		t1=mlfw_add_double_matrix_with_matrix(C,D,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E3=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,E);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 
 		// D*(G-E)
 		t1=mlfw_subtract_double_matrix_from_matrix(G,E,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E4=_mlfw_multiply_double_matrix_with_matrix_strassens(D,t1);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		// (A+D)*(E+H)
 		t1=mlfw_add_double_matrix_with_matrix(A,D,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		t2=mlfw_add_double_matrix_with_matrix(E,H,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E5=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		mlfw_mat_double_destroy(t2);
 		// (B-D)*(G+H)
 		t1=mlfw_subtract_double_matrix_from_matrix(B,D,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		t2=mlfw_add_double_matrix_with_matrix(G,H,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E6=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		mlfw_mat_double_destroy(t2);
 		// (A-C)*(E+F)
 		t1=mlfw_subtract_double_matrix_from_matrix(A,C,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		t2=mlfw_add_double_matrix_with_matrix(E,F,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		E7=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		mlfw_mat_double_destroy(t2);
 
 		// CELL_0_0=E5+E4-E2+E6
 		t1=mlfw_add_double_matrix_with_matrix(E5,E4,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		t2=mlfw_subtract_double_matrix_from_matrix(t1,E2,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		CELL_0_0=mlfw_add_double_matrix_with_matrix(t2,E6,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		mlfw_mat_double_destroy(t1);
 		mlfw_mat_double_destroy(t2);
 		// CELL_0_1=E1+E2
 		CELL_0_1=mlfw_add_double_matrix_with_matrix(E1,E2,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		// CELL_1_0=E3+E4
 		CELL_1_0=mlfw_add_double_matrix_with_matrix(E3,E4,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		// CELL_1_1=E1+E5-E3-E7
 		t1=mlfw_add_double_matrix_with_matrix(E1,E5,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		t2=mlfw_subtract_double_matrix_from_matrix(t1,E3,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
 		CELL_1_1=mlfw_subtract_double_matrix_from_matrix(t2,E7,NULL);
+		if(==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			mlfw_mat_double_destroy(H);
+			mlfw_mat_double_destroy(CELL_0_0);
+			mlfw_mat_double_destroy(CELL_0_1);
+			mlfw_mat_double_destroy(CELL_1_0);
+			mlfw_mat_double_destroy(E1);
+			mlfw_mat_double_destroy(E2);
+			mlfw_mat_double_destroy(E3);
+			mlfw_mat_double_destroy(E4);
+			mlfw_mat_double_destroy(E5);
+			mlfw_mat_double_destroy(E6);
+			mlfw_mat_double_destroy(E7);
+			mlfw_mat_double_destroy(t1);
+			mlfw_mat_double_destroy(t2);
+			return NULL;
+		}
+
+
 		mlfw_mat_double_destroy(t1);
 		mlfw_mat_double_destroy(t2);
 
