@@ -13,4 +13,6 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix(mlfw_mat_double *left_
 mlfw_mat_double * mlfw_add_double_matrix_with_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *new_matrix);
 
 mlfw_mat_double * mlfw_subtract_double_matrix_from_matrix(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *new_matrix);
+
+mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *new_matrix);
 #endif
