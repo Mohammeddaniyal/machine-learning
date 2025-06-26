@@ -118,7 +118,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		F=mlfw_mat_double_create_new(half,half);
-		if(H==NULL)
+		if(F==NULL)
 		{
 			if(new_matrix==NULL)
 			{
@@ -129,8 +129,6 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			mlfw_mat_double_destroy(C);
 			mlfw_mat_double_destroy(D);
 			mlfw_mat_double_destroy(E);
-			mlfw_mat_double_destroy(F);
-			mlfw_mat_double_destroy(G);
 			return NULL;
 		}
 		G=mlfw_mat_double_create_new(half,half);
