@@ -3,7 +3,7 @@
 #include<mlfw_operations.h>
 #include<stdio.h>
 
-mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_double *m1,mlfw_mat_double *m2)
+mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_double *m1,mlfw_mat_double *m2,mlfw_mat_double *new_matrix)
 {
 	mlfw_mat_double *product;
 	dimension_t rows,columns;
@@ -21,7 +21,14 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 	mlfw_mat_double_get_dimensions(m1,&rows,&columns);
 	n=rows;
-	product=mlfw_mat_double_create_new(n,n);
+	if(new_matrix==NULL)
+	{
+		product=mlfw_mat_double_create_new(n,n);
+	}
+	else
+	{
+		product=new_matrix;
+	}
 	if(n==2)
 	{
 		a=mlfw_mat_double_get(m1,0,0);
@@ -63,6 +70,21 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		F=mlfw_mat_double_create_new(half,half);
 		G=mlfw_mat_double_create_new(half,half);
 		H=mlfw_mat_double_create_new(half,half);
+		if(H==NULL)
+		{
+			if(new_matrix==NULL)
+			{
+				mlfw_mat_double_destroy(product);
+			}
+			mlfw_mat_double_destroy(A);
+			mlfw_mat_double_destroy(B);
+			mlfw_mat_double_destroy(C);
+			mlfw_mat_double_destroy(D);
+			mlfw_mat_double_destroy(E);
+			mlfw_mat_double_destroy(F);
+			mlfw_mat_double_destroy(G);
+			return NULL;
+		}
 
 		mlfw_mat_double_copy(A,m1,0,0,0,0,half-1,half-1);
 		mlfw_mat_double_copy(B,m1,0,0,0,half,half-1,n-1);
@@ -150,7 +172,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_double *m1,mlfw_mat_double *m2,mlfw_mat_double *new_matrix)
 {
 	mlfw_mat_double *product;
-	product=_mlfw_multiply_double_matrix_with_matrix_strassens(m1,m2);
+	product=_mlfw_multiply_double_matrix_with_matrix_strassens(m1,m2,new_matrix);
 	return product;
 }
 
