@@ -17,11 +17,11 @@ int main(int argc,char *argv[])
 		printf("Usage [create_matrix_csv_tool rows columns min max filename]\n");
 		return 0;
 	}
-	rows=atoi(argc[1]);
-	columns=atoi(argc[2]);
-	min=strtod(argc[3],&end);
-	max=strtod(argc[4],&end);
-	filename=argc[5];
+	rows=atoi(argv[1]);
+	columns=atoi(argv[2]);
+	min=strtod(argv[3],&end);
+	max=strtod(argv[4],&end);
+	filename=argv[5];
 
 	matrix=mlfw_mat_double_create_new_random_filled(rows,columns,min,max,NULL);
 	if(matrix==NULL)
