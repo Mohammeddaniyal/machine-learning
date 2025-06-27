@@ -50,6 +50,7 @@ int main(int argc,char *argv[])
 		mlfw_row_vec_string_destroy(h2);
 		return 0;
 	}
+	printf("DONE\n");
 //	print_matrix(m3);
 	mlfw_mat_double_destroy(m1);
 	mlfw_mat_double_destroy(m2);
