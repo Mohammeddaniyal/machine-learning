@@ -5,7 +5,7 @@ mlfw_column_vec_double * mlfw_column_vec_double_sigmoid(mlfw_column_vec_double *
 {
 	mlfw_column_vec_double *v;
 	dimension_t vector_size;
-	dimension_t new_vecto_size;
+	dimension_t new_vector_size;
 	double value;
 	double sigmoid;
 	double e;
