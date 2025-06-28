@@ -1120,6 +1120,28 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_double *m1,mlfw_mat_double *m2,mlfw_mat_double *new_matrix)
 {
 	mlfw_mat_double *product;
+	double y,n;
+	dimension_t m1_rows,m1_columns;
+	dimension_t m2_rows,m2_columns;
+	dimension_t new_matrix_rows,new_matrix_columns;
+	if(m1==NULL || m2==NULL) return NULL;
+	mlfw_mat_double_get_dimensions(m1,&m1_rows,&m1_columns);
+	if(m1_rows!=m1_columns) return NULL;
+
+	// checking dimensions are in the power of 2
+	y=(double)m1_rows;
+	n=log2(y);
+	if(floor(n)!=ceil(n)) return NULL;
+
+	mlfw_mat_double_get_dimensions(m2,&m2_rows,&m2_columns);
+	if(m2_rows!=m2_columns || m2_rows!=m1_rows) return NULL;
+	
+	if(new_matrix!=NULL)
+	{
+		mlfw_mat_double_get_dimensions(new_matrix,&new_matrix_rows,&new_matrix_columns);
+		if(new_matrix_rows!=new_matrix_columns || new_matrix_rows!=m1_rows) return NULL;
+	}
+
 	product=_mlfw_multiply_double_matrix_with_matrix_strassens(m1,m2,new_matrix);
 	return product;
 }
