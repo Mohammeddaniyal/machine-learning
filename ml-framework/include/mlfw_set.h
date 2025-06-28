@@ -1,5 +1,5 @@
-#ifndef __MLFW__SET
-#define __MLFW__SET
+#ifndef __MLFW__SET__
+#define __MLFW__SET__
 #include<inttypes.h>
 
 
