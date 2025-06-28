@@ -2,7 +2,7 @@
 #include<mlfw_matrix.h>
 #include<mlfw_vector.h>
 #include<mlfw_operations.h>
-
+#include<math.h>
 mlfw_column_vec_double * mlfw_multiply_double_row_vector_with_column_vector(mlfw_row_vec_double *left_vector,mlfw_column_vec_double *right_vector,mlfw_column_vec_double *product_vector)
 {
 	dimension_t left_vector_size;
