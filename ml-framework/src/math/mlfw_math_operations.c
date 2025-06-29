@@ -68,5 +68,19 @@ mlfw_column_vec_double * mlfw_column_vec_double_log(mlfw_column_vec_double *vect
 
 double mlfw_column_vec_double_sum(mlfw_column_vec_double *vector)
 {
+	mlfw_column_vec_double *v;
+	double value;
+	double sum;
+	index_t i;
+	if(vector==NULL) return 0.0;
+	vector_size=mlfw_column_vec_double_get_size(vector);
+	sum=0;
+	for(i=0;i<vector_size;++i)
+	{
+		value=mlfw_column_vec_double_get(vector,i);
+		sum=sum+value;
+	}
+	return sum;
+
 
 }
