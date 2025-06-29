@@ -41,8 +41,7 @@ mlfw_column_vec_double * mlfw_column_vec_double_log(mlfw_column_vec_double *vect
 	dimension_t vector_size;
 	dimension_t new_vector_size;
 	double value;
-	double sigmoid;
-	double e;
+	double log_value;
 	index_t i;
 	if(vector==NULL) return NULL;
 	vector_size=mlfw_column_vec_double_get_size(vector);
@@ -57,12 +56,10 @@ mlfw_column_vec_double * mlfw_column_vec_double_log(mlfw_column_vec_double *vect
 		if(new_vector_size!=vector_size) return NULL;
 		v=new_vector;
 	}
-		// formula is 1/(1+e^-z)
-	e=2.718281; // napier's constant
 	for(i=0;i<vector_size;++i)
 	{
 		value=mlfw_column_vec_double_get(vector,i);
-		sigmoid=1/(1+pow(e,-value));
+		log_value=log(value);
 		mlfw_column_vec_double_set(v,i,sigmoid);
 	}
 	return v;
