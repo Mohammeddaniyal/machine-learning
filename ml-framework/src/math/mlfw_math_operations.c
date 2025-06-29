@@ -60,7 +60,7 @@ mlfw_column_vec_double * mlfw_column_vec_double_log(mlfw_column_vec_double *vect
 	{
 		value=mlfw_column_vec_double_get(vector,i);
 		log_value=log(value);
-		mlfw_column_vec_double_set(v,i,sigmoid);
+		mlfw_column_vec_double_set(v,i,log_value);
 	}
 	return v;
 
