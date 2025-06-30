@@ -1176,3 +1176,39 @@ mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_col
 	}
 	return v;
 }
+
+
+mlfw_column_vec_double * mlfw_element_wise_multiply_double_column_vector(mlfw_column_vec_double *left_vector,mlfw_column_vec_double *right_vector,mlfw_column_vec_double *new_vector)
+{
+	mlfw_column_vec_double *v;
+	dimension_t left_vector_size;
+	dimension_t right_vector_size;
+	dimension_t new_vector_size;
+	double value1;
+	double value2;
+	double result;
+	index_t;
+	if(left_vector==NULL || right_vector==NULL) return NULL;
+	left_vector_size=mlfw_column_vec_double_get_size(left_vector);
+	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
+	if(left_vector_size!=right_vector_size) return NULL;
+	if(new_matrix==NULL)
+	{
+		v=mlfw_column_vec_double_create_new(left_vector_size);
+		if(v==NULL) return NULL;
+	}
+	else
+	{
+		new_vector_size=mlfw_column_vec_double_get_size(new_vector);
+		if(left_vector_size!=new_vector_size) return NULL;
+		v=new_vector;
+	}
+	for(i=0;i<left_vector_size;++i)
+	{
+		value1=mlfw_column_vec_double_get(left_vector,i);
+		value2=mlfw_column_vec_double_get(right_vector,i);
+		result=value1*value2;
+		mlfw_column_vec_double_set(v,i,result);
+	}
+	return v;
+}
