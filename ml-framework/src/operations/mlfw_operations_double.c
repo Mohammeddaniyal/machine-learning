@@ -1149,5 +1149,30 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_dou
 
 mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_column_vec_double *vector,double value,mlfw_column_vec_double *new_vector)
 {
-	dimensio
+	mlfw_column_vec_double *v;
+	dimension_t vector_size;
+	dimension_t new_vector_size;
+	double value;
+	double result;
+	index_t i;
+	if(vector==NULL) return NULL;
+	vector_size=mlfw_column_vec_double_get_size(vector);
+	if(new_vector==NULL)
+	{
+		v=mlfw_column_vec_double_create_new(vector_size);
+		if(v==NULL) return NULL;
+	}
+	else
+	{
+		new_vector_size=mlfw_column_vec_double_get_size(new_vector);
+		if(new_vector_size!=vector_size) return NULL;
+		v=new_vector;
+	}
+	for(i=0;i<vector_size;++i)
+	{
+		value=mlfw_column_vec_double_get(vector,i);
+		result=1-value;
+		mlfw_column_vec_double_set(v,i,result);
+	}
+	return v;
 }
