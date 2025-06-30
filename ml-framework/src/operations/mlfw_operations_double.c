@@ -1147,7 +1147,7 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_dou
 }
 
 
-mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_column_vec_double *vector,double Scalar_value,mlfw_column_vec_double *new_vector)
+mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_column_vec_double *vector,double scalar_value,mlfw_column_vec_double *new_vector)
 {
 	mlfw_column_vec_double *v;
 	dimension_t vector_size;
