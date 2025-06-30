@@ -1187,12 +1187,12 @@ mlfw_column_vec_double * mlfw_element_wise_multiply_double_column_vector(mlfw_co
 	double value1;
 	double value2;
 	double result;
-	index_t;
+	index_t i;
 	if(left_vector==NULL || right_vector==NULL) return NULL;
 	left_vector_size=mlfw_column_vec_double_get_size(left_vector);
 	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
 	if(left_vector_size!=right_vector_size) return NULL;
-	if(new_matrix==NULL)
+	if(new_vector==NULL)
 	{
 		v=mlfw_column_vec_double_create_new(left_vector_size);
 		if(v==NULL) return NULL;
