@@ -16,5 +16,5 @@ mlfw_mat_double * mlfw_subtract_double_matrix_from_matrix(mlfw_mat_double *left_
 
 mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_double *left_matrix,mlfw_mat_double *right_matrix,mlfw_mat_double *new_matrix);
 
-mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalara(mlfw_column_vec_double *vector,double value,mlfw_column_vec_double *new_vector);
+mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_column_vec_double *vector,double value,mlfw_column_vec_double *new_vector);
 #endif
