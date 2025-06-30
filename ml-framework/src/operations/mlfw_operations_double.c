@@ -1145,3 +1145,9 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_dou
 	product=_mlfw_multiply_double_matrix_with_matrix_strassens(m1,m2,new_matrix);
 	return product;
 }
+
+
+mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_column_vec_double *vector,double value,mlfw_column_vec_double *new_vector)
+{
+	dimensio
+}
