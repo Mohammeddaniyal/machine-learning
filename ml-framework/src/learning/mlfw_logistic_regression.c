@@ -29,6 +29,7 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 
 	mlfw_mat_double *IT;
 
+	mlfw_column_vec_double *ITE;
 
 	mlfw_column_vec_double *TMP;
 
@@ -118,6 +119,20 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 		}
 		
 
+		// ITE=IT*E, IT_rows*E_columns, since E is columns vector IT_rows*1
+		// IT_rows=I_columns
+		ITE=mlfw_column_vec_double_create_new(I_columns);
+		if(ITE==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(E);
+			return NULL;
+		}
 		TMP=mlfw_column_vec_double_create_new(I_columns);
 		if(TMP==NULL)
 		{
