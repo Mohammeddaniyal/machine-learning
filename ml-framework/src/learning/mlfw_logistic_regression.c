@@ -36,6 +36,11 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 
 	mlfw_row_vec_double *trained_parameters;
 
+	mlfw_column_vec_double *t1;
+	mlfw_column_vec_double *t2;
+	mlfw_column_vec_double *t3;
+	mlfw_column_vec_double *t4;
+	mlfw_column_vec_double *t5;
 
 	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
 	if(number_of_iterations==0 && on_each_iteration==NULL) return NULL;
@@ -155,7 +160,92 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			mlfw_column_vec_double_destroy(TMP);
 			return NULL;
 		}
-
+		
+		t1=mlfw_column_vec_double_create_new(I_rows);
+		if(t1==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP);
+			mlfw_column_vec_double_destroy(UM);
+			return NULL;
+		}	
+		t2=mlfw_column_vec_double_create_new(I_rows);
+		if(t2==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP);
+			mlfw_column_vec_double_destroy(UM);
+			mlfw_column_vec_double_destroy(t1);
+			return NULL;
+		}	
+		t3=mlfw_column_vec_double_create_new(I_rows);
+		if(t3==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP);
+			mlfw_column_vec_double_destroy(UM);
+			mlfw_column_vec_double_destroy(t1);
+			mlfw_column_vec_double_destroy(t2);
+			return NULL;
+		}	
+		t4=mlfw_column_vec_double_create_new(I_rows);
+		if(t4==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP);
+			mlfw_column_vec_double_destroy(UM);
+			mlfw_column_vec_double_destroy(t1);
+			mlfw_column_vec_double_destroy(t2);
+			mlfw_column_vec_double_destroy(t3);
+			return NULL;
+		}	
+		t5=mlfw_column_vec_double_create_new(I_rows);
+		if(t5==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP);
+			mlfw_column_vec_double_destroy(UM);
+			mlfw_column_vec_double_destroy(t1);
+			mlfw_column_vec_double_destroy(t2);
+			mlfw_column_vec_double_destroy(t3);
+			mlfw_column_vec_double_destroy(t4);
+			return NULL;
+		}	
 		error_flag=0;
 		// Operations start
 		
@@ -171,12 +261,57 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			break;
 		}
 
-		SP=mlfw_column_vec_double_log(P,SP);
+		SP=mlfw_column_vec_double_sigmoid(P,SP);
 		if(SP==NULL)
 		{
 			error_flag=1;
 			break;
 		}
+
+		t1=mlfw_column_vec_double_log(SP,t1);
+		if(t1==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+		t2=mlfw_element_wise_multiply_column_vector(A,t1,t2);
+		if(t2==NULL)
+		{	
+			error_flag=1;
+			break;
+		}
+		t3=mlfw_subtract_scalar_from_column_vector(SP,1,t3);
+		if(t3==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+		t4=mlfw_column_vec_double_log(t3,t4);		
+		if(t4==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+		t5=mlfw_subtract_scalar_from_column_vector(A,1,t5);
+		if(t5==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+		t3=mlfw_element_wise_multiply_double_column_vector(t5,t4,t3);
+		if(t3==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+		t1=mlfw_add_double_column_vector(t2,t3);
+		if(t1==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+		sum=mlfw_column_vec_double_sum(t1);
+		cost=-(sum/(double)I_rows);
 
 		/*
 		 a=b-c or z=x-y
@@ -184,7 +319,7 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 		 2nd arg : right operand
 		 */
 
-		E=mlfw_subtract_double_column_vector(P,A,E);
+		E=mlfw_subtract_double_column_vector(SP,A,E);
 		if(E==NULL)
 		{
 			error_flag=1;
