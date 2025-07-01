@@ -3,7 +3,8 @@
 #include<mlfw_operations.h>
 #include<inttypes.h>
 #include<stdio.h>
-mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double error_value))
+#include<math.h>
+mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double cost))
 {
 	int error_flag;
 	index_t r;
@@ -304,7 +305,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 }
 
 
-mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *input_features_matrix,mlfw_row_vec_double *trained_parameters)
+mlfw_column_vec_double * mlfw_logistic_regression_predict(mlfw_mat_double *input_features_matrix,mlfw_row_vec_double *trained_parameters)
 {
 	dimension_t trained_parameters_size;
 	mlfw_mat_double *I;
@@ -359,106 +360,3 @@ mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *input_f
 
 
 
-mlfw_row_vec_double * mlfw_linear_regression_normal_equation_fit_line(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector)
-{
-	mlfw_mat_double *X;
-	mlfw_mat_double *XT;
-	mlfw_mat_double *XTX;
-	mlfw_mat_double *INV_XTX;
-
-	dimension_t X_rows;
-	dimension_t X_columns;
-	
-
-	mlfw_column_vec_double *Y;
-	mlfw_column_vec_double *XTY;
-	dimension_t Y_size;
-
-	mlfw_column_vec_double *m;
-	mlfw_row_vec_double *trained_parameters;
-
-	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
-	
-	X=mlfw_mat_double_clone(input_features_matrix,NULL);
-	if(X==NULL) return NULL;
-	Y=target_values_vector;
-	
-	mlfw_mat_double_get_dimensions(X,&X_rows,&X_columns);
-	Y_size=mlfw_column_vec_double_get_size(Y);
-	if(X_rows!=Y_size)
-	{
-		return NULL;
-	}
-	mlfw_mat_double_reshape(&X,X_rows,X_columns+1);
-	if(X==NULL)
-	{
-		return NULL;
-	}
-	X_columns=X_columns+1;
-	mlfw_mat_double_right_shift(X,1);
-
-	mlfw_mat_double_fill(X,0,0,X_rows-1,0,1.0); // fill bias 1.0
-	
-	XT=mlfw_mat_double_transpose(X,NULL);
-	if(XT==NULL)
-	{
-		mlfw_mat_double_destroy(X);
-		return NULL; 
-	}
-
-	XTX=mlfw_multiply_double_matrix_with_matrix(XT,X,NULL);
-	if(XTX==NULL)
-	{
-		mlfw_mat_double_destroy(X);
-		mlfw_mat_double_destroy(XT);
-		return NULL;
-	}
-	INV_XTX=mlfw_mat_double_inverse(XTX,NULL);
-	if(INV_XTX==NULL)
-	{
-		mlfw_mat_double_destroy(X);
-		mlfw_mat_double_destroy(XT);
-		mlfw_mat_double_destroy(XTX);
-		return NULL; 
-	}
-
-	XTY=mlfw_multiply_double_matrix_with_column_vector(XT,Y,NULL);
-	if(XTY==NULL)
-	{
-		mlfw_mat_double_destroy(X);
-		mlfw_mat_double_destroy(XT);
-		mlfw_mat_double_destroy(XTX);
-		mlfw_mat_double_destroy(INV_XTX);
-		return NULL; 
-	}
-	m=mlfw_multiply_double_matrix_with_column_vector(INV_XTX,XTY,NULL);
-	if(m==NULL)
-	{
-		mlfw_mat_double_destroy(X);
-		mlfw_mat_double_destroy(XT);
-		mlfw_mat_double_destroy(XTX);
-		mlfw_mat_double_destroy(INV_XTX);
-		mlfw_column_vec_double_destroy(XTY);
-		return NULL;	
-	}
-	trained_parameters=mlfw_column_vec_double_transpose(m,NULL);
-	if(trained_parameters==NULL)
-	{
-		mlfw_mat_double_destroy(X);
-		mlfw_mat_double_destroy(XT);
-		mlfw_mat_double_destroy(XTX);
-		mlfw_mat_double_destroy(INV_XTX);
-		mlfw_column_vec_double_destroy(XTY);
-		mlfw_column_vec_double_destroy(m);
-		return NULL;	
-	}
-
-	mlfw_mat_double_destroy(X);
-	mlfw_mat_double_destroy(XT);
-	mlfw_mat_double_destroy(XTX);
-	mlfw_mat_double_destroy(INV_XTX);
-	mlfw_column_vec_double_destroy(XTY);
-	mlfw_column_vec_double_destroy(m);
-	
-	return trained_parameters;
-}
