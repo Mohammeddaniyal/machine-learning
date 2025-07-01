@@ -11,4 +11,5 @@
 
 #include<learning/mlfw_score.h>
 #include<learning/mlfw_linear_regression.h>
+#include<learning/mlfw_logistic_regression.h>
 #endif
