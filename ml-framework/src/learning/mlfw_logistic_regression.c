@@ -60,22 +60,21 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0); // fill bias 1.0
 	
 
-		IT=mlfw_mat_double_transpose(I,NULL);
-		if(IT==NULL)
-		{
-			mlfw_mat_double_left_shift(I,1);
-			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-			return NULL; 
-		}
-
-		m=mlfw_column_vec_double_create_new_filled(I_columns,0.0,NULL);
-		if(m==NULL)
-		{
-			mlfw_mat_double_left_shift(I,1);
-			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-			mlfw_mat_double_destroy(IT);
-			return NULL;
-		}
+	IT=mlfw_mat_double_transpose(I,NULL);
+	if(IT==NULL)
+	{
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		return NULL; 
+	}
+	m=mlfw_column_vec_double_create_new_filled(I_columns,0.0,NULL);
+	if(m==NULL)
+	{
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		mlfw_mat_double_destroy(IT);
+		return NULL;
+	}
 
 
 // P=I*m (no of rows in I and no of columns in m, which is I_rows*1(because m is column vector)->P, so basically P will be column vector)
@@ -88,6 +87,17 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			mlfw_column_vec_double_destroy(m);
 			return NULL;
 		}
+		SP=mlfw_column_vec_double_create_new(I_rows);
+		if(SP==NULL)
+		{	
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			return NULL;
+		}
+		
 		// E=P*A column vec * column vec creates another column vec
 
 		E=mlfw_column_vec_double_create_new(I_rows);
@@ -98,35 +108,10 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			mlfw_mat_double_destroy(IT);
 			mlfw_column_vec_double_destroy(m);
 			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
 			return NULL;
 		}
-		// ET= E transpose, ET will be a row vector
 		
-		ET=mlfw_row_vec_double_create_new(I_rows);
-		if(ET==NULL)
-		{
-			mlfw_mat_double_left_shift(I,1);
-			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-			mlfw_mat_double_destroy(IT);
-			mlfw_column_vec_double_destroy(m);
-			mlfw_column_vec_double_destroy(P);
-			mlfw_column_vec_double_destroy(E);
-			return NULL;
-		}
-
-		// ETE=ET*E, in our case always this is will be size of 1
-		ETE=mlfw_column_vec_double_create_new(1);
-		if(ETE==NULL)
-		{
-			mlfw_mat_double_left_shift(I,1);
-			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-			mlfw_mat_double_destroy(IT);
-			mlfw_column_vec_double_destroy(m);
-			mlfw_column_vec_double_destroy(P);
-			mlfw_column_vec_double_destroy(E);
-			mlfw_row_vec_double_destroy(ET);
-			return NULL;
-		}
 
 		// ITE=IT*E, IT_rows*E_columns, since E is columns vector IT_rows*1
 		// IT_rows=I_columns
@@ -138,9 +123,8 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			mlfw_mat_double_destroy(IT);
 			mlfw_column_vec_double_destroy(m);
 			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
 			mlfw_column_vec_double_destroy(E);
-			mlfw_row_vec_double_destroy(ET);
-			mlfw_column_vec_double_destroy(ETE);
 			return NULL;
 		}
 		TMP=mlfw_column_vec_double_create_new(I_columns);
@@ -151,9 +135,8 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			mlfw_mat_double_destroy(IT);
 			mlfw_column_vec_double_destroy(m);
 			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
 			mlfw_column_vec_double_destroy(E);
-			mlfw_row_vec_double_destroy(ET);
-			mlfw_column_vec_double_destroy(ETE);
 			mlfw_column_vec_double_destroy(ITE);
 			return NULL;
 		}
@@ -166,9 +149,8 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			mlfw_mat_double_destroy(IT);
 			mlfw_column_vec_double_destroy(m);
 			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
 			mlfw_column_vec_double_destroy(E);
-			mlfw_row_vec_double_destroy(ET);
-			mlfw_column_vec_double_destroy(ETE);
 			mlfw_column_vec_double_destroy(ITE);
 			mlfw_column_vec_double_destroy(TMP);
 			return NULL;
@@ -189,6 +171,13 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			break;
 		}
 
+		SP=mlfw_column_vec_double_log(P,SP);
+		if(SP==NULL)
+		{
+			error_flag=1;
+			break;
+		}
+
 		/*
 		 a=b-c or z=x-y
 		 1st arg : left operand
@@ -201,28 +190,7 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			error_flag=1;
 			break;
 		}
-		ET=mlfw_column_vec_double_transpose(E,ET);
-		
-		if(ET==NULL)
-		{
-			error_flag=1;
-			break;
-		}
 
-
-		ETE=mlfw_multiply_double_row_vector_with_column_vector(ET,E,ETE);
-
-		if(ETE==NULL)
-		{
-			error_flag=1;
-			break;
-		}
-		sum_of_squared_error_values=mlfw_column_vec_double_get(ETE,0);
-		final_error_value=sum_of_squared_error_values/(2*I_rows);// reason for dividing by two lec 14 5-6:30 
-
-		
-
-	
 	
 	
 	// logic to update m and c, technically our m column vector
@@ -274,8 +242,6 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
                 mlfw_mat_double_destroy(IT);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_double_destroy(ET);
-		mlfw_column_vec_double_destroy(ETE);
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP);
 		mlfw_column_vec_double_destroy(UM);
@@ -287,9 +253,8 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 	
                 mlfw_mat_double_destroy(IT);
 		mlfw_column_vec_double_destroy(P);
+		mlfw_column_vec_double_destroy(SP);
 		mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_double_destroy(ET);
-		mlfw_column_vec_double_destroy(ETE);
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP);
 		mlfw_column_vec_double_destroy(UM);
