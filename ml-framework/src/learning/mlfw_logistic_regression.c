@@ -22,16 +22,13 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 	mlfw_column_vec_double *m;
 
 	mlfw_column_vec_double *P;
+	mlfw_column_vec_double *SP;
 
 	mlfw_column_vec_double *E;
 
-	mlfw_row_vec_double *ET;
-
-	mlfw_column_vec_double *ETE;
 
 	mlfw_mat_double *IT;
 
-	mlfw_column_vec_double *ITE; 
 
 	mlfw_column_vec_double *TMP;
 
@@ -39,8 +36,6 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 
 	mlfw_row_vec_double *trained_parameters;
 
-	double sum_of_squared_error_values;
-	double final_error_value;
 
 	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
 	if(number_of_iterations==0 && on_each_iteration==NULL) return NULL;
