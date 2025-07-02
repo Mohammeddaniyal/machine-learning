@@ -10,6 +10,8 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 	index_t r;
 	uint64_t k;
 
+	double sum;
+	double cost;
 
 	mlfw_mat_double *I;
 	dimension_t I_rows;
@@ -365,7 +367,7 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 	// one iteration completed, so if on_each_iteration is not NULL, call the callback
 	if(on_each_iteration!=NULL)
 	{
-		if(on_each_iteration(k,final_error_value)==0) break;
+		if(on_each_iteration(k,cost)==0) break;
 	}
 	++k;
 	}// operation loop ends
