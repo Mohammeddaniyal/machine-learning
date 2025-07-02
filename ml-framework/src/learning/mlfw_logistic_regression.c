@@ -414,6 +414,7 @@ mlfw_column_vec_double * mlfw_logistic_regression_predict(mlfw_mat_double *input
 	mlfw_column_vec_double *m;
 
 	mlfw_column_vec_double *P;
+	mlfw_column_vec_double *SP;
 
 
 	if(input_features_matrix==NULL || trained_parameters==NULL) return NULL;
@@ -450,10 +451,20 @@ mlfw_column_vec_double * mlfw_logistic_regression_predict(mlfw_mat_double *input
 		mlfw_column_vec_double_destroy(m);
 		return NULL;
 	}
+	SP=mlfw_column_vec_double_sigmoid(P,NULL);
+	if(SP==NULL)
+	{
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
 		mlfw_column_vec_double_destroy(m);
-		return P; // return the column vector with the predicted values
+		mlfw_column_vec_double_destroy(P);
+		return NULL;
+	}
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		mlfw_column_vec_double_destroy(m);	
+		mlfw_column_vec_double_destroy(P);
+		return SP; // return the column vector with the predicted values
 }
 
 
