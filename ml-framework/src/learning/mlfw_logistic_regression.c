@@ -307,7 +307,7 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			error_flag=1;
 			break;
 		}
-		t1=mlfw_add_double_column_vector(t2,t3);
+		t1=mlfw_add_double_column_vector(t2,t3,t1);
 		if(t1==NULL)
 		{
 			error_flag=1;
