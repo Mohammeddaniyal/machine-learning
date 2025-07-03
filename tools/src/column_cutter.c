@@ -21,7 +21,7 @@ int main(int argc,char *argv[])
 		printf("Usage [column_cutter source_csv target_csv column_to_cut_1 column_to_cut_2 ....]\n");
 		return 0;
 	}
-	matrix=mlfw_mat_string_from_csv(argc[1],NULL,&matrix_header);
+	matrix=mlfw_mat_string_from_csv(argv[1],NULL,&matrix_header);
 	if(matrix==NULL)
 	{
 		printf("Unable to load %s\n",argv[1]);
