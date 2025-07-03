@@ -456,7 +456,7 @@ mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *matrix,index_t
 	}
 	
 	m_rows=matrix_rows;
-	m_columns=matrix_columns=indexes_size;
+	m_columns=matrix_columns-indexes_size;
 
 	if(new_matrix==NULL)
 	{
