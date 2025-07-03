@@ -17,4 +17,7 @@ mlfw_mat_string * mlfw_mat_string_transpose(mlfw_mat_string *matrix,mlfw_mat_str
 void mlfw_mat_string_copy(mlfw_mat_string *target,mlfw_mat_string *source,index_t target_row_index,index_t target_column_index,index_t source_from_row_index,index_t source_from_column_index,index_t source_to_row_index,index_t source_to_column_index);
 
 mlfw_mat_string * mlfw_mat_string_shuffle(mlfw_mat_string *matrix,uint8_t how_many_times_to_shuffle,mlfw_mat_string *shuffled_matrix);
+
+mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *martix,index_t *indexes,dimension_t indexes_size,mlfw_mat_string *new_matrix);
+
 #endif
