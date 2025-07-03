@@ -96,7 +96,7 @@ int main(int argc,char *argv[])
 	
 	// copy the column names from the matrix_header to m_header, ignore the cut ones
 	k=0;
-	for(i=0;i<matrix_header;++i)
+	for(i=0;i<matrix_header_size;++i)
 	{
 		for(j=0;j<indexes_size;++j)
 		{
