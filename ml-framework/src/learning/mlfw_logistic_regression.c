@@ -270,7 +270,7 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 			error_flag=1;
 			break;
 		}
-
+		// code to calculate cost
 		t1=mlfw_column_vec_double_log(SP,t1);
 		if(t1==NULL)
 		{
@@ -379,16 +379,26 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
                 mlfw_mat_double_destroy(IT);
 		mlfw_column_vec_double_destroy(P);
+		mlfw_column_vec_double_destroy(SP);
 		mlfw_column_vec_double_destroy(E);
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP);
 		mlfw_column_vec_double_destroy(UM);
 		mlfw_column_vec_double_destroy(m);
+		mlfw_column_vec_double_destroy(t1);
+		mlfw_column_vec_double_destroy(t2);
+		mlfw_column_vec_double_destroy(t3);
+		mlfw_column_vec_double_destroy(t4);
+		mlfw_column_vec_double_destroy(t5);
+
 		return NULL; 
 	}
 
 	// release resources
-	
+		
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+
                 mlfw_mat_double_destroy(IT);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(SP);
@@ -396,6 +406,11 @@ mlfw_row_vec_double * mlfw_logistic_regression_gradient_descent_fit(mlfw_mat_dou
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP);
 		mlfw_column_vec_double_destroy(UM);
+		mlfw_column_vec_double_destroy(t1);
+		mlfw_column_vec_double_destroy(t2);
+		mlfw_column_vec_double_destroy(t3);
+		mlfw_column_vec_double_destroy(t4);
+		mlfw_column_vec_double_destroy(t5);
 		trained_parameters=mlfw_column_vec_double_transpose(m,NULL);
 		mlfw_column_vec_double_destroy(m);
 
