@@ -425,8 +425,9 @@ mlfw_mat_string * mlfw_mat_string_shuffle(mlfw_mat_string *matrix,uint8_t how_ma
 }
 
 
-mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *martix,index_t *indexes,dimension_t indexes_size,mlfw_mat_string *new_matrix)
+mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *matrix,index_t *indexes,dimension_t indexes_size,mlfw_mat_string *new_matrix)
 {
+	char *str;
 	index_t i,y;
 	index_t r,c;
 	index_t m_column_index;
