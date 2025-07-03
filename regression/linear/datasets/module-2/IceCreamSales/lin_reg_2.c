@@ -60,7 +60,7 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value)
 					fprintf(f,"%lf,%lf\n",value1,value2);
 				}
 				fclose(f);
-				gnuplot=popen("gnuplot","w");
+				gnuplot=popen("gnuplot --persist","w");
 				fprintf(gnuplot,"set datafile separator ','\n");
 				fprintf(gnuplot,"plot 'graph.data'\n");
 				fprintf(gnuplot,"exit\n");

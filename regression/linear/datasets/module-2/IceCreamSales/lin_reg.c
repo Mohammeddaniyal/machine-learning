@@ -111,7 +111,7 @@ int main(int argc,char *argv[])
 	// prediction part ends here
 
 	r2_score=mlfw_get_r2_score(test_examples_target_values_vector,test_examples_predicted_values_vector);
-	printf("Good accuracy score is anything greater than or equal to 0.7\n)");
+	printf("Good accuracy score is anything greater than or equal to 0.7\n");
 
 	printf("Accuracy score (0-1) is : %lf \n",r2_score);
 	
