@@ -289,6 +289,8 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 
 	// release resources
 	
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
                 mlfw_mat_double_destroy(IT);
 		mlfw_column_vec_double_destroy(P);
 		mlfw_column_vec_double_destroy(E);
