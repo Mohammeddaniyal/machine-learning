@@ -423,3 +423,80 @@ mlfw_mat_string * mlfw_mat_string_shuffle(mlfw_mat_string *matrix,uint8_t how_ma
 	}
 	return shuffled_matrix;
 }
+
+
+mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *martix,index_t *indexes,dimension_t indexes_size,mlfw_mat_string *new_matrix)
+{
+	index_t i,y;
+	index_t r,c;
+	index_t m_column_index;
+	dimension_t count_what;
+	mlfw_mat_string *m;
+	dimension_t m_rows,m_columns;
+	dimension_t matrix_rows,matrix_columns;
+	dimension_t new_matrix_rows,new_matrix_columns;
+	if(matrix==NULL || indexes==NULL || indexes_size<=0) return NULL;
+	mlfw_mat_string_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	
+	for(i=0;i<indexes_size;++i)
+	{
+		if(indexes[i]<0 || indexes[i]>=matrix_columns) return NULL;
+	}
+	
+	y=0;
+	while(y<indexes_size)
+	{
+		count_what=indexes[y];
+		for(i=y+1;i<indexes_size;++i)
+		{
+			if(count_what==indexes[i]) return NULL;
+		}
+		y++;
+	}
+	
+	m_rows=matrix_rows;
+	m_columns=matrix_columns=indexes_size;
+
+	if(new_matrix==NULL)
+	{
+		m=mlfw_mat_string_create_new(m_rows,m_columns);
+		if(m==NULL) return NULL;
+	}
+	else
+	{
+		mlfw_mat_string_get_dimensions(new,&new_matrix_rows,&new_matrix_columns);
+		if(m_rows!=new_matrix_rows || m_columns!=new_matrix_columns) return NULL;
+		m=new_matrix;
+	}
+	m_column_index=0;
+	for(c=0;c<matrix_columns;++c)
+	{
+		for(i=0;i<indexes_size;++i)
+		{
+			if(indexes[i]==c) break;
+		}
+		if(i<indexes_size)
+		{
+			continue; // c found, hence to be ignored as it is to be deleted
+		}
+		for(r=0;r<matrix_rows;++r)
+		{
+			mlfw_mat_string_get(matrix,r,c,&str);
+			if(str==NULL)
+			{	
+				if(m->data[r][c]!=NULL)
+				{
+					free(m->data[r][c]);
+					m->data[r][c]=NULL;
+				}
+			}
+			else
+			{
+				mlfw_mat_string_set(m,r,m_column_index,str);
+				free(str);
+			}
+		}
+		m_column_index++;
+	}
+	return m;
+}
