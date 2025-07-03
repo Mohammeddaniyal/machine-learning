@@ -110,10 +110,10 @@ int main(int argc,char *argv[])
 			free(indexes);
 			mlfw_mat_string_destroy(m);
 			mlfw_row_vec_string_destroy(m_header);
-			mlfw_rowvec_string_destory(matrix_header);
+			mlfw_row_vec_string_destory(matrix_header);
 			return 0;
 		}
-		mlfw_mat_string_set(m_header,k,str);
+		mlfw_row_vec_string_set(m_header,k,str);
 		k++;
 		free(str);
 	}
