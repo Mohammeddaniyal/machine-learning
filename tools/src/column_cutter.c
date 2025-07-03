@@ -1,6 +1,6 @@
 #include<mlfw_matrix.h>
 #include<mlfw_vector.h>
-#include<utils.h>
+#include<mlfw_utils.h>
 #include<stdio.h>
 #include<stdlib.h>
 int main(int argc,char *argv[])
