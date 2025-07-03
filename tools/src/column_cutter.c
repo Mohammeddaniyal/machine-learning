@@ -5,6 +5,7 @@
 #include<stdlib.h>
 int main(int argc,char *argv[])
 {
+	char *str;
 	mlfw_mat_string *matrix;
 	mlfw_mat_string *m;
 	mlfw_row_vec_string *matrix_header;
