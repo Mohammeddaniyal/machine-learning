@@ -18,6 +18,6 @@ void mlfw_mat_string_copy(mlfw_mat_string *target,mlfw_mat_string *source,index_
 
 mlfw_mat_string * mlfw_mat_string_shuffle(mlfw_mat_string *matrix,uint8_t how_many_times_to_shuffle,mlfw_mat_string *shuffled_matrix);
 
-mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *martix,index_t *indexes,dimension_t indexes_size,mlfw_mat_string *new_matrix);
+mlfw_mat_string * mlfw_mat_string_delete_columns(mlfw_mat_string *matrix,index_t *indexes,dimension_t indexes_size,mlfw_mat_string *new_matrix);
 
 #endif
