@@ -13,8 +13,8 @@ int mlfw_strcmp_case_insensitive(const char *left,const char *right)
 	{
 		a=*left;
 		b=*right;
-		if(a<=97 && a<=122) a-=32; // convert the case to uppercase,if lowercase
-		if(b<=97 && b<=122) b-=32;
+		if(a>=97 && a<=122) a-=32; // convert the case to uppercase,if lowercase
+		if(b>=97 && b<=122) b-=32;
 		if(a!=b) return a-b;
 		left++;
 		right++;
