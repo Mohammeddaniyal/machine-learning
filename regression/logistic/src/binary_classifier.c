@@ -105,7 +105,16 @@ int main(int argc,char *argv[])
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
 	double r2_score;
 	index_t i;
-	if(argc!=2)
+	
+	char *end;
+	char *dataset_name;
+	double learning_rate;
+	int test_data_percentage;
+	uint64_t number_of_iterations;
+	char *model_csv_name; // to store trained parameters
+	mlfw_row_vec_string *trained_parameters_header;
+	cgar str[11];
+	if(argc!=6)
 	{
 		printf("Usage [binary_classifier dataset.csv learning_rate test_data_percentage number_of_iterations model_csv_name]\n");
 		return 0;
