@@ -180,7 +180,7 @@ int main(int argc,char *argv[])
 
 
 	trained_parameters_header=mlfw_row_vec_string_create_new(trained_parameters_size);
-	if(trained_parameters_size==NULL)
+	if(trained_parameters_header==NULL)
 	{
 		printf("Unable to create model file %s\n",model_csv_name);	
 		printf("Trained parameters are as follow\n");
