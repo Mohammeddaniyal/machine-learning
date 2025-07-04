@@ -157,8 +157,8 @@ int main(int argc,char *argv[])
 
 	wrapper.matrix=training_examples_matrix;
 	wrapper.target_values_vector=training_examples_target_values_vector;
-	wrapper.learning_rate=0.0003;
-	wrapper.iteration_number=atoi(argv[1]);
+	wrapper.learning_rate=learning_rate;
+	wrapper.iteration_number=iteration_number;
 	wrapper.callback=screen_logger;
 	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
 	while(1)
