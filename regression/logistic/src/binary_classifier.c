@@ -198,7 +198,7 @@ int main(int argc,char *argv[])
 	// prediction part starts here
 	
 
-	test_examples_target_values_vector=mlfw_mat_double_create_column_vec(test_examples_matrix,1,NULL);
+	test_examples_target_values_vector=mlfw_mat_double_create_column_vec(test_examples_matrix,test_examples_matrix_columns-1,NULL);
 	if(test_examples_target_values_vector==NULL)
 	{
 		printf("Low memory\n");
