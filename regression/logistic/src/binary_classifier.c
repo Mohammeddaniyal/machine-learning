@@ -119,7 +119,12 @@ int main(int argc,char *argv[])
 		printf("Usage [binary_classifier dataset.csv learning_rate test_data_percentage number_of_iterations model_csv_name]\n");
 		return 0;
 	}
-		
+	
+	dataset_name=argv[1];
+	learning_rate=strtod(argv[2],&end);
+	test_data_percentage=atoi(argv[3]);
+	number_of_iterations=atoi(argv[4]);
+	model_csv_name=argv[5];	
 	
 	mlfw_mat_double_get_training_testing_data(dataset_name,&training_examples_matrix,&test_examples_matrix,test_data_percentage);
 	if(training_examples_matrix==NULL)
