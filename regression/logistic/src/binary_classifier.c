@@ -196,7 +196,7 @@ int main(int argc,char *argv[])
 			sprintf(str,"theta_%u",i);
 			mlfw_row_vec_string_set(trained_parameters_header,i,str);
 		}
-		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_file,trained_parameters_header);
+		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_name,trained_parameters_header);
 		printf("Model %s created\n",model_csv_name);
 	}	
 	mlfw_row_vec_double_destroy(trained_parameters);
