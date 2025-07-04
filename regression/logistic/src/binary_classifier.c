@@ -189,12 +189,8 @@ int main(int argc,char *argv[])
 	// training parts ends here
 	
 	trained_parameters_size=mlfw_row_vec_double_get_size(trained_parameters);
-	for(i=0;i<trained_parameters_size;++i)
-	{
-		printf("%lf ",mlfw_row_vec_double_get(trained_parameters,i));
-	}
 	
-		printf("\n");
+		//printf("\n");
 	// prediction part starts here
 	
 
@@ -231,8 +227,30 @@ int main(int argc,char *argv[])
 	printf("Good accuracy score is anything greater than or equal to 0.7\n");
 
 	printf("Accuracy score (0-1) is : %lf \n",r2_score);
-	
+
+
+	trained_parameters_header=mlfw_row_vec_string_create_new(trained_parameters_size);
+	if(trained_parameters_size==NULL)
+	{
+		printf("Unable to create model file %s\n",model_csv_name);	
+		printf("Trained parameters are as follow\n");
+		for(i=0;i<trained_parameters_size;++i)
+		{
+			printf("%lf ",mlfw_row_vec_double_get(trained_parameters,i));
+		}
+	}
+	else
+	{
+		for(i=0;i<trained_parameters_size;++i)
+		{
+			sprintf(str,"theta_%u",i);
+			mlfw_row_vec_string_set(trained_parameters_header,i,str);
+		}
+		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_file,trained_parameters_header);
+		printf("Model %s created\n",model_csv_name);
+	}	
 	mlfw_row_vec_double_destroy(trained_parameters);
+	mlfw_row_vec_string_destroy(trained_parameters_header);
 	mlfw_mat_double_destroy(test_examples_matrix);
 	mlfw_column_vec_double_destroy(test_examples_target_values_vector);
 	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
