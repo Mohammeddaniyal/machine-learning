@@ -121,10 +121,10 @@ int main(int argc,char *argv[])
 	}
 		
 	
-	mlfw_mat_double_get_training_testing_data("IceCreamSales.csv",&training_examples_matrix,&test_examples_matrix,20);
+	mlfw_mat_double_get_training_testing_data(dataset_name,&training_examples_matrix,&test_examples_matrix,test_data_percentage);
 	if(training_examples_matrix==NULL)
 	{
-		printf("Unable to load IceCreamSale.csv\n");
+		printf("Unable to load %s\n",dataset_name);
 		return 0;
 	}
 
