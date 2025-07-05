@@ -486,6 +486,9 @@ mlfw_column_vec_double * mlfw_logistic_regression_predict(mlfw_mat_double *input
 
 mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_class_vector,mlfw_set_string *class_set,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double cost))
 {
+	mlfw_mat_double *trained_parameters_matrix;
+	mlfw_row_vec_double *trained_parameters_row_vector;
+	mlfw_column_vec_double *tmp_target_class_vector;
 
 	dimension_t input_features_matrix_rows,input_features_matrix_columns;
 	dimension_t target_class_vector_size;
@@ -493,7 +496,9 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 	index_t i,j;
 	double target_class_double_value;
 	int target_class_int_value;
+	int target_class_int_value_from_set;
 	char str[11];
+	char *str_ptr;
 	if(input_features_matrix==NULL || target_class_vector==NULL || class_set==NULL) return NULL;
 	class_set_size=mlfw_set_string_get_size(class_set);
 	if(class_set_size!=0) return NULL;
@@ -508,6 +513,38 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 		sprintf(str,"%d",target_class_int_value);
 		mlfw_set_string_add(class_set,str);
 	}
+	
+	tmp_target_class_vector=mlfw_column_vec_double_create_new(target_class_vector_size);
+	if(tmp_target_class_vector==NULL)
+	{
+		return NULL;
+	}
+
+	for(j=0;j<class_set_size;++j)
+	{
+		mlfw_set_string_get(class_set,j,&str_ptr);
+		if(str_ptr==NULL)
+		{
+			mlfw_column_vec_double_destroy(tmp_target_class_vector);
+			return NULL;
+		}
+		target_class_int_value_from_set=(int)atoi(str_ptr);
+		free(str_ptr);
+		for(i=0;i<target_class_vector_size;++i)
+		{
+			target_class_int_value=mlfw_column_vec_double_get(target_class_vector,i);
+			if(target_class_int_value==target_class_int_value_from_set)
+			{
+				mlfw_column_vec_double_set(tmp_target_class_vector,i,1.0);
+			}
+			else
+			{
+				mlfw_column_vec_double_set(tmp_target_class_vector,i,0.0);
+			}
+		}
+
+	}
+
 	
 
 	return trained_parameters_matrix;
