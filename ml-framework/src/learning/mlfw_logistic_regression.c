@@ -484,3 +484,10 @@ mlfw_column_vec_double * mlfw_logistic_regression_predict(mlfw_mat_double *input
 
 
 
+mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,mlfw_set_string *class_set,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double cost))
+{
+
+	
+
+	return trained_parameters_matrix;
+}
