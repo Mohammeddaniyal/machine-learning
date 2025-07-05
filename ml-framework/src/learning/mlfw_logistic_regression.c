@@ -487,10 +487,15 @@ mlfw_column_vec_double * mlfw_logistic_regression_predict(mlfw_mat_double *input
 mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,mlfw_set_string *class_set,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double cost))
 {
 
+	dimension_t input_features_matrix_rows,input_features_matrix_columns;
+	dimension_t target_values_vector_size;
 	dimension_t class_set_size;
 	if(input_features_matrix==NULL || target_values_vector==NULL || class_set==NULL) return NULL;
 	class_set_size=mlfw_set_string_get_size(class_set);
 	if(class_set_size!=0) return NULL;
+	mlfw_mat_double_get_dimensions(input_features_matrix,&input_features_matrix_rows,&input_features_matrix_columns);
+	target_values_vector_size=mlfw_column_vec_double_get_size(target_values_vector);
+	if(target_values_vector_size!=input_features_matrix_rows) return NULL;
 
 	return trained_parameters_matrix;
 }
