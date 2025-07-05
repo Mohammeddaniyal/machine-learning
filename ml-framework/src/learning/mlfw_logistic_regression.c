@@ -543,6 +543,8 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 				mlfw_column_vec_double_set(tmp_target_class_vector,i,0.0);
 			}
 		}
+		
+trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(input_features_matrix,tmp_target_class_vector,number_of_iterations,on_each_iteration);
 
 
 	}
