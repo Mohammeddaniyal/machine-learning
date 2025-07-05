@@ -490,13 +490,24 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 	dimension_t input_features_matrix_rows,input_features_matrix_columns;
 	dimension_t target_class_vector_size;
 	dimension_t class_set_size;
+	index_t i,j;
+	double target_class_double_value;
+	int target_class_int_value;
+	char str[11];
 	if(input_features_matrix==NULL || target_class_vector==NULL || class_set==NULL) return NULL;
 	class_set_size=mlfw_set_string_get_size(class_set);
 	if(class_set_size!=0) return NULL;
 	mlfw_mat_double_get_dimensions(input_features_matrix,&input_features_matrix_rows,&input_features_matrix_columns);
 	target_class_vector_size=mlfw_column_vec_double_get_size(target_class_vector);
 	if(target_class_vector_size!=input_features_matrix_rows) return NULL;
-	
+	for(i=0;i<target_class_vector_size;++i)
+	{
+		// our idea is to set non fractional values in (set)
+		target_class_double_value=mlfw_column_vec_double_get(target_class_vector,i);
+		target_class_int_value=(int)target_class_double_value;
+		sprintf(str,"%d",target_class_int_value);
+		mlfw_set_string_add(class_set,str);
+	}
 	
 
 	return trained_parameters_matrix;
