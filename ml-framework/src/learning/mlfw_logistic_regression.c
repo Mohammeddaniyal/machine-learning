@@ -1,5 +1,6 @@
 #include<mlfw_matrix.h>
 #include<mlfw_vector.h>
+#include<mlfw_set.h>
 #include<mlfw_operations.h>
 #include<inttypes.h>
 #include<stdio.h>
