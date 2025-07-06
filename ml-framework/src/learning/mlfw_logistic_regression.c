@@ -579,5 +579,6 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 
 	
 
+	}
 	return trained_parameters_matrix;
 }
