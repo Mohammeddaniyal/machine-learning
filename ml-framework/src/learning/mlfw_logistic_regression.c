@@ -538,7 +538,6 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 	if(trained_parameters_matrix==NULL)
 	{
 		mlfw_column_vec_double_destroy(tmp_target_class_vector);
-		mlfw_mat_double_destroy(trained_parameters_matrix);
 		return NULL;
 	}
 	for(j=0;j<class_set_size;++j)
