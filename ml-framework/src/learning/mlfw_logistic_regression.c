@@ -497,11 +497,13 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 	dimension_t target_class_vector_size;
 	dimension_t class_set_size;
 	index_t i,j;
+	index_t r;
 	double target_class_double_value;
 	int target_class_int_value;
 	int target_class_int_value_from_set;
 	char str[11];
-	char *str_ptr;
+	char *str_ptr;i
+	double parameter_value;
 	if(input_features_matrix==NULL || target_class_vector==NULL || class_set==NULL) return NULL;
 	class_set_size=mlfw_set_string_get_size(class_set);
 	if(class_set_size!=0) return NULL;
@@ -569,8 +571,9 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 	}
 	
 	// copy the content of trained_parameters_row_vector into trained_parameters_matrix
-
-	
+	for(r=0;r<trained_parameters_matrix_rows;++r)
+	{
+		mlfw
 
 	}
 
