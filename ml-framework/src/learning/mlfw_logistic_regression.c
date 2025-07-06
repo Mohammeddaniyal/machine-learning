@@ -503,7 +503,7 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 	int target_class_int_value;
 	int target_class_int_value_from_set;
 	char str[11];
-	char *str_ptr;i
+	char *str_ptr;
 	double parameter_value;
 	if(input_features_matrix==NULL || target_class_vector==NULL || class_set==NULL) return NULL;
 	class_set_size=mlfw_set_string_get_size(class_set);
@@ -565,7 +565,7 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 			}
 		}
 		
-trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(input_features_matrix,tmp_target_class_vector,number_of_iterations,on_each_iteration);
+trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(input_features_matrix,tmp_target_class_vector,learning_rate,number_of_iterations,on_each_iteration);
 
 	if(trained_parameters_row_vector==NULL)
 	{
