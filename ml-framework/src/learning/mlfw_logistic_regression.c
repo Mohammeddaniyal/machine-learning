@@ -501,6 +501,7 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 	index_t r;
 	double target_class_double_value;
 	int target_class_int_value;
+	int target_class_int_value_from_vector;
 	int target_class_int_value_from_set;
 	char str[11];
 	char *str_ptr;
@@ -540,6 +541,7 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 		mlfw_column_vec_double_destroy(tmp_target_class_vector);
 		return NULL;
 	}
+	// traverse the set and that many times create tmp_target_class_vector and call binary classifier
 	for(j=0;j<class_set_size;++j)
 	{
 		mlfw_set_string_get(class_set,j,&str_ptr);
@@ -553,8 +555,8 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 		free(str_ptr);
 		for(i=0;i<target_class_vector_size;++i)
 		{
-			target_class_int_value=mlfw_column_vec_double_get(target_class_vector,i);
-			if(target_class_int_value==target_class_int_value_from_set)
+			target_class_int_value_from_vector=(int)mlfw_column_vec_double_get(target_class_vector,i);
+			if(target_class_int_value_from_vector==target_class_int_value_from_set)
 			{
 				mlfw_column_vec_double_set(tmp_target_class_vector,i,1.0);
 			}
@@ -563,6 +565,8 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 				mlfw_column_vec_double_set(tmp_target_class_vector,i,0.0);
 			}
 		}
+		// we have input features martix and we have tmp target class vector
+		// lets call the classifier
 		
 trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(input_features_matrix,tmp_target_class_vector,learning_rate,number_of_iterations,on_each_iteration);
 
@@ -584,5 +588,6 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 	mlfw_row_vec_double_destroy(trained_parameters_row_vector);	
 	
 	}// loop on set ends here 
+	mlfw_column_vec_double_destroy(tmp_target_class_vector);
 	return trained_parameters_matrix;
 }
