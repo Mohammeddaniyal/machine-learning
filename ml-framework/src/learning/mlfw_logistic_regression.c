@@ -574,6 +574,7 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 	}
 	
 	// copy the content of trained_parameters_row_vector into trained_parameters_matrix
+	// in the jth column
 	for(r=0;r<trained_parameters_matrix_rows;++r)
 	{
 		parameter_value=mlfw_row_vec_double_get(trained_parameters_row_vector,r);
@@ -582,6 +583,6 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 
 	mlfw_row_vec_double_destroy(trained_parameters_row_vector);	
 	
-	}
+	}// loop on set ends here 
 	return trained_parameters_matrix;
 }
