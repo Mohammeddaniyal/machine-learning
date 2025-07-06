@@ -579,7 +579,7 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 	for(r=0;r<trained_parameters_matrix_rows;++r)
 	{
 		parameter_value=mlfw_row_vec_double_get(trained_parameters_row_vector,r);
-		mlfw_mat_double_set(trained_parameters_matrix,r,j);
+		mlfw_mat_double_set(trained_parameters_matrix,r,j,parameter_value);
 	}
 
 	mlfw_row_vec_double_destroy(trained_parameters_row_vector);	
