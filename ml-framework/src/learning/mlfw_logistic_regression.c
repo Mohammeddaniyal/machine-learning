@@ -523,8 +523,20 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 		return NULL;
 	}
 	
-	trained_parameters_matrix=mlfw_mat_double_create_new();
+	trained_parameters_matrix_rows=input_features_matrix_columns+1; // +1 because bias will be
+									// introduced by the classifier
+									// and the trained parameters
+									// row that it return will
+									// have one extra element
+								
+	trained_parameters_matrix_columns=class_set_size;
 
+	trained_parameters_matrix=mlfw_mat_double_create_new(trained_parameters_matrix_rows,trained_parameters_matrix_columns);
+	if(trained_parameters_matrix==NULL)
+	{
+		mlfw_column_vec_double_destroy(tmp_target_class_vector);
+		return NULL;
+	}
 	for(j=0;j<class_set_size;++j)
 	{
 		mlfw_set_string_get(class_set,j,&str_ptr);
