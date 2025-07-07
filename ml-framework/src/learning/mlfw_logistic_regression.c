@@ -642,7 +642,6 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	{
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-		mlfw_column_vec_double_destroy(m);
 		return NULL;
 	}
 	SP=mlfw_mat_double_sigmoid(P,NULL);
@@ -650,8 +649,8 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	{
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-		mlfw_column_vec_double_destroy(m);
-		mlfw_column_vec_double_destroy(P);
+		mlfw_mat_double_destroy(P);
+		mlfw_mat_double_destroy(SP);
 		return NULL;
 	}
 	// determine the target class, by finding the index of max value in each row
@@ -661,9 +660,8 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	{
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-		mlfw_column_vec_double_destroy(m);
-		mlfw_column_vec_double_destroy(P);
-		mlfw_column_vec_double_destroy(SP);
+		mlfw_mat_double_destroy(P);
+		mlfw_mat_double_destroy(SP);
 		return NULL;
 	}
 	for(r=0;r<I_rows;++r)
@@ -685,9 +683,8 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-			mlfw_column_vec_double_destroy(m);
-			mlfw_column_vec_double_destroy(P);
-			mlfw_column_vec_double_destroy(SP);
+			mlfw_mat_double_destroy(P);
+			mlfw_mat_double_destroy(SP);
 			mlfw_column_vec_double_destroy(predicted_target_class_vector);
 			return NULL;
 
@@ -698,9 +695,8 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-		mlfw_column_vec_double_destroy(m);	
-		mlfw_column_vec_double_destroy(P);
-		mlfw_column_vec_double_destroy(SP);
+		mlfw_mat_double_destroy(P);
+		mlfw_mat_double_destroy(SP);
 		return predicted_target_class_vector; // return the column vector with the predicted values
 
 }
