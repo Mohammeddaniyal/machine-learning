@@ -87,25 +87,25 @@ double mlfw_column_vec_double_sum(mlfw_column_vec_double *vector)
 
 mlfw_mat_double * mlfw_mat_double_sigmoid(mlfw_mat_double *matrix,mlfw_mat_double *new_matrix)
 {
-	mlfw_column_vec_double *v;
-	dimension_t vector_size;
-	dimension_t new_vector_size;
+	mlfw_mat_double *m;
+	dimension_t matrix_rows,matrix_columns;
+	dimension_t new_matrix_rows,new_matrix_columns;;
 	double value;
 	double sigmoid;
 	double e;
 	index_t i;
-	if(vector==NULL) return NULL;
-	vector_size=mlfw_column_vec_double_get_size(vector);
-	if(new_vector==NULL)
+	if(matrix==NULL) return NULL;
+	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	if(new_matrix==NULL)
 	{
-		v=mlfw_column_vec_double_create_new(vector_size);
-		if(v==NULL) return NULL;
+		m=mlfw_mat_double_create_new(matrix_rows,matrix_columns);
+		if(m==NULL) return NULL;
 	}
 	else
 	{
-		new_vector_size=mlfw_column_vec_double_get_size(new_vector);
-		if(new_vector_size!=vector_size) return NULL;
-		v=new_vector;
+		mlfw_mat_double_get_dimensions(new_matrix,&new_matrix_rows,&new_matrix_columns);
+		if(new_matrix_rows!=matrix_rows || new_matrix_columns!=matrix_columns) return NULL;
+		m=new_matrix;
 	}
 		// formula is 1/(1+e^-z)
 	e=2.718281; // napier's constant
