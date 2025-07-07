@@ -595,11 +595,12 @@ trained_parameters_row_vector= mlfw_logistic_regression_gradient_descent_fit(inp
 
 mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_double *input_features_matrix,mlfw_set_string *class_set,mlfw_mat_double *trained_parameters_matrix)
 {
-	dimension_t trained_parameters_size;
+	dimension_t trained_parameters_matrix_rows,trained_parameters_matrix_columns;
 	mlfw_mat_double *I;
 	dimension_t I_rows;
 	dimension_t I_columns;
 
+	dimension_t class_set_size;
 
 	mlfw_column_vec_double *m;
 
@@ -607,13 +608,17 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	mlfw_column_vec_double *SP;
 
 
-	if(input_features_matrix==NULL || trained_parameters==NULL) return NULL;
+	if(input_features_matrix==NULL || trained_parameters==NULL || class_set==NULL) return NULL;
 	
+	mlfw_mat_double_get_dimensions(trained_parameters_matrix,&trained_parameters_matrix_rows,trained_parameters_matrix_columns);
+
+	class_set_size=mlfw_set_string_get_size(class_set);
+	if(class_set_size!=trained_parameters_matrix_columns) return NULL;
+
 	I=input_features_matrix;
 
 	mlfw_mat_double_get_dimensions(I,&I_rows,&I_columns);
-	trained_parameters_size=mlfw_row_vec_double_get_size(trained_parameters);
-	if(trained_parameters_size!=I_columns+1) return NULL;
+	if(trained_parameters_matrix_columns!=I_columns+1) return NULL;
 
 	mlfw_mat_double_reshape(&I,I_rows,I_columns+1);
 	if(I==NULL)
@@ -625,13 +630,6 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
 	
 
-	m=mlfw_row_vec_double_transpose(trained_parameters,NULL);
-	if(m==NULL)
-	{
-		mlfw_mat_double_left_shift(I,1);
-		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-		return NULL;
-	}
 
 	P=mlfw_multiply_double_matrix_with_column_vector(I,m,NULL);
 	if(P==NULL)
