@@ -613,6 +613,8 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	char *str_ptr;
 	double value;
 
+	mlfw_column_vec_double *predicted_target_class_vector;
+
 	if(input_features_matrix==NULL || trained_parameters==NULL || class_set==NULL) return NULL;
 	
 	mlfw_mat_double_get_dimensions(trained_parameters_matrix,&trained_parameters_matrix_rows,trained_parameters_matrix_columns);
@@ -666,15 +668,39 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	}
 	for(r=0;r<I_rows;++r)
 	{
-		for(c=0;c<class_set_size;++c)
+		max_value=mlfw_mat_double_get(trained_parameters_matrix,r,0);
+		max_index=0;
+		for(c=1;c<class_set_size;++c)
 		{
+			value=mlfw_mat_double_get(trained_parameters_matrix,r,c);
+			if(max_value<value)
+			{	
+				max_value=value;
+				max_index=c;
+			}	
 		}	
+		// now we have the index of max predicted value
+		mlfw_set_string_get(class_set,max_index,&str_ptr);
+		if(str_ptr==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(SP);
+			mlfw_column_vec_double_destroy(predicted_target_class_vector);
+			return NULL;
+
+		}
+		target_class_int=atoi(str_ptr);
+		mlfw_column_vec_double_set(predicted_target_class_vector,r,(double)target_class_int);
 	}
 
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
 		mlfw_column_vec_double_destroy(m);	
 		mlfw_column_vec_double_destroy(P);
-		return SP; // return the column vector with the predicted values
+		mlfw_column_vec_double_destroy(SP);
+		return predicted_target_class_vector; // return the column vector with the predicted values
 
 }
