@@ -93,7 +93,7 @@ mlfw_mat_double * mlfw_mat_double_sigmoid(mlfw_mat_double *matrix,mlfw_mat_doubl
 	double value;
 	double sigmoid;
 	double e;
-	index_t i;
+	index_t r,c;
 	if(matrix==NULL) return NULL;
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	if(new_matrix==NULL)
@@ -109,12 +109,15 @@ mlfw_mat_double * mlfw_mat_double_sigmoid(mlfw_mat_double *matrix,mlfw_mat_doubl
 	}
 		// formula is 1/(1+e^-z)
 	e=2.718281; // napier's constant
-	for(i=0;i<vector_size;++i)
+	for(r=0;r<matrix_rows;++r)
 	{
-		value=mlfw_column_vec_double_get(vector,i);
+	for(c=0;i<matrix_columns;++c)
+	{
+		value=mlfw_mat_double_get(matrix,r,c);
 		sigmoid=1/(1+pow(e,-value));
-		mlfw_column_vec_double_set(v,i,sigmoid);
+		mlfw_mat_double_set(matrix,r,c,sigmoid);
 	}
-	return v;
+	}
+	return m;
 
 }
