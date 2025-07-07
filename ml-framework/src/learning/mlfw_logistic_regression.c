@@ -691,6 +691,7 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 
 		}
 		target_class_int=atoi(str_ptr);
+		free(str_ptr);
 		mlfw_column_vec_double_set(predicted_target_class_vector,r,(double)target_class_int);
 	}
 
