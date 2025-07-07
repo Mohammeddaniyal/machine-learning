@@ -602,11 +602,16 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 
 	dimension_t class_set_size;
 
-	mlfw_column_vec_double *m;
 
-	mlfw_column_vec_double *P;
-	mlfw_column_vec_double *SP;
+	mlfw_mat_double *P;
+	mlfw_mat_double *SP;
 
+	index_t r,c;
+	double max_value;
+	index_t max_index;
+	int target_class_int;
+	char *str_ptr;
+	double value;
 
 	if(input_features_matrix==NULL || trained_parameters==NULL || class_set==NULL) return NULL;
 	
@@ -630,8 +635,7 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
 	
 
-
-	P=mlfw_multiply_double_matrix_with_column_vector(I,m,NULL);
+	P=mlfw_multiply_double_matrix_with_matrix(I,trained_parameters_matrix,NULL);
 	if(P==NULL)
 	{
 		mlfw_mat_double_left_shift(I,1);
@@ -639,7 +643,7 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 		mlfw_column_vec_double_destroy(m);
 		return NULL;
 	}
-	SP=mlfw_column_vec_double_sigmoid(P,NULL);
+	SP=mlfw_mat_double_sigmoid(P,NULL);
 	if(SP==NULL)
 	{
 		mlfw_mat_double_left_shift(I,1);
@@ -648,6 +652,25 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 		mlfw_column_vec_double_destroy(P);
 		return NULL;
 	}
+	// determine the target class, by finding the index of max value in each row
+	// and then pick the element at that index from the set
+	predicted_target_class_vector=mlfw_column_vec_double_create_new(I_rows);
+	if(predicted_target_class_vector==NULL)
+	{
+		mlfw_mat_double_left_shift(I,1);
+		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+		mlfw_column_vec_double_destroy(m);
+		mlfw_column_vec_double_destroy(P);
+		mlfw_column_vec_double_destroy(SP);
+		return NULL;
+	}
+	for(r=0;r<I_rows;++r)
+	{
+		for(c=0;c<class_set_size;++c)
+		{
+		}	
+	}
+
 		mlfw_mat_double_left_shift(I,1);
 		mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
 		mlfw_column_vec_double_destroy(m);	
