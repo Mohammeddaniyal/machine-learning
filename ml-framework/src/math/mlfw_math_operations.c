@@ -112,7 +112,7 @@ mlfw_mat_double * mlfw_mat_double_sigmoid(mlfw_mat_double *matrix,mlfw_mat_doubl
 	e=2.718281; // napier's constant
 	for(r=0;r<matrix_rows;++r)
 	{
-	for(c=0;i<matrix_columns;++c)
+	for(c=0;c<matrix_columns;++c)
 	{
 		value=mlfw_mat_double_get(matrix,r,c);
 		sigmoid=1/(1+pow(e,-value));
