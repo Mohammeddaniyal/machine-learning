@@ -225,7 +225,7 @@ int main(int argc,char *argv[])
 			mlfw_row_vec_string_set(trained_parameters_matrix_header,i,str_ptr);
 			free(str_ptr);
 		}
-		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_name,trained_parameters_matrix_header);
+		mlfw_mat_double_to_csv(trained_parameters_matrix,model_csv_name,trained_parameters_matrix_header);
 		printf("Model %s created\n",model_csv_name);
 	}	
 	mlfw_set_string_destroy(class_set);
