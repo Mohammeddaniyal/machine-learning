@@ -43,7 +43,6 @@ return (void *)trained_parameters;
 int main(int argc,char *argv[])
 {
 	pthread_t thread_id;
-	char m;
 	struct thread_args wrapper;
 	mlfw_mat_double *training_examples_matrix;
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
@@ -112,16 +111,6 @@ int main(int argc,char *argv[])
 	wrapper.iteration_number=number_of_iterations;
 	wrapper.callback=screen_logger;
 	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
-	while(1)
-	{
-		m=getchar();
-		__fpurge(stdin);
-		if(m=='\n') 
-		{
-			KEEP_RUNNING=0;
-			break;
-		}
-	}
 	
 	// this below line is very very very very important
 	pthread_join(thread_id,(void **)&trained_parameters);
