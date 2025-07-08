@@ -48,7 +48,7 @@ int main(int argc,char *argv[])
 	mlfw_mat_double *training_examples_matrix;
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
 	mlfw_column_vec_double *training_examples_target_values_vector;
-	mlfw_row_vec_double *trained_parameters;
+	mlfw_mat_double *trained_parameters_matrix;
 	dimension_t trained_parameters_size;
 	mlfw_mat_double *test_examples_matrix;
 	mlfw_column_vec_double *test_examples_target_values_vector;
@@ -57,6 +57,8 @@ int main(int argc,char *argv[])
 	double r2_score;
 	index_t i;
 	
+	mlfw_set_string *class_set;
+
 	char *end;
 	char *dataset_name;
 	double learning_rate;
@@ -78,11 +80,19 @@ int main(int argc,char *argv[])
 	number_of_iterations=atoi(argv[4]);
 	model_csv_name=argv[5];	
 	
+	class_set=mlfw_set_string_create_new();
+	if(class_set==NULL)
+	{
+		printf("Low memory\n");
+		return 0;
+	}
+
 	//mlfw_mat_double_get_training_testing_data(dataset_name,&training_examples_matrix,&test_examples_matrix,test_data_percentage);
 	training_examples_matrix=mlfw_mat_double_from_csv(dataset_name,NULL,&header);
 	if(training_examples_matrix==NULL)
 	{
 		printf("Unable to load %s\n",dataset_name);
+		mlfw_set_string_destroy(class_set);
 		return 0;
 	}
 	mlfw_row_vec_string_destroy(header);
@@ -90,6 +100,7 @@ int main(int argc,char *argv[])
 	if(test_examples_matrix==NULL)
 	{
 		printf("Unable to load %s\n",dataset_name);
+		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(training_examples_matrix);
 		return 0;
 	}
@@ -101,6 +112,7 @@ int main(int argc,char *argv[])
 	if(training_examples_target_values_vector==NULL)
 	{
 		printf("Low memory\n");
+		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(training_examples_matrix);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		return 0;
@@ -109,6 +121,7 @@ int main(int argc,char *argv[])
 	if(training_examples_matrix==NULL)
 	{
 		printf("Low memory\n");
+		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(training_examples_matrix);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(training_examples_target_values_vector);
@@ -121,14 +134,16 @@ int main(int argc,char *argv[])
 	wrapper.learning_rate=learning_rate;
 	wrapper.iteration_number=number_of_iterations;
 	wrapper.callback=screen_logger;
+	wrapper.class_set=class_set;
 	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
 	
 	// this below line is very very very very important
-	pthread_join(thread_id,(void **)&trained_parameters);
+	pthread_join(thread_id,(void **)&trained_parameters_matrix);
 
-	if(trained_parameters==NULL)
+	if(trained_parameters_matrix==NULL)
 	{
 		printf("Low memory\n");
+		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(training_examples_matrix);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(training_examples_target_values_vector);
@@ -139,7 +154,8 @@ int main(int argc,char *argv[])
 	
 	// training parts ends here
 	
-	trained_parameters_size=mlfw_row_vec_double_get_size(trained_parameters);
+	mlfw_mat_double_get_dimensions(trained_parameters_matrix,&trained_parameters_matrix_rows,&trained_parameters_matrix_columns);
+
 	
 	// prediction part starts here
 	
@@ -148,6 +164,7 @@ int main(int argc,char *argv[])
 	if(test_examples_target_values_vector==NULL)
 	{
 		printf("Low memory\n");
+		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_row_vec_double_destroy(trained_parameters);
 		return 0;
@@ -157,6 +174,7 @@ int main(int argc,char *argv[])
 	if(test_examples_matrix==NULL)
 	{
 		printf("Low memory\n");
+		mlfw_set_string_destroy(class_set);
 		mlfw_row_vec_double_destroy(trained_parameters);
 		return 0;
 	}
@@ -165,6 +183,7 @@ int main(int argc,char *argv[])
 	if(test_examples_predicted_values_vector==NULL)
 	{
 		printf("Low memory\n");
+		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(test_examples_target_values_vector);
 		mlfw_row_vec_double_destroy(trained_parameters);
@@ -199,6 +218,7 @@ int main(int argc,char *argv[])
 		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_name,trained_parameters_header);
 		printf("Model %s created\n",model_csv_name);
 	}	
+	mlfw_set_string_destroy(class_set);
 	mlfw_row_vec_double_destroy(trained_parameters);
 	mlfw_row_vec_string_destroy(trained_parameters_header);
 	mlfw_mat_double_destroy(test_examples_matrix);
