@@ -46,6 +46,7 @@ int main(int argc,char *argv[])
 	pthread_t thread_id;
 	struct thread_args wrapper;
 	mlfw_set_string *class_set;
+	dimension_t class_set_size;
 	mlfw_mat_double *training_examples_matrix;
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
 	mlfw_column_vec_double *training_examples_target_values_vector;
@@ -67,7 +68,9 @@ int main(int argc,char *argv[])
 	char *model_csv_name; // to store trained parameters
 	mlfw_row_vec_string *trained_parameters_header;
 	char str[11];
+	char *str_ptr;
 	mlfw_row_vec_string *header;
+	
 	if(argc!=6)
 	{
 		printf("Usage [multi_class_classifier dataset.csv learning_rate test_data_percentage number_of_iterations model_csv_name]\n");
@@ -166,7 +169,7 @@ int main(int argc,char *argv[])
 		printf("Low memory\n");
 		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(test_examples_matrix);
-		mlfw_row_vec_double_destroy(trained_parameters);
+		mlfw_mat_double_destroy(trained_parameters_matrix);
 		return 0;
 	}
 
@@ -186,7 +189,7 @@ int main(int argc,char *argv[])
 		mlfw_set_string_destroy(class_set);
 		mlfw_mat_double_destroy(test_examples_matrix);
 		mlfw_column_vec_double_destroy(test_examples_target_values_vector);
-		mlfw_row_vec_double_destroy(trained_parameters);
+		mlfw_mat_double_destroy(trained_parameters_matrix);
 		return 0;
 	}
 	
@@ -197,30 +200,36 @@ int main(int argc,char *argv[])
 
 	printf("Accuracy score (0-1) is : %lf \n",r2_score);
 
-
-	trained_parameters_header=mlfw_row_vec_string_create_new(trained_parameters_size);
-	if(trained_parameters_header==NULL)
+	class_set_size=mlfw_set_string_get_size(class_set);
+	trained_parameters_matrix_header=mlfw_row_vec_string_create_new(class_set_size);
+	if(trained_parameters_matrix_header==NULL)
 	{
 		printf("Unable to create model file %s\n",model_csv_name);	
-		printf("Trained parameters are as follow\n");
-		for(i=0;i<trained_parameters_size;++i)
-		{
-			printf("%lf ",mlfw_row_vec_double_get(trained_parameters,i));
-		}
 	}
 	else
 	{
-		for(i=0;i<trained_parameters_size;++i)
+		for(i=0;i<class_set_size;++i)
 		{
-			sprintf(str,"theta_%u",i);
-			mlfw_row_vec_string_set(trained_parameters_header,i,str);
+			mlfw_set_string_get(class_set,i,&str_ptr);
+			if(str_ptr==NULL)
+			{
+			mlfw_set_string_destroy(class_set);
+			mlfw_mat_double_destroy(trained_parameters_matrix);
+			mlfw_row_vec_string_destroy(trained_parameters_header);
+			mlfw_mat_double_destroy(test_examples_matrix);
+			mlfw_column_vec_double_destroy(test_examples_target_values_vector);
+			mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
+			return 0;
+			}
+			mlfw_row_vec_string_set(trained_parameters_matrix_header,i,str_ptr);
+			free(str_ptr);
 		}
-		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_name,trained_parameters_header);
+		mlfw_row_vec_double_to_csv(trained_parameters,model_csv_name,trained_parameters_matrix_header);
 		printf("Model %s created\n",model_csv_name);
 	}	
 	mlfw_set_string_destroy(class_set);
-	mlfw_row_vec_double_destroy(trained_parameters);
-	mlfw_row_vec_string_destroy(trained_parameters_header);
+	mlfw_mat_double_destroy(trained_parameters_matrix);
+	mlfw_row_vec_string_destroy(trained_parameters_matrix_header);
 	mlfw_mat_double_destroy(test_examples_matrix);
 	mlfw_column_vec_double_destroy(test_examples_target_values_vector);
 	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
