@@ -161,7 +161,7 @@ int main(int argc,char *argv[])
 		return 0;
 	}
 	test_examples_matrix_columns=test_examples_matrix_columns-1;
-	test_examples_predicted_values_vector=mlfw_linear_regression_predict(test_examples_matrix,trained_parameters);
+	test_examples_predicted_values_vector=mlfw_logistic_regression_predict(test_examples_matrix,trained_parameters);
 	if(test_examples_predicted_values_vector==NULL)
 	{
 		printf("Low memory\n");
