@@ -620,6 +620,7 @@ mlfw_column_vec_double * mlfw_logistic_regression_multi_class_predict(mlfw_mat_d
 	class_set_size=mlfw_set_string_get_size(class_set);
 	if(class_set_size==0) return NULL;
 	mlfw_mat_double_get_dimensions(trained_parameters_matrix,&trained_parameters_matrix_rows,&trained_parameters_matrix_columns);
+	
 
 	if(class_set_size!=trained_parameters_matrix_columns) return NULL;
 
