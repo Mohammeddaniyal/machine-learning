@@ -216,7 +216,7 @@ int main(int argc,char *argv[])
 			{
 			mlfw_set_string_destroy(class_set);
 			mlfw_mat_double_destroy(trained_parameters_matrix);
-			mlfw_row_vec_string_destroy(trained_parameters_header);
+			mlfw_row_vec_string_destroy(trained_parameters_matrix_header);
 			mlfw_mat_double_destroy(test_examples_matrix);
 			mlfw_column_vec_double_destroy(test_examples_target_values_vector);
 			mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
