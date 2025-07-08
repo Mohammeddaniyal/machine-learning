@@ -114,9 +114,9 @@ mlfw_mat_double * mlfw_mat_double_sigmoid(mlfw_mat_double *matrix,mlfw_mat_doubl
 	{
 	for(c=0;c<matrix_columns;++c)
 	{
-		value=mlfw_mat_double_get(matrix,r,c);
+		value=mlfw_mat_double_get(m,r,c);
 		sigmoid=1/(1+pow(e,-value));
-		mlfw_mat_double_set(matrix,r,c,sigmoid);
+		mlfw_mat_double_set(m,r,c,sigmoid);
 	}
 	}
 	return m;
