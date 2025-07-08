@@ -45,6 +45,7 @@ int main(int argc,char *argv[])
 {
 	pthread_t thread_id;
 	struct thread_args wrapper;
+	mlfw_set_string *class_set;
 	mlfw_mat_double *training_examples_matrix;
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
 	mlfw_column_vec_double *training_examples_target_values_vector;
@@ -57,7 +58,6 @@ int main(int argc,char *argv[])
 	double r2_score;
 	index_t i;
 	
-	mlfw_set_string *class_set;
 
 	char *end;
 	char *dataset_name;
@@ -179,7 +179,7 @@ int main(int argc,char *argv[])
 		return 0;
 	}
 	test_examples_matrix_columns=test_examples_matrix_columns-1;
-	test_examples_predicted_values_vector=mlfw_linear_regression_predict(test_examples_matrix,trained_parameters);
+	test_examples_predicted_values_vector=mlfw_linear_regression_multi_class_predict(test_examples_matrix,trained_parameters_matrix);
 	if(test_examples_predicted_values_vector==NULL)
 	{
 		printf("Low memory\n");
