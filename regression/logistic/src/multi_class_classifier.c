@@ -49,7 +49,7 @@ int main(int argc,char *argv[])
 	dimension_t training_examples_matrix_rows,training_examples_matrix_columns;
 	mlfw_column_vec_double *training_examples_target_values_vector;
 	mlfw_mat_double *trained_parameters_matrix;
-	dimension_t trained_parameters_size;
+	dimension_t trained_parameters_matrix_rows,trained_parameter_matrix_columns;
 	mlfw_mat_double *test_examples_matrix;
 	mlfw_column_vec_double *test_examples_target_values_vector;
 	dimension_t test_examples_matrix_rows,test_examples_matrix_columns;
