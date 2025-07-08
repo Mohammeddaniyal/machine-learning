@@ -17,6 +17,7 @@ mlfw_column_vec_double *target_values_vector;
 double learning_rate;
 uint64_t iteration_number;
 uint8_t (*callback)(uint64_t,double);
+mlfw_set_string *class_set;
 };
 
 uint8_t screen_logger(uint64_t iteration_number,double cost)
@@ -28,11 +29,11 @@ uint8_t screen_logger(uint64_t iteration_number,double cost)
 
 void * thread_function(void *d)
 {
-mlfw_row_vec_double *trained_parameters;
+mlfw_mat_double *trained_parameters_matrix;
 struct thread_args *args;
 args=(struct thread_args *)d;
 
-trained_parameters=mlfw_logistic_regression_gradient_descent_fit(args->matrix,args->target_values_vector,args->learning_rate,args->iteration_number,args->callback);
+trained_parameters=mlfw_logistic_regression_gradient_descent_fit(args->matrix,args->target_values_vector,args->class_set,args->learning_rate,args->iteration_number,args->callback);
 
 sleep(1); // just so that even after the fit line ends, the thread should not end immediately
 
@@ -59,30 +60,40 @@ int main(int argc,char *argv[])
 	char *end;
 	char *dataset_name;
 	double learning_rate;
-	int test_data_percentage;
+//	int test_data_percentage;
 	uint64_t number_of_iterations;
 	char *model_csv_name; // to store trained parameters
 	mlfw_row_vec_string *trained_parameters_header;
 	char str[11];
+	mlfw_row_vec_string *header;
 	if(argc!=6)
 	{
-		printf("Usage [binary_classifier dataset.csv learning_rate test_data_percentage number_of_iterations model_csv_name]\n");
+		printf("Usage [multi_class_classifier dataset.csv learning_rate test_data_percentage number_of_iterations model_csv_name]\n");
 		return 0;
 	}
 	
 	dataset_name=argv[1];
 	learning_rate=strtod(argv[2],&end);
-	test_data_percentage=atoi(argv[3]);
+//	test_data_percentage=atoi(argv[3]);
 	number_of_iterations=atoi(argv[4]);
 	model_csv_name=argv[5];	
 	
-	mlfw_mat_double_get_training_testing_data(dataset_name,&training_examples_matrix,&test_examples_matrix,test_data_percentage);
+	//mlfw_mat_double_get_training_testing_data(dataset_name,&training_examples_matrix,&test_examples_matrix,test_data_percentage);
+	training_examples_matrix=mlfw_mat_double_from_csv(dataset_name,NULL,&header);
 	if(training_examples_matrix==NULL)
 	{
 		printf("Unable to load %s\n",dataset_name);
 		return 0;
 	}
-
+	mlfw_row_vec_string_destroy(header);
+	test_examples_matrix=mlfw_mat_double_from_csv(dataset_name,NULL,&header);
+	if(test_examples_matrix==NULL)
+	{
+		printf("Unable to load %s\n",dataset_name);
+		mlfw_mat_double_destroy(training_examples_matrix);
+		return 0;
+	}
+	mlfw_row_vec_string_destroy(header);
 
 	mlfw_mat_double_get_dimensions(training_examples_matrix,&training_examples_matrix_rows,&training_examples_matrix_columns);
 	mlfw_mat_double_get_dimensions(test_examples_matrix,&test_examples_matrix_rows,&test_examples_matrix_columns);
