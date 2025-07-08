@@ -179,7 +179,7 @@ int main(int argc,char *argv[])
 	{
 		printf("Low memory\n");
 		mlfw_set_string_destroy(class_set);
-		mlfw_row_vec_double_destroy(trained_parameters);
+		mlfw_mat_double_destroy(trained_parameters_matrix);
 		return 0;
 	}
 	test_examples_matrix_columns=test_examples_matrix_columns-1;
