@@ -66,7 +66,7 @@ int main(int argc,char *argv[])
 //	int test_data_percentage;
 	uint64_t number_of_iterations;
 	char *model_csv_name; // to store trained parameters
-	mlfw_row_vec_string *trained_parameters_header;
+	mlfw_row_vec_string *trained_parameters_matrix_header;
 	char str[11];
 	char *str_ptr;
 	mlfw_row_vec_string *header;
