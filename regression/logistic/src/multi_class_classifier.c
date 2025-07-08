@@ -183,7 +183,7 @@ int main(int argc,char *argv[])
 		return 0;
 	}
 	test_examples_matrix_columns=test_examples_matrix_columns-1;
-	test_examples_predicted_values_vector=mlfw_logistic_regression_multi_class_predict(test_examples_matrix,trained_parameters_matrix);
+	test_examples_predicted_values_vector=mlfw_logistic_regression_multi_class_predict(test_examples_matrix,class_set,trained_parameters_matrix);
 	if(test_examples_predicted_values_vector==NULL)
 	{
 		printf("Low memory\n");
