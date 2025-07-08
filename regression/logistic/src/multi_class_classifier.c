@@ -1,6 +1,7 @@
 #include<mlfw_matrix.h>
 #include<mlfw_vector.h>
 #include<mlfw_learning.h>
+#include<mlfw_set.h>
 #include<stdlib.h>
 #include<stdio.h>
 #include<pthread.h>
