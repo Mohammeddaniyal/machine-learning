@@ -98,7 +98,6 @@ int main(int argc,char *argv[])
 		mlfw_set_string_destroy(class_set);
 		return 0;
 	}
-	mlfw_row_vec_string_destroy(header);
 	test_examples_matrix=mlfw_mat_double_from_csv(dataset_name,NULL,&header);
 	if(test_examples_matrix==NULL)
 	{
@@ -143,6 +142,8 @@ int main(int argc,char *argv[])
 	// this below line is very very very very important
 	pthread_join(thread_id,(void **)&trained_parameters_matrix);
 
+	
+	
 	if(trained_parameters_matrix==NULL)
 	{
 		printf("Low memory\n");
@@ -201,6 +202,8 @@ int main(int argc,char *argv[])
 	printf("Accuracy score (0-1) is : %lf \n",r2_score);
 
 	class_set_size=mlfw_set_string_get_size(class_set);
+	
+
 	trained_parameters_matrix_header=mlfw_row_vec_string_create_new(class_set_size);
 	if(trained_parameters_matrix_header==NULL)
 	{
