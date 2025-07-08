@@ -33,11 +33,11 @@ mlfw_mat_double *trained_parameters_matrix;
 struct thread_args *args;
 args=(struct thread_args *)d;
 
-trained_parameters=mlfw_logistic_regression_gradient_descent_fit(args->matrix,args->target_values_vector,args->class_set,args->learning_rate,args->iteration_number,args->callback);
+trained_parameters_matrix=mlfw_logistic_regression_gradient_descent_fit(args->matrix,args->target_values_vector,args->class_set,args->learning_rate,args->iteration_number,args->callback);
 
 sleep(1); // just so that even after the fit line ends, the thread should not end immediately
 
-return (void *)trained_parameters;
+return (void *)trained_parameters_matrix;
 
 }
 
