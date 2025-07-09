@@ -518,7 +518,8 @@ mlfw_mat_double * mlfw_logistic_regression_gradient_descent_multi_class_fit(mlfw
 		target_class_double_value=mlfw_column_vec_double_get(target_class_vector,i);
 		target_class_int_value=(int)target_class_double_value;
 		sprintf(str,"%d",target_class_int_value);
-		mlfw_set_string_add(class_set,str);
+		// problem occured in set add, unable to add due to low memory
+		if(mlfw_set_string_add(class_set,str)==-1) return NULL;
 	}
 	class_set_size=mlfw_set_string_get_size(class_set); // this set contains unique values	
 	tmp_target_class_vector=mlfw_column_vec_double_create_new(target_class_vector_size);
