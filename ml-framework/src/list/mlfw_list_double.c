@@ -38,7 +38,7 @@ void mlfw_forward_list_double_insert(mlfw_forward_list_double *forward_list,doub
 {
 	mlfw_forward_list_node_double *node;
 	if(forward_list==NULL) return;
-	node=(mlfw_forward_list_node_double)malloc(sizeof(mlfw_forward_list_node_double));
+	node=(mlfw_forward_list_node_double *)malloc(sizeof(mlfw_forward_list_node_double));
 	if(node==NULL) return;
 	node->value=value;
 	node->next=forward_list->top;
@@ -47,8 +47,12 @@ void mlfw_forward_list_double_insert(mlfw_forward_list_double *forward_list,doub
 }
 mlfw_row_vec_double * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_double *forward_list)
 {
-	mlfw_row_vec_
+	mlfw_row_vec_double *vector;
+	mlfw_forward_list_node_double *node;
+	index_t i;
 	if(forward_list==NULL) return NULL;
+	if(forward_list->size==0) return NULL;
+	vector=(mlfw_row_vec_double *)maloc
 }
 
 dimension_t mlfw_forward_list_double_get_size(mlfw_forward_list_double *forward_list)
