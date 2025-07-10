@@ -29,13 +29,21 @@ mlfw_forward_list_double * mlfw_forward_list_double_create_new()
 }
 void mlfw_forward_list_double_destroy(mlfw_forward_list_double *forward_list)
 {
-	if(
+	if(forward_list==NULL) return;
+	mlfw_forward_list_double_clear(forward_list);
+	free(forward_list);
 }
 
 void mlfw_forward_list_double_insert(mlfw_forward_list_double *forward_list,double value)
 {
 	mlfw_forward_list_node_double *node;
 	if(forward_list==NULL) return;
+	node=(mlfw_forward_list_node_double)malloc(sizeof(mlfw_forward_list_node_double));
+	if(node==NULL) return;
+	node->value=value;
+	node->next=forward_list->top;
+	forward_list->top=node;
+	forward_list->size++;
 }
 mlfw_row_vec_string * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_double *forward_list)
 {
