@@ -1,9 +1,19 @@
-#ifndef __MLFW__LIST__DOUBLE__
-#define __MLFW__LIST__DOUBLE__
+#include<stdio.h>
+#include<stdlib.h>
+#include<mlfw_list.h>
 #include<mlfw_vector.h>
 
-struct __mlfw_forward_list_double;
-typedef struct __mlfw_forward_list_double mlfw_forward_list_double;
+typedef struct __mlfw_forward_list_node_double
+{
+	double value;
+	__mlfw_forward_list_node_double *next;
+}mlfw_forward_list_node_double;
+
+typedef struct __mlfw_forward_list_double
+{
+	mlfw_forward_list_node_double *top;
+	dimension_t size;
+}mlfw_forward_list_double;
 
 mlfw_forward_list_double * mlfw_forward_list_double_create_new();
 void mlfw_forward_list_double_destroy();
@@ -14,4 +24,3 @@ mlfw_row_vec_string * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_
 dimension_t mlfw_forward_list_double_get_size(mlfw_forward_list_double *forward_list);
 void mlfw_forward_list_double_clear(mlfw_forward_list_double *forward_list);
 
-#endif
