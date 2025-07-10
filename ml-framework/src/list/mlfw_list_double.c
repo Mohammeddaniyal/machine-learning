@@ -63,8 +63,11 @@ mlfw_row_vec_double * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_
 
 dimension_t mlfw_forward_list_double_get_size(mlfw_forward_list_double *forward_list)
 {
+	if(forward_list==NULL) return 0;
+	return forward_list->size;
 }
 void mlfw_forward_list_double_clear(mlfw_forward_list_double *forward_list)
 {
+
 }
 
