@@ -6,7 +6,7 @@
 typedef struct __mlfw_forward_list_node_double
 {
 	double value;
-	__mlfw_forward_list_node_double *next;
+	struct __mlfw_forward_list_node_double *next;
 }mlfw_forward_list_node_double;
 
 typedef struct __mlfw_forward_list_double
