@@ -45,8 +45,10 @@ void mlfw_forward_list_double_insert(mlfw_forward_list_double *forward_list,doub
 	forward_list->top=node;
 	forward_list->size++;
 }
-mlfw_row_vec_string * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_double *forward_list)
+mlfw_row_vec_double * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_double *forward_list)
 {
+	mlfw_row_vec_
+	if(forward_list==NULL) return NULL;
 }
 
 dimension_t mlfw_forward_list_double_get_size(mlfw_forward_list_double *forward_list)
