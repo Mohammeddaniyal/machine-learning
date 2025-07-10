@@ -52,7 +52,13 @@ mlfw_row_vec_double * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_
 	index_t i;
 	if(forward_list==NULL) return NULL;
 	if(forward_list->size==0) return NULL;
-	vector=(mlfw_row_vec_double *)maloc
+	vector=mlfw_row_vec_double_create_new(forward_list->size);
+	if(vector==NULL) return NULL;
+	for(node=forward_list->top,i=0;node!=NULL;node=node->next,++i)
+	{
+		mlfw_row_vec_double_set(vector,i,node->value);
+	}
+	return vector;
 }
 
 dimension_t mlfw_forward_list_double_get_size(mlfw_forward_list_double *forward_list)
