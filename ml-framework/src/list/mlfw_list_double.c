@@ -23,7 +23,7 @@ mlfw_forward_list_double * mlfw_forward_list_double_create_new()
 	{
 		return NULL;
 	}
-	forward_list->next=NULL;
+	forward_list->top=NULL;
 	forward_list->size=0;
 	return forward_list;
 }
