@@ -17,7 +17,15 @@ typedef struct __mlfw_forward_list_double
 
 mlfw_forward_list_double * mlfw_forward_list_double_create_new()
 {
-
+	mlfw_forward_list_double *forward_list;
+	forward_list=(mlfw_forward_list_double *)malloc(sizeof(mlfw_forward_list_double));
+	if(forward_list==NULL)
+	{
+		return NULL;
+	}
+	forward_list->next=NULL;
+	forward_list->size=0;
+	return forward_list;
 }
 void mlfw_forward_list_double_destroy()
 {
