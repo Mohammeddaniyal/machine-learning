@@ -68,6 +68,14 @@ dimension_t mlfw_forward_list_double_get_size(mlfw_forward_list_double *forward_
 }
 void mlfw_forward_list_double_clear(mlfw_forward_list_double *forward_list)
 {
-
+	mlfw_forward_list_node_double *node;
+	if(forward_list==NULL) return;
+	while(forward_list->top!=NULL)
+	{
+		node=forward_list->top;
+		forward_list->top=forward->top->next;
+		free(node);
+		forward_list->size--; // also we can directly assign zero
+	}
 }
 
