@@ -73,7 +73,7 @@ void mlfw_forward_list_double_clear(mlfw_forward_list_double *forward_list)
 	while(forward_list->top!=NULL)
 	{
 		node=forward_list->top;
-		forward_list->top=forward->top->next;
+		forward_list->top=forward_list->top->next;
 		free(node);
 		forward_list->size--; // also we can directly assign zero
 	}
