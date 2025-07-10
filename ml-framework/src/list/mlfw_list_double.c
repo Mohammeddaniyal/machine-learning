@@ -27,12 +27,15 @@ mlfw_forward_list_double * mlfw_forward_list_double_create_new()
 	forward_list->size=0;
 	return forward_list;
 }
-void mlfw_forward_list_double_destroy()
+void mlfw_forward_list_double_destroy(mlfw_forward_list_double *forward_list)
 {
+	if(
 }
 
 void mlfw_forward_list_double_insert(mlfw_forward_list_double *forward_list,double value)
 {
+	mlfw_forward_list_node_double *node;
+	if(forward_list==NULL) return;
 }
 mlfw_row_vec_string * mlfw_forward_list_double_get_row_vector(mlfw_forward_list_double *forward_list)
 {
