@@ -14,7 +14,7 @@ void __mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,inde
 	dataset_size=mlfw_row_vec_double_get_size(dataset);
 	if(i+1<dataset_size)
 	{
-	__mlfw_double_generate_polynomial_dataset(dataset,i+1,accumulate_value,exponent,polynomial_dataset);
+	__mlfw_double_generate_polynomial_dataset(dataset,i+1,accumulated_value,exponent,polynomial_dataset);
 	}
 }
 mlfw_row_vec_double * mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,uint8_t exponent)
