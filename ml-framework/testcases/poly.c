@@ -2,6 +2,12 @@
 #include<mlfw_vector.h>
 #include<mlfw_list.h>
 
+
+mlfw_row_vec_double mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,uint8_t exponent)
+{
+
+}
+
 int main()
 {
 	
