@@ -3,6 +3,10 @@
 #include<mlfw_list.h>
 
 
+mlfw_row_vec_double mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,index_t i,double accumulated_value,uint8_t exponent,mlfw_forward_list_double *polynomial_dataset)
+{
+
+}
 mlfw_row_vec_double mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,uint8_t exponent)
 {
 
