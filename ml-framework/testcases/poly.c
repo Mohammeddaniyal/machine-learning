@@ -8,7 +8,7 @@ void __mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,inde
 	double yes_value;
 	dimension_t dataset_size;
 	if(exponent==0) return;
-	yes_value=accumulate_value*mlfw_row_vec_double_get(dataset,i);
+	yes_value=accumulated_value*mlfw_row_vec_double_get(dataset,i);
 	mlfw_forward_list_double_insert(polynomial_dataset,yes_value);
 	__mlfw_double_generate_polynomial_dataset(dataset,i,yes_value,exponent-1,polynomial_dataset);
 	dataset_size=mlfw_row_vec_double_get_size(dataset);
