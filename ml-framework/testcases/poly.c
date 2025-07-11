@@ -38,6 +38,7 @@ int main()
 	
 	mlfw_row_vec_double *dataset;
 	mlfw_row_vec_double *polynomial_dataset;
+	dimension_t polynomial_dataset_size;
 	index_t i;
 	double value;
 	dataset=mlfw_row_vec_double_create_new(2);
