@@ -29,6 +29,7 @@ mlfw_row_vec_double * mlfw_double_generate_polynomial_dataset(mlfw_row_vec_doubl
 	__mlfw_double_generate_polynomial_dataset(dataset,0,1.0,exponent,polynomial_dataset);
 	polynomial_dataset_size=mlfw_forward_list_double_get_size(polynomial_dataset);
 	if(polynomial_dataset_size==0) return NULL;
+	mlfw_forward_list_double_insert(polynomial_dataset,1.0);
 	vector=mlfw_forward_list_double_get_row_vector(polynomial_dataset);
 	return vector;
 }
