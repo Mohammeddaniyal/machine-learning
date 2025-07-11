@@ -5,7 +5,17 @@
 
 mlfw_row_vec_double mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,index_t i,double accumulated_value,uint8_t exponent,mlfw_forward_list_double *polynomial_dataset)
 {
-
+	double yes_value;
+	dimension_t dataset_size;
+	if(exponent==0) return;
+	yes_value=accumulate_value*mlfw_row_vec_double_get(dataset,i);
+	mlfw_forward_list_double_insert(polynomial_dataset,yes_value);
+	__mlfw_double_generate_polynomial_dataset(dataset,i,yes_value,exponent-1,polynomial_dataset);
+	dataset_size=mlfw_row_vec_double_get_size(dataset);
+	if(i+1<dataset_size)
+	{
+	__mlfw_double_generate_polynomial_dataset(dataset,i+1,accumulate_value,exponent,polynomial_dataset);
+	}
 }
 mlfw_row_vec_double mlfw_double_generate_polynomial_dataset(mlfw_row_vec_double *dataset,uint8_t exponent)
 {
