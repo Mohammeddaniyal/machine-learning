@@ -5,7 +5,7 @@ int main(int argc,char *argv[])
 {
 	double x,y;
 	char *target;
-	int start_x,start_y;
+	int start_x,end_x;
 	FILE *file;
 	int j;
 	if(argc!=4)
@@ -22,7 +22,7 @@ int main(int argc,char *argv[])
 	{
 		x=(double)j;
 		y=pow(sin((1.0/15.0*x)),2)+10;
-		fprintf(file,"%lf,%lf\n"x,y);
+		fprintf(file,"%lf,%lf\n",x,y);
 	}
 	fclose(file);
 	return 0;
