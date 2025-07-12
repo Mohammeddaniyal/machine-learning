@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 int main(int argc,char *argv[])
 {
 	double x,y;
@@ -12,7 +13,7 @@ int main(int argc,char *argv[])
 		printf("Specify [target.csv] [start_x] [end_x]\n");
 		return 0;
 	}
-	target=agrv[0];
+	target=argv[0];
 	file=fopen(target,"w");
 	fprintf(file,"0,1\n"); // header part
 	start_x=atoi(argv[1]);
