@@ -13,15 +13,15 @@ int main(int argc,char *argv[])
 		printf("Specify [target.csv] [start_x] [end_x]\n");
 		return 0;
 	}
-	target=argv[0];
+	target=argv[1];
 	file=fopen(target,"w");
 	fprintf(file,"0,1\n"); // header part
-	start_x=atoi(argv[1]);
-	end_x=atoi(argv[2]);
+	start_x=atoi(argv[2]);
+	end_x=atoi(argv[3]);
 	for(j=start_x;j<=end_x;++j)
 	{
 		x=(double)j;
-		y=pow(sin((1.0/15.0*x)),2)+10;
+		y=pow(sin(1.0/15.0*x),2)*x+10;
 		fprintf(file,"%lf,%lf\n",x,y);
 	}
 	fclose(file);
