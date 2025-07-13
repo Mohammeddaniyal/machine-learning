@@ -104,6 +104,7 @@ int main(int argc,char *argv[])
 	dimension_t test_examples_matrix_rows,test_examples_matrix_columns;
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
 	double r2_score;
+	double predicted_values;
 	char *source;
 	char *target;
 	char *original;
@@ -115,6 +116,7 @@ int main(int argc,char *argv[])
 	mlfw_row_vec_string *source_header;
 	mlfw_row_vec_string *original_header;
 	index_t i;
+	
 	if(argc!=6)
 	{
 printf("Specify [source csv] [test_predictions csv] [original csv] [learning rate] [number of iteration]\n");
@@ -255,7 +257,11 @@ mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_exa
 		printf("Unable to sore predicted data, low memory issue\n");
 		return 0;
 	}
-
+	mlfw_mat_double_get_dimensions(original_matrix,&original_matrix_rows,&original_matrix_columns);
+	for(i=0;i<original_matrix_rows;++i)
+	{
+	
+	}
 
 	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
 	return 0;
