@@ -104,7 +104,7 @@ int main(int argc,char *argv[])
 	dimension_t test_examples_matrix_rows,test_examples_matrix_columns;
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
 	double r2_score;
-	double predicted_values;
+	double predicted_value;
 	char *source;
 	char *target;
 	char *original;
@@ -260,9 +260,12 @@ mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_exa
 	mlfw_mat_double_get_dimensions(original_matrix,&original_matrix_rows,&original_matrix_columns);
 	for(i=0;i<original_matrix_rows;++i)
 	{
-	
+		predicted_value=mlfw_column_vec_double_get(test_examples_predicted_values_vector,i);
+		mlfw_mat_double_set(original,i,original_matrix_columns-1,predicted_value);
 	}
-
+	mlfw_mat_double_to_csv(original,target,original_header);
+	mlfw_mat_double_destroy(original_destroy);
+	mlfw_row_vec_string_destroy(original_header);
 	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
 	return 0;
 }
