@@ -128,7 +128,7 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	target=argv[2];
 	original=argv[3];
 	learning_rate=strtod(argv[4],&e);
-	number_of_iterations=ato(argv[5]);
+	number_of_iterations=atoi(argv[5]);
 
 	// we have commented the following lline because we are going to
 	// keep trraining and testing data from source (no shuffle and split)
