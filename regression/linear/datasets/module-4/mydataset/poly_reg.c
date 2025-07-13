@@ -261,7 +261,7 @@ mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_exa
 	for(i=0;i<original_matrix_rows;++i)
 	{
 		predicted_value=mlfw_column_vec_double_get(test_examples_predicted_values_vector,i);
-		mlfw_mat_double_set(original,i,original_matrix_columns-1,predicted_value);
+		mlfw_mat_double_set(original_matrix,i,original_matrix_columns-1,predicted_value);
 	}
 	mlfw_mat_double_to_csv(original_matrix,target,original_header);
 	mlfw_mat_double_destroy(original_destroy);
