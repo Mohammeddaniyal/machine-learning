@@ -133,7 +133,7 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	// we have commented the following lline because we are going to
 	// keep trraining and testing data from source (no shuffle and split)
 	//mlfw_mat_double_get_training_testing_data(source,&training_examples_matrix,&test_examples_matrix,20);
-	training_examples_matrix=mlfw_mat_double_from(source,NULL,&source_header);
+	training_examples_matrix=mlfw_mat_double_from_csv(source,NULL,&source_header);
 	if(training_examples_matrix==NULL)
 	{
 		printf("Unable to load %s\n",source);
