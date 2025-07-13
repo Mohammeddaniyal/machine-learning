@@ -210,7 +210,7 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	// prediction part starts here
 	
 
-	test_examples_target_values_vector=mlfw_mat_double_create_column_vec(test_examples_matrix,1,NULL);
+test_examples_target_values_vector=mlfw_mat_double_create_column_vec(test_examples_matrix,test_examples_matrix_columns-1,NULL);
 	if(test_examples_target_values_vector==NULL)
 	{
 		printf("Low memory\n");
@@ -219,7 +219,7 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 		return 0;
 	}
 
-	mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_examples_matrix_columns-1);
+mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_examples_matrix_columns-1);
 	if(test_examples_matrix==NULL)
 	{
 		printf("Low memory\n");
