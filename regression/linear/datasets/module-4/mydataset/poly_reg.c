@@ -172,7 +172,7 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	wrapper.matrix=training_examples_matrix;
 	wrapper.target_values_vector=training_examples_target_values_vector;
 	wrapper.learning_rate=learning_rate;
-	wrapper.iteration_number=number_of_iteration;
+	wrapper.iteration_number=number_of_iterations;
 	wrapper.callback=screen_logger;
 	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
 	while(1)
