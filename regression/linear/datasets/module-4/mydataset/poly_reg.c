@@ -104,10 +104,21 @@ int main(int argc,char *argv[])
 	dimension_t test_examples_matrix_rows,test_examples_matrix_columns;
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
 	double r2_score;
+	char *source;
+	char *target;
+	char *original;
+	mlfw_mat_double *original_matrix;
+	dimension_t original_matrix_rows,original_matrix_columns;
+	double learning_rate;
+	uint64_t number_of_iterations;
+	char *e;
+	mlfw_row_vec_string *source_header;
+	mlfw_row_vec_string *original_header;
 	index_t i;
+	
 
 	mlfw_row_vec_string
-	if(argc!=2)
+	if(argc!=6)
 	{
 printf("Specify [source csv] [test_predictions csv] [original csv] [learning rate] [number of iteration]\n");
 		return 0;
