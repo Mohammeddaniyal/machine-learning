@@ -105,9 +105,11 @@ int main(int argc,char *argv[])
 	mlfw_column_vec_double *test_examples_predicted_values_vector;
 	double r2_score;
 	index_t i;
+
+	mlfw_row_vec_string
 	if(argc!=2)
 	{
-		printf("Pass numbers of iteration as command line argument\n");
+printf("Specify [source csv] [test_predictions csv] [original csv] [learning rate] [number of iteration]\n");
 		return 0;
 	}
 		
