@@ -115,27 +115,40 @@ int main(int argc,char *argv[])
 	mlfw_row_vec_string *source_header;
 	mlfw_row_vec_string *original_header;
 	index_t i;
-	
-
-	mlfw_row_vec_string
 	if(argc!=6)
 	{
 printf("Specify [source csv] [test_predictions csv] [original csv] [learning rate] [number of iteration]\n");
 		return 0;
 	}
 		
-	
-	mlfw_mat_double_get_training_testing_data("IceCreamSales.csv",&training_examples_matrix,&test_examples_matrix,20);
+
+	source=argv[1];
+	target=argv[2];
+	original=argv[3];
+	learning_rate=strtod(argv[4],&e);
+	number_of_iterations=ato(argv[5]);
+
+	// we have commented the following lline because we are going to
+	// keep trraining and testing data from source (no shuffle and split)
+	//mlfw_mat_double_get_training_testing_data(source,&training_examples_matrix,&test_examples_matrix,20);
+	training_examples_matrix=mlfw_mat_double_from(source,NULL,&source_header);
 	if(training_examples_matrix==NULL)
 	{
-		printf("Unable to load IceCreamSale.csv\n");
+		printf("Unable to load %s\n",source);
 		return 0;
 	}
-
-
 	mlfw_mat_double_get_dimensions(training_examples_matrix,&training_examples_matrix_rows,&training_examples_matrix_columns);
+	mlfw_row_vec_string_destroy(source_header);
+	test_examples_matrix=mlfw_mat_double_from_csv(source,NULL,&source_header);
+	if(test_examples_matrix==NULL)
+	{
+		printf("Unable to load %s\n",source);
+		mlfw_mat_double_destroy(training_examples_matrix);
+		return 0;
+	}
+	mlfw_row_vec_string_destroy(source_header);
 	mlfw_mat_double_get_dimensions(test_examples_matrix,&test_examples_matrix_rows,&test_examples_matrix_columns);
-	training_examples_target_values_vector=mlfw_mat_double_create_column_vec(training_examples_matrix,1,NULL);
+	training_examples_target_values_vector=mlfw_mat_double_create_column_vec(training_examples_matrix,training_examples_matrix_columns-1,NULL);
 	if(training_examples_target_values_vector==NULL)
 	{
 		printf("Low memory\n");
@@ -156,8 +169,8 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 
 	wrapper.matrix=training_examples_matrix;
 	wrapper.target_values_vector=training_examples_target_values_vector;
-	wrapper.learning_rate=0.0003;
-	wrapper.iteration_number=atoi(argv[1]);
+	wrapper.learning_rate=learning_rate;
+	wrapper.iteration_number=number_of_iteration;
 	wrapper.callback=screen_logger;
 	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
 	while(1)
