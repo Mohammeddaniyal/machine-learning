@@ -247,7 +247,16 @@ mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_exa
 	mlfw_row_vec_double_destroy(trained_parameters);
 	mlfw_mat_double_destroy(test_examples_matrix);
 	mlfw_column_vec_double_destroy(test_examples_target_values_vector);
-	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
 
+	original_matrix=mlfw_mat_double_from_csv(original,NULL,&original_header);
+	if(original_matrix==NULL)
+	{
+		mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
+		printf("Unable to sore predicted data, low memory issue\n");
+		return 0;
+	}
+
+
+	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
 	return 0;
 }
