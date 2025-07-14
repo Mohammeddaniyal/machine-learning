@@ -208,7 +208,9 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	
 	// this below line is very very very very important
 	pthread_join(thread_id,(void **)&trained_parameters);
-
+	if(matrix!=NULL)
+	{
+	}
 	if(trained_parameters==NULL)
 	{
 		printf("Low memory\n");
@@ -287,5 +289,9 @@ mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_exa
 	mlfw_mat_double_destroy(original_matrix);
 	mlfw_row_vec_string_destroy(original_header);
 	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
+	if(gnuplot!=NULL)
+	{
+		pclose(gnuplot);
+	}
 	return 0;
 }
