@@ -41,7 +41,7 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value,mlfw_column_v
 	for(r=0;r<matrix_rows;++r)
 	{
 		value1=mlfw_column_vec_double_get(predicted_values_vector,r);
-		mlfw_mat_double_set(matrix,r,matrix_columns-1);
+		mlfw_mat_double_set(matrix,r,matrix_columns-1,value1);
 	}
 	mlfw_mat_double_to_csv(matrix,"tmp.csv",header);
 	if(gnuplot==NULL)
