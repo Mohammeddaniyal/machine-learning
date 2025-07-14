@@ -25,7 +25,7 @@ dimension_t matrix_rows=0;
 dimension_t matrix_columns=0;
 mlfw_row_vec_string *header=NULL;
 
-uint8_t screen_logger(uint64_t iteration_number,double error_value)
+uint8_t screen_logger(uint64_t iteration_number,double error_value,mlfw_column_vec_double *predicted_values_vector)
 {
 	index_t r;
 	double value1;
