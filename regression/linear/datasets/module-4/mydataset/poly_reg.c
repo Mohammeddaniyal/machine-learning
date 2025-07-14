@@ -19,6 +19,12 @@ uint64_t iteration_number;
 uint8_t (*callback)(uint64_t,double,mlfw_column_vec_double *);
 };
 
+FILE *gnuplot;
+mlfw_mat_double *matrix=NULL;
+dimension_t matrix_rows=0;
+dimension_t matrix_columns=0;
+mlfw_row_vec_string *header=NULL;
+
 uint8_t screen_logger(uint64_t iteration_number,double error_value)
 {
 	FILE *gnuplot;
