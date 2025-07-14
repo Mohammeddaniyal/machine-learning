@@ -265,7 +265,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	// one iteration completed, so if on_each_iteration is not NULL, call the callback
 	if(on_each_iteration!=NULL)
 	{
-		if(on_each_iteration(k,final_error_value)==0) break;
+		if(on_each_iteration(k,final_error_value,P)==0) break;
 	}
 	++k;
 	}// operation loop ends
