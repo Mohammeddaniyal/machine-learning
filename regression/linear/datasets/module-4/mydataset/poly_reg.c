@@ -50,7 +50,10 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value)
 		fprintf(gnuplot,"set datafile separator ','\n");
 		fflush(gnuplot);
 	}
-
+	fprintf(gnuplot,"clear\n");
+	fflush(gnuplot);
+	fprintf(gnuplot,"plot 'data.csv' with lines,'tmp.csv' with lines\n");
+	fflush(gnuplot);
 
 /*	
 	if(iteration_number<100)
