@@ -38,6 +38,12 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value)
 		matrix=mlfw_mat_double_from_csv("data.csv",NULL,&header);
 		mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	}
+	for(r=0;r<matrix_rows;++r)
+	{
+		value1=mlfw_column_vec_double_get(predicted_values_vector,r);
+		mlfw_mat_double_set(matrix,r,matrix_columns-1);
+	}
+	mlfw_mat_double_to_csv(matrix,"tmp.csv",header);
 
 /*	
 	if(iteration_number<100)
