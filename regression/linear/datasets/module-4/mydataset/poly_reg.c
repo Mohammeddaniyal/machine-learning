@@ -16,7 +16,7 @@ mlfw_mat_double *matrix;
 mlfw_column_vec_double *target_values_vector;
 double learning_rate;
 uint64_t iteration_number;
-uint8_t (*callback)(uint64_t,double);
+uint8_t (*callback)(uint64_t,double,mlfw_column_vec_double *);
 };
 
 uint8_t screen_logger(uint64_t iteration_number,double error_value)
@@ -264,7 +264,7 @@ mlfw_mat_double_reshape(&test_examples_matrix,test_examples_matrix_rows,test_exa
 		mlfw_mat_double_set(original_matrix,i,original_matrix_columns-1,predicted_value);
 	}
 	mlfw_mat_double_to_csv(original_matrix,target,original_header);
-	mlfw_mat_double_destroy(original_destroy);
+	mlfw_mat_double_destroy(original_matrix);
 	mlfw_row_vec_string_destroy(original_header);
 	mlfw_column_vec_double_destroy(test_examples_predicted_values_vector);
 	return 0;
