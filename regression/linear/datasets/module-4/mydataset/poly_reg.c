@@ -48,7 +48,7 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value,mlfw_column_v
 	{
 		gnuplot=popen("gnuplot --persist","w");
 		fprintf(gnuplot,"set datafile separator ','\n");
-		fprintf(gnuplot,"set datafile skip 1\n");
+		fprintf(gnuplot,"set datafile columnheaders\n");
 		fflush(gnuplot);
 	}
 	fprintf(gnuplot,"clear\n");
