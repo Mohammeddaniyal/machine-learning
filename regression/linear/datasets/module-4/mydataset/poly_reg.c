@@ -27,18 +27,8 @@ mlfw_row_vec_string *header=NULL;
 
 uint8_t screen_logger(uint64_t iteration_number,double error_value)
 {
-	FILE *gnuplot;
-	FILE *f;
 	index_t r;
 	double value1,value2;
-	static mlfw_mat_double *matrix=NULL; // since static, when the function gets called
-					     // for the first time, this declaration will
-					     // be implemented, and when the function ends
-					     // the variable matrix won't die
-	if(iteration_number==1)
-	{
-		matrix=mlfw_mat_double_create_new(100,2);
-	}
 
 	printf("Iteration : %" PRIu64 ",Error : %40.15lf\n",iteration_number,error_value);
 	
