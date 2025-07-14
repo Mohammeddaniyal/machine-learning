@@ -28,10 +28,18 @@ mlfw_row_vec_string *header=NULL;
 uint8_t screen_logger(uint64_t iteration_number,double error_value)
 {
 	index_t r;
-	double value1,value2;
+	double value1;
 
 	printf("Iteration : %" PRIu64 ",Error : %40.15lf\n",iteration_number,error_value);
-	
+	if(iteration_number%5000==0) return KEEP_RUNNING;
+
+	if(matrix==NULL)
+	{
+		matrix=mlfw_mat_double_from_csv("data.csv",NULL,&header);
+		mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	}
+
+/*	
 	if(iteration_number<100)
 	{
 		if(matrix!=NULL)
@@ -67,7 +75,7 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value)
 		matrix=NULL;
 		}
 	}
-
+	*/
 	return KEEP_RUNNING;// keep running
 }
 
