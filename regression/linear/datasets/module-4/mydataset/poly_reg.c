@@ -44,6 +44,13 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value)
 		mlfw_mat_double_set(matrix,r,matrix_columns-1);
 	}
 	mlfw_mat_double_to_csv(matrix,"tmp.csv",header);
+	if(gnuplot==NULL)
+	{
+		gnuplot=popen("gnuplot --persist","w");
+		fprintf(gnuplot,"set datafile separator ','\n");
+		fflush(gnuplot);
+	}
+
 
 /*	
 	if(iteration_number<100)
