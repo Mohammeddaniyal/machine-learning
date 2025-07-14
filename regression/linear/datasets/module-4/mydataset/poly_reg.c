@@ -31,7 +31,7 @@ uint8_t screen_logger(uint64_t iteration_number,double error_value,mlfw_column_v
 	double value1;
 
 	printf("Iteration : %" PRIu64 ",Error : %40.15lf\n",iteration_number,error_value);
-	if(iteration_number%5000==0) return KEEP_RUNNING;
+	if(iteration_number%5000!=0) return KEEP_RUNNING;
 
 	if(matrix==NULL)
 	{
