@@ -210,6 +210,8 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	pthread_join(thread_id,(void **)&trained_parameters);
 	if(matrix!=NULL)
 	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
 	}
 	if(trained_parameters==NULL)
 	{
