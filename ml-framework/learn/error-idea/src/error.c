@@ -1,2 +1,2 @@
-extern int x; // global variable
-extern char msg[512]; // global variable
+int x; // global variable
+char msg[512]; // global variable
