@@ -1,2 +1,2 @@
-void daniyal();
+void daniyal(char *thread);
 
