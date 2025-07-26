@@ -28,7 +28,7 @@ int main()
 	pthread_create(&t2,NULL,func_2,NULL);	
 	daniyal("main");
 	azka("main");
-	printf("Address of global x is %p\n",&x);
-	printf("Address of global msg is %p\n",&msg);
+	printf("main - Address of global x is %p\n",&x);
+	printf("main - Address of global msg is %p\n",&msg);
 	return 0;	
 }
