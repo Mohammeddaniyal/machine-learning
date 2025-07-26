@@ -23,7 +23,8 @@ void * func_2(void *)
 int main()
 {
 	void *ptr;
-	
+	pthread_t t1,t2;
+	pthread_create(&t1,NULL,func_1,NULL);	
 	daniyal("main");
 	azka("main");
 	printf("Address of global x is %p\n",&x);
