@@ -22,6 +22,8 @@ void * func_2(void *)
 
 int main()
 {
+	void *ptr;
+	
 	daniyal("main");
 	azka("main");
 	printf("Address of global x is %p\n",&x);
