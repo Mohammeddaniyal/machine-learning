@@ -1,2 +1,2 @@
-int x; // global variable
-char msg[512]; // global variable
+__thread int x; // global variable
+__threaad char msg[512]; // global variable
