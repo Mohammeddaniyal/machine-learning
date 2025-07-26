@@ -1,2 +1,2 @@
-void azka();
+void azka(char *thread);
 
