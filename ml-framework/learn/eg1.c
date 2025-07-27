@@ -22,6 +22,10 @@ char mlfw_error_debug_info[512];
 
 int main()
 {
-	//setup error for low memory	
+	//setup error for low memory
+	_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,342321);
+	printf("Error code : %u\n",mlfw_error_code);
+	printf("Error : %s\m",mlfw_error_string);
+	printf("Debug info : %s\n",mlfw_error_debug_info);	
 	return 0;
 }
