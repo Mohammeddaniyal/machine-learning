@@ -17,5 +17,6 @@ char mlfw_error_debug_info[512];
 
 #define _mlfw_set_error(code,string,...) \
 	mlfw_error_code=code; \
-	snprintf(mlfw_error_string,511,"File : %s\nFunction : %s\nLine : %d",__FILE__,__FUNCTION__,__LINE__);
+	snprintf(mlfw_error_string,511,string,__VA_ARGS__); \
+	snprintf(mlfw_error_debug_info,511,"File : %s\nFunction : %s\nLine : %d",__FILE__,__FUNCTION__,__LINE__);
 
