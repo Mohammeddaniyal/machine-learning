@@ -15,11 +15,14 @@ char mlfw_error_debug_info[512];
 #define MLFW_INVALID_INDEX_CODE 3
 #define MLFW_INVALID_INDEX "Invalid index (%u) against (%s), valid range (%u-%u)"
 
+#define MLFW_UNKNOWN_ERROR_CODE 4
+#define MLFW_UNKNOWN_ERROR "Unknown error"
+
 #define _mlfw_set_error(code,string,...) \
 	mlfw_error_code=code; \
 	snprintf(mlfw_error_string,511,string,## __VA_ARGS__); \
 	snprintf(mlfw_error_debug_info,511,"File : %s\nFunction : %s\nLine : %d",__FILE__,__FUNCTION__,__LINE__);
-
+// ## reason M4 L8 (27:16) 
 int main()
 {
 	//setup error for low memory
@@ -34,6 +37,11 @@ int main()
 	printf("Debug info : %s\n",mlfw_error_debug_info);	
 	//setup error for INVALID_INDEX
 	_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,5,"start_index",0,2);
+	printf("Error code : %u\n",mlfw_error_code);
+	printf("Error : %s\n",mlfw_error_string);
+	printf("Debug info : %s\n",mlfw_error_debug_info);	
+	//setup error for UNKNOWN ERROR
+	_mlfw_set_error(MLFW_UNKNOWN_ERROR_CODE,MLFW_UNKNOWN_ERROR);
 	printf("Error code : %u\n",mlfw_error_code);
 	printf("Error : %s\n",mlfw_error_string);
 	printf("Debug info : %s\n",mlfw_error_debug_info);	
