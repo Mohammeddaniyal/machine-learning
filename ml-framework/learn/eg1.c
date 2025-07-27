@@ -1,6 +1,11 @@
 #include<stdio.h>
 #include<inttypes.h>
 
+
+uint32_t mlfw_erro_code;
+char mlfw_error_string[512];
+char mlfw_error_debug_info[512];
+
 #define MLFW_LOW_MEMORY_CODE 1
 #define MLFW_LOW_MEMORY "Insufficient memory, cannot allocate %u bytes"
 
