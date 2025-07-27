@@ -32,5 +32,10 @@ int main()
 	printf("Error code : %u\n",mlfw_error_code);
 	printf("Error : %s\n",mlfw_error_string);
 	printf("Debug info : %s\n",mlfw_error_debug_info);	
+	//setup error for INVALID_INDEX
+	_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,5,"start_index",0,2);
+	printf("Error code : %u\n",mlfw_error_code);
+	printf("Error : %s\n",mlfw_error_string);
+	printf("Debug info : %s\n",mlfw_error_debug_info);	
 	return 0;
 }
