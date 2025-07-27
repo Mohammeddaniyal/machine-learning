@@ -9,3 +9,8 @@
 
 #define MLFW_INVALID_INDEX_CODE 3
 #define MLFW_INVALID_INDEX "Invalid index (%u) against (%s), valid range (%u-%u)"
+
+#define _mlfw_set_error(code,string,...) \
+	mlfw_error_code=code; \
+	snprintf(mlfw_error_string,511,"File : %s\nFunction : %s\nLine : %d",__FILE__,__FUNCTION__,__LINE__);
+
