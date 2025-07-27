@@ -27,5 +27,10 @@ int main()
 	printf("Error code : %u\n",mlfw_error_code);
 	printf("Error : %s\n",mlfw_error_string);
 	printf("Debug info : %s\n",mlfw_error_debug_info);	
+	//setup error for NULL ARGUMENT
+	_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"ptr");
+	printf("Error code : %u\n",mlfw_error_code);
+	printf("Error : %s\n",mlfw_error_string);
+	printf("Debug info : %s\n",mlfw_error_debug_info);	
 	return 0;
 }
