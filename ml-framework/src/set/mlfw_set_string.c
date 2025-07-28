@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include<___mlfw_error.h>
 typedef struct __mlfw_set_string 
 {
 	char **data;
@@ -12,7 +12,11 @@ mlfw_set_string * mlfw_set_string_create_new()
 {
 	mlfw_set_string *set;
 	set=(mlfw_set_string *)malloc(sizeof(mlfw_set_string));
-	if(set==NULL) return NULL;
+	if(set==NULL) 
+	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(mlfw_set_string));
+		return NULL;
+	}
 	set->data=NULL;
 	set->size=0;
 	return set;
