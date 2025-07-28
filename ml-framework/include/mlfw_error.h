@@ -1,14 +1,10 @@
-#ifndef __MLFW__SET__
-#define __MLFW__SET__
+#ifndef __MLFW__ERROR__
+#define __MLFW__ERROR__
 #include<inttypes.h>
 
-
-#ifndef dimension_t
-#define dimension_t uint32_t
-#define index_t uint32_t
-#endif
-
-
-#include<set/mlfw_set_string.h>
+uint8_t mlfw_error();
+uint32_t mlfw_get_error_code();
+void mlfw_get_error_string(char *error_string,uint8_t size);
+void mlfw_get_debig_string(char *debig_string,uint_t size);
 
 #endif
