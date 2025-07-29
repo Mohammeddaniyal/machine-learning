@@ -12,6 +12,29 @@ uint32_t mlfw_get_error_code()
 }
 void mlfw_get_error_string(char *error_string,uint8_t size)
 {
+	uint32_t i;
+	uint32_t max_len;
+	char *p;
+	char *q;
+	if(error_string==null) return;
+	if(size==0) return;
+	if(_mlfw_error_code=0)
+	{
+		error_string[0]='\0';
+		return;
+	}
+	max_len=size-1;
+	i=0;
+	p=_mlfw_error_string;
+	q=error_string;
+	while(*p!='\0' && i<max_len)
+	{
+		*q=*p;
+		++p;
+		++q;
+		++i;
+	}
+	*q='\0';
 }
 void mlfw_get_debug_string(char *debig_string,uint_t size)
 {
