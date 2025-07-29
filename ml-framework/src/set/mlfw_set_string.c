@@ -8,7 +8,7 @@ typedef struct __mlfw_set_string
 	char **data;
 	dimension_t size;
 }mlfw_set_string;
-mlfw_set_string * mlfw_set_string_create_new()
+mlfw_set_string * mlfw_set_string_create_new(void)
 {
 	mlfw_set_string *set;
 	set=(mlfw_set_string *)malloc(sizeof(mlfw_set_string));
