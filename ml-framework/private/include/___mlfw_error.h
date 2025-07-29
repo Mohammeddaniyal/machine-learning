@@ -17,6 +17,9 @@ __thread char _mlfw_debug_string[512];
 #define MLFW_INVALID_INDEX_CODE 3
 #define MLFW_INVALID_INDEX "Invalid index (%u) against (%s), valid range (%u-%u)"
 
+#define MLFW_INVALID_INDEX_EMPTY_CODE 4
+#define MLFW_INVALID_INDEX_EMPTY "Invalid index (%u) for parameter (%s). collection is empty"
+
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
