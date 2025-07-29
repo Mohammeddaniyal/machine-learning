@@ -2,11 +2,11 @@
 #include<inttypes.h>
 #include<___mlfw_error.h>
 
-uint8_t mlfw_error()
+uint8_t mlfw_error(void)
 {
 	return _mlfw_error_code!=0; // !=0 means, error exists
 }
-uint32_t mlfw_get_error_code()
+uint32_t mlfw_get_error_code(void)
 {
 	return 0;
 }
@@ -63,17 +63,17 @@ void mlfw_get_debug_string(char *debug_string,uint_t size)
 	*q='\0';
 
 }
-void mlfw_reset_error()
+void mlfw_reset_error(void)
 {
 	_mlfw_error_code=0;
 	_mlfw_error_string[0]='\0';
 	_mlfw_debug_string[0]='\0';
 }
-uint32_t mlfw_get_error_string_length()
+uint32_t mlfw_get_error_string_length(void)
 {
 	return (uint32_t)strlen(_mlfw_error_string);
 }
-uint32_t mlfw_get_debug_string_lenght()
+uint32_t mlfw_get_debug_string_lenght(void)
 {
 	return (uint32_t)strlen(_mlfw_error_string);
 }
