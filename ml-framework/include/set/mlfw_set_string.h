@@ -3,7 +3,7 @@
 
 struct __mlfw_set_string;
 typedef struct __mlfw_set_string mlfw_set_string;
-mlfw_set_string * mlfw_set_string_create_new();
+mlfw_set_string * mlfw_set_string_create_new(void);
 void mlfw_set_string_destroy(mlfw_set_string *set);
 
 void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string);
