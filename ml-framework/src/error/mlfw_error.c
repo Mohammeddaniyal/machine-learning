@@ -71,7 +71,9 @@ void mlfw_reset_error()
 }
 uint32_t mlfw_get_error_string_length()
 {
+	return (uint32_t)strlen(_mlfw_error_string);
 }
 uint32_t mlfw_get_debug_string_lenght()
 {
+
 }
