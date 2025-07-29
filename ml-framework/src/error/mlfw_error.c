@@ -1,3 +1,4 @@
+#include<string.h>
 #include<inttypes.h>
 #include<___mlfw_error.h>
 
@@ -21,4 +22,9 @@ void mlfw_reset_error()
 	_mlfw_error_string[0]='\0';
 	_mlfw_debug_string[0]='\0';
 }
-
+uint32_t mlfw_get_error_string_length()
+{
+}
+uint32_t mlfw_get_debug_string_lenght()
+{
+}
