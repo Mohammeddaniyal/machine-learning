@@ -12,7 +12,7 @@ uint8_t mlfw_error(void)
 }
 uint32_t mlfw_get_error_code(void)
 {
-	return 0;
+	return _mlfw_error_code;
 }
 void mlfw_get_error_string(char *error_string,uint32_t size)
 {
