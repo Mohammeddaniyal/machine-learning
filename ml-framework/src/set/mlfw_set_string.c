@@ -69,9 +69,11 @@ void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 	if(*string==NULL) 
 	{
 		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
-		return;
 	}
+	else
+	{
 	strcpy(*string,set->data[i]);
+	}
 }
 // returns -1 in case of low memory or 0 incase of added or not added because of duplicate
 int  mlfw_set_string_add(mlfw_set_string *set,char *string)
