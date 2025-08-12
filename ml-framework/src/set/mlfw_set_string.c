@@ -39,6 +39,7 @@ void mlfw_set_string_destroy(mlfw_set_string *set)
 
 void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 {
+	unsigned long int allocation_len;
 	if(string==NULL)
 	{
 		return;
