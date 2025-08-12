@@ -83,6 +83,7 @@ void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 // returns -1 in case of low memory or 0 incase of added or not added because of duplicate
 int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 {
+	unsigned long int allocation_len;
 	char *str;
 	char **tmp;
 	index_t i;
@@ -98,9 +99,15 @@ int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 	}
 	if(set->size==0)
 	{
-		set->data=(char **)malloc(sizeof(char *)*1);
-		if(set->data==NULL) return -1;
-		str=(char *)malloc(sizeof(char)*(strlen(string)+1));
+		allocation_len=sizeof(char*)*1;
+		set->data=(char **)malloc(allocation_len);
+		if(set->data==NULL)
+		{
+			_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
+			return -1;
+		}
+		allocation_len=sizeof(char)*(strlen(string)+1);
+		str=(char *)malloc(allocation_len);
 		if(str==NULL) 
 		{
 			free(set->data);
