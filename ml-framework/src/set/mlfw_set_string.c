@@ -42,15 +42,23 @@ void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 	unsigned long int allocation_len;
 	if(string==NULL)
 	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"string");
 		return;
 	}
 	if(set==NULL)
 	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"set");
 		*string=NULL;
 		return;
 	}
 	if(i<0 || i>=set->size)
 	{
+		if(set->size==0)
+		{
+		}
+		else
+		{
+		}
 		*string=NULL;
 		return;
 	}
