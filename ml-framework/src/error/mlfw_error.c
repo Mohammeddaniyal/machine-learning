@@ -1,7 +1,6 @@
 #include<string.h>
 #include<inttypes.h>
 #include<___mlfw_error.h>
-
 __thread uint32_t _mlfw_error_code;
 __thread char _mlfw_error_string[512];
 __thread char _mlfw_debug_string[512];
@@ -21,7 +20,7 @@ void mlfw_get_error_string(char *error_string,uint8_t size)
 	uint32_t max_len;
 	char *p;
 	char *q;
-	if(error_string==null) return;
+	if(error_string==NULL) return;
 	if(size==0) return;
 	if(_mlfw_error_code=0)
 	{
@@ -47,7 +46,7 @@ void mlfw_get_debug_string(char *debug_string,uint_t size)
 	uint32_t max_len;
 	char *p;
 	char *q;
-	if(debug_string==null) return;
+	if(debug_string==NULL) return;
 	if(size==0) return;
 	if(_mlfw_error_code=0)
 	{
