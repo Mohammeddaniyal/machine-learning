@@ -22,7 +22,7 @@ void mlfw_get_error_string(char *error_string,uint32_t size)
 	char *q;
 	if(error_string==NULL) return;
 	if(size==0) return;
-	if(_mlfw_error_code=0)
+	if(_mlfw_error_code==0)
 	{
 		error_string[0]='\0';
 		return;
@@ -48,7 +48,7 @@ void mlfw_get_debug_string(char *debug_string,uint32_t size)
 	char *q;
 	if(debug_string==NULL) return;
 	if(size==0) return;
-	if(_mlfw_error_code=0)
+	if(_mlfw_error_code==0)
 	{
 		debug_string[0]='\0';
 		return;
