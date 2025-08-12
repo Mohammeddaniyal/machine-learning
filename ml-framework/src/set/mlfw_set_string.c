@@ -55,9 +55,11 @@ void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 	{
 		if(set->size==0)
 		{
+			_mlfw_set_error(MLFW_INVALID_INDEX_EMPTY_CODE,MLFW_INVALID_INDEX_EMPTY,i,"i");
 		}
 		else
 		{
+			_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,i,"i",0,set->size-1);
 		}
 		*string=NULL;
 		return;
