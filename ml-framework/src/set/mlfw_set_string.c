@@ -110,6 +110,7 @@ int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 		str=(char *)malloc(allocation_len);
 		if(str==NULL) 
 		{
+			_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
 			free(set->data);
 			set->data=NULL;
 			return -1;
@@ -127,19 +128,27 @@ int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 					return 0;
 				}
 		}
-				str=(char *)malloc(sizeof(char)*(strlen(string)+1));
-				if(str==NULL) return -1;
-				strcpy(str,string);
-				tmp=(char **)realloc(set->data,sizeof(char *)*(set->size+1));
-				if(tmp==NULL)
-				{
-					free(str);
-					return -1;
-				}
-				set->data=tmp;
-				set->data[set->size]=str;
-				set->size++;
-				return 0;
+				
+		allocation_len=sizeof(char)*(strlen(string)+1);
+		str=(char *)malloc(allocation_len);
+		if(str==NULL) 
+		{
+			_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
+			return -1;
+		}
+		strcpy(str,string);
+		allocation_len=sizeof(char *)*(set->size+1);
+		tmp=(char **)realloc(set->data,allocation_len);
+		if(tmp==NULL)
+		{
+			_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
+			free(str);
+			return -1;
+		}
+		set->data=tmp;
+		set->data[set->size]=str;
+		set->size++;
+		return 0;
 	}
 	return 0;
 }
