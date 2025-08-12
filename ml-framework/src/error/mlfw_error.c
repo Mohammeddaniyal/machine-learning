@@ -14,7 +14,7 @@ uint32_t mlfw_get_error_code(void)
 {
 	return 0;
 }
-void mlfw_get_error_string(char *error_string,uint8_t size)
+void mlfw_get_error_string(char *error_string,uint32_t size)
 {
 	uint32_t i;
 	uint32_t max_len;
@@ -40,7 +40,7 @@ void mlfw_get_error_string(char *error_string,uint8_t size)
 	}
 	*q='\0';
 }
-void mlfw_get_debug_string(char *debug_string,uint_t size)
+void mlfw_get_debug_string(char *debug_string,uint32_t size)
 {
 	uint32_t i;
 	uint32_t max_len;
