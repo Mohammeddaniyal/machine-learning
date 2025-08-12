@@ -4,10 +4,6 @@
 #include<inttypes.h>
 
 
-__thread uint32_t _mlfw_error_code;
-__thread char _mlfw_error_string[512];
-__thread char _mlfw_debug_string[512];
-
 #define MLFW_LOW_MEMORY_CODE 1
 #define MLFW_LOW_MEMORY "Insufficient memory, cannot allocate (%lu) bytes"
 
