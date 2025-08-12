@@ -2,6 +2,11 @@
 #include<inttypes.h>
 #include<___mlfw_error.h>
 
+__thread uint32_t _mlfw_error_code;
+__thread char _mlfw_error_string[512];
+__thread char _mlfw_debug_string[512];
+
+
 uint8_t mlfw_error(void)
 {
 	return _mlfw_error_code!=0; // !=0 means, error exists
