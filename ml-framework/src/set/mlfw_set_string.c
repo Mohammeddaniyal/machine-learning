@@ -155,7 +155,11 @@ int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 
 dimension_t mlfw_set_string_get_size(mlfw_set_string *set)
 {
-	if(set==NULL) return 0;
+	if(set==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"set");
+		return 0;
+	}
 	return set->size;
 }
 
