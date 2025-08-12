@@ -17,7 +17,8 @@ int main()
 		printf("Debug : %s\n",dbg);
 		return 0;
 	}
-	mlfw_set_string_destroy(s);
+	mlfw_set_string_destroy(NULL);
+	if(mlfw_error())
 	{
 		printf("Unable to create set\n");
 		printf("Error code : %u\n",mlfw_get_error_code());
@@ -27,5 +28,6 @@ int main()
 		printf("Debug : %s\n",dbg);
 		return 0;
 	}
+	mlfw_set_string_destroy(s);
 	return 0;
 }
