@@ -1,6 +1,7 @@
 rm *.o
 rm ../lib/libml-framework.a
 
+gcc -O3 -c ../src/error/*.c -I ../include -I ../private/include -Wall
 gcc -O3 -c ../src/matrix/*.c -I ../include -I ../private/include  -Wall
 gcc -O3 -c ../src/vector/*.c -I ../include -I ../private/include -Wall
 gcc -O3 -c ../src/operations/*.c -I ../include -I ../private/include -Wall
