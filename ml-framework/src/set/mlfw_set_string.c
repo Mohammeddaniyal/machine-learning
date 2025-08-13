@@ -90,6 +90,7 @@ int  mlfw_set_string_add(mlfw_set_string *set,char *string)
 	char *str;
 	char **tmp;
 	index_t i;
+	mlfw_reset_error();
 	if(set==NULL) 
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"set");
