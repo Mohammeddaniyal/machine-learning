@@ -1,6 +1,7 @@
 #include<string.h>
 #include<inttypes.h>
 #include<___mlfw_error.h>
+#include<mlfw_error.h>
 __thread uint32_t _mlfw_error_code;
 __thread char _mlfw_error_string[512];
 __thread char _mlfw_debug_string[512];
@@ -77,7 +78,7 @@ uint32_t mlfw_get_error_string_length(void)
 {
 	return (uint32_t)strlen(_mlfw_error_string);
 }
-uint32_t mlfw_get_debug_string_lenght(void)
+uint32_t mlfw_get_debug_string_length(void)
 {
 	return (uint32_t)strlen(_mlfw_error_string);
 }
