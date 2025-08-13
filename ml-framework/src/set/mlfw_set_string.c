@@ -15,6 +15,7 @@ typedef struct __mlfw_set_string
 }mlfw_set_string;
 mlfw_set_string * mlfw_set_string_create_new(void)
 {
+	mlfw_reset_error();
 	mlfw_set_string *set;
 	set=(mlfw_set_string *)malloc(sizeof(mlfw_set_string));
 	if(set==NULL) 
