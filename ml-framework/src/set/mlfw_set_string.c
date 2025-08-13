@@ -30,6 +30,7 @@ mlfw_set_string * mlfw_set_string_create_new(void)
 void mlfw_set_string_destroy(mlfw_set_string *set)
 {
 	index_t i;
+	mlfw_reset_error();
 	if(set==NULL) 
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"set");
