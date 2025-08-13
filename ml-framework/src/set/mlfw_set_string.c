@@ -47,6 +47,7 @@ void mlfw_set_string_destroy(mlfw_set_string *set)
 void mlfw_set_string_get(mlfw_set_string *set,index_t i,char **string)
 {
 	unsigned long int allocation_len;
+	mlfw_reset_error();
 	if(string==NULL)
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"string");
