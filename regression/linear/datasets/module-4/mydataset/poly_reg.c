@@ -133,6 +133,7 @@ int main(int argc,char *argv[])
 	mlfw_mat_double *original_matrix;
 	dimension_t original_matrix_rows,original_matrix_columns;
 	double learning_rate;
+	double regularized_parameter;
 	uint64_t number_of_iterations;
 	char *e;
 	mlfw_row_vec_string *source_header;
