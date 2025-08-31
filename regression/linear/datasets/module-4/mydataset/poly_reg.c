@@ -15,6 +15,7 @@ struct thread_args
 mlfw_mat_double *matrix;
 mlfw_column_vec_double *target_values_vector;
 double learning_rate;
+double regularized_parameter;
 uint64_t iteration_number;
 uint8_t (*callback)(uint64_t,double,mlfw_column_vec_double *);
 };
@@ -102,7 +103,7 @@ mlfw_row_vec_double *trained_parameters;
 struct thread_args *args;
 args=(struct thread_args *)d;
 
-trained_parameters=mlfw_linear_regression_gradient_descent_fit_line(args->matrix,args->target_values_vector,args->learning_rate,args->iteration_number,args->callback);
+trained_parameters=mlfw_linear_regression_gradient_descent_fit_line(args->matrix,args->target_values_vector,args->learning_rate,args->regularized_parameter,args->iteration_number,args->callback);
 
 sleep(1); // just so that even after the fit line ends, the thread should not end immediately
 
@@ -138,9 +139,9 @@ int main(int argc,char *argv[])
 	mlfw_row_vec_string *original_header;
 	index_t i;
 	
-	if(argc!=6)
+	if(argc!=7)
 	{
-printf("Specify [source csv] [test_predictions csv] [original csv] [learning rate] [number of iteration]\n");
+printf("Specify [source csv] [test_predictions csv] [original csv] [learning rate] [regularized_parameter]  [number of iteration]\n");
 		return 0;
 	}
 		
@@ -149,7 +150,8 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	target=argv[2];
 	original=argv[3];
 	learning_rate=strtod(argv[4],&e);
-	number_of_iterations=atoi(argv[5]);
+	regularized_parameter=strtod(argv[5],&e);
+	number_of_iterations=atoi(argv[6]);
 
 	// we have commented the following lline because we are going to
 	// keep trraining and testing data from source (no shuffle and split)
@@ -193,6 +195,7 @@ printf("Specify [source csv] [test_predictions csv] [original csv] [learning rat
 	wrapper.matrix=training_examples_matrix;
 	wrapper.target_values_vector=training_examples_target_values_vector;
 	wrapper.learning_rate=learning_rate;
+	wrapper.regularized_parameter=regularized_parameter;
 	wrapper.iteration_number=number_of_iterations;
 	wrapper.callback=screen_logger;
 	pthread_create(&thread_id,NULL,thread_function,(void *)&wrapper);
