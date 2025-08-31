@@ -3,7 +3,7 @@
 #include<mlfw_operations.h>
 #include<inttypes.h>
 #include<stdio.h>
-mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,double learning_rate,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double error_value,mlfw_column_vec_double *predicted_values_vector))
+mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_double *input_features_matrix,mlfw_column_vec_double *target_values_vector,double learning_rate,double regularization_parameter,uint64_t number_of_iterations,uint8_t (*on_each_iteration) (uint64_t iteration_number,double error_value,mlfw_column_vec_double *predicted_values_vector))
 {
 	int error_flag;
 	index_t r;
@@ -34,12 +34,21 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 
 	mlfw_column_vec_double *TMP;
 
+	mlfw_column_vec_double *TMP_Q;
+
 	mlfw_column_vec_double *UM;
 
 	mlfw_row_vec_double *trained_parameters;
 
 	double sum_of_squared_error_values;
+	double regularization_term_value;
+	double m_value;
+	double squared_m_value;
+	double sum_of_squared_parameters_value; // bias is excluded in the sum of square
+
 	double final_error_value;
+	
+	index_t i;
 
 	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
 	if(number_of_iterations==0 && on_each_iteration==NULL) return NULL;
@@ -222,7 +231,22 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			break;
 		}
 		sum_of_squared_error_values=mlfw_column_vec_double_get(ETE,0);
-		final_error_value=sum_of_squared_error_values/(2*I_rows);// reason for dividing by two lec 14 5-6:30 
+
+
+		// computing regularization term value
+		// computing sum of sqaured value of Q(m vector)
+		sum_of_squared_parameters_value=0.0;
+		for(i=1;i<I_columns++i)
+		{
+			m_value=mlfw_column_vec_double_get(m,i);
+			m_squared_value=SQUARE(m_value);
+			sum_of_squared_parameters_value+=m_squared_value;
+		}
+
+		// computing regularization term
+		// (regularization parameter/2*I_rows) * (sum_of_squared_parameters_value)
+		regularization_term_value=(regularization_parameter/2*I_rows)*(sum_of_squared_parameters_value);
+		final_error_value=(sum_of_squared_error_values/(2*I_rows))+(regularization_term_value);// reason for dividing by two lec 14 5-6:30 
 
 		
 
