@@ -35,7 +35,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	mlfw_column_vec_double *TMP1;
 	mlfw_column_vec_double *TMP2;
 
-	mlfw_column_vec_double *TMP_Q;
+	mlfw_column_vec_double *gradient_vector;
 
 	mlfw_column_vec_double *UM;
 
@@ -184,6 +184,22 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			mlfw_row_vec_double_destroy(ET);
 			mlfw_column_vec_double_destroy(ETE);
 			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP1);
+			return NULL;
+		}
+		gradient_vector=mlfw_column_vec_double_create_new(I_columns);
+		if(gradient_vector==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_row_vec_double_destroy(ET);
+			mlfw_column_vec_double_destroy(ETE);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP1);
 			mlfw_column_vec_double_destroy(TMP2);
 			return NULL;
 		}
@@ -202,6 +218,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			mlfw_column_vec_double_destroy(ITE);
 			mlfw_column_vec_double_destroy(TMP1);
 			mlfw_column_vec_double_destroy(TMP2);
+			mlfw_column_vec_double_destroy(gradient_vector);
 			return NULL;
 		}
 
@@ -332,7 +349,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	// one iteration completed, so if on_each_iteration is not NULL, call the callback
 	if(on_each_iteration!=NULL)
 	{
-		if(on_each_iteration(k,final_error_value,P)==0) break;
+		if(on_each_iteration(k,regularized_final_error_value,P)==0) break;
 	}
 	++k;
 	}// operation loop ends
@@ -350,6 +367,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP1);
 		mlfw_column_vec_double_destroy(TMP2);
+		mlfw_column_vec_double_destroy(gradient_vector);
 		mlfw_column_vec_double_destroy(UM);
 		mlfw_column_vec_double_destroy(m);
 		return NULL; 
@@ -367,6 +385,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		mlfw_column_vec_double_destroy(ITE);
 		mlfw_column_vec_double_destroy(TMP1);
 		mlfw_column_vec_double_destroy(TMP2);
+		mlfw_column_vec_double_destroy(gradient_vector);
 		mlfw_column_vec_double_destroy(UM);
 		trained_parameters=mlfw_column_vec_double_transpose(m,NULL);
 		mlfw_column_vec_double_destroy(m);
