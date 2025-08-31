@@ -32,7 +32,8 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 
 	mlfw_column_vec_double *ITE; 
 
-	mlfw_column_vec_double *TMP;
+	mlfw_column_vec_double *TMP1;
+	mlfw_column_vec_double *TMP2;
 
 	mlfw_column_vec_double *TMP_Q;
 
@@ -40,6 +41,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 
 	mlfw_row_vec_double *trained_parameters;
 
+	double bias_parameter_value;
 	double sum_of_squared_error_values;
 	double regularization_term_value;
 	double m_value;
@@ -47,7 +49,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	double sum_of_squared_parameters_value; // bias is excluded in the sum of square
 
 	double final_error_value;
-	
+	double regularized_final_error_value;
 	index_t i;
 
 	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
@@ -156,8 +158,8 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			mlfw_column_vec_double_destroy(ETE);
 			return NULL;
 		}
-		TMP=mlfw_column_vec_double_create_new(I_columns);
-		if(TMP==NULL)
+		TMP1=mlfw_column_vec_double_create_new(I_columns);
+		if(TMP1==NULL)
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -168,6 +170,21 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			mlfw_row_vec_double_destroy(ET);
 			mlfw_column_vec_double_destroy(ETE);
 			mlfw_column_vec_double_destroy(ITE);
+			return NULL;
+		}
+		TMP2=mlfw_column_vec_double_create_new(I_columns);
+		if(TMP2==NULL)
+		{
+			mlfw_mat_double_left_shift(I,1);
+			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+			mlfw_mat_double_destroy(IT);
+			mlfw_column_vec_double_destroy(m);
+			mlfw_column_vec_double_destroy(P);
+			mlfw_column_vec_double_destroy(E);
+			mlfw_row_vec_double_destroy(ET);
+			mlfw_column_vec_double_destroy(ETE);
+			mlfw_column_vec_double_destroy(ITE);
+			mlfw_column_vec_double_destroy(TMP2);
 			return NULL;
 		}
 
@@ -183,7 +200,8 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			mlfw_row_vec_double_destroy(ET);
 			mlfw_column_vec_double_destroy(ETE);
 			mlfw_column_vec_double_destroy(ITE);
-			mlfw_column_vec_double_destroy(TMP);
+			mlfw_column_vec_double_destroy(TMP1);
+			mlfw_column_vec_double_destroy(TMP2);
 			return NULL;
 		}
 
@@ -243,11 +261,12 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 			sum_of_squared_parameters_value+=m_squared_value;
 		}
 
+		final_error_value=sum_of_squared_error_values/(2*I_rows);// reason for dividing by two lec 14 5-6:30 
+		
 		// computing regularization term
 		// (regularization parameter/2*I_rows) * (sum_of_squared_parameters_value)
-		regularization_term_value=(regularization_parameter/2*I_rows)*(sum_of_squared_parameters_value);
-		final_error_value=(sum_of_squared_error_values/(2*I_rows))+(regularization_term_value);// reason for dividing by two lec 14 5-6:30 
-
+	regularization_term_value=(regularization_parameter/2*I_rows)*(sum_of_squared_parameters_value);
+	regularized_final_error_value=final_error_value+regulaization_term_value;
 		
 
 	
@@ -262,15 +281,39 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		break;
 	}
 
-	TMP=mlfw_multiply_double_scalar_with_column_vector((learning_rate*(1.0/I_rows)),ITE,TMP);
+	TMP1=mlfw_multiply_double_scalar_with_column_vector((1.0/I_rows),ITE,TMP1);
 
-	if(TMP==NULL)
+	if(TMP1==NULL)
+	{
+		error_flag=1;
+		break;
+	}
+	// for ignoring bias
+	bias_parameter_value=mlfw_column_vec_double_get(m,0);
+	mlfw_column_vec_double_set(m,0,0);
+
+	TMP2=mlfw_multiply_double_scalar_with_column_vector((regularization_parameter)*(1/I_rows),m,TMP2);
+	if(TMP2==NULL)
+	{
+		error_flag=1;
+		break;
+	}
+	mlfw_column_vec_double_set(m,0,bias_parameter_value);
+	gradient_vector=mlfw_add_double_column_vector(TMP1,TMP2,gradient_vector);
+	if(gradient_vector==NULL)
+	{
+		error_flag=1;
+		break;
+	}
+	
+	TMP1=mlfw_multiply_double_scalar_with_column_vector(learning_rate,gradient_vector,TMP1);
+	if(TMP1=NULL)
 	{
 		error_flag=1;
 		break;
 	}
 
-	UM=mlfw_subtract_double_column_vector(m,TMP,UM);
+	UM=mlfw_subtract_double_column_vector(m,TMP1,UM);
 	if(UM==NULL)
 	{	
 		error_flag=1;
@@ -305,7 +348,8 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		mlfw_row_vec_double_destroy(ET);
 		mlfw_column_vec_double_destroy(ETE);
 		mlfw_column_vec_double_destroy(ITE);
-		mlfw_column_vec_double_destroy(TMP);
+		mlfw_column_vec_double_destroy(TMP1);
+		mlfw_column_vec_double_destroy(TMP2);
 		mlfw_column_vec_double_destroy(UM);
 		mlfw_column_vec_double_destroy(m);
 		return NULL; 
@@ -321,7 +365,8 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		mlfw_row_vec_double_destroy(ET);
 		mlfw_column_vec_double_destroy(ETE);
 		mlfw_column_vec_double_destroy(ITE);
-		mlfw_column_vec_double_destroy(TMP);
+		mlfw_column_vec_double_destroy(TMP1);
+		mlfw_column_vec_double_destroy(TMP2);
 		mlfw_column_vec_double_destroy(UM);
 		trained_parameters=mlfw_column_vec_double_transpose(m,NULL);
 		mlfw_column_vec_double_destroy(m);
