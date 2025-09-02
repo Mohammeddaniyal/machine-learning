@@ -18,6 +18,32 @@
 
 #define MLFW_INVALID_VECTOR_SIZE_CODE 5
 #define MLFW_INVALID_VECTOR_SIZE "Invalid vector size (%u)"
+
+#define MLFW_INVALID_CONTAINER_SIZE_CODE 6
+#define MLFW_INVALID_CONTAINER_SIZE "Size of container (%s)  is (%u), whereas value of parameter (%s) is (%u)"
+
+#define MLFW_INVALID_COLUMN_VECTOR_HEADER_SIZE_CODE 7
+#define MLFW_INVALID_COLUMN_VECTOR_HEADER_SIZE "Size of vector header parameter (%s) is (%u) whereas (%u) is required"
+
+#define MLFW_UNABLE_TO_CREATE_FILE_CODE 8
+#define MLFW_UNABLE_TO_CREATE_FILE "Unable to create file named (%s) specified against parameter (%s)"
+
+#define MLFW_UNABLE_TO_OPEN_FILE_CODE 9 
+#define MLFW_UNABLE_TO_OPEN_FILE "Unable to open file named (%s) specified against parameter (%s)"
+
+#define MLFW_INVALID_HEADER_SIZE_IN_FILE_CODE 10
+#define MLFW_INVALID_HEADER_SIZE_IN_FILE "Header size in file (%s) is (%u), required (%u)"
+
+
+#define MLFW_INVALID_ROW_VECTOR_HEADER_SIZE_IN_FILE_CODE 11
+#define MLFW_INVALID_ROW_VECTOR_HEADER_SIZE_IN_FILE "Size of vector header parameter (%s) is (%u), whereas (%u) is required"
+
+#define MLFW_NO_STRING_SET_CODE 12
+#define MLFW_NO_STRING_SET "String not set against index (%u)"
+
+#define MLFW_INVALID_GRADIENT_DESCENT_TYPE_CODE 13
+#define MLFW_INVALID_GRADIENT_DESCENT_TYPE "Invalid gradient descent type, expected BATCH, STOCHASTIC or MINI BATCH, refer documentation"
+
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
