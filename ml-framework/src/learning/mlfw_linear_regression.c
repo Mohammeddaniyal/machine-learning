@@ -45,7 +45,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	double sum_of_squared_error_values;
 	double regularization_term_value;
 	double m_value;
-	double squared_m_value;
+	double m_squared_value;
 	double sum_of_squared_parameters_value; // bias is excluded in the sum of square
 
 	double final_error_value;
@@ -271,10 +271,10 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		// computing regularization term value
 		// computing sum of sqaured value of Q(m vector)
 		sum_of_squared_parameters_value=0.0;
-		for(i=1;i<I_columns++i)
+		for(i=1;i<I_columns;++i)
 		{
 			m_value=mlfw_column_vec_double_get(m,i);
-			m_squared_value=SQUARE(m_value);
+			m_squared_value=m_value*m_value;
 			sum_of_squared_parameters_value+=m_squared_value;
 		}
 
@@ -283,7 +283,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 		// computing regularization term
 		// (regularization parameter/2*I_rows) * (sum_of_squared_parameters_value)
 	regularization_term_value=(regularization_parameter/2*I_rows)*(sum_of_squared_parameters_value);
-	regularized_final_error_value=final_error_value+regulaization_term_value;
+	regularized_final_error_value=final_error_value+regularization_term_value;
 		
 
 	
@@ -324,7 +324,7 @@ mlfw_row_vec_double * mlfw_linear_regression_gradient_descent_fit_line(mlfw_mat_
 	}
 	
 	TMP1=mlfw_multiply_double_scalar_with_column_vector(learning_rate,gradient_vector,TMP1);
-	if(TMP1=NULL)
+	if(TMP1==NULL)
 	{
 		error_flag=1;
 		break;
