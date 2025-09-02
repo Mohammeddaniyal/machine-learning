@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<mlfw_vector.h>
-
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
 extern __thread uint32_t _mlfw_error_code;
 extern __thread char _mlfw_error_string[512];
 extern __thread char _mlfw_debug_string[512];
@@ -66,7 +67,7 @@ double mlfw_column_vec_double_get(mlfw_column_vec_double *vector,index_t index)
 	}
 	if(index<0 || index>=vector->size) 
 	{
-		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,"index",0,vector->size-1);
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,index,"index",0,vector->size-1);
 		return 0.0;
 	}
 	return vector->data[index];
@@ -81,7 +82,7 @@ void mlfw_column_vec_double_set(mlfw_column_vec_double *vector,index_t index,dou
 	}
 	if(index<0 || index>=vector->size)
 	{
-		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,"index",0,vector->size-1);
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,index,"index",0,vector->size-1);
 		return;
 	}
 	vector->data[index]=value;
@@ -275,7 +276,7 @@ mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlf
 	columns++; // if 0 commas, then 1 column, if 3 commas then 4 columns
 	if(columns!=1)
 	{
-		_mlfw_set_error(MLFW_INVALID_HEADER_SIZE_IN_FILE_CODE,MLFW_INVALID_HEADER_SIZE,csv_file_name,columns,1);
+		_mlfw_set_error(MLFW_INVALID_HEADER_SIZE_IN_FILE_CODE,MLFW_INVALID_HEADER_SIZE_IN_FILE,csv_file_name,columns,1);
 		return NULL;
 	}
 	*header=mlfw_row_vec_string_create_new(columns);
@@ -417,7 +418,7 @@ void mlfw_row_vec_double_destroy(mlfw_row_vec_double *vector)
 }
 double mlfw_row_vec_double_get(mlfw_row_vec_double *vector,index_t index)
 {
-	mlfw_reset_error()
+	mlfw_reset_error();
 	if(vector==NULL) 
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
@@ -425,7 +426,7 @@ double mlfw_row_vec_double_get(mlfw_row_vec_double *vector,index_t index)
 	}
 	if(index<0 || index>=vector->size)
 	{
-		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,"index",0,vector->size-1);
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,index,"index",0,vector->size-1);
 		return 0.0;
 	}
 	return vector->data[index];
@@ -440,7 +441,7 @@ void mlfw_row_vec_double_set(mlfw_row_vec_double *vector,index_t index,double va
   	}
 	if(index<0 || index>=vector->size)
 	{
-		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,"index",0,vector->size-1);
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,index,"index",0,vector->size-1);
 	       	return;
 	}
 	vector->data[index]=value;
@@ -488,7 +489,7 @@ mlfw_column_vec_double * mlfw_row_vec_double_transpose(mlfw_row_vec_double *vect
 	{
  	if(transposed_vector->size!=vector->size) 
 	{
-		_mlfw_set_error(MLFW_INVALID_CONTAINER_SIZE_CODE,MLFW_CONTAINER_SIZE,"transpoed_vector",transposed_vector->size,"vector[size]",vector->size);
+		_mlfw_set_error(MLFW_INVALID_CONTAINER_SIZE_CODE,MLFW_INVALID_CONTAINER_SIZE,"transpoed_vector",transposed_vector->size,"vector[size]",vector->size);
 		return NULL;	
 	}
 	}
@@ -665,7 +666,7 @@ mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name,mlfw_row_
 		if(m==',') size++;
 	}
 	size++; // 10 commas means, 11 elements
-	header_size=mlfw_row_vec_string_get_size();
+	header_size=mlfw_row_vec_string_get_size(*header);
 	if(size!=header_size)
 	{
 		_mlfw_set_error(MLFW_INVALID_ROW_VECTOR_HEADER_SIZE_CODE,MLFW_INVALID_ROW_VECTOR_HEADER_SIZE,"header",header_size,size);
