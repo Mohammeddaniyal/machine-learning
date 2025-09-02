@@ -16,6 +16,8 @@
 #define MLFW_INVALID_INDEX_EMPTY_CODE 4
 #define MLFW_INVALID_INDEX_EMPTY "Invalid index (%u) for parameter (%s). collection is empty"
 
+#define MLFW_INVALID_VECTOR_SIZE_CODE 5
+#define MLFW_INVALID_VECTOR_SIZE "Invalid vector size (%u)"
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
