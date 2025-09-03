@@ -47,4 +47,13 @@ void mlfw_gradient_descent_options_destroy(mlfw_gradient_descent_options *gd_opt
 	}
 	free(gd_options);
 }
-
+void mlfw_gradient_descent_options_set_learning_rate(mlfw_gradient_descent_options *gd_options,double learning_rate)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{	
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	gd_options->learning_rate=
+}
