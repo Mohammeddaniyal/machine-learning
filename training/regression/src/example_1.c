@@ -89,3 +89,13 @@ void mlfw_gradient_descent_options_set_gradient_descent_type(mlfw_gradient_desce
 	_mlfw_set_error(MLFW_INVALID_GRADIENT_DESCENT_TYPE_CODE,MLFW_INVALID_GRADIENT_DESCENT_TYPE);
 	}
 }
+void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_options *gd_options,int (*progress_callback)(uint64_t void *,void *))
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{	
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	gd_options->progress_callback=progress_callback;
+}
