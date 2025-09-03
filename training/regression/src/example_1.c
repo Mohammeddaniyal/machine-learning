@@ -99,3 +99,13 @@ void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_o
 	}
 	gd_options->progress_callback=progress_callback;
 }
+void mlfw_gradient_descent_options_set_data_provider(mlfw_gradient_descent_options *gd_options,void (*data_provider)(void *,void *,uint64_t,uint32_t))
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{	
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	gd_options->data_provider=data_provider;
+}
