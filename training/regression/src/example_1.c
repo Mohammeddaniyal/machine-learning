@@ -141,4 +141,45 @@ mlfw_gradient_descent_options * get_gradient_descent_options()
 	mlfw_gradient_descent_options_set_progress_callback(gd_options,on_iteration_complete);
 	return gd_options;
 }
+int main()
+{
+	double regularization_parameter;
+	char error_string[512];
+	char debug_string[512];
+	mlfw_column_vec_double *model=NULL;
+	mlfw_row_vec_string *model_header=NULL;
+	mlfw_mat_double *x=NULL;
+	mlfw_mat_double *y=NULL;
+	mlfw_gradient_descent_options *gd_options=NULL;
 
+	load_dataset(&x,&y);
+	regularization_parameter=0.1234;
+	if(mlfw_error()) goto err;
+	gd_options=get_gradient_descent_options();
+	if(mlfw_error()) goto err;
+	model=mlfw_linear_regression_fit_using_batch_gradient_descent(gd_options,x,y,regularization_parameter,NULL);
+	if(mlfw_error()) goto err;
+	model_header=mlfw_row_vec_string_create_new(1);
+	if(mlfw_error()) goto err;
+	mlfw_row_vec_string_set(model_header,0,"theta");
+	if(mlfw_error()) goto err;
+	mlfw_column_vec_double_to_csv(model,"example-1-model.csv",model_header);
+	if(mlfw_error()) goto err;
+	
+	mlfw_mat_double_destroy(x);
+	mlfw_column_vec_double_destroy(y);
+	mlfw_gradient_descent_options_destroy(gd_options);
+	mlfw_get_error_string(error_string,512);
+	mlfw_get_debug_string(debug_string,512);
+	printf("Model saved to examples-1-model.csv\n");
+	return 0;
+	err:
+	mlfw_mat_double_destroy(x);
+	mlfw_column_vec_double_destroy(y);
+	mlfw_gradient_descent_options_destroy(gd_options);
+	mlfw_get_error_string(error_string,512);
+	mlfw_get_debug_string(debug_string,512);
+	printf("Error : %s\n",error_string);
+	printf("Error debug details : %s\n",debug_string);
+	return 0;
+}
