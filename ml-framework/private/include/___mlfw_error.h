@@ -35,8 +35,8 @@
 #define MLFW_INVALID_HEADER_SIZE_IN_FILE "Header size in file (%s) is (%u), required (%u)"
 
 
-#define MLFW_INVALID_ROW_VECTOR_HEADER_SIZE_IN_FILE_CODE 11
-#define MLFW_INVALID_ROW_VECTOR_HEADER_SIZE_IN_FILE "Size of vector header parameter (%s) is (%u), whereas (%u) is required"
+#define MLFW_INVALID_ROW_VECTOR_HEADER_SIZE_CODE 11
+#define MLFW_INVALID_ROW_VECTOR_HEADER_SIZE "Size of vector header parameter (%s) is (%u), whereas (%u) is required"
 
 #define MLFW_NO_STRING_SET_CODE 12
 #define MLFW_NO_STRING_SET "String not set against index (%u)"
@@ -44,6 +44,8 @@
 #define MLFW_INVALID_GRADIENT_DESCENT_TYPE_CODE 13
 #define MLFW_INVALID_GRADIENT_DESCENT_TYPE "Invalid gradient descent type, expected BATCH, STOCHASTIC or MINI BATCH, refer documentation"
 
+#define MLFW_LIST_EMPTY_CODE 14
+#define MLFW_LIST_EMPTY "Forward list represented by (%s) is empty"
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
