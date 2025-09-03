@@ -9,7 +9,7 @@ extern __thread char _mlfw_debug_string[512];
 
 enum MLFW_GRADIENT_DESCENT_TYPE{MLFW_BATCH_GRADIENT_DESCENT,MLFW_STOCHASTIC_GRADIENT_DESCENT,MLFW_MINI_BATCH_GRADIENT_DESCENT};
 
-typedef struc _mlfw_gradient_descent_options
+typedef struct _mlfw_gradient_descent_options
 {
 	double learning_rate;
 	uint64_t number_of_iterations;
@@ -89,7 +89,7 @@ void mlfw_gradient_descent_options_set_gradient_descent_type(mlfw_gradient_desce
 	_mlfw_set_error(MLFW_INVALID_GRADIENT_DESCENT_TYPE_CODE,MLFW_INVALID_GRADIENT_DESCENT_TYPE);
 	}
 }
-void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_options *gd_options,int (*progress_callback)(uint64_t void *,void *))
+void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_options *gd_options,int (*progress_callback)(uint64_t,void *,void *))
 {
 	mlfw_reset_error();
 	if(gd_options==NULL)
