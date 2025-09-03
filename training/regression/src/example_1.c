@@ -149,7 +149,7 @@ int main()
 	mlfw_column_vec_double *model=NULL;
 	mlfw_row_vec_string *model_header=NULL;
 	mlfw_mat_double *x=NULL;
-	mlfw_mat_double *y=NULL;
+	mlfw_column_vec_double *y=NULL;
 	mlfw_gradient_descent_options *gd_options=NULL;
 
 	load_dataset(&x,&y);
