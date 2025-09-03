@@ -121,6 +121,9 @@ void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_opt
 }
 mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent(mlfw_gradient_descent_options  *gd_options,mlfw_mat_double *x,mlfw_column_vec_double *y,double regularization_parameter,mlfw_column_vec_double *model)
 {
+	double learning_rate;
+	uint64_t number_of_iterations;
+
 	int error_flag;
 	index_t r;
 	uint64_t k;
@@ -155,7 +158,6 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 
 	mlfw_column_vec_double *UM;
 
-	mlfw_row_vec_double *trained_parameters;
 
 	double bias_parameter_value;
 	double sum_of_squared_error_values;
@@ -167,13 +169,33 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 	double final_error_value;
 	double regularized_final_error_value;
 	index_t i;
-
-	if(input_features_matrix==NULL || target_values_vector==NULL) return NULL;
-	if(number_of_iterations==0 && on_each_iteration==NULL) return NULL;
 	
-	I=input_features_matrix;
-	A=target_values_vector;
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return NULL;
+	}
+	if(x==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"x");
+		return NULL;
+	}
+	if(y==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"y");
+		return NULL;
+	}
+	if(gd_options->number_of_iterations==0 && gd_options->progress_callback==NULL)
+	{
+		// set error
+		return NULL;
+	}
 	
+	I=x;
+	A=y;
+	learning_rate=gd_options->learning_rate;
+	number_of_iterations=gd_options->number_of_iterations;
 	mlfw_mat_double_get_dimensions(I,&I_rows,&I_columns);
 	A_size=mlfw_column_vec_double_get_size(A);
 	if(I_rows!=A_size)
@@ -198,20 +220,25 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
 			return NULL; 
 		}
-
-		m=mlfw_column_vec_double_create_new_filled(I_columns,0.0,NULL);
-		if(m==NULL)
+		if(model==NULL)
 		{
-			mlfw_mat_double_left_shift(I,1);
-			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
-			mlfw_mat_double_destroy(IT);
-			return NULL;
+			m=mlfw_column_vec_double_create_new_filled(I_columns,0.0,NULL);
+			if(mlfw_error())
+			{
+				mlfw_mat_double_left_shift(I,1);
+				mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
+				mlfw_mat_double_destroy(IT);
+				return NULL;
+			}
 		}
-
+		else
+		{
+			m=model;
+		}
 
 // P=I*m (no of rows in I and no of columns in m, which is I_rows*1(because m is column vector)->P, so basically P will be column vector)
 		P=mlfw_column_vec_double_create_new(I_rows);
-		if(P==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -222,7 +249,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		// E=P*A column vec * column vec creates another column vec
 
 		E=mlfw_column_vec_double_create_new(I_rows);
-		if(E==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -234,7 +261,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		// ET= E transpose, ET will be a row vector
 		
 		ET=mlfw_row_vec_double_create_new(I_rows);
-		if(ET==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -247,7 +274,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 
 		// ETE=ET*E, in our case always this is will be size of 1
 		ETE=mlfw_column_vec_double_create_new(1);
-		if(ETE==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -262,7 +289,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		// ITE=IT*E, IT_rows*E_columns, since E is columns vector IT_rows*1
 		// IT_rows=I_columns
 		ITE=mlfw_column_vec_double_create_new(I_columns);
-		if(ITE==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -275,7 +302,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 			return NULL;
 		}
 		TMP1=mlfw_column_vec_double_create_new(I_columns);
-		if(TMP1==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -289,7 +316,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 			return NULL;
 		}
 		TMP2=mlfw_column_vec_double_create_new(I_columns);
-		if(TMP2==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -304,7 +331,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 			return NULL;
 		}
 		gradient_vector=mlfw_column_vec_double_create_new(I_columns);
-		if(gradient_vector==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -321,7 +348,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		}
 
 		UM=mlfw_column_vec_double_create_new(I_columns);
-		if(UM==NULL)
+		if(mlfw_error())
 		{
 			mlfw_mat_double_left_shift(I,1);
 			mlfw_mat_double_reshape(&I,I_rows,I_columns-1);
@@ -463,9 +490,9 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 
 
 	// one iteration completed, so if on_each_iteration is not NULL, call the callback
-	if(on_each_iteration!=NULL)
+	if(gd_options->progress_callback!=NULL)
 	{
-		if(on_each_iteration(k,regularized_final_error_value,P)==0) break;
+		if(gd_options->progress_callback(k,A,P)==0) break;
 	}
 	++k;
 	}// operation loop ends
@@ -503,21 +530,27 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		mlfw_column_vec_double_destroy(TMP2);
 		mlfw_column_vec_double_destroy(gradient_vector);
 		mlfw_column_vec_double_destroy(UM);
-		trained_parameters=mlfw_column_vec_double_transpose(m,NULL);
-		mlfw_column_vec_double_destroy(m);
 
-		return trained_parameters;
-
-	return NULL;
+		return m;
 }
 // Everything above this point is being written by Framework Designer
 // All the function below this point are being written by Framework User
 void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 {
+	mlfw_row_vec_string *header;
+	dimension_t rows,columns;
+	*x=mlfw_mat_double_from_csv("IceCreamSales.csv",NULL,&header);
+	if(mlfw_error()) return;
+	mlfw_mat_double_get_dimensions(*x,&rows,&columns);
+	if(mlfw_error()) return;
+	mlfw_row_vec_string_destroy(header);
+	*y=mlfw_mat_double_create_column_vec(*x,columns-1,NULL);
+	mlfw_mat_double_reshape(x,rows,columns-1);
 }
 int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y)
 {
-	return 0;
+	printf("Iteration : %" PRIu64 "\n",iteration_number);
+	return 1; // keep running
 }
 mlfw_gradient_descent_options * get_gradient_descent_options()
 {
@@ -526,7 +559,7 @@ mlfw_gradient_descent_options * get_gradient_descent_options()
 	uint64_t number_of_iterations;
 	gd_options=mlfw_gradient_descent_options_create_new();
 	if(mlfw_error()) return NULL;
-	learning_rate=0.001;
+	learning_rate=0.0001;
 	number_of_iterations=500000;
 	mlfw_gradient_descent_options_set_learning_rate(gd_options,learning_rate);
 	mlfw_gradient_descent_options_set_number_of_iterations(gd_options,number_of_iterations);
@@ -561,14 +594,16 @@ int main()
 	
 	mlfw_mat_double_destroy(x);
 	mlfw_column_vec_double_destroy(y);
+	mlfw_column_vec_double_destroy(model);
+	mlfw_row_vec_string_destroy(model_header);
 	mlfw_gradient_descent_options_destroy(gd_options);
-	mlfw_get_error_string(error_string,512);
-	mlfw_get_debug_string(debug_string,512);
 	printf("Model saved to examples-1-model.csv\n");
 	return 0;
 	err:
 	mlfw_mat_double_destroy(x);
 	mlfw_column_vec_double_destroy(y);
+	mlfw_column_vec_double_destroy(model);
+	mlfw_row_vec_string_destroy(model_header);
 	mlfw_gradient_descent_options_destroy(gd_options);
 	mlfw_get_error_string(error_string,512);
 	mlfw_get_debug_string(debug_string,512);
