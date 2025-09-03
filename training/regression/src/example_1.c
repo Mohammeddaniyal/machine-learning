@@ -119,3 +119,26 @@ void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_opt
 	}
 	gd_options->mini_batch_size=mini_batch_size;
 }
+void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
+{
+}
+int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y)
+{
+	return 0;
+}
+mlfw_gradient_descent_options * get_gradient_descent_options()
+{
+	mlfw_gradient_descent_options *gd_options;
+	double learning_rate;
+	uint64_t number_of_iterations;
+	gd_options=mlfw_gradient_descent_options_create_new();
+	if(mlfw_error()) return NULL;
+	learning_rate=0.001;
+	number_of_iterations=500000;
+	mlfw_gradient_descent_options_set_learning_rate(gd_options,learning_rate);
+	mlfw_gradient_descent_options_set_number_of_iterations(gd_options,number_of_iterations);
+	mlfw_gradient_descent_options_set_gradient_descent_type(gd_options,MLFW_BATCH_GRADIENT_DESCENT);
+	mlfw_gradient_descent_options_set_progress_callback(gd_options,on_iteration_complete);
+	return gd_options;
+}
+
