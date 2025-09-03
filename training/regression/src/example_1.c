@@ -119,6 +119,12 @@ void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_opt
 	}
 	gd_options->mini_batch_size=mini_batch_size;
 }
+mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent(mlfw_gradient_descent_options  *gd_options,mlfw_mat_double *x,mlfw_column_vec_double *y,double regularization_parameter,mlfw_column_vec_double *model)
+{
+	return NULL;
+}
+// Everything above this point is being written by Framework Designer
+// All the function below this point are being written by Framework User
 void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 {
 }
