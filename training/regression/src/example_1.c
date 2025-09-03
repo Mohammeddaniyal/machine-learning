@@ -37,3 +37,14 @@ mlfw_gradient_descent_options * mlfw_gradient_descent_options_create_new()
 	gd_options->mini_batch_size=0;
 	return gd_options;
 }
+void mlfw_gradient_descent_options_destroy(mlfw_gradient_descent_options *gd_options)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	free(gd_options);
+}
+
