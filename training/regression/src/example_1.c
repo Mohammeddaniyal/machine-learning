@@ -109,3 +109,13 @@ void mlfw_gradient_descent_options_set_data_provider(mlfw_gradient_descent_optio
 	}
 	gd_options->data_provider=data_provider;
 }
+void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_options *gd_options,uint32_t mini_batch_size)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{	
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	gd_options->mini_batch_size=mini_batch_size;
+}
