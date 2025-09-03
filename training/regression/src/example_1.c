@@ -55,5 +55,37 @@ void mlfw_gradient_descent_options_set_learning_rate(mlfw_gradient_descent_optio
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
 		return;
 	}
-	gd_options->learning_rate=
+	gd_options->learning_rate=learning_rate;
+}
+void mlfw_gradient_descent_options_set_number_of_iterations(mlfw_gradient_descent_options *gd_options,uint64_t number_of_iterations)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{	
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	gd_options->number_of_iterations=number_of_iterations;
+}
+void mlfw_gradient_descent_options_set_gradient_descent_type(mlfw_gradient_descent_options *gd_options,int gradient_descent_type)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{	
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return;
+	}
+	if(gradient_descent_type==MLFW_BATCH_GRADIENT_DESCENT)
+	{
+	gd_options->gradient_descent_type=MLFW_BATCH_GRADIENT_DESCENT;
+	}else if(gradient_descent_type==MLFW_STOCHASTIC_GRADIENT_DESCENT)
+	{
+	gd_options->gradient_descent_type=MLFW_STOCHASTIC_GRADIENT_DESCENT;
+	}else if(gradient_descent_type==MLFW_MINI_BATCH_GRADIENT_DESCENT)
+	{
+	gd_options->gradient_descent_type=MLFW_MINI_BATCH_GRADIENT_DESCENT;
+	}else
+	{
+	_mlfw_set_error(MLFW_INVALID_GRADIENT_DESCENT_TYPE_CODE,MLFW_INVALID_GRADIENT_DESCENT_TYPE);
+	}
 }
