@@ -390,12 +390,22 @@ mlfw_column_vec_string * mlfw_column_vec_string_create_new(dimension_t rows)
 {
 	mlfw_column_vec_string *vector;
 	index_t i;
-	if(rows<=0) return NULL;
+	mlfw_reset_error();
+	if(rows<=0)
+	{
+		_mlfw_set_error(MLFW_INVALID_VECTOR_SIZE_CODE,MLFW_INVALID_VECTOR_SIZE,rows);
+		return NULL;
+	}
 	vector=(mlfw_column_vec_string *)malloc(sizeof(mlfw_column_vec_string));
-	if(vector==NULL) return NULL;
+	if(vector==NULL) 
+	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(mlfw_column_vec_string));
+		return NULL;
+	}
 	vector->data=(char **)malloc(sizeof(char *)*rows);
 	if(vector->data==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(char *)*rows);
 		free(vector);
 		return 0;
 	}
@@ -410,7 +420,12 @@ mlfw_column_vec_string * mlfw_column_vec_string_create_new(dimension_t rows)
 void mlfw_column_vec_string_destroy(mlfw_column_vec_string *vector)
 {
 	index_t i;
-	if(vector==NULL) return;
+	mlfw_reset_error();
+	if(vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return;
+	}
 	for(i=0;i<vector->size;++i)
 	{
 		if(vector->data[i]!=NULL) free(vector->data[i]);
@@ -430,9 +445,23 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 	index_t i;
 	index_t r;
 	char string[5001];
-	if(csv_file_name==NULL || header==NULL) return NULL;
+	mlfw_reset_error();
+	if(csv_file_name==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"csv_file_name");
+		return NULL;
+	}
+	if(header==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"header");
+		return NULL;
+	}
 	file=fopen(csv_file_name,"r");
-	if(file==NULL) return NULL;
+	if(file==NULL)
+	{
+	_mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE,MLFW_UNABLE_TO_OPEN_FILE,csv_file_name,"csv_file_name");
+	return NULL;
+	}
 	// logic to read the first line starts here
 	columns=0;
 	while(1)
@@ -446,13 +475,14 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 	}
 	columns++; // if 0 commas, then 1 column, if 3 commas then 4 columns
 	if(columns!=1)
-	{
+	{	
+		_mlfw_set_error(MLFW_INVALID_HEADER_SIZE_IN_FILE_CODE,MLFW_INVALID_HEADER_SIZE_IN_FILE,csv_file_name,columns,1);
 		fclose(file);
 		*header=NULL;
 		return NULL;
 	}
 	*header=mlfw_row_vec_string_create_new(columns);
-	if(*header==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	rewind(file);
 	index=0;
 	header_index=0;
@@ -491,7 +521,7 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 	if(vector==NULL)
 	{
 	vector=mlfw_column_vec_string_create_new(size);
-	if(vector==NULL)
+	if(mlfw_error())
 	{
 		fclose(file);
 		mlfw_row_vec_string_destroy(*header);
@@ -502,7 +532,8 @@ mlfw_column_vec_string * mlfw_column_vec_string_from_csv(const char *csv_file_na
 	else
 	{
 	if(vector->size!=size)
-	{
+	{	
+_mlfw_set_error(MLFW_INVALID_CONTAINER_SIZE_CODE,MLFW_INVALID_CONTAINER_SIZE,"vector",vector->size,"csv_file_name[rows[size]]",size);
 		fclose(file);
 		mlfw_row_vec_string_destroy(*header);
 		*header=NULL;
@@ -553,11 +584,34 @@ void mlfw_column_vec_string_to_csv(mlfw_column_vec_string *vector,const char *cs
 	char *ptr;
 	FILE *file;
 	index_t i;
-	if(vector==NULL || csv_file_name==NULL || header==NULL) return;
+	mlfw_reset_error();
+	if(vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return;
+	}
+	if(csv_file_name==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"csv_file_name");
+		return;
+	}
+	if(header==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"header");
+		return;
+	}
 	header_size=mlfw_row_vec_string_get_size(header);
-	if(header_size!=1) return;
+	if(header_size!=1)
+	{
+		_mlfw_set_error(MLFW_INVALID_COLUMN_VECTOR_HEADER_SIZE_CODE,MLFW_INVALID_COLUMN_VECTOR_HEADER_SIZE,"header",header_size,1);
+		return;
+	}
 	file=fopen(csv_file_name,"w");
-	if(file==NULL) return;
+	if(file==NULL)
+	{	
+		_mlfw_set_error(MLFW_UNABLE_TO_CREATE_FILE_CODE,MLFW_UNABLE_TO_CREATE_FILE,csv_file_name,"csv_file_name");
+		return;
+	}
 	// code to write header
 	for(index=0;index<header_size;++index)
 	{		
@@ -586,56 +640,104 @@ void mlfw_column_vec_string_to_csv(mlfw_column_vec_string *vector,const char *cs
 }
 void mlfw_column_vec_string_get(mlfw_column_vec_string *vector,index_t index,char **string)
 {
-	if(string==NULL) return;
+	unsigned long int allocation_len;
+	mlfw_reset_error();
+	if(string==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"string");
+		return;
+	}
 	if(vector==NULL)
 	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
 		*string=NULL;
 		return;
 	}
 	if(index<0 || index>=vector->size)
 	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,index,"index",0,vector->size-1);
 		*string=NULL;
 		return;
 	}
 	if(vector->data[index]==NULL)
 	{
+		_mlfw_set_error(MLFW_NO_STRING_SET_CODE,MLFW_NO_STRING_SET,index);
 		*string=NULL;
 		return;
 	}
-	*string=(char *)malloc(sizeof(char)*(strlen(vector->data[index])+1));
+	allocation_len=sizeof(char)*(strlen(vector->data[index])+1);
+	*string=(char *)malloc(allocation_len);
 	if(*string==NULL) return;
+	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
+		return;
+	}
 	strcpy(*string,vector->data[index]);
 
 }
 void mlfw_column_vec_string_set(mlfw_column_vec_string *vector,index_t index,char *string)
 {
-	if(vector==NULL || string==NULL) return;
-	if(index<0 || index>=vector->size) return;
+	unsigned long int allocation_len;
+	mlfw_reset_error();
+	if(string==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"string");
+		return;
+	}
+	if(vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return;
+	}
+	if(index<0 || index>=vector->size)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,index,"index",0,vector->size-1);
+		return;
+	}
 	if(vector->data[index]!=NULL) free(vector->data[index]);
-	vector->data[index]=(char *)malloc(sizeof(char)*(strlen(string)+1));
+	allocation_len=sizeof(char)*(strlen(string)+1);
+	vector->data[index]=(char *)malloc(allocation_len);
 	if(vector->data[index]!=NULL)
 	{      
 	strcpy(vector->data[index],string);
 	}
+	else
+	{
+	_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,allocation_len);
+	}
 }
 dimension_t mlfw_column_vec_string_get_size(mlfw_column_vec_string *vector)
 {
-	if(vector==NULL) return 0;
+	mlfw_reset_error();
+	if(vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return 0;
+	}
 	return vector->size;
 }
 mlfw_row_vec_string * mlfw_column_vec_string_transpose(mlfw_column_vec_string *vector,mlfw_row_vec_string *transposed_vector)
 {
 	index_t i;
 	char *ptr;
-	if(vector==NULL) return NULL;
+	mlfw_reset_error();
+	if(vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return NULL;
+	}
 	if(transposed_vector==NULL)
 	{
 	transposed_vector=mlfw_row_vec_string_create_new(vector->size);
-	if(transposed_vector==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	}
 	else
 	{
-	if(transposed_vector->size!=vector->size) return NULL;
+	if(transposed_vector->size!=vector->size)
+	{	
+_mlfw_set_error(MLFW_INVALID_CONTAINER_SIZE_CODE,MLFW_INVALID_CONTAINER_SIZE,"transposed_vector",transposed_vector->size,"vector[size]",vector->size);
+	return NULL;
+	}
 	}
 	for(i=0;i<vector->size;++i)
 	{
