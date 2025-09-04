@@ -51,7 +51,6 @@ void mlfw_column_vec_double_destroy(mlfw_column_vec_double *vector)
 	mlfw_reset_error();
 	if(vector==NULL) 
 	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
 		return;
 	}
 	free(vector->data);
@@ -376,7 +375,27 @@ mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlf
 	fclose(file);
 	return vector;
 }
-
+void mlfw_column_vec_double_copy(mlfw_column_vec_double *target_vector,mlfw_column_vec_double *source_vector)
+{
+	index_t i;
+	mlfw_reset_error();
+	if(target_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"target_vector");
+		return;
+	}
+	if(source_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"source_vector");
+		return;
+	}
+	if(target_vector->size!=source_vector->size)
+	{
+		_mlfw_set_error(MLFW_VECTOR_SIZE_NOT_SAME_CODE,MLFW_VECTOR_SIZE_NOT_SAME,"source_vector","target_vector",source_vector->size,target_vector->size);
+		return;
+	}
+	for(i=0;i<source_vector->size;++i) target_vector->data[i]=source_vector->data[i];
+}
 
 // row vector function implementations
 
@@ -410,7 +429,6 @@ void mlfw_row_vec_double_destroy(mlfw_row_vec_double *vector)
 	mlfw_reset_error();
 	if(vector==NULL)
 	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
 		return;
 	}
 	free(vector->data);
@@ -753,5 +771,5 @@ void mlfw_row_vec_double_copy(mlfw_row_vec_double *target_vector,mlfw_row_vec_do
 		_mlfw_set_error(MLFW_VECTOR_SIZE_NOT_SAME_CODE,MLFW_VECTOR_SIZE_NOT_SAME,"source_vector","target_vector",source_vector->size,target_vector->size);
 		return;
 	}
-	for(i=0;i<source_vector_size;++i) target_vector_size->date[i]=source_vector_size->data[i];
+	for(i=0;i<source_vector->size;++i) target_vector->data[i]=source_vector->data[i];
 }
