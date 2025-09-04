@@ -550,8 +550,8 @@ mlfw_gradient_descent_options * get_gradient_descent_options()
 	uint64_t number_of_iterations;
 	gd_options=mlfw_gradient_descent_options_create_new();
 	if(mlfw_error()) return NULL;
-	learning_rate=0.0001;
-	number_of_iterations=500000;
+	learning_rate=LEARNING_RATE;
+	number_of_iterations=NUMBER_OF_ITERATIONS;
 	mlfw_gradient_descent_options_set_learning_rate(gd_options,learning_rate);
 	mlfw_gradient_descent_options_set_number_of_iterations(gd_options,number_of_iterations);
 	mlfw_gradient_descent_options_set_gradient_descent_type(gd_options,MLFW_BATCH_GRADIENT_DESCENT);
@@ -563,16 +563,16 @@ int main()
 	double regularization_parameter;
 	char error_string[512];
 	char debug_string[512];
-	mlfw_column_vec_double *model=NULL;
+	mlfw_column_vec_double *model=NULL;// for parameters
 	mlfw_row_vec_string *model_header=NULL;
 	mlfw_mat_double *x=NULL;
 	mlfw_column_vec_double *y=NULL;
 	mlfw_gradient_descent_options *gd_options=NULL;
 
-	load_dataset(&x,&y);
-	regularization_parameter=0.1234;
+	load_dataset(&x,&y); // function defined by framework user
+	regularization_parameter=REGULARIZATION_PARAMETER;
 	if(mlfw_error()) goto err;
-	gd_options=get_gradient_descent_options();
+	gd_options=get_gradient_descent_options(); // function defined by framework user
 	if(mlfw_error()) goto err;
 	model=mlfw_linear_regression_fit_using_batch_gradient_descent(gd_options,x,y,regularization_parameter,NULL);
 	if(mlfw_error()) goto err;
@@ -583,22 +583,36 @@ int main()
 	mlfw_column_vec_double_to_csv(model,"example-1-model.csv",model_header);
 	if(mlfw_error()) goto err;
 	
+	printf("Model saved to examples-1-model.csv\n");
 	mlfw_mat_double_destroy(x);
 	mlfw_column_vec_double_destroy(y);
 	mlfw_column_vec_double_destroy(model);
 	mlfw_row_vec_string_destroy(model_header);
 	mlfw_gradient_descent_options_destroy(gd_options);
-	printf("Model saved to examples-1-model.csv\n");
+	if(gnuplot!=NULL)
+	{
+		fprintf(gnuplot,"exit\n");
+		fflush(gnuplot);
+		printf("Waiting for resources to be cleared, press ctrl+c it it takes too long\n");
+		pclose(gnuplot);
+	}
 	return 0;
 	err:
-	mlfw_mat_double_destroy(x);
-	mlfw_column_vec_double_destroy(y);
-	mlfw_column_vec_double_destroy(model);
-	mlfw_row_vec_string_destroy(model_header);
-	mlfw_gradient_descent_options_destroy(gd_options);
 	mlfw_get_error_string(error_string,512);
 	mlfw_get_debug_string(debug_string,512);
 	printf("Error : %s\n",error_string);
 	printf("Error debug details : %s\n",debug_string);
+	mlfw_mat_double_destroy(x);
+	mlfw_column_vec_double_destroy(y);
+	mlfw_column_vec_double_destroy(model);
+	mlfw_row_vec_string_destroy(model_header);
+	mlfw_gradient_descent_options_destroy(gd_options);
+	if(gnuplot!=NULL)
+	{
+		fprintf(gnuplot,"exit\n");
+		fflush(gnuplot);
+		printf("Waiting for resources to be cleared, press ctrl+c it it takes too long\n");
+		pclose(gnuplot);
+	}
 	return 0;
 }
