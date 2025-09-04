@@ -58,7 +58,6 @@ void mlfw_row_vec_string_destroy(mlfw_row_vec_string *vector)
 	mlfw_reset_error();
 	if(vector==NULL) 
 	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
 		return;
 	}
 	for(i=0;i<vector->size;++i)
@@ -423,7 +422,6 @@ void mlfw_column_vec_string_destroy(mlfw_column_vec_string *vector)
 	mlfw_reset_error();
 	if(vector==NULL)
 	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
 		return;
 	}
 	for(i=0;i<vector->size;++i)
