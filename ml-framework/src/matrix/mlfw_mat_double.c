@@ -4,6 +4,13 @@
 #include<stdio.h>
 #include<time.h>
 #include<math.h>
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
+
+extern __thread uint32_t _mlfw_error_code;
+extern __thread char _mlfw_error_string[512];
+extern __thread char _mlfw_debug_string[512];
+
 typedef struct __mlfw_mat_double{
 	double **data;
 	dimension_t rows;
@@ -13,6 +20,7 @@ mlfw_mat_double * mlfw_mat_double_create_new(dimension_t rows,dimension_t column
 {
 	mlfw_mat_double *matrix;
 	index_t r,k;
+	mlfw_reset_error();
 	if(rows<=0 || columns<=0) return NULL;
 	matrix=(mlfw_mat_double *)malloc(sizeof(mlfw_mat_double));
 	if(matrix==NULL) return NULL;
@@ -1068,18 +1076,18 @@ void mlfw_mat_double_truncate(mlfw_mat_double **matrix,index_t from_row_index,in
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"*matrix");
 		return;
 	}
-	if(to_row_index>=(*matrix->rows))
+	if(to_row_index>=(*matrix)->rows)
 	{
 		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,to_row_index,"*matrix",0,(index_t)(*matrix)->rows-1);
 		return;
 	}
-	if(to_column_index>=(*matrix->rows))
+	if(to_column_index>=(*matrix)->rows)
 	{
 		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,to_column_index,"*matrix",0,(index_t)(*matrix)->columns-1);
 		return;
 	}
 	rows=to_row_index-from_row_index+1;
-	columns=to_columns_index-from_column_index+1;
+	columns=to_column_index-from_column_index+1;
 	new_matrix=mlfw_mat_double_create_new(rows,columns);
 	if(mlfw_error()) return;
 	mlfw_mat_double_copy(new_matrix,*matrix,0,0,from_row_index,from_column_index,to_row_index,to_column_index);
