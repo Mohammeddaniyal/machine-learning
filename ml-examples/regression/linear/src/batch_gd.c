@@ -320,6 +320,15 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 }
 // Everything above this point is being written by Framework Designer
 // All the function below this point are being written by Framework User
+
+#define TRAINING_DATASET "IceCreamSales_training_examples.csv"
+#define NUMBER_OF_ITERATIONS 3000000
+#define LEARNING_RATE 0.0001
+#define REGULARIZATION_PARAMETER 0.5
+#define FREQUENCY_OF_PRINTING_COST 50000
+#define SHOW_GRAPH 1
+FILE *gnuplot;
+
 void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 {
 	mlfw_row_vec_string *header;
