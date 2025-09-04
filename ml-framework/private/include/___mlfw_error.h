@@ -59,8 +59,8 @@
 #define MLFW_INVALID_RIGHT_OPERAND_MATRIX_ROWS_COUNT_CODE 18
 #define MLFW_INVALID_RIGHT_OPERAND_MATRIX_ROWS_COUNT "Invalid number of rows of right operand parameter matrix (%s), row count is (%u) and expected row count is (%u)"
 
-#define MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_CODE 19
-#define MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
+#define MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE 19
+#define MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
 
 #define MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS_CODE 20
 #define MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
