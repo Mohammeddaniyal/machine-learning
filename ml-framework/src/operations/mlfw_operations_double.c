@@ -3,34 +3,60 @@
 #include<mlfw_vector.h>
 #include<mlfw_operations.h>
 #include<math.h>
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
+
+extern __thread uint32_t _mlfw_error_code;
+extern __thread char _mlfw_error_string[512];
+extern __thread char _mlfw_debug_string[512];
+
 mlfw_column_vec_double * mlfw_multiply_double_row_vector_with_column_vector(mlfw_row_vec_double *left_vector,mlfw_column_vec_double *right_vector,mlfw_column_vec_double *product_vector)
 {
 	dimension_t left_vector_size;
 	dimension_t right_vector_size;
+	
+	dimension_t product_vector_size;
 
 	double left_vector_value;
 	double right_vector_value;
-
+	
 	double product;
 	
 	index_t i;
-
-	if(left_vector==NULL || right_vector==NULL) return NULL;
-	
+	mlfw_reset_error();
+	if(left_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_vector");
+		return NULL;
+	}
+	if(right_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_vector");
+		return NULL;
+	}
 	left_vector_size=mlfw_row_vec_double_get_size(left_vector);
 	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
-	if(left_vector_size!=right_vector_size) return NULL;
+	if(left_vector_size!=right_vector_size)
+	{
+		_mlfw_set_error(MLFW_VECTOR_SIZE_NOT_SAME_CODE,MLFW_VECTOR_SIZE_NOT_SAME,"left_vector","right_vector",left_vector_size,right_vector_size);
+		return NULL;
+	}
 
 	if(product_vector==NULL)
 	{
 	// create column vector to store result of row_vector x column_vector 
 	// 100% result will be a column vector of 1 row
 	product_vector=mlfw_column_vec_double_create_new(1);
-	if(product_vector==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	}
 	else
 	{
-		if(mlfw_column_vec_double_get_size(product_vector)!=1) return NULL;
+		product_vector_size=mlfw_column_vec_double_get_size(product_vector);
+		if(product_vector_size!=1)
+		{
+			_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"product_vector",product_vector_size,1);
+			return NULL;
+		}	
 	}
 	product=0.0;
 	for(i=0;i<left_vector_size;++i)
@@ -49,30 +75,49 @@ mlfw_column_vec_double * mlfw_multiply_double_matrix_with_column_vector(mlfw_mat
 	dimension_t left_matrix_columns;
 	
 	dimension_t right_vector_size;
-	
+	dimension_t product_vector_size;
 	index_t r,c;
 	
 	double left_matrix_value;
 	double right_vector_value;
 	
 	double product;
-	
-	if(left_matrix==NULL || right_vector==NULL) return NULL;
+	mlfw_reset_error();
+	if(left_matrix==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_matrix");
+		return NULL;
+	}
+	if(right_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_vector");
+		return NULL;
+	}
+
 	
 	mlfw_mat_double_get_dimensions(left_matrix,&left_matrix_rows,&left_matrix_columns);
 	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
 
-	
-	if(left_matrix_columns!=right_vector_size) return NULL;
+	if(left_matrix_columns!=right_vector_size)
+	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE_CODE,MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE,"right_vector",right_vector_size,left_matrix_columns);
+		return NULL;
+	}
+
 	
 	if(product_vector==NULL)
 	{
 	product_vector=mlfw_column_vec_double_create_new(left_matrix_rows);
-	if(product_vector==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	}
 	else
 	{
-		if(mlfw_column_vec_double_get_size(product_vector)!=left_matrix_rows) return NULL;
+		product_vector_size=mlfw_column_vec_double_get_size(product_vector);
+		if(product_vector_size!=left_matrix_rows)
+		{
+			_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"product_vector",product_vector_size,left_matrix_rows);
+			return NULL;
+		}	
 	}
 	for(r=0;r<left_matrix_rows;++r)
 	{
@@ -91,27 +136,46 @@ mlfw_column_vec_double * mlfw_subtract_double_column_vector(mlfw_column_vec_doub
 {	
 	dimension_t left_vector_size;
 	dimension_t right_vector_size;
-
+	dimension_t difference_vector_size;
 	double left_vector_value;
 	double right_vector_value;
 
 	double difference;
 	
 	index_t i;
-	if(left_vector==NULL || right_vector==NULL) return NULL;
+	mlfw_reset_error();
+	if(left_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_vector");
+		return NULL;
+	}
+	if(right_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_vector");
+		return NULL;
+	}
 	
 	left_vector_size=mlfw_column_vec_double_get_size(left_vector);
 	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
-	if(left_vector_size!=right_vector_size) return NULL;
+	if(left_vector_size!=right_vector_size)
+	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE_CODE,MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE,"right_vector",right_vector_size,left_vector_size);
+		return NULL;
+	}
 
 	if(difference_vector==NULL)
 	{
 	difference_vector=mlfw_column_vec_double_create_new(left_vector_size);
-	if(difference_vector==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	}
 	else
 	{
-	if(mlfw_column_vec_double_get_size(difference_vector)!=left_vector_size) return NULL;
+	difference_vector_size=mlfw_column_vec_double_get_size(difference_vector);
+	if(mlfw_column_vec_double_get_size(difference_vector)!=left_vector_size)
+	{
+		_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"difference_vector",difference_vector_size,left_vector_size);
+		return NULL;
+	}
 	}
 	for(i=0;i<left_vector_size;++i)
 	{
@@ -128,18 +192,29 @@ mlfw_column_vec_double * mlfw_multiply_double_scalar_with_column_vector(double s
 {
 	index_t i;
 	dimension_t vector_size;
+	dimension_t product_vector_size;
 	double value;
 	double product;
-	if(vector==NULL) return NULL;
+	mlfw_reset_error();
+	if(vector==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return NULL;
+	}
 	vector_size=mlfw_column_vec_double_get_size(vector);
 	if(product_vector==NULL)
 	{
 	product_vector=mlfw_column_vec_double_create_new(vector_size);
-	if(product_vector==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	}
 	else
 	{
-	if(mlfw_column_vec_double_get_size(product_vector)!=vector_size) return NULL;
+	product_vector_size=mlfw_column_vec_double_get_size(product_vector);
+	if(product_vector_size!=vector_size)
+	{
+		_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"product_vector",product_vector_size,vector_size);
+		return NULL;
+	}
 	}
 	for(i=0;i<vector_size;++i)
 	{
@@ -163,24 +238,42 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix(mlfw_mat_double *left_
 	double value_2;
 	double value_3;
 	mlfw_mat_double *m1,*m2,*m3;
-	if(left_matrix==NULL || right_matrix==NULL) return NULL;
+	mlfw_reset_error();
+	if(left_matrix==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_matrix");
+		return NULL;
+	}
+	if(right_matrix==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_matrix");
+		return NULL;
+	}
 	m1=left_matrix;
 	m2=right_matrix;
 	mlfw_mat_double_get_dimensions(m1,&m_1_rows,&m_1_columns);
 	mlfw_mat_double_get_dimensions(m2,&m_2_rows,&m_2_columns);
-	if(m_1_columns!=m_2_rows) return NULL;
+	if(m_1_columns!=m_2_rows) 
+	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_MATRIX_ROWS_COUNT_CODE,MLFW_INVALID_RIGHT_OPERAND_MATRIX_ROWS_COUNT,"right_matrix",m_2_rows,m_1_columns);
+		return NULL;
+	}
 
 	if(product_matrix==NULL)
 	{
 		m_3_rows=m_1_rows;
 		m_3_columns=m_2_columns;
 		m3=mlfw_mat_double_create_new(m_3_rows,m_3_columns);
-		if(m3==NULL) return NULL;
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
 		mlfw_mat_double_get_dimensions(product_matrix,&m_3_rows,&m_3_columns);
-		if(m_3_rows!=m_1_rows || m_3_columns!=m_2_columns) return NULL;
+		if(m_3_rows!=m_1_rows || m_3_columns!=m_2_columns)
+		{
+			_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"new_matrix",m_3_rows,m_3_columns,m_1_rows,m_2_columns);
+		return NULL;
+		}
 		m3=product_matrix;
 	}
 
@@ -213,11 +306,22 @@ mlfw_mat_double * mlfw_add_double_matrix_with_matrix(mlfw_mat_double *left_matri
 	mlfw_mat_double *result;
 	double left_value,right_value,result_value;
 	index_t r,c;
-	if(left_matrix==NULL || right_matrix==NULL) return NULL;
+	mlfw_reset_error();
+	if(left_matrix==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_matrix");
+		return NULL;
+	}
+	if(right_matrix==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_matrix");
+		return NULL;
+	}
 	mlfw_mat_double_get_dimensions(left_matrix,&left_matrix_rows,&left_matrix_columns);
 	mlfw_mat_double_get_dimensions(right_matrix,&right_matrix_rows,&right_matrix_columns);
 	if(left_matrix_rows!=right_matrix_rows || left_matrix_columns!=right_matrix_columns) 
 	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS_CODE,MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS,"right_matrix",right_matrix_rows,right_matrix_columns,left_matrix_rows,left_matrix_columns);
 		return NULL;
 	}
 	if(new_matrix==NULL)
@@ -230,6 +334,7 @@ mlfw_mat_double * mlfw_add_double_matrix_with_matrix(mlfw_mat_double *left_matri
 		mlfw_mat_double_get_dimensions(new_matrix,&new_matrix_rows,&new_matrix_columns);
 		if(left_matrix_rows!=new_matrix_rows || left_matrix_columns!=new_matrix_columns)
 		{
+			_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"new_matrix",new_matrix_rows,new_matrix_columns,left_matrix_rows,left_matrix_columns);
 			return NULL;
 		}
 	}
@@ -258,23 +363,35 @@ mlfw_mat_double * mlfw_subtract_double_matrix_from_matrix(mlfw_mat_double *left_
 	mlfw_mat_double *result;
 	double left_value,right_value,result_value;
 	index_t r,c;
-	if(left_matrix==NULL || right_matrix==NULL) return NULL;
+	mlfw_reset_error();
+	if(left_matrix==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_matrix");
+		return NULL;
+	}
+	if(right_matrix==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_matrix");
+		return NULL;
+	}
 	mlfw_mat_double_get_dimensions(left_matrix,&left_matrix_rows,&left_matrix_columns);
 	mlfw_mat_double_get_dimensions(right_matrix,&right_matrix_rows,&right_matrix_columns);
 	if(left_matrix_rows!=right_matrix_rows || left_matrix_columns!=right_matrix_columns) 
 	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS_CODE,MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS,"right_matrix",right_matrix_rows,right_matrix_columns,left_matrix_rows,left_matrix_columns);
 		return NULL;
 	}
 	if(new_matrix==NULL)
 	{
 		new_matrix=mlfw_mat_double_create_new(left_matrix_rows,left_matrix_columns);
-		if(new_matrix==NULL) return NULL;
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
 		mlfw_mat_double_get_dimensions(new_matrix,&new_matrix_rows,&new_matrix_columns);
 		if(left_matrix_rows!=new_matrix_rows || left_matrix_columns!=new_matrix_columns)
 		{
+			_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"new_matrix",new_matrix_rows,new_matrix_columns,left_matrix_rows,left_matrix_columns);
 			return NULL;
 		}
 	}
@@ -309,12 +426,15 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 	mlfw_mat_double *E1,*E2,*E3,*E4,*E5,*E6,*E7;
 	mlfw_mat_double *CELL_0_0,*CELL_0_1,*CELL_1_0,*CELL_1_1;
 	mlfw_mat_double *t1,*t2;
+	
+	mlfw_reset_error();
 
 	mlfw_mat_double_get_dimensions(m1,&rows,&columns);
 	n=rows;
 	if(new_matrix==NULL)
 	{
 		product=mlfw_mat_double_create_new(n,n);
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
@@ -354,7 +474,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 	{
 		half=n/2;
 		A=mlfw_mat_double_create_new(half,half);
-		if(A==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -363,7 +483,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		B=mlfw_mat_double_create_new(half,half);
-		if(B==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -373,7 +493,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		C=mlfw_mat_double_create_new(half,half);
-		if(C==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -384,7 +504,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		D=mlfw_mat_double_create_new(half,half);
-		if(D==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -396,7 +516,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		E=mlfw_mat_double_create_new(half,half);
-		if(E==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -409,7 +529,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		F=mlfw_mat_double_create_new(half,half);
-		if(F==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -423,7 +543,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		G=mlfw_mat_double_create_new(half,half);
-		if(G==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -438,7 +558,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 			return NULL;
 		}
 		H=mlfw_mat_double_create_new(half,half);
-		if(H==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -466,7 +586,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// A*(F-H)
 		t1=mlfw_subtract_double_matrix_from_matrix(F,H,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -484,7 +604,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E1=_mlfw_multiply_double_matrix_with_matrix_strassens(A,t1,NULL);
-		if(E1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -505,7 +625,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t1);
 		// (A+B)*H
 		t1=mlfw_add_double_matrix_with_matrix(A,B,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -524,7 +644,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E2=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,H,NULL);
-		if(E2==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -546,7 +666,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t1);
 		// (C+D)*E
 		t1=mlfw_add_double_matrix_with_matrix(C,D,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -566,7 +686,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E3=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,E,NULL);
-		if(E3==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -590,7 +710,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// D*(G-E)
 		t1=mlfw_subtract_double_matrix_from_matrix(G,E,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -611,7 +731,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E4=_mlfw_multiply_double_matrix_with_matrix_strassens(D,t1,NULL);
-		if(E4==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -635,7 +755,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t1);
 		// (A+D)*(E+H)
 		t1=mlfw_add_double_matrix_with_matrix(A,D,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -657,7 +777,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		t2=mlfw_add_double_matrix_with_matrix(E,H,NULL);
-		if(t2==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -680,7 +800,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E5=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2,NULL);
-		if(E5==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -707,7 +827,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t2);
 		// (B-D)*(G+H)
 		t1=mlfw_subtract_double_matrix_from_matrix(B,D,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -730,7 +850,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		t2=mlfw_add_double_matrix_with_matrix(G,H,NULL);
-		if(t2==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -754,7 +874,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E6=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2,NULL);
-		if(E6==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -782,7 +902,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t2);
 		// (A-C)*(E+F)
 		t1=mlfw_subtract_double_matrix_from_matrix(A,C,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -806,7 +926,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		t2=mlfw_add_double_matrix_with_matrix(E,F,NULL);
-		if(t2==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -831,7 +951,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		E7=_mlfw_multiply_double_matrix_with_matrix_strassens(t1,t2,NULL);
-		if(E7==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -861,7 +981,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// CELL_0_0=E5+E4-E2+E6
 		t1=mlfw_add_double_matrix_with_matrix(E5,E4,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -886,7 +1006,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		t2=mlfw_subtract_double_matrix_from_matrix(t1,E2,NULL);
-		if(t2==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -912,7 +1032,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		CELL_0_0=mlfw_add_double_matrix_with_matrix(t2,E6,NULL);
-		if(CELL_0_0==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -942,7 +1062,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		mlfw_mat_double_destroy(t2);
 		// CELL_0_1=E1+E2
 		CELL_0_1=mlfw_add_double_matrix_with_matrix(E1,E2,NULL);
-		if(CELL_0_1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -969,7 +1089,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// CELL_1_0=E3+E4
 		CELL_1_0=mlfw_add_double_matrix_with_matrix(E3,E4,NULL);
-		if(CELL_1_0==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -997,7 +1117,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 
 		// CELL_1_1=E1+E5-E3-E7
 		t1=mlfw_add_double_matrix_with_matrix(E1,E5,NULL);
-		if(t1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -1025,7 +1145,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		t2=mlfw_subtract_double_matrix_from_matrix(t1,E3,NULL);
-		if(t2==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -1054,7 +1174,7 @@ mlfw_mat_double * _mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_do
 		}
 
 		CELL_1_1=mlfw_subtract_double_matrix_from_matrix(t2,E7,NULL);
-		if(CELL_1_1==NULL)
+		if(mlfw_error())
 		{
 			if(new_matrix==NULL)
 			{
@@ -1124,9 +1244,23 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_dou
 	dimension_t m1_rows,m1_columns;
 	dimension_t m2_rows,m2_columns;
 	dimension_t new_matrix_rows,new_matrix_columns;
-	if(m1==NULL || m2==NULL) return NULL;
+	mlfw_reset_error();
+	if(m1==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"m1");
+		return NULL;
+	}
+	if(m2==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"m2");
+		return NULL;
+	}
 	mlfw_mat_double_get_dimensions(m1,&m1_rows,&m1_columns);
-	if(m1_rows!=m1_columns) return NULL;
+	if(m1_rows!=m1_columns) 
+	{
+		_mlfw_set_error(MLFW_NOT_SQUARE_MATRIX_CODE,MLFW_NOT_SQUARE_MATRIX,"m1");
+		return NULL;
+	}
 
 	// checking dimensions are in the power of 2
 	y=(double)m1_rows;
@@ -1134,12 +1268,20 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_dou
 	if(floor(n)!=ceil(n)) return NULL;
 
 	mlfw_mat_double_get_dimensions(m2,&m2_rows,&m2_columns);
-	if(m2_rows!=m2_columns || m2_rows!=m1_rows) return NULL;
+	if(m2_rows!=m2_columns || m2_rows!=m1_rows)
+	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS_CODE,MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS,"m2",m2_rows,m2_columns,m1_rows,m1_columns);
+		return NULL;
+	}
 	
 	if(new_matrix!=NULL)
 	{
 		mlfw_mat_double_get_dimensions(new_matrix,&new_matrix_rows,&new_matrix_columns);
-		if(new_matrix_rows!=new_matrix_columns || new_matrix_rows!=m1_rows) return NULL;
+		if(new_matrix_rows!=new_matrix_columns || new_matrix_rows!=m1_rows)
+		{
+			_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"new_matrix",new_matrix_rows,new_matrix_columns,m1_rows,m1_columns);
+			return NULL;
+		}
 	}
 
 	product=_mlfw_multiply_double_matrix_with_matrix_strassens(m1,m2,new_matrix);
@@ -1155,17 +1297,26 @@ mlfw_column_vec_double * mlfw_subtract_double_column_vector_from_scalar(mlfw_col
 	double result;
 	double value;
 	index_t i;
-	if(vector==NULL) return NULL;
+	mlfw_reset_error();
+	if(vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"vector");
+		return NULL;
+	}
 	vector_size=mlfw_column_vec_double_get_size(vector);
 	if(new_vector==NULL)
 	{
 		v=mlfw_column_vec_double_create_new(vector_size);
-		if(v==NULL) return NULL;
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
 		new_vector_size=mlfw_column_vec_double_get_size(new_vector);
-		if(new_vector_size!=vector_size) return NULL;
+		if(new_vector_size!=vector_size)
+		{
+		_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"new_vector",new_vector_size,vector_size);
+		return NULL;
+		}
 		v=new_vector;
 	}
 	for(i=0;i<vector_size;++i)
@@ -1188,19 +1339,37 @@ mlfw_column_vec_double * mlfw_element_wise_multiply_double_column_vector(mlfw_co
 	double value2;
 	double result;
 	index_t i;
-	if(left_vector==NULL || right_vector==NULL) return NULL;
+	mlfw_reset_error();
+	if(left_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_vector");
+		return NULL;
+	}	
+	if(right_vector==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_vector");
+		return NULL;
+	}
 	left_vector_size=mlfw_column_vec_double_get_size(left_vector);
 	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
-	if(left_vector_size!=right_vector_size) return NULL;
+	if(left_vector_size!=right_vector_size) 
+	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE_CODE,MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE,"right_vector",right_vector_size,left_vector_size);
+		return NULL;
+	}
 	if(new_vector==NULL)
 	{
 		v=mlfw_column_vec_double_create_new(left_vector_size);
-		if(v==NULL) return NULL;
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
 		new_vector_size=mlfw_column_vec_double_get_size(new_vector);
-		if(left_vector_size!=new_vector_size) return NULL;
+		if(left_vector_size!=new_vector_size)
+		{
+			_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"new_vector",new_vector_size,left_vector_size);
+			return NULL;	
+		}
 		v=new_vector;
 	}
 	for(i=0;i<left_vector_size;++i)
@@ -1220,26 +1389,45 @@ mlfw_column_vec_double * mlfw_add_double_column_vector(mlfw_column_vec_double *l
 	dimension_t left_vector_size;
 	dimension_t right_vector_size;
 
+	dimension_t new_vector_size;
 	double left_vector_value;
 	double right_vector_value;
 
 	double sum;
 	
 	index_t i;
-	if(left_vector==NULL || right_vector==NULL) return NULL;
-	
+	mlfw_reset_error();
+	if(left_vector==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"left_vector");
+		return NULL;
+	}	
+	if(right_vector==NULL) 
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"right_vector");
+		return NULL;
+	}
 	left_vector_size=mlfw_column_vec_double_get_size(left_vector);
 	right_vector_size=mlfw_column_vec_double_get_size(right_vector);
-	if(left_vector_size!=right_vector_size) return NULL;
+	if(left_vector_size!=right_vector_size) 
+	{
+		_mlfw_set_error(MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE_CODE,MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE,"right_vector",right_vector_size,left_vector_size);
+		return NULL;
+	}
 
 	if(new_vector==NULL)
 	{
 		v=mlfw_column_vec_double_create_new(left_vector_size);
-		if(v==NULL) return NULL;
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
-		if(mlfw_column_vec_double_get_size(new_vector)!=left_vector_size) return NULL;
+		new_vector_size=mlfw_column_vec_double_get_size(new_vector);
+		if(new_vector_size!=left_vector_size)
+		{
+			_mlfw_set_error(MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE,MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT,"new_vector",new_vector_size,left_vector_size);
+			return NULL;
+		}
 		v=new_vector;
 	}
 	for(i=0;i<left_vector_size;++i)
