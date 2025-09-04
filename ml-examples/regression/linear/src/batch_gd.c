@@ -185,6 +185,14 @@ uint32_t mlfw_gradient_descent_options_get_mini_batch_size(mlfw_gradient_descent
 }
 mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent(mlfw_gradient_descent_options  *gd_options,mlfw_mat_double *x,mlfw_column_vec_double *y,double regularization_parameter,mlfw_column_vec_double *model)
 {
+	dimension_t x_rows,x_columns;
+	dimension_t theta_rows;
+	double theta_0; // to store value of theta[0] before setting to 0
+			// as it is to be ignore in regularization term
+	mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback;
+	
+	mlfw_mat_double *x_transposed;
+	mlfw_column_vec_double *predicted_y=NULL;
 
 }
 // Everything above this point is being written by Framework Designer
