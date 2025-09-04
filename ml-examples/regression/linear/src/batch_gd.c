@@ -123,6 +123,16 @@ void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_opt
 	}
 	gd_options->mini_batch_size=mini_batch_size;
 }
+double mlfw_gradient_descent_options_get_learning_rate(mlfw_gradient_descent_options *gradient_descent)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return 0.0;
+	}
+	return gd_options->learning_rate;
+}
 uint64_t mlfw_gradient_descent_options_get_number_of_iterations(mlfw_gradient_descent_options *gradient_descent)
 {
 	mlfw_reset_error();
