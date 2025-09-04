@@ -19,6 +19,9 @@ double mlfw_column_vec_double_get_mean(mlfw_column_vec_double *vector);
 
 void mlfw_column_vec_double_to_csv(mlfw_column_vec_double *vector,char *csv_file_name,mlfw_row_vec_string *header);
 mlfw_column_vec_double * mlfw_column_vec_double_from_csv(char *csv_file_name,mlfw_column_vec_double *vector,mlfw_row_vec_string **header);
+
+void mlfw_column_vec_double_copy(mlfw_column_vec_double *target_vector,mlfw_column_vec_double *source_vector);
+
 // row vector function prototypes
 
 
@@ -33,4 +36,7 @@ double mlfw_row_vec_double_get_mean(mlfw_row_vec_double *vector);
 
 void mlfw_row_vec_double_to_csv(mlfw_row_vec_double *vector,char *csv_file_name,mlfw_row_vec_string *header);
 mlfw_row_vec_double * mlfw_row_vec_double_from_csv(char *csv_file_name,mlfw_row_vec_double *vector,mlfw_row_vec_string **header);
+
+void mlfw_row_vec_double_copy(mlfw_row_vec_double *target_vector,mlfw_row_vec_double *source_vector);
+
 #endif
