@@ -153,6 +153,16 @@ int mlfw_gradient_descent_options_get_gradient_descent_type(mlfw_gradient_descen
 	}
 	return gd_options->gradient_descent_type;
 }
+mlfw_gradient_descent_lin_reg_progress_call_t mlfw_gradient_descent_options_get_number_of_iterations(mlfw_gradient_descent_options *gradient_descent)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return 0;
+	}
+	return gd_options->progress_callback;
+}
 mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent(mlfw_gradient_descent_options  *gd_options,mlfw_mat_double *x,mlfw_column_vec_double *y,double regularization_parameter,mlfw_column_vec_double *model)
 {
 
