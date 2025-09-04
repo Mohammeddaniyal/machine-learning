@@ -9,13 +9,18 @@ extern __thread char _mlfw_debug_string[512];
 
 enum MLFW_GRADIENT_DESCENT_TYPE{MLFW_BATCH_GRADIENT_DESCENT,MLFW_STOCHASTIC_GRADIENT_DESCENT,MLFW_MINI_BATCH_GRADIENT_DESCENT};
 
+// parameters: iteration_number,y,predicted_y,model,regularization_parameter
+typedef int (*mlfw_gradient_descent_lin_reg_progress_callback_t)(uint64_t,void *,void *,void *,double);
+
+// parameters: x,y,from_row_index,how_many_rows
+typedef void (*mlfw_gradient_descent_lin_reg_data_provider_t)(void *,void *,uint64_t,uint64_t);
 typedef struct _mlfw_gradient_descent_options
 {
 	double learning_rate;
 	uint64_t number_of_iterations;
-	int (*progress_callback) (uint64_t iteration_number,void *y,void *predicted_y);
+	mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback;
 	int gradient_descent_type;
-	void (*data_provider)(void *x,void *y,uint64_t starting_row_number,uint32_t number_of_rows_to_provide);
+	mlfw_gradient_descent_lin_reg_data_provider_t data_provider;
 	uint32_t mini_batch_size;
 }mlfw_gradient_descent_options;
 
@@ -62,7 +67,6 @@ void mlfw_gradient_descent_options_set_number_of_iterations(mlfw_gradient_descen
 	mlfw_reset_error();
 	if(gd_options==NULL)
 	{	
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
 		return;
 	}
 	gd_options->number_of_iterations=number_of_iterations;
@@ -89,7 +93,7 @@ void mlfw_gradient_descent_options_set_gradient_descent_type(mlfw_gradient_desce
 	_mlfw_set_error(MLFW_INVALID_GRADIENT_DESCENT_TYPE_CODE,MLFW_INVALID_GRADIENT_DESCENT_TYPE);
 	}
 }
-void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_options *gd_options,int (*progress_callback)(uint64_t,void *,void *))
+void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_options *gd_options,mlfw_gradient_descent_progress_callback_t progress_callback)
 {
 	mlfw_reset_error();
 	if(gd_options==NULL)
@@ -99,7 +103,7 @@ void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_o
 	}
 	gd_options->progress_callback=progress_callback;
 }
-void mlfw_gradient_descent_options_set_data_provider(mlfw_gradient_descent_options *gd_options,void (*data_provider)(void *,void *,uint64_t,uint32_t))
+void mlfw_gradient_descent_options_set_data_provider(mlfw_gradient_descent_options *gd_options,mlfw_gradient_descent_lin_reg_data_provider_t data_provider)
 {
 	mlfw_reset_error();
 	if(gd_options==NULL)
@@ -119,8 +123,19 @@ void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_opt
 	}
 	gd_options->mini_batch_size=mini_batch_size;
 }
+uint64_t mlfw_gradient_descent_options_get_number_of_iterations(mlfw_gradient_descent_options *gradient_descent)
+{
+	mlfw_reset_error();
+	if(gd_options==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options");
+		return 0;
+	}
+	return gd_options->number_of_iterations;
+}
 mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent(mlfw_gradient_descent_options  *gd_options,mlfw_mat_double *x,mlfw_column_vec_double *y,double regularization_parameter,mlfw_column_vec_double *model)
 {
+
 }
 // Everything above this point is being written by Framework Designer
 // All the function below this point are being written by Framework User
