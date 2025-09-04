@@ -1265,8 +1265,11 @@ mlfw_mat_double * mlfw_multiply_double_matrix_with_matrix_strassens(mlfw_mat_dou
 	// checking dimensions are in the power of 2
 	y=(double)m1_rows;
 	n=log2(y);
-	if(floor(n)!=ceil(n)) return NULL;
-
+	if(floor(n)!=ceil(n)) 
+	{
+		_mlfw_set_error(MLFW_SQUARE_MATRIX_DIMENSIONS_SHOULD_BE_POWER_OF_TWO_CODE,MLFW_SQUARE_MATRIX_DIMENSIONS_SHOULD_BE_POWER_OF_TWO,"m1",m1_rows,m1_columns);
+		return NULL;
+	}
 	mlfw_mat_double_get_dimensions(m2,&m2_rows,&m2_columns);
 	if(m2_rows!=m2_columns || m2_rows!=m1_rows)
 	{
