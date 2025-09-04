@@ -1098,4 +1098,40 @@ void mlfw_mat_double_truncate(mlfw_mat_double **matrix,index_t from_row_index,in
 
 void mlfw_mat_double_insert_columns(mlfw_mat_double **matrix,index_t at_index,dimension_t number_of_columns)
 {
+	dimension_t rows,columns;
+	mlfw_mat_double *new_matrix;
+	mlfw_reset_error();
+	if(matrix==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"matrix");
+		return;
+	}
+	if(*matrix==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"*matrix");
+		return;
+	}
+	if(at_index>=(*matrix)->columns)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,at_index,"*matrix",0,(index_t)(*matrix)->columns-1);
+		return;
+	}
+	if(number_of_columns==0) return;
+	rows=(*matrix)->rows;
+	columns=(*matrix)->columns+number_of_columns;
+	new_matrix=mlfw_mat_double_create_new(rows,columns);
+	if(mlfw_error()) return;
+	if(at_index>0 && at_index<(*matrix)->columns)
+	{
+		mlfw_mat_double_copy(new_matrix,*matrix,0,0,0,0,(*matrix)->rows-1,at_index-1);
+		mlfw_mat_double_copy(new_matrix,*matrix,0,at_index+number_of_columns,0,at_index,(*matrix)->rows-1,(*matrix)->columns-1);
+	}
+	else if(at_index==0)
+	{
+		mlfw_mat_double_copy(new_matrix,*matrix,0,0+number_of_columns,0,0,(*matrix)->rows-1,(*matrix)->columns-1);
+	}
+	else if(at_index==(*matrix)->columns)
+	{
+		mlfw_mat_double_copy(new_matrix,*matrix,0,0,0,0,(*matrix)->rows-1,(*matrix)->columns-1);
+	}
 }
