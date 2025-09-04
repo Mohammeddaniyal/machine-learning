@@ -40,7 +40,6 @@ void mlfw_forward_list_double_destroy(mlfw_forward_list_double *forward_list)
 	mlfw_reset_error();
 	if(forward_list==NULL)
 	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"forward_list");
 		return;
 	}
 	mlfw_forward_list_double_clear(forward_list);
