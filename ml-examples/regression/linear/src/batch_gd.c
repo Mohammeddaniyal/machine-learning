@@ -339,15 +339,43 @@ void print_error_and_exit()
 
 void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 {
-	mlfw_row_vec_string *header;
-	dimension_t rows,columns;
-	*x=mlfw_mat_double_from_csv("IceCreamSales.csv",NULL,&header);
-	if(mlfw_error()) return;
-	mlfw_mat_double_get_dimensions(*x,&rows,&columns);
-	if(mlfw_error()) return;
+	mlfw_mat_double *matrix=NULL;
+	dimension_t matrix_rows,matrix_columns;
+	mlfw_row_vec_string *header=NULL;
+	matrix=mlfw_mat_double_from_csv(TRAINING_DATASET,NULL,&header);
+	if(mlfw_error()) 
+	{
+		print_error_and_exit();
+	}
 	mlfw_row_vec_string_destroy(header);
-	*y=mlfw_mat_double_create_column_vec(*x,columns-1,NULL);
-	mlfw_mat_double_reshape(x,rows,columns-1);
+	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	*y=mlfw_mat_double_create_column_vec(matrix,matrix_columns-1,NULL);
+	if(mlfw_error()) 
+	{
+		mlfw_mat_double_destroy(matrix);
+		print_error_and_exit();
+	}
+	mlfw_mat_double_truncate(&matrix,0,0,matrix_rows-1,matrix_columns-2);
+	if(mlfw_error()) 
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_column_vec_double(*y);
+		*y=NULL;
+		print_error_and_exit();
+	}
+	// create column for bias
+	mlfw_mat_double_insert_columns(&matrix,0,1);
+	if(mlfw_error()) 
+	{
+		mlfw_mat_double_destroy(matrix);
+		mlfw_column_vec_double(*y);
+		*y=NULL;
+		print_error_and_exit();
+	}
+	// fill with 1.0
+	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	mlfw_mat_double_fill(matrix,0,0,matrix_rows-1,0,1.0);
+	*x=matrix;
 }
 int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y)
 {
