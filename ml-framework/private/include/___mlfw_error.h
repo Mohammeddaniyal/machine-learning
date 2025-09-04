@@ -46,6 +46,34 @@
 
 #define MLFW_LIST_EMPTY_CODE 14
 #define MLFW_LIST_EMPTY "Forward list represented by (%s) is empty"
+
+#define MLFW_VECTOR_SIZE_NOT_SAME_CODE 15
+#define MLFW_VECTOR_SIZE_NOT_SAME "Size of vectors (%s) and (%s) not same, (%u) and (%u), hence operation is not possible"
+
+#define MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT_CODE 16
+#define MLFW_INVALID_VECTOR_CONTAINER_SIZE_TO_STORE_RESULT "Size of parameter (%s) is (%u) whereas (%u) is required"
+
+#define MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE_CODE 17
+#define MLFW_INVALID_RIGHT_OPERAND_VECTOR_SIZE "Invalid size of right operand parameter vector (%s), size is (%u) and expected size is (%u)"
+
+#define MLFW_INVALID_RIGHT_OPERAND_MATRIX_ROWS_COUNT_CODE 18
+#define MLFW_INVALID_RIGHT_OPERAND_MATRIX_ROWS_COUNT "Invalid number of rows of right operand parameter matrix (%s), row count is (%u) and expected row count is (%u)"
+
+#define MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_CODE 19
+#define MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
+
+#define MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS_CODE 20
+#define MLFW_INVALID_RIGHT_OPERAND_MATRIX_DIMENSIONS "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
+
+#define MLFW_NOT_SQUARE_MATRIX_CODE 21
+#define MLFW_NOT_SQUARE_MATRIX "Parameter (%s) is not a square matrix"
+
+#define MLFW_SQUARE_MATRIX_DIMENSIONS_SHOULD_BE_POWER_OF_TWO_CODE 22
+#define MLFW_SQUARE_MATRIX_DIMENSIONS_SHOULD_BE_POWER_OF_TWO "Dimensions of parameter (%s) are (%u) rows and (%u) columns, but in power of two required for strassens algorithm"
+
+#define MLFW_INVALID_MODEL_VECTOR_SIZE_CODE 23
+#define MLFW_INVALID_MODEL_VECTOR_SIZE "Size of parameter (%s) is (%u) whereas (%u) is expected"
+
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
