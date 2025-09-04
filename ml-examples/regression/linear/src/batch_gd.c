@@ -329,6 +329,14 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 #define SHOW_GRAPH 1
 FILE *gnuplot;
 
+void print_error_and_exit()
+{
+	char error_string[512];
+	mlfw_get_error_string(error_string,512);
+	printf("Error : %s\n",error_string);
+	exit(0);
+}
+
 void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 {
 	mlfw_row_vec_string *header;
