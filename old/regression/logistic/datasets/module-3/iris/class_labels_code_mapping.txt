@@ -1,7 +1,0 @@
-class_label	code_alloted
-in original
-csv file
-
-Iris-setosa		1
-Iris-versicolor		2
-Iris-virginica		3
