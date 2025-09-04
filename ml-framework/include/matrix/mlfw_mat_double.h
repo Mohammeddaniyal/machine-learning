@@ -50,4 +50,8 @@ mlfw_mat_double * mlfw_mat_double_inverse(mlfw_mat_double *matrix_to_inverse,mlf
 
 mlfw_mat_double * mlfw_mat_double_create_new_random_filled(dimension_t rows,dimension_t columns,double min,double max,mlfw_mat_double *new_matrix);
 
+void mlfw_mat_double_truncate(mlfw_mat_double **matrix,index_t from_row_index,index_t from_column_index,index_t to_row_index,index_t to_column_index);
+
+void mlfw_mat_double_insert_columns(mlfw_mat_double **matrix,index_t at_index,dimension_t number_of_columns);
+
 #endif
