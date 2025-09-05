@@ -424,7 +424,7 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 		if(SHOW_GRAPH)
 		{
 			gnuplot=popen("gnuplot","w");
-			fprintf(gnuplot,"set datafile separator ',''n");
+			fprintf(gnuplot,"set datafile separator ','\n");
 			fflush(gnuplot);
 			/* [1:25] How ?
 			 * After analyzing the cost initially without displaying
