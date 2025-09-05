@@ -359,7 +359,7 @@ void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 	if(mlfw_error()) 
 	{
 		mlfw_mat_double_destroy(matrix);
-		mlfw_column_vec_double(*y);
+		mlfw_column_vec_double_destroy(*y);
 		*y=NULL;
 		print_error_and_exit();
 	}
@@ -368,7 +368,7 @@ void load_dataset(mlfw_mat_double **x,mlfw_column_vec_double **y)
 	if(mlfw_error()) 
 	{
 		mlfw_mat_double_destroy(matrix);
-		mlfw_column_vec_double(*y);
+		mlfw_column_vec_double_destroy(*y);
 		*y=NULL;
 		print_error_and_exit();
 	}
@@ -491,7 +491,7 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 		{
 			if(gnuplot!=NULL)
 			{
-				fprintf(gnuplot,"set term x11 0 position 100,100 title 'Cost Descent\n");
+				fprintf(gnuplot,"set term x11 0 position 100,100 title 'Cost Descent'\n");
 				fflush(gnuplot);
 				fprintf(gnuplot,"set yrange[1:25]\n");
 				fflush(gnuplot);
