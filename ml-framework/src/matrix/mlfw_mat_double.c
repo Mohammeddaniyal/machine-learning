@@ -1144,3 +1144,193 @@ void mlfw_mat_double_insert_columns(mlfw_mat_double **matrix,index_t at_index,di
 	mlfw_mat_double_destroy(*matrix);
 	*matrix=new_matrix;
 }
+
+mlfw_mat_double * mlfw_mat_double_get_block_from_csv(const char *csv_file_name,mlfw_mat_double *matrix,uint64_t from_row,uint64_t how_many_rows,long *pos)
+{
+	int index;
+	double value;
+	char double_string[1025]; // 1 extra for \0 (string terminator)
+	double **new_data;
+	long file_size;
+	long tmp_pos;
+	uint64_t r,k;
+	index_t c;
+	dimension_t rows,columns;
+	char m;
+	FILE *file;
+	mlfw_reset_error();
+	if(csv_file_name==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"csv_file_name");
+		return NULL;
+	}
+	if(from_row==0)
+	{
+		// in ___mlfw_error.h this macro isn't defined yet
+	//	_mlfw_set_error(MLFW_INVALID_FROM_ROW_CODE,MLFW_INVALID_FROM_ROW,from_row);
+		return NULL;
+	}
+	file=fopen(csv_file_name,"r");
+	if(file==NULL)
+	{
+		_mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE,MLFW_UNABLE_TO_OPEN_FILE,csv_file_name,"csv_file_name");
+		return NULL;
+	}
+	fseek(file,0,SEEK_END);
+	file_size=ftell(file);
+	rewind(file);
+	if(pos!=NULL && (*pos>=file_size ||  *pos<0)) *pos=0;
+	// read the header and count columns
+	columns=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		else if(m==',') columns++;
+		else if(m=='\n') break;
+	}
+	columns++; // n commas means n+1 columns
+
+	if(feof(file))
+	{
+		fclose(file);
+//		_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
+		return NULL;
+	}
+	if(pos==NULL || *pos==0)
+	{
+		// reach the from_row(th) row
+		r=1;
+		while(1)
+		{
+			if(r==from_row) break;
+			m=fgetc(file);
+			if(feof(file)) break;
+			if(m=='\r') continue;
+			else if(m=='\n') r++;
+		}
+		if(feof(file))
+		{
+			fclose(file);
+			//_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
+			return NULL;
+		}
+		tmp_pos=ftell(file);
+	}
+	else
+	{
+		tmp_pos=*pos;
+	}
+	// now tmp_pos represents the position of the first byte of from_row(th) row
+	if(tmp_pos!=ftell(file))
+	{
+		fseek(file,tmp_pos,SEEK_SET);
+	}
+	rows=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		else if(m=='\n') rows++;
+		if(rows==how_many_rows) break;
+	}
+	if(rows==0) // ideally this will not happen
+	{
+		fclose(file);
+		//_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
+		return NULL;
+	}
+	fseek(file,tmp_pos,SEEK_SET);
+	// value of rows may be less than how_many_rows
+	how_many_rows=rows;
+	if(matrix==NULL)
+	{
+		matrix=mlfw_mat_double_create_new(rows,columns);
+		if(mlfw_error()) 
+		{
+			fclose(file);
+			return NULL;
+		}
+	}
+	else
+	{
+		if(matrix->columns!=columns)
+		{
+			_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"matrix",matrix->rows,matrix->columns,rows,columns);
+			fclose(file);
+			return NULL;
+		}
+		if(matrix->rows!=rows)
+		{
+			// destroy internals and create new internal
+			// but keep the same wrapper structure
+			// first lets create new internal, if succeds, then destroy old ones
+			new_data=(double **)malloc(sizeof(double *)*rows);
+			if(new_data==NULL)
+			{
+				_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(double *)*rows);
+				return NULL;
+			}
+			for(r=0;r<rows;++r)
+			{
+				new_data[r]=(double *)malloc(sizeof(double)*columns);
+				if(new_data[r]==NULL)
+				{
+					for(k=0;k<r;++k)
+					{
+						free(new_data[k]);
+					}
+					free(new_data);
+				_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(double)*columns);
+				return NULL;
+					
+				}
+			}
+			// new internals created, release the old ones
+			for(r=0;r<matrix->rows;++r)
+			{
+				free(matrix->data[r]);
+			}
+			free(matrix->data);
+			matrix->data=new_data;
+			matrix->rows=rows;
+			matrix->columns=columns;
+		}
+	}
+	// now lets read rows number of rows and populate the matrix
+	
+	r=0;
+	c=0;
+	index=0;
+	while(1)
+	{
+		m=fgetc(file);
+		if(feof(file)) break;
+		if(m=='\r') continue;
+		if(m==',' || m=='\n')
+		{
+			double_string[index]='\0';
+			value=strtod(double_string,NULL);
+			index=0;
+			matrix->data[r][c]=value;
+			c++;
+			if(c==matrix->columns)
+			{
+				r++;
+				c=0;
+				if(r==rows) break; // we are done reading required row
+			}
+		}
+		else
+		{
+			double_string[index]=m;
+			index++;
+		}
+	}
+	tmp_pos=ftell(file);
+	if(pos!=NULL) *pos=tmp_pos;
+	fclose(file);
+	return matrix;
+}
