@@ -4,6 +4,9 @@
 # csv files
 *.csv
 
+# jar files
+*.jar
+
 # Object files
 *.o
 *.ko
