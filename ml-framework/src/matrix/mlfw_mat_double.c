@@ -377,9 +377,16 @@ void mlfw_mat_double_to_csv(mlfw_mat_double *matrix,const char *csv_file_name,ml
 	FILE *file;
 	if(matrix==NULL || csv_file_name==NULL || header==NULL) return;
 	header_size=mlfw_row_vec_string_get_size(header);
-	if(header_size!=matrix->columns) return;
+	if(header_size!=matrix->columns)
+	{
+		printf("Header size mismatch");
+		return;
+	}
 	file=fopen(csv_file_name,"w");
-	if(file==NULL) return;
+	if(file==NULL) {
+		printf("file is null");
+		return;
+	}
 
 	// code to write header
 
@@ -1134,4 +1141,6 @@ void mlfw_mat_double_insert_columns(mlfw_mat_double **matrix,index_t at_index,di
 	{
 		mlfw_mat_double_copy(new_matrix,*matrix,0,0,0,0,(*matrix)->rows-1,(*matrix)->columns-1);
 	}
+	mlfw_mat_double_destroy(*matrix);
+	*matrix=new_matrix;
 }
