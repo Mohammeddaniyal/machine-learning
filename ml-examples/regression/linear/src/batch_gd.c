@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<mlfw.h>
 #include<stdlib.h>
-
+#include<unistd.h>
 #include<___mlfw_error.h>
 extern __thread uint32_t _mlfw_error_code;
 extern __thread char _mlfw_error_string[512];
@@ -191,7 +191,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 			// as it is to be ignore in regularization term
 	mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback;
 	
-	mlfw_mat_double *x_transposed;
+	mlfw_mat_double *x_transposed=NULL;
 	mlfw_column_vec_double *predicted_y=NULL;
 	mlfw_column_vec_double *prediction_error=NULL;
 	mlfw_column_vec_double *theta=NULL;
@@ -199,7 +199,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 	mlfw_column_vec_double *tmp2=NULL;
 	mlfw_column_vec_double *tmp3=NULL;
 	mlfw_column_vec_double *tmp4=NULL;
-	mlfw_column_vec_double *regularization_term;
+	mlfw_column_vec_double *regularization_term=NULL;
 	mlfw_column_vec_double *tmp_theta=NULL;
 
 	index_t n;
@@ -247,6 +247,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 	regularization_term=mlfw_column_vec_double_create_new(theta_rows);
 	if(mlfw_error()) goto err;
 
+	// i can also apply validation here
 	number_of_iterations=mlfw_gradient_descent_options_get_number_of_iterations(gd_options);
 	learning_rate=mlfw_gradient_descent_options_get_learning_rate(gd_options);
 	progress_callback=mlfw_gradient_descent_options_get_progress_callback(gd_options);
@@ -291,7 +292,10 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		if(mlfw_error()) goto err;
 		// theta updated
 		// iteration complete, call progress_callback, if it returns, -1 break
+		if(progress_callback!=NULL)
+		{
 		if(progress_callback(n,y,predicted_y,theta,regularization_parameter) == -1) break;
+		}
 		++n;
 		}
 		mlfw_mat_double_destroy(x_transposed);
@@ -322,6 +326,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 // All the function below this point are being written by Framework User
 
 #define TRAINING_DATASET "IceCreamSales_training_examples.csv"
+#define MODEL_FILE_NAME "example-1-model.csv"
 #define NUMBER_OF_ITERATIONS 3000000
 #define LEARNING_RATE 0.0001
 #define REGULARIZATION_PARAMETER 0.5
@@ -491,7 +496,7 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 		{
 			if(gnuplot!=NULL)
 			{
-				fprintf(gnuplot,"set term x11 0 position 50,100 title 'Cost Descent'\n");
+				fprintf(gnuplot,"set term x11 0 position 20,100 title 'Cost Descent'\n");
 				fflush(gnuplot);
 				fprintf(gnuplot,"set yrange[1:25]\n");
 				fflush(gnuplot);
@@ -580,10 +585,10 @@ int main()
 	if(mlfw_error()) goto err;
 	mlfw_row_vec_string_set(model_header,0,"theta");
 	if(mlfw_error()) goto err;
-	mlfw_column_vec_double_to_csv(model,"example-1-model.csv",model_header);
+	mlfw_column_vec_double_to_csv(model,MODEL_FILE_NAME,model_header);
 	if(mlfw_error()) goto err;
 	
-	printf("Model saved to examples-1-model.csv\n");
+	printf("Model saved to %s\n",MODEL_FILE_NAME);
 	mlfw_mat_double_destroy(x);
 	mlfw_column_vec_double_destroy(y);
 	mlfw_column_vec_double_destroy(model);
@@ -594,6 +599,7 @@ int main()
 		fprintf(gnuplot,"exit\n");
 		fflush(gnuplot);
 		printf("Waiting for resources to be cleared, press ctrl+c it it takes too long\n");
+		sleep(10); // reason M4 lec 14 21:28 
 		pclose(gnuplot);
 	}
 	return 0;
@@ -612,6 +618,7 @@ int main()
 		fprintf(gnuplot,"exit\n");
 		fflush(gnuplot);
 		printf("Waiting for resources to be cleared, press ctrl+c it it takes too long\n");
+		sleep(10);
 		pclose(gnuplot);
 	}
 	return 0;
