@@ -54,4 +54,7 @@ void mlfw_mat_double_truncate(mlfw_mat_double **matrix,index_t from_row_index,in
 
 void mlfw_mat_double_insert_columns(mlfw_mat_double **matrix,index_t at_index,dimension_t number_of_columns);
 
+
+mlfw_mat_double * mlfw_mat_double_get_block_from_csv(const char *csv_file_name,mlfw_mat_double *matrix,uint64_t from_row,uint64_t how_many_rows,long *pos);
+
 #endif
