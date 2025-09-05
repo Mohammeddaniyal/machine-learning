@@ -62,30 +62,30 @@ uint64_t mlfw_get_csv_columns_count(const char *csv_file_name)
 	return columns+1; // 5 commas means 6 columns
 
 }
-void mlfw_get_csv_dimensions(const char *csv_file_name,uint64_t *rows,uint64_t columns)
+void mlfw_get_csv_dimensions(const char *csv_file_name,uint64_t *rows,uint64_t *columns)
 {
 	FILE *file;
 	char m;
 	if(csv_file_name==NULL)
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"csv_file_name");
-		return 0;
+		return;
 	}
 	if(rows==NULL)
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"rows");
-		return 0;
+		return;
 	}
 	if(columns==NULL)
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"columns");
-		return 0;
+		return;
 	}
 	file=fopen(csv_file_name,"r");
 	if(file==NULL)
 	{
 		_mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE,MLFW_UNABLE_TO_OPEN_FILE,csv_file_name,"csv_file_name");
-		return 0;
+		return;
 	}
 	*rows=0;
 	*columns=0;
@@ -98,6 +98,6 @@ void mlfw_get_csv_dimensions(const char *csv_file_name,uint64_t *rows,uint64_t c
 		else if(m=='\n') (*rows)++;
 	}
 	fclose(file);
-	(*rows)-1; // First row represents header
-	(*columns)+1; // 5 commas means 6 columns
+	(*rows)--; // First row represents header
+	(*columns)++; // 5 commas means 6 columns
 }
