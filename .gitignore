@@ -4,6 +4,9 @@
 # csv files
 *.csv
 
+# swp files
+*.swp
+
 # jar files
 *.jar
 
