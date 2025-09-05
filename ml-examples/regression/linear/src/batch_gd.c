@@ -491,7 +491,7 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 		{
 			if(gnuplot!=NULL)
 			{
-				fprintf(gnuplot,"set term x11 0 position 100,100 title 'Cost Descent'\n");
+				fprintf(gnuplot,"set term x11 0 position 50,100 title 'Cost Descent'\n");
 				fflush(gnuplot);
 				fprintf(gnuplot,"set yrange[1:25]\n");
 				fflush(gnuplot);
@@ -510,7 +510,7 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 				fprintf(line_fit_file,"%lf,%lf\n",x1,y1);
 				fprintf(line_fit_file,"%lf,%lf\n",x2,y2);
 				fclose(line_fit_file);
-				fprintf(gnuplot,"set term x11 1 position 800,100 title 'Line Fitting'\n");
+				fprintf(gnuplot,"set term x11 1 position 700,100 title 'Line Fitting'\n");
 				fflush(gnuplot);
 				// How [40:110] [10:110] decided ?
 				// plot the data file using externally and analyze the generated
