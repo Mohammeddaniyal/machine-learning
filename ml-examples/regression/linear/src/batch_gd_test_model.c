@@ -2,22 +2,6 @@
 #include<mlfw.h>
 #include<stdlib.h>
 
-#include<___mlfw_error.h>
-extern __thread uint32_t _mlfw_error_code;
-extern __thread char _mlfw_error_string[512];
-extern __thread char _mlfw_debug_string[512];
-
-mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *x,mlfw_column_vec_double *model)
-{
-	mlfw_column_vec_double *predicted_y;
-	mlfw_reset_error();
-	predicted_y=mlfw_multiply_double_matrix_with_column_vector(x,model,NULL);
-	if(mlfw_error()) return NULL;
-	return predicted_y;
-}
-
-// below this point are being written by Framework User
-
 #define TESTING_DATASET "IceCreamSales_testing_examples.csv"
 #define MODEL "example-1-model.csv"
 
