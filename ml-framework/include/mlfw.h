@@ -1,5 +1,5 @@
-#ifndef __MLFW__
-#define __MLFW__
+#ifndef __MLFW__ML__
+#define __MLFW__ML__
 #include<inttypes.h>
 
 
@@ -19,5 +19,5 @@
 #include<mlfw_model_accuracy.h>
 #include<mlfw_set.h>
 #include<mlfw_list.h>
-
+#include<mlfw_algorithms.h>
 #endif
