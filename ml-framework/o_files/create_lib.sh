@@ -13,4 +13,5 @@ gcc -O3 -c ../src/model_accuracy/*.c  -I ../include -I ../private/include -Wall
 gcc -O3 -c ../src/old/learning/*.c  -I ../include -I ../include/old  -I ../private/include -Wall
 gcc -O3 -c ../src/math/*.c  -I ../include -I ../private/include -Wall
 gcc -O3 -c ../src/list/*.c  -I ../include -I ../private/include -Wall
+gcc -O3 -c ../src/ml_algorithms/*.c  -I ../include -I ../private/include -Wall
 ar rcs ../lib/libml-framework.a *.o
