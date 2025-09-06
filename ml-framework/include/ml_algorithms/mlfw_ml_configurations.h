@@ -9,10 +9,10 @@ typedef int (*mlfw_gradient_descent_lin_reg_progress_callback_t)(uint64_t,void *
 // parameters: x,y,from_row_index,how_many_rows
 typedef void (*mlfw_gradient_descent_lin_reg_data_provider_t)(void *,void *,uint64_t,uint64_t);
 
-struct _mlfw_gradient_descent_options
-typedef struct _mlfw_gradient_descent_options;
+struct _mlfw_gradient_descent_options;
+typedef struct _mlfw_gradient_descent_options mlfw_gradient_descent_options;
 
-mlfw_gradient_descent_options * mlfw_gradient_descent_options_create_new()
+mlfw_gradient_descent_options * mlfw_gradient_descent_options_create_new();
 
 void mlfw_gradient_descent_options_destroy(mlfw_gradient_descent_options *gd_options);
 
