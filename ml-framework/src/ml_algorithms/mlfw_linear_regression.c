@@ -1,7 +1,8 @@
 #include<stdio.h>
-#include<mlfw_linear_regression.h>
+#include<mlfw_algorithms.h>
 #include<mlfw_vector.h>
 #include<mlfw_matrix.h>
+#include<mlfw_operations.h>
 #include<___mlfw_error.h>
 #include<mlfw_error.h>
 #include<stdlib.h>
