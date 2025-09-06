@@ -295,7 +295,7 @@ int main()
 	{
 		fprintf(gnuplot,"exit\n");
 		fflush(gnuplot);
-		printf("Waiting for resources to be cleared, press ctrl+c it it takes too long\n");
+		printf("Waiting for resources to be cleared, press ctrl+c if it takes too long\n");
 		sleep(10);
 		pclose(gnuplot);
 	}
