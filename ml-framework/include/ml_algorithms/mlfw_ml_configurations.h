@@ -1,0 +1,46 @@
+#ifndef __MLFW__ML_CONFIGURATIONS__
+#define __MLFW__ML_CONFIGURATIONS__
+
+enum MLFW_GRADIENT_DESCENT_TYPE{MLFW_BATCH_GRADIENT_DESCENT,MLFW_STOCHASTIC_GRADIENT_DESCENT,MLFW_MINI_BATCH_GRADIENT_DESCENT};
+
+// parameters: iteration_number,y,predicted_y,model,regularization_parameter
+typedef int (*mlfw_gradient_descent_lin_reg_progress_callback_t)(uint64_t,void *,void *,void *,double);
+
+// parameters: x,y,from_row_index,how_many_rows
+typedef void (*mlfw_gradient_descent_lin_reg_data_provider_t)(void *,void *,uint64_t,uint64_t);
+
+struct _mlfw_gradient_descent_options
+typedef struct _mlfw_gradient_descent_options;
+
+mlfw_gradient_descent_options * mlfw_gradient_descent_options_create_new()
+
+void mlfw_gradient_descent_options_destroy(mlfw_gradient_descent_options *gd_options);
+
+// setter functions
+void mlfw_gradient_descent_options_set_learning_rate(mlfw_gradient_descent_options *gd_options,double learning_rate);
+
+void mlfw_gradient_descent_options_set_number_of_iterations(mlfw_gradient_descent_options *gd_options,uint64_t number_of_iterations);
+
+void mlfw_gradient_descent_options_set_gradient_descent_type(mlfw_gradient_descent_options *gd_options,int gradient_descent_type);
+
+void mlfw_gradient_descent_options_set_progress_callback(mlfw_gradient_descent_options *gd_options,mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback);
+
+void mlfw_gradient_descent_options_set_data_provider(mlfw_gradient_descent_options *gd_options,mlfw_gradient_descent_lin_reg_data_provider_t data_provider);
+
+void mlfw_gradient_descent_options_set_mini_batch_size(mlfw_gradient_descent_options *gd_options,uint32_t mini_batch_size);
+
+// getter functions
+
+double mlfw_gradient_descent_options_get_learning_rate(mlfw_gradient_descent_options *gd_options);
+
+uint64_t mlfw_gradient_descent_options_get_number_of_iterations(mlfw_gradient_descent_options *gd_options);
+
+int mlfw_gradient_descent_options_get_gradient_descent_type(mlfw_gradient_descent_options *gd_options);
+
+mlfw_gradient_descent_lin_reg_progress_callback_t mlfw_gradient_descent_options_get_progress_callback(mlfw_gradient_descent_options *gd_options);
+
+mlfw_gradient_descent_lin_reg_data_provider_t mlfw_gradient_descent_options_get_data_provider(mlfw_gradient_descent_options *gd_options);
+
+uint32_t mlfw_gradient_descent_options_get_mini_batch_size(mlfw_gradient_descent_options *gd_options);
+
+#endif
