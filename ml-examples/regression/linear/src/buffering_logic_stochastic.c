@@ -63,7 +63,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 	}
 	if(buffer_matrix_1!=NULL)
 	{
-		buffer_matrix_1_last_possible_row=number_of_training_examples-(number_of_training_examples%buffe_matrix_1_rows);
+		buffer_matrix_1_last_possible_row=number_of_training_examples-(number_of_training_examples%buffer_matrix_1_rows);
 	}
 	else
 	{
@@ -77,7 +77,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 		*target_matrix=mlfw_mat_double_create_new(1,number_of_columns_in_training_examples);
 		if(mlfw_error()) return;
 	}
-	if(buffer_populated==0)
+	if(buffers_populated==0)
 	{
 		buffers_populated=1;
 		if(buffer_matrix_2!=NULL)
@@ -131,7 +131,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 	
 	from_buffer_matrix_index=from_row-buffer_matrix_1_starts_at_row;
 	to_buffer_matrix_index=from_buffer_matrix_index;
-	mlfw_mat_double_copy(*target_matrix,buffer_matrix_1,0,0,from_buffer_matrix,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+	mlfw_mat_double_copy(*target_matrix,buffer_matrix_1,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 }
 int main()
 {
