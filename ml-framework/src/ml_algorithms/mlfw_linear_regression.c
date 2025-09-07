@@ -15,7 +15,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 	dimension_t x_rows,x_columns;
 	dimension_t theta_rows;
 	double theta_0; // to store value of theta[0] before setting to 0
-			// as it is to be ignore in regularization term
+				 // as it is to be ignore in regularization term
 	mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback;
 	
 	mlfw_mat_double *x_transposed=NULL;
@@ -33,7 +33,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 	uint64_t number_of_iterations;
 	double learning_rate;
 	dimension_t model_size;
-
+	mlfw_reset_error();
 	// validations
 	x_transposed=mlfw_mat_double_transpose(x,NULL);
 	if(mlfw_error()) goto err;
@@ -146,8 +146,6 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		mlfw_column_vec_double_destroy(tmp_theta);
 		mlfw_column_vec_double_destroy(regularization_term);
 		return NULL;
-	
-
 }
 mlfw_column_vec_double * mlfw_linear_regression_predict(mlfw_mat_double *x,mlfw_column_vec_double *model)
 {
