@@ -7,7 +7,7 @@ enum MLFW_GRADIENT_DESCENT_TYPE{MLFW_BATCH_GRADIENT_DESCENT,MLFW_STOCHASTIC_GRAD
 typedef int (*mlfw_gradient_descent_lin_reg_progress_callback_t)(uint64_t,void *,void *,void *,double);
 
 // parameters: x,y,from_row_index,how_many_rows
-typedef void (*mlfw_gradient_descent_lin_reg_data_provider_t)(void *,void *,uint64_t,uint64_t);
+typedef void (*mlfw_gradient_descent_lin_reg_data_provider_t)(void *,void *,uint64_t,uint32_t);
 
 struct _mlfw_gradient_descent_options;
 typedef struct _mlfw_gradient_descent_options mlfw_gradient_descent_options;
