@@ -140,6 +140,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_batch_gradient_descent
 		mlfw_column_vec_double_destroy(predicted_y);
 		mlfw_column_vec_double_destroy(prediction_error);
 		mlfw_column_vec_double_destroy(theta);
+		mlfw_column_vec_double_destroy(theta);
 		mlfw_column_vec_double_destroy(tmp1);
 		mlfw_column_vec_double_destroy(tmp2);
 		mlfw_column_vec_double_destroy(tmp3);
