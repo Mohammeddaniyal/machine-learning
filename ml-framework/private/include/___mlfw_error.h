@@ -74,6 +74,16 @@
 #define MLFW_INVALID_MODEL_VECTOR_SIZE_CODE 23
 #define MLFW_INVALID_MODEL_VECTOR_SIZE "Size of parameter (%s) is (%u) whereas (%u) is expected"
 
+#define MLFW_DATA_PROVIDER_PROVIDED_NO_ROWS_CODE 24
+#define MLFW_DATA_PROVIDER_PROVIDED_NO_ROWS "No rows provided from data_provider"
+
+
+#define MLFW_INVALID_FROM_ROW_CODE 25
+#define MLFW_INVALID_FROM_ROW "Invalid from_row value (%lu)"
+
+#define MLFW_NO_ROWS_TO_READ_CODE 26
+#define MLFW_NO_ROWS_TO_READ "NO rows to read from (%s)"
+
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
