@@ -93,7 +93,6 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 
 	uint64_t buffer_matrix_1_last_possible_row;
 
-	mlfw_row_vec_string *header;
 	index_t from_buffer_matrix_index;
 	index_t to_buffer_matrix_index;
 
@@ -114,10 +113,6 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 		buffer_matrix_1_last_possible_row=0;
 	}
 
-	header=mlfw_row_vec_string_create_new(2);
-	mlfw_row_vec_string_set(header,0,"col-1");
-	mlfw_row_vec_string_set(header,1,"col-2");
-
 	// matrix creation and setting up variables done
 	// if target matrix is NULL
 	if(*target_matrix==NULL)
@@ -136,7 +131,6 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 			mlfw_mat_double_shuffle(buffer_matrix_2,2,buffer_matrix_2_shuffled);
 			f_position=0;
 			buffer_matrix_2_starts_at_row=buffer_matrix_1_last_possible_row+1;
-			mlfw_mat_double_to_csv(buffer_matrix_2,"buffer_2.csv",header);
 		}
 		if(buffer_matrix_1!=NULL)
 		{
@@ -146,7 +140,6 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 			mlfw_mat_double_shuffle(buffer_matrix_1,2,buffer_matrix_1_shuffled);
 			buffer_matrix_1_starts_at_row=1;
 			buffer_matrix_1_ends_at_row=buffer_matrix_1_starts_at_row+buffer_matrix_1_rows-1;
-			mlfw_mat_double_to_csv(buffer_matrix_1,"buffer_1.csv",header);
 		}
 	}
 	if(from_row>buffer_matrix_1_last_possible_row)
@@ -155,7 +148,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 
 		from_buffer_matrix_index=from_row-buffer_matrix_2_starts_at_row;
 		to_buffer_matrix_index=from_buffer_matrix_index; // because 1 only
-		mlfw_mat_double_copy(*target_matrix,buffer_matrix_2,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+		mlfw_mat_double_copy(*target_matrix,buffer_matrix_2_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 		return;
 	}
 	if(from_row>=buffer_matrix_1_starts_at_row && from_row<=buffer_matrix_1_ends_at_row)
@@ -163,7 +156,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 		// data available in buffer_matrix_1
 		from_buffer_matrix_index=from_row-buffer_matrix_1_starts_at_row;
 		to_buffer_matrix_index=from_buffer_matrix_index;
-		mlfw_mat_double_copy(*target_matrix,buffer_matrix_1,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+		mlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 		return;
 	}
 
@@ -219,7 +212,6 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 	if(number_of_training_examples==0)
 	{
 		number_of_training_examples=mlfw_get_csv_rows_count(TRAINING_DATASET);
-		printf("number of trianing examples %lu\n",number_of_training_examples);
 	}
 	if(from_row>number_of_training_examples)
 	{
@@ -352,7 +344,6 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 	if(number_of_training_examples_processed==number_of_training_examples)
 	{
 		average=cost_total/number_of_training_examples;
-//		printf("Iteration number %lu, Cost %41.15lf\n",iteration_number,average);
 		cost_total=0.0;
 	}
 	if(SHOW_GRAPH && number_of_training_examples_processed==number_of_training_examples)
