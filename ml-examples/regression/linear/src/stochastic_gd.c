@@ -1,7 +1,8 @@
 #include<mlfw.h>
 #include<___mlfw_error.h>
 #include<unistd.h>
-
+#include<stdio.h>
+#include<stdlib.h>
 extern __thread uint64_t _mlfw_error_code;
 extern __thread char _mlfw_error_string[512];
 extern __thread char _mlfw_debug_string[512];
@@ -18,7 +19,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 	mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback;
 
 	mlfw_mat_double *x=NULL;
-	mlfw_mat_double *y=NULL;	
+	mlfw_column_vec_double *y=NULL;	
 	mlfw_mat_double *x_transposed=NULL;
 	mlfw_column_vec_double *predicted_y=NULL;
 	mlfw_column_vec_double *prediction_error=NULL;
@@ -44,7 +45,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 	data_provider=mlfw_gradient_descent_options_get_data_provider(gd_options);
 	if(data_provider==NULL)
 	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"data_provider");
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options[data_provider]");
 		goto err;
 	}
 
@@ -107,11 +108,16 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 		{
 			goto err;
 		}
-		if(x==NULL) break;
+	//	if(n==1)printf("%lu)Matrix data (%lf,%lf), Vector Data (%lf) ",from_row_number,mlfw_mat_double_get(x,0,0),mlfw_mat_double_get(x,0,1),mlfw_column_vec_double_get(y,0));
+		if(x==NULL)
+		{
+			break;
+		}
 			//transpose x
 				mlfw_mat_double_transpose(x,x_transposed);
 				if(mlfw_error()) goto err;
 		// predict
+//		if(n==1)printf("%lu)Tranposed Matrix data (%lf,%lf), Vector Data (%lf) \n",from_row_number,mlfw_mat_double_get(x_transposed,0,0),mlfw_mat_double_get(x_transposed,1,0),mlfw_column_vec_double_get(y,0));
 		mlfw_multiply_double_matrix_with_column_vector(x,theta,predicted_y);
 		if(mlfw_error()) goto err;
 		// compute error
@@ -147,6 +153,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 		// copy tmp_theta to theta, to update theta
 		mlfw_column_vec_double_copy(theta,tmp_theta);
 		if(mlfw_error()) goto err;
+//		if(n==1)printf("predicted_y %lf,Prediction error %lf, Regularization term Ist(%lf) IInd%lf(),theta Ist(%lf) IInd (%lf)\n",mlfw_column_vec_double_get(predicted_y,0),mlfw_column_vec_double_get(prediction_error,0),mlfw_column_vec_double_get(regularization_term,0),mlfw_column_vec_double_get(regularization_term,1),mlfw_column_vec_double_get(theta,0),mlfw_column_vec_double_get(theta,1));
 		// theta updated
 		// iteration complete, call progress_callback, if it returns, -1 break
 		if(progress_callback!=NULL)
@@ -172,6 +179,7 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 		mlfw_mat_double_destroy(x_transposed);
 		mlfw_column_vec_double_destroy(predicted_y);
 		mlfw_column_vec_double_destroy(prediction_error);
+		mlfw_column_vec_double_destroy(theta);
 		mlfw_column_vec_double_destroy(tmp1);
 		mlfw_column_vec_double_destroy(tmp2);
 		mlfw_column_vec_double_destroy(tmp3);
@@ -205,10 +213,10 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 	
 	// following global variables used in progress_callback (on_iteration_complete)
 	mlfw_column_vec_double *prediction_error=NULL;
-	mlfw_row_vec_double *prediction_error_tranposed=NULL;
+	mlfw_row_vec_double *prediction_error_transposed=NULL;
 	mlfw_column_vec_double *product_vector=NULL;
 	mlfw_row_vec_double *model_transposed=NULL;
-	mlfw_colun_vec_double *model_squared_sum_vector=NULL;
+	mlfw_column_vec_double *model_squared_sum_vector=NULL;
 
 	// following global variables used in data_provider (data_loader)
 	mlfw_mat_double *x_matrix=NULL;
@@ -249,7 +257,7 @@ void init_buffers()
 	{
 		buffer_matrix_2=mlfw_mat_double_create_new(number_of_training_examples,number_of_columns_in_training_examples);
 		if(mlfw_error()) return;
-		buffer_matrix_2_shuffled=mlfw_mat_double_create_new(number_of_training_examples%BUFFER_SIZE,number_of_columns_in_training_examples);
+		buffer_matrix_2_shuffled=mlfw_mat_double_create_new(number_of_training_examples,number_of_columns_in_training_examples);
 		if(mlfw_error()) return;
 	}
 }
@@ -273,6 +281,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 
 	uint64_t buffer_matrix_1_last_possible_row;
 
+	mlfw_row_vec_string *header;
 	index_t from_buffer_matrix_index;
 	index_t to_buffer_matrix_index;
 
@@ -293,6 +302,10 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 		buffer_matrix_1_last_possible_row=0;
 	}
 
+	header=mlfw_row_vec_string_create_new(2);
+	mlfw_row_vec_string_set(header,0,"col-1");
+	mlfw_row_vec_string_set(header,1,"col-2");
+
 	// matrix creation and setting up variables done
 	// if target matrix is NULL
 	if(*target_matrix==NULL)
@@ -311,6 +324,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 			mlfw_mat_double_shuffle(buffer_matrix_2,2,buffer_matrix_2_shuffled);
 			f_position=0;
 			buffer_matrix_2_starts_at_row=buffer_matrix_1_last_possible_row+1;
+			mlfw_mat_double_to_csv(buffer_matrix_2,"buffer_2.csv",header);
 		}
 		if(buffer_matrix_1!=NULL)
 		{
@@ -318,9 +332,9 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 			mlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_1,1,buffer_matrix_1_rows,&f_position);
 			if(mlfw_error()) return;
 			mlfw_mat_double_shuffle(buffer_matrix_1,2,buffer_matrix_1_shuffled);
-			f_position=0;
 			buffer_matrix_1_starts_at_row=1;
 			buffer_matrix_1_ends_at_row=buffer_matrix_1_starts_at_row+buffer_matrix_1_rows-1;
+			mlfw_mat_double_to_csv(buffer_matrix_1,"buffer_1.csv",header);
 		}
 	}
 	if(from_row>buffer_matrix_1_last_possible_row)
@@ -329,7 +343,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 
 		from_buffer_matrix_index=from_row-buffer_matrix_2_starts_at_row;
 		to_buffer_matrix_index=from_buffer_matrix_index; // because 1 only
-		mlfw_mat_double_copy(*target_matrix,buffer_matrix_2_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+		mlfw_mat_double_copy(*target_matrix,buffer_matrix_2,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 		return;
 	}
 	if(from_row>=buffer_matrix_1_starts_at_row && from_row<=buffer_matrix_1_ends_at_row)
@@ -337,7 +351,7 @@ void get_one_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row)
 		// data available in buffer_matrix_1
 		from_buffer_matrix_index=from_row-buffer_matrix_1_starts_at_row;
 		to_buffer_matrix_index=from_buffer_matrix_index;
-		mlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+		mlfw_mat_double_copy(*target_matrix,buffer_matrix_1,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 		return;
 	}
 
@@ -366,7 +380,7 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 {
 	mlfw_mat_double **xxx_matrix=NULL;
 	mlfw_column_vec_double **yyy_vector=NULL;
-	dimension_t xy_matrix_rows
+	dimension_t xy_matrix_rows;
 	dimension_t xy_matrix_columns;
 
 	double value;
@@ -394,15 +408,17 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 	if(number_of_training_examples==0)
 	{
 		number_of_training_examples=mlfw_get_csv_rows_count(TRAINING_DATASET);
+		printf("number of trianing examples %lu\n",number_of_training_examples);
 	}
 	if(from_row>number_of_training_examples)
 	{
 		*xxx_matrix=NULL;
-		*yyy_matrix=NULL;
+		*yyy_vector=NULL;
 		from_row=1; // reset to begin again from start, for next cycle
 		return;
 	}
 	get_one_from_file_buffer(&xy_matrix,from_row);
+//	printf("Data_loader%lu) %lf,%lf\n",from_row,mlfw_mat_double_get(xy_matrix,0,0),mlfw_mat_double_get(xy_matrix,0,1));
 	mlfw_mat_double_get_dimensions(xy_matrix,&xy_matrix_rows,&xy_matrix_columns);
 	if(x_matrix==NULL)
 	{
@@ -416,9 +432,10 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 	mlfw_mat_double_fill(x_matrix,0,0,xy_matrix_rows-1,0,1.0);
 	for(i=0;i<xy_matrix_rows;++i)
 	{
-		value=mlfw_mat_double_get(x_matrix,i,xy_matrix_columns-1);
+		value=mlfw_mat_double_get(xy_matrix,i,xy_matrix_columns-1);
 		mlfw_column_vec_double_set(y_vector,i,value);
 	}
+//	printf("Data_loader%lu) %lf,%lf\n",from_row,mlfw_mat_double_get(x_matrix,0,0),mlfw_mat_double_get(x_matrix,0,1));
 	*xxx_matrix=x_matrix;
 	*yyy_vector=y_vector;
 }
@@ -523,9 +540,11 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 	// calculate cost
 	cost=(sum_of_squared_errors/(2*y_size))+regularization_term;
 	cost_total=cost_total+cost;
+//	printf("Iter %lu: SSE=%lf, Reg=%lf, Cost=%lf\n", iteration_number, sum_of_squared_errors, regularization_term, cost);
 	if(number_of_training_examples_processed==number_of_training_examples)
 	{
 		average=cost_total/number_of_training_examples;
+//		printf("Iteration number %lu, Cost %41.15lf\n",iteration_number,average);
 		cost_total=0.0;
 	}
 	if(SHOW_GRAPH && number_of_training_examples_processed==number_of_training_examples)
@@ -539,7 +558,7 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 	}
 	if(number_of_training_examples_processed==number_of_training_examples && (iteration_number%FREQUENCY_OF_PRINTING_COST==0 || iteration_number==NUMBER_OF_ITERATIONS))
 	{
-		printf("Iteration number %lu, Cost %41.15lf\n",iteration_number,cost);
+		printf("Iteration number %lu, Cost %41.15lf\n",iteration_number,average);
 		if(SHOW_GRAPH)
 		{
 			if(gnuplot!=NULL)
@@ -616,7 +635,7 @@ int main()
 	if(mlfw_error()) goto err;
 	gd_options=get_gradient_descent_options(); // function defined by framework user
 	if(mlfw_error()) goto err;
-	model=mlfw_linear_regression_fit_using_stochastic_gradient_descent(gd_options,x,y,regularization_parameter,NULL);
+	model=mlfw_linear_regression_fit_using_stochastic_gradient_descent(gd_options,regularization_parameter,NULL);
 	if(mlfw_error()) goto err;
 	model_header=mlfw_row_vec_string_create_new(1);
 	if(mlfw_error()) goto err;
