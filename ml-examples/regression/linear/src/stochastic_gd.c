@@ -108,7 +108,6 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 		{
 			goto err;
 		}
-	//	if(n==1)printf("%lu)Matrix data (%lf,%lf), Vector Data (%lf) ",from_row_number,mlfw_mat_double_get(x,0,0),mlfw_mat_double_get(x,0,1),mlfw_column_vec_double_get(y,0));
 		if(x==NULL)
 		{
 			break;
@@ -117,7 +116,6 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 				mlfw_mat_double_transpose(x,x_transposed);
 				if(mlfw_error()) goto err;
 		// predict
-//		if(n==1)printf("%lu)Tranposed Matrix data (%lf,%lf), Vector Data (%lf) \n",from_row_number,mlfw_mat_double_get(x_transposed,0,0),mlfw_mat_double_get(x_transposed,1,0),mlfw_column_vec_double_get(y,0));
 		mlfw_multiply_double_matrix_with_column_vector(x,theta,predicted_y);
 		if(mlfw_error()) goto err;
 		// compute error
@@ -153,7 +151,6 @@ mlfw_column_vec_double * mlfw_linear_regression_fit_using_stochastic_gradient_de
 		// copy tmp_theta to theta, to update theta
 		mlfw_column_vec_double_copy(theta,tmp_theta);
 		if(mlfw_error()) goto err;
-//		if(n==1)printf("predicted_y %lf,Prediction error %lf, Regularization term Ist(%lf) IInd%lf(),theta Ist(%lf) IInd (%lf)\n",mlfw_column_vec_double_get(predicted_y,0),mlfw_column_vec_double_get(prediction_error,0),mlfw_column_vec_double_get(regularization_term,0),mlfw_column_vec_double_get(regularization_term,1),mlfw_column_vec_double_get(theta,0),mlfw_column_vec_double_get(theta,1));
 		// theta updated
 		// iteration complete, call progress_callback, if it returns, -1 break
 		if(progress_callback!=NULL)
@@ -418,7 +415,6 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 		return;
 	}
 	get_one_from_file_buffer(&xy_matrix,from_row);
-//	printf("Data_loader%lu) %lf,%lf\n",from_row,mlfw_mat_double_get(xy_matrix,0,0),mlfw_mat_double_get(xy_matrix,0,1));
 	mlfw_mat_double_get_dimensions(xy_matrix,&xy_matrix_rows,&xy_matrix_columns);
 	if(x_matrix==NULL)
 	{
@@ -435,7 +431,6 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 		value=mlfw_mat_double_get(xy_matrix,i,xy_matrix_columns-1);
 		mlfw_column_vec_double_set(y_vector,i,value);
 	}
-//	printf("Data_loader%lu) %lf,%lf\n",from_row,mlfw_mat_double_get(x_matrix,0,0),mlfw_mat_double_get(x_matrix,0,1));
 	*xxx_matrix=x_matrix;
 	*yyy_vector=y_vector;
 }
@@ -540,7 +535,6 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 	// calculate cost
 	cost=(sum_of_squared_errors/(2*y_size))+regularization_term;
 	cost_total=cost_total+cost;
-//	printf("Iter %lu: SSE=%lf, Reg=%lf, Cost=%lf\n", iteration_number, sum_of_squared_errors, regularization_term, cost);
 	if(number_of_training_examples_processed==number_of_training_examples)
 	{
 		average=cost_total/number_of_training_examples;
