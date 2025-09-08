@@ -435,7 +435,7 @@ mlfw_mat_double * mlfw_mat_double_transpose(mlfw_mat_double *matrix,mlfw_mat_dou
 	}
 	else
 	{
-	if(transposed_matrix->rows!=matrix->rows || transposed_matrix->columns!=matrix->columns) return NULL;
+	if(transposed_matrix->rows!=matrix->columns || transposed_matrix->columns!=matrix->rows) return NULL;
 	}
 	for(r=0;r<matrix->rows;++r)
 	{
@@ -1166,8 +1166,7 @@ mlfw_mat_double * mlfw_mat_double_get_block_from_csv(const char *csv_file_name,m
 	}
 	if(from_row==0)
 	{
-		// in ___mlfw_error.h this macro isn't defined yet
-	//	_mlfw_set_error(MLFW_INVALID_FROM_ROW_CODE,MLFW_INVALID_FROM_ROW,from_row);
+		_mlfw_set_error(MLFW_INVALID_FROM_ROW_CODE,MLFW_INVALID_FROM_ROW,from_row);
 		return NULL;
 	}
 	file=fopen(csv_file_name,"r");
@@ -1195,7 +1194,7 @@ mlfw_mat_double * mlfw_mat_double_get_block_from_csv(const char *csv_file_name,m
 	if(feof(file))
 	{
 		fclose(file);
-//		_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
+		_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
 		return NULL;
 	}
 	if(pos==NULL || *pos==0)
@@ -1213,7 +1212,7 @@ mlfw_mat_double * mlfw_mat_double_get_block_from_csv(const char *csv_file_name,m
 		if(feof(file))
 		{
 			fclose(file);
-			//_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
+			_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
 			return NULL;
 		}
 		tmp_pos=ftell(file);
@@ -1239,7 +1238,7 @@ mlfw_mat_double * mlfw_mat_double_get_block_from_csv(const char *csv_file_name,m
 	if(rows==0) // ideally this will not happen
 	{
 		fclose(file);
-		//_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
+		_mlfw_set_error(MLFW_NO_ROWS_TO_READ_CODE,MLFW_NO_ROWS_TO_READ,csv_file_name);
 		return NULL;
 	}
 	fseek(file,tmp_pos,SEEK_SET);
