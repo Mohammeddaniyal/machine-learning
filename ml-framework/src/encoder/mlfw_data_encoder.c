@@ -6,6 +6,13 @@
 #include<mlfw_encoder.h>
 #include<mlfw_set.h>
 #include<mlfw_utils.h>
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
+
+extern __thread uint32_t _mlfw_error_code;
+extern __thread char _mlfw_error_string[512];
+extern __thread char _mlfw_debug_string[512];
+
 void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *columns_to_encode)
 {
 	int *encode_columns;
@@ -24,16 +31,41 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 	index_t i,j;
 	mlfw_row_vec_string *header;
 	dimension_t header_size;
-	if(source==NULL || target==NULL || columns_to_encode==NULL) return;
+	mlfw_reset_error();
+	 
+	if (source == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "source");
+        return;
+    }
+    if (target == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "target");
+        return;
+    }
+    if (columns_to_encode == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "columns_to_encode");
+        return;
+    }
+	
 	// passing null so that the function create one for us and give a filled one
 	matrix=mlfw_mat_string_from_csv(source,NULL,&header);
-	if(matrix==NULL) return;
+	if(mlfw_error())
+	{
+        _mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE, MLFW_UNABLE_TO_OPEN_FILE, source, "source");
+        return;
+    }
 	// create array of indexes against encode_columns
 	
 	size=mlfw_row_vec_string_get_size(columns_to_encode);
+	if (size == 0) {
+        _mlfw_set_error(MLFW_VECTOR_EMPTY_CODE, MLFW_VECTOR_EMPTY, "columns_to_encode");
+        mlfw_mat_string_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		return;
+    }
 	encode_columns=(int *)malloc(sizeof(int)*size);
 	if(encode_columns==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE, MLFW_LOW_MEMORY, sizeof(int) * size);
 		mlfw_mat_string_destroy(matrix);
 		mlfw_row_vec_string_destroy(header);
 		return;
@@ -47,8 +79,9 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 	for(i=0;i<size;++i)
 	{
 		mlfw_row_vec_string_get(columns_to_encode,i,&ptr1);
-		if(ptr1==NULL)
+		if(mlfw_error())
 		{
+			_mlfw_set_error(MLFW_NO_STRING_SET_CODE, MLFW_NO_STRING_SET, i);
 			mlfw_mat_string_destroy(matrix);
 			mlfw_row_vec_string_destroy(header);
 			free(encode_columns);
@@ -58,8 +91,9 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 		for(j=0;j<header_size;j++)
 		{
 			mlfw_row_vec_string_get(header,j,&ptr2);
-			if(ptr2==NULL)
+			if(mlfw_error())
 			{
+				_mlfw_set_error(MLFW_NO_STRING_SET_CODE, MLFW_NO_STRING_SET, j);
 				mlfw_mat_string_destroy(matrix);
 				mlfw_row_vec_string_destroy(header);
 				free(encode_columns);
@@ -73,14 +107,16 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 			free(ptr2);
 			if(found==1) break;
 		}
-		free(ptr1);
 		if(found==0)
 		{
+			 _mlfw_set_error(MLFW_INVALID_COLUMN_NAME_CODE, MLFW_INVALID_COLUMN_NAME, ptr1);
 			mlfw_mat_string_destroy(matrix);
 			mlfw_row_vec_string_destroy(header);
 			free(encode_columns);
+			free(ptr1);
 			return;
 		}
+		free(ptr1);
 		encode_columns[i]=j;
 	}
 	// logic to create array of indexes ends here
@@ -91,6 +127,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 		c=encode_columns[i];
 		if(c<0 || c>=matrix_columns)
 		{
+			_mlfw_set_error(MLFW_INVALID_INDEX_CODE, MLFW_INVALID_INDEX, c, "c", 0, matrix_columns - 1);
 			mlfw_mat_string_destroy(matrix);
 			mlfw_row_vec_string_destroy(header);
 			free(encode_columns);
@@ -100,6 +137,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 	sets=(mlfw_set_string **)malloc(sizeof(mlfw_set_string *)*size);
 	if(sets==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE, MLFW_LOW_MEMORY, sizeof(mlfw_set_string *));
 		mlfw_mat_string_destroy(matrix);
 		mlfw_row_vec_string_destroy(header);
 		free(encode_columns);
@@ -108,7 +146,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 	for(i=0;i<size;++i)
 	{
 		sets[i]=mlfw_set_string_create_new();
-		if(sets[i]==NULL)
+		if(mlfw_error())
 		{
 			for(j=0;j<i;++j)
 			{
@@ -134,7 +172,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 		{
 			c=encode_columns[i];
 			mlfw_mat_string_get(matrix,r,c,&string);
-			if(string==NULL)
+			if(mlfw_error())
 			{
 				for(j=0;j<i;++j)
 				{
@@ -186,6 +224,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 	target_file=fopen(target,"w");
 	if(target_file==NULL)
 	{
+		_mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE, MLFW_UNABLE_TO_OPEN_FILE, target, "target");
 		for(i=0;i<size;++i) mlfw_set_string_destroy(sets[i]);
 		free(sets);
 		mlfw_mat_string_destroy(matrix);
@@ -197,7 +236,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 	for(c=0;c<header_size;++c)
 		{
 			mlfw_row_vec_string_get(header,c,&string);
-			if(string==NULL)
+			if(mlfw_error())
 			{
 			for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
 			free(sets);
@@ -219,7 +258,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 				for(j=0;j<set_size;++j)
 				{
 					mlfw_set_string_get(sets[i],j,&set_string);
-					if(set_string==NULL)
+					if(mlfw_error())
 					{
 					free(string);
 					for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
@@ -256,7 +295,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 		for(c=0;c<matrix_columns;++c)
 		{
 			mlfw_mat_string_get(matrix,r,c,&string);
-			if(string==NULL)
+			if(mlfw_error())
 			{
 				for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
 				free(sets);
@@ -278,7 +317,7 @@ void mlfw_encoder_encode_one_hot(char *source,char *target,mlfw_row_vec_string *
 				for(j=0;j<set_size;++j)
 				{
 					mlfw_set_string_get(sets[i],j,&set_string);
-					if(set_string==NULL)
+					if(mlfw_error())
 					{
 					free(string);
 					for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
@@ -346,16 +385,43 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 	index_t i,j;
 	mlfw_row_vec_string *header;
 	dimension_t header_size;
-	if(source==NULL || target==NULL || columns_to_encode==NULL) return;
+
+	mlfw_reset_error();
+
+	if (source == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "source");
+        return;
+    }
+    if (target == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "target");
+        return;
+    }
+    if (columns_to_encode == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "columns_to_encode");
+        return;
+    }
+
+
 	// passing null so that the function create one for us and give a filled one
 	matrix=mlfw_mat_string_from_csv(source,NULL,&header);
-	if(matrix==NULL) return;
+	if(mlfw_error())
+	{
+        _mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE, MLFW_UNABLE_TO_OPEN_FILE, source, "source");
+        return;
+    }
 	// create array of indexes against encode_columns
 	
 	size=mlfw_row_vec_string_get_size(columns_to_encode);
+	if (size == 0) {
+        _mlfw_set_error(MLFW_VECTOR_EMPTY_CODE, MLFW_VECTOR_EMPTY, "columns_to_encode");
+        mlfw_mat_string_destroy(matrix);
+		mlfw_row_vec_string_destroy(header);
+		return;
+    }
 	encode_columns=(int *)malloc(sizeof(int)*size);
 	if(encode_columns==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE, MLFW_LOW_MEMORY, sizeof(int) * size);
 		mlfw_mat_string_destroy(matrix);
 		mlfw_row_vec_string_destroy(header);
 		return;
@@ -369,8 +435,9 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 	for(i=0;i<size;++i)
 	{
 		mlfw_row_vec_string_get(columns_to_encode,i,&ptr1);
-		if(ptr1==NULL)
+		if(mlfw_error())
 		{
+			_mlfw_set_error(MLFW_NO_STRING_SET_CODE, MLFW_NO_STRING_SET, i);
 			mlfw_mat_string_destroy(matrix);
 			mlfw_row_vec_string_destroy(header);
 			free(encode_columns);
@@ -380,8 +447,9 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 		for(j=0;j<header_size;j++)
 		{
 			mlfw_row_vec_string_get(header,j,&ptr2);
-			if(ptr2==NULL)
+			if(mlfw_error())
 			{
+				_mlfw_set_error(MLFW_NO_STRING_SET_CODE, MLFW_NO_STRING_SET, j);
 				mlfw_mat_string_destroy(matrix);
 				mlfw_row_vec_string_destroy(header);
 				free(encode_columns);
@@ -395,14 +463,17 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 			free(ptr2);
 			if(found==1) break;
 		}
-		free(ptr1);
+		
 		if(found==0)
 		{
+			_mlfw_set_error(MLFW_INVALID_COLUMN_NAME_CODE, MLFW_INVALID_COLUMN_NAME, ptr1);
 			mlfw_mat_string_destroy(matrix);
 			mlfw_row_vec_string_destroy(header);
+			free(ptr1);
 			free(encode_columns);
 			return;
 		}
+		free(ptr1);
 		encode_columns[i]=j;
 	}
 	// logic to create array of indexes ends here
@@ -413,6 +484,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 		c=encode_columns[i];
 		if(c<0 || c>=matrix_columns)
 		{
+			_mlfw_set_error(MLFW_INVALID_INDEX_CODE, MLFW_INVALID_INDEX, c, "c", 0, matrix_columns - 1);
 			mlfw_mat_string_destroy(matrix);
 			mlfw_row_vec_string_destroy(header);
 			free(encode_columns);
@@ -422,6 +494,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 	sets=(mlfw_set_string **)malloc(sizeof(mlfw_set_string *)*size);
 	if(sets==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE, MLFW_LOW_MEMORY, sizeof(mlfw_set_string *));
 		mlfw_mat_string_destroy(matrix);
 		mlfw_row_vec_string_destroy(header);
 		free(encode_columns);
@@ -430,7 +503,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 	for(i=0;i<size;++i)
 	{
 		sets[i]=mlfw_set_string_create_new();
-		if(sets[i]==NULL)
+		if(mlfw_error())
 		{
 			for(j=0;j<i;++j)
 			{
@@ -456,7 +529,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 		{
 			c=encode_columns[i];
 			mlfw_mat_string_get(matrix,r,c,&string);
-			if(string==NULL)
+			if(mlfw_error())
 			{
 				for(j=0;j<i;++j)
 				{
@@ -493,6 +566,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 	target_file=fopen(target,"w");
 	if(target_file==NULL)
 	{
+		_mlfw_set_error(MLFW_UNABLE_TO_OPEN_FILE_CODE, MLFW_UNABLE_TO_OPEN_FILE, target, "target");
 		for(i=0;i<size;++i) mlfw_set_string_destroy(sets[i]);
 		free(sets);
 		mlfw_mat_string_destroy(matrix);
@@ -504,7 +578,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 	for(c=0;c<header_size;++c)
 		{
 			mlfw_row_vec_string_get(header,c,&string);
-			if(string==NULL)
+			if(mlfw_error())
 			{
 			for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
 			free(sets);
@@ -555,7 +629,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 		for(c=0;c<matrix_columns;++c)
 		{
 			mlfw_mat_string_get(matrix,r,c,&string);
-			if(string==NULL)
+			if(mlfw_error())
 			{
 				for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
 				free(sets);
@@ -581,7 +655,7 @@ void mlfw_encoder_encode_binary(char *source,char *target,mlfw_row_vec_string *c
 				for(j=0;j<set_size;++j)
 				{
 					mlfw_set_string_get(sets[i],j,&set_string);
-					if(set_string==NULL)
+					if(mlfw_error())
 					{
 					free(string);
 					for(j=0;j<i;++j) mlfw_set_string_destroy(sets[j]);
@@ -664,7 +738,7 @@ void mlfw_encoder_encode(char *source,char *target,mlfw_row_vec_string *columns_
 	uint8_t algorithm_code;
 	uint8_t ONE_HOT_ENCODING=1;
 	uint8_t BINARY_ENCODING=2;
-
+	mlfw_reset_error();
 	if(mlfw_strcmp_case_insensitive(algorithm,"one-hot")==0)
 	{
 		algorithm_code=ONE_HOT_ENCODING;
@@ -675,6 +749,7 @@ void mlfw_encoder_encode(char *source,char *target,mlfw_row_vec_string *columns_
 	}
 	else
 	{
+		_mlfw_set_error(MLFW_INVALID_ALGORITHM_FOR_ENCODING_CODE,MLFW_INVALID_ALGORITHM_FOR_ENCODING,algorithm);
 		return; // later on we will be introducing something to notify error
 	}
 
