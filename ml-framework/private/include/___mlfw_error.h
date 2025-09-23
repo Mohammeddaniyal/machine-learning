@@ -90,6 +90,16 @@
 #define MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS_CODE 28
 #define MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
 
+#define MLFW_INVALID_ALGORITHM_NAME_CODE 29
+#define MLFW_INVALID_ALGORITHM_NAME "Invalid algorithm name for parameter (%s)"
+
+
+#define MLFW_VECTOR_EMPTY_CODE 30
+#define MLFW_VECTOR_EMPTY "Invalid vector collection vector is empty  (%s)"
+
+
+#define MLFW_INVALID_COLUMN_NAME_CODE 31
+#define MLFW_INVALID_COLUMN_NAME "Invalid column name (%s)"
 
 void mlfw_reset_error();
 
