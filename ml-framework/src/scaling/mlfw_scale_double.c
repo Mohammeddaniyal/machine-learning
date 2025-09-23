@@ -391,15 +391,63 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
 	dimension_t mean_standard_deviation_matrix_rows,mean_standard_deviation_matrix_columns;
-	if(matrix==NULL || mean_standard_deviation_matrix==NULL) return NULL;
+	
+	mlfw_reset_error();	
+		
+	if(matrix==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"matrix");
+		return NULL;
+	}
+	if(mean_standard_deviation_matrix==NULL)
+	{
+	_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"mean_standard_deviation_matrix");
+		return NULL;
+	}
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
 	mlfw_mat_double_get_dimensions(mean_standard_deviation_matrix,&mean_standard_deviation_matrix_rows,&mean_standard_deviation_matrix_columns);
-	if(mean_standard_deviation_matrix_rows!=2) return NULL; // reason lec 19 module 1 20:00
-	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
-	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
-	if(start_row_index>end_row_index) return NULL;
-	if(start_column_index>end_column_index) return NULL;
 
+	if(mean_standard_deviation_matrix_rows!=2)// reason lec 19 module 1 20:00
+	{	_mlfw_set_error(MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS_CODE,MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS,"mean_standard_deviation_matrix",mean_standard_deviation_matrix_rows,mean_standard_deviation_matrix_columns,2,end_column_index-start_column_index+1);
+	 	return NULL; 
+	}
+	if(mean_standard_deviation_matrix_rows!=end_column_index-start_column_index+1)
+	{	_mlfw_set_error(MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS_CODE,MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS,"mean_standard_deviation_matrix",mean_standard_deviation_matrix_rows,mean_standard_deviation_matrix_columns,2,end_column_index-start_column_index+1);
+	 	return NULL; 
+	}
+
+	if(start_row_index<0)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_row_index,"start_row_index",0,matrix_rows-1);
+		return NULL;
+	}
+	if(end_row_index>=matrix_rows)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,end_row_index,"end_row_index",0,matrix_rows-1);
+		return NULL;
+	}
+	if(start_column_index<0)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_column_index,"start_column_index",0,matrix_columns-1);
+		return NULL;
+	}	
+	if(end_column_index>=matrix_columns)
+	{ 
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,end_column_index,"end_column_index",0,matrix_columns-1);
+		return NULL;
+	}
+	if(start_row_index>end_row_index)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_row_index,"start_row_index",0,matrix_rows-1);
+		return NULL;	
+	}
+	if(start_column_index>end_column_index)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_column_index,"start_column_index",0,matrix_columns-1);
+		return NULL;
+	}
+
+	
 	new_matrix_rows=end_row_index-start_row_index+1;
 	new_matrix_columns=end_column_index-start_column_index+1;
 	if(mean_standard_deviation_matrix_columns!=new_matrix_columns) return NULL; // reason lec 19
@@ -407,12 +455,16 @@ mlfw_mat_double * mlfw_scale_double_z_score_with_given_mean_standard_deviation(m
 	if(new_matrix==NULL)
 	{
 		new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
-		if(new_matrix==NULL) return NULL;
+		if(mlfw_error()) return NULL;
 	}
 	else
 	{
 		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
-		if(new_matrix_rows!=rows || new_matrix_columns!=columns) return NULL;
+		if(new_matrix_rows!=rows || new_matrix_columns!=columns)
+		{
+_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"new_matrix",rows,columns,new_matrix_rows,new_matrix_columns);
+			return NULL;
+		}
 	}
 	r=start_row_index;
 	for(new_matrix_r=0;new_matrix_r<new_matrix_rows;++new_matrix_r)
