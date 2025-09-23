@@ -87,6 +87,9 @@
 #define MLFW_INVALID_MIN_MAX_MATRIX_DIMENSIONS_CODE 27
 #define MLFW_INVALID_MIN_MAX_MATRIX_DIMENSIONS "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
 
+#define MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS_CODE 28
+#define MLFW_INVALID_MEAN_AND_STANDARD_DEVIATION_MATRIX_DIMENSIONS "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
+
 
 void mlfw_reset_error();
 
