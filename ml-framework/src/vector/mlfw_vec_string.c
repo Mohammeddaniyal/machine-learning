@@ -79,6 +79,7 @@ mlfw_row_vec_string * mlfw_row_vec_string_from_csv(const char *csv_file_name,mlf
 	index_t i;
 	index_t c;
 	char string[5001];
+	mlfw_reset_error();
 	if(csv_file_name==NULL) 
 	{
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"csv_file_name");
