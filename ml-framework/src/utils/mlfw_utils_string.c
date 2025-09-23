@@ -1,14 +1,30 @@
 #include<mlfw_utils.h>
 #include<stdio.h>
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
+
+extern __thread uint32_t _mlfw_error_code;
+extern __thread char _mlfw_error_string[512];
+extern __thread char _mlfw_debug_string[512];
+
 int mlfw_strcmp_case_insensitive(const char *left,const char *right)
 {
 	// this function should return 0 if both are same
 	// if left operand is greater then the right operand then return +ve
 	// else return -ve
 	char a,b;
-	if(left==NULL || right==NULL) return 0;
-	if(left==NULL) return -1;
-	if(right==NULL) return 1;
+	mlfw_reset_error();
+	if(left==NULL && right==NULL) return 0;
+	if(left==NULL) 
+	{  
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "left");
+    	return -1;
+	}
+	if(right==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "right");
+    	return 1;
+	}
 	while(*left!='\0' && *right!='\0')
 	{
 		a=*left;
@@ -27,6 +43,12 @@ void mlfw_uint32_to_binary(uint32_t number,char *string)
 	int i;
 	int j;
 	int bit;
+	mlfw_reset_error();
+	if(string==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "string");
+		return;
+	}
 	for(j=0,i=31;i>=0;--i,++j)
 	{
 		// right shifting and AND operator
