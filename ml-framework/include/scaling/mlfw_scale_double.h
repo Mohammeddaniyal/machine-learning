@@ -2,6 +2,9 @@
 #define __MLFW__SCALE__DOUBLE__
 #include<mlfw_matrix.h>
 
+#define MLFW_MIN_MAX_SCALING_ALGORITHM "min-max"
+#define MLFW_Z_SCORE_SCALING_ALGORITHM "z-score"
+
 mlfw_mat_double * mlfw_scale_double(char *dataset_file_name,mlfw_row_vec_string *columns_to_scale,char *parameters_file_name,char *algorithm,mlfw_mat_double *matrix);
 
 mlfw_mat_double * mlfw_scale_double_with_given_parameters(char *dataset_file_name,char *parameters_file_name,char *algorithm,mlfw_mat_double *matrix);
