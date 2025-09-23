@@ -3,6 +3,13 @@
 #include<mlfw_matrix.h>
 #include<mlfw_operations.h>
 #include<stdio.h>
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
+
+extern __thread uint32_t _mlfw_error_code;
+extern __thread char _mlfw_error_string[512];
+extern __thread char _mlfw_debug_string[512];
+
 double mlfw_get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_column_vec_double *predicted_values_vector)
 {
 	dimension_t target_values_vector_size;
@@ -22,42 +29,50 @@ double mlfw_get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_colum
 	double SST;
 	double r2score;
 
-	if(target_values_vector==NULL || predicted_values_vector==NULL) 
-	{
-		return 0.0; // later on we will introduce something to notify error
-	}
+	mlfw_reset_error();
+
+    if (target_values_vector == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "target_values_vector");
+        return 0.0;
+    }
+    if (predicted_values_vector == NULL) {
+        _mlfw_set_error(MLFW_NULL_ARGUMENT_CODE, MLFW_NULL_ARGUMENT, "predicted_values_vector");
+        return 0.0;
+    }
 	target_values_vector_size=mlfw_column_vec_double_get_size(target_values_vector);
 	predicted_values_vector_size=mlfw_column_vec_double_get_size(predicted_values_vector);
 	if(target_values_vector_size!=predicted_values_vector_size)
 	{
+		 _mlfw_set_error(MLFW_VECTOR_SIZE_NOT_SAME_CODE, MLFW_VECTOR_SIZE_NOT_SAME,"target_values_vector", "predicted_values_vector",target_values_vector_size, predicted_values_vector_size);
 		return 0.0;
 	}
 	A=target_values_vector;
 	P=predicted_values_vector;
 
 	R=mlfw_subtract_double_column_vector(A,P,NULL);
-	if(R==NULL)
+	if(mlfw_error())
 	{
 		return 0.0;	
 	}
 	RT=mlfw_column_vec_double_transpose(R,NULL);	
-	if(RT==NULL)
+	if(mlfw_error())
 	{
 		mlfw_column_vec_double_destroy(R);
 		return 0.0;	
 	}
 
 	RTR=mlfw_multiply_double_row_vector_with_column_vector(RT,R,NULL);
-	if(RTR==NULL)
+	if(mlfw_error())
 	{
 		mlfw_column_vec_double_destroy(R);
 		mlfw_row_vec_double_destroy(RT);
 		return 0.0;	
 	}
 	SSR=mlfw_column_vec_double_get(RTR,0);
+	if(mlfw_error()) return 0.0;
 	mean_of_actuals=mlfw_column_vec_double_get_mean(A);
 	M=mlfw_column_vec_double_create_new_filled(target_values_vector_size,mean_of_actuals,NULL);
-	if(M==NULL)
+	if(mlfw_error())
 	{
 		mlfw_column_vec_double_destroy(R);
 		mlfw_row_vec_double_destroy(RT);
@@ -65,7 +80,7 @@ double mlfw_get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_colum
 		return 0.0;	
 	}
 	AM=mlfw_subtract_double_column_vector(A,M,NULL);
-	if(AM==NULL)
+	if(mlfw_error())
 	{
 		mlfw_column_vec_double_destroy(R);
 		mlfw_row_vec_double_destroy(RT);
@@ -75,7 +90,7 @@ double mlfw_get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_colum
 	}
 
 	AMT=mlfw_column_vec_double_transpose(AM,NULL);
-	if(AMT==NULL)
+	if(mlfw_error())
 	{
 		mlfw_column_vec_double_destroy(R);
 		mlfw_row_vec_double_destroy(RT);
@@ -85,7 +100,7 @@ double mlfw_get_r2_score(mlfw_column_vec_double *target_values_vector,mlfw_colum
 		return 0.0;
 	}
 	AMTAM=mlfw_multiply_double_row_vector_with_column_vector(AMT,AM,NULL);
-	if(AMTAM==NULL)
+	if(mlfw_error())
 	{
 		mlfw_column_vec_double_destroy(R);
 		mlfw_row_vec_double_destroy(RT);
