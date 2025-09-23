@@ -268,9 +268,9 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"matrix");
 		return NULL;
 	}
-	if(mean_standard_deviatation_matrix==NULL)
+	if(mean_standard_deviation_matrix==NULL)
 	{
-	_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"mean_standard_deviatation_matrix");
+	_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"mean_standard_deviation_matrix");
 		return NULL;
 	}
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
