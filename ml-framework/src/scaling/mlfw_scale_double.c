@@ -262,33 +262,76 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 	dimension_t new_matrix_rows,new_matrix_columns;
 	dimension_t rows,columns;
 	mlfw_reset_error();
-	if(matrix==NULL || mean_standard_deviation_matrix==NULL) return NULL;
+	
+	if(matrix==NULL)
+	{
+		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"matrix");
+		return NULL;
+	}
+	if(mean_standard_deviatation_matrix==NULL)
+	{
+	_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"mean_standard_deviatation_matrix");
+		return NULL;
+	}
 	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
-	if(start_row_index<0 || end_row_index>=matrix_rows) return NULL;
-	if(start_column_index<0 || end_column_index>=matrix_columns) return NULL;
-	if(start_row_index>end_row_index) return NULL;
-	if(start_column_index>end_column_index) return NULL;
+
+	if(start_row_index<0)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_row_index,"start_row_index",0,matrix_rows-1);
+		return NULL;
+	}
+	if(end_row_index>=matrix_rows)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,end_row_index,"end_row_index",0,matrix_rows-1);
+		return NULL;
+	}
+	if(start_column_index<0)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_column_index,"start_column_index",0,matrix_columns-1);
+		return NULL;
+	}	
+	if(end_column_index>=matrix_columns)
+	{ 
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,end_column_index,"end_column_index",0,matrix_columns-1);
+		return NULL;
+	}
+	if(start_row_index>end_row_index)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_row_index,"start_row_index",0,matrix_rows-1);
+		return NULL;	
+	}
+	if(start_column_index>end_column_index)
+	{
+		_mlfw_set_error(MLFW_INVALID_INDEX_CODE,MLFW_INVALID_INDEX,start_column_index,"start_column_index",0,matrix_columns-1);
+		return NULL;
+	}
+
 
 	new_matrix_rows=end_row_index-start_row_index+1;
 	new_matrix_columns=end_column_index-start_column_index+1;
 	if(new_matrix==NULL)
 	{
 	new_matrix=mlfw_mat_double_create_new(new_matrix_rows,new_matrix_columns);
-	if(new_matrix==NULL) return NULL;
+	if(mlfw_error()) return NULL;
 	}
 	else
 	{
 		mlfw_mat_double_get_dimensions(new_matrix,&rows,&columns);
-		if(rows!=new_matrix_rows || columns!=new_matrix_columns) return NULL;
+		if(rows!=new_matrix_rows || columns!=new_matrix_columns)
+		{
+			_mlfw_set_error(MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT_CODE,MLFW_INVALID_MATRIX_CONTAINER_DIMENSIONS_TO_STORE_RESULT,"new_matrix",rows,columns,new_matrix_rows,new_matrix_columns);
+			return NULL;
+		}
 	}
 	*mean_standard_deviation_matrix=mlfw_mat_double_create_new(2,new_matrix_columns);
-	if(*mean_standard_deviation_matrix==NULL)
+	if(mlfw_error())
 	{
 		return NULL;
 	}
 	mean=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(mean==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(double)*new_matrix_columns);
 		mlfw_mat_double_destroy(*mean_standard_deviation_matrix);
 		*mean_standard_deviation_matrix=NULL;
 		return NULL;
@@ -296,6 +339,7 @@ mlfw_mat_double * mlfw_scale_double_z_score(mlfw_mat_double *matrix,index_t star
 	standard_deviation=(double *)malloc(sizeof(double)*new_matrix_columns);
 	if(standard_deviation==NULL)
 	{
+		_mlfw_set_error(MLFW_LOW_MEMORY_CODE,MLFW_LOW_MEMORY,sizeof(double)*new_matrix_columns);
 		mlfw_mat_double_destroy(*mean_standard_deviation_matrix);
 		*mean_standard_deviation_matrix=NULL;
 		free(mean);
