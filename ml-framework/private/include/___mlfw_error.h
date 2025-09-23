@@ -84,6 +84,10 @@
 #define MLFW_NO_ROWS_TO_READ_CODE 26
 #define MLFW_NO_ROWS_TO_READ "NO rows to read from (%s)"
 
+#define MLFW_INVALID_MIN_MAX_MATRIX_DIMENSIONS_CODE 27
+#define MLFW_INVALID_MIN_MAX_MATRIX_DIMENSIONS "Dimensions of parameter (%s) are (%u) rows and (%u) columns whereas required dimensions are (%u) rows and (%u) columns"
+
+
 void mlfw_reset_error();
 
 #define _mlfw_set_error(code,string,...) \
