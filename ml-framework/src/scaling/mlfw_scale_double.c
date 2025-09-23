@@ -1,7 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<mlfw_matrix.h>
 #include<mlfw_scale.h>
 #include<mlfw_utils.h>
+#include<mlfw_error.h>
+#include<___mlfw_error.h>
+
 mlfw_mat_double * mlfw_scale_double_min_max(mlfw_mat_double *matrix,index_t start_row_index,index_t start_column_index,index_t end_row_index,index_t end_column_index,mlfw_mat_double **min_max_matrix,mlfw_mat_double *new_matrix)
 {
 	double scaled_value;
