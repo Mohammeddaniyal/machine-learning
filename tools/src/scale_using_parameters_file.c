@@ -11,9 +11,9 @@ int main(int argc,char *argv[])
 	char *target;
 	char error_string[512];
 	
-	if(argc<=5)
+	if(argc!=4)
 	{
-		printf("Specify [source csv] [target csv] [algorithm] [parameters_csv] columns_to_scale ....\n");
+		printf("Specify [source csv] [target csv] [algorithm] [parameters_csv]\n");
 		return 0;
 	}
 	source=argv[1];
