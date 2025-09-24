@@ -13,7 +13,7 @@ int main(int argc,char *argv[])
 	
 	if(argc!=4)
 	{
-		printf("Specify [source csv] [target csv] [algorithm] [parameters_csv]\n");
+		printf("Specify [source_csv] [target_csv] [algorithm] [parameters_csv]\n");
 		return 0;
 	}
 	source=argv[1];
