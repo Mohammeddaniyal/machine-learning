@@ -1,0 +1,39 @@
+ERROR HANDLING TRACKER
+
+.
+├── encoder
+│   └── mlfw_data_encoder.c (DONE)
+├── error (NOT REQUIRED)
+│   └── mlfw_error.c
+├── list
+│   └── mlfw_list_double.c (DONE)
+├── math
+│   └── mlfw_math_operations.c (DONE)
+├── matrix
+│   ├── mlfw_mat_double.c (DONE)
+│   └── mlfw_mat_string.c (NOT DONE)
+├── ml_algorithms 
+│   ├── mlfw_linear_regression.c (DONE)
+│   └── mlfw_ml_configurations.c (DONE)
+├── model_accuracy
+│   └── mlfw_model_accuracy_score.c (DONE)
+├── old (NOT REQUIRED)
+│   └── learning
+│       ├── mlfw_linear_regression.c
+│       ├── mlfw_logistic_regression.c
+│       └── mlfw_score.c
+├── operations
+│   └── mlfw_operations_double.c (DONE)
+├── out.txt
+├── scaling
+│   └── mlfw_scale_double.c (DONE)
+├── set
+│   └── mlfw_set_string.c (DONE)
+├── utils
+│   ├── mlfw_utils_file.c (DONE)
+│   └── mlfw_utils_string.c (DONE)
+└── vector
+    ├── mlfw_vec_double.c (DONE)
+    └── mlfw_vec_string.c (DONE)
+
+15 directories, 20 files

@@ -736,6 +736,8 @@ if (algorithm == NULL) {
 	
 	parameters_matrix=mlfw_mat_double_from_csv(parameters_file_name,NULL,&columns_to_scale);
 
+	
+
 	if(mlfw_error())
 	{
 	 	return NULL;
@@ -830,6 +832,7 @@ if (algorithm == NULL) {
 
 			} else if(algorithm_code==Z_SCORE_ALGORITHM)
 			{
+				
 				mlfw_mat_double_set(tmp_matrix,0,0,mlfw_mat_double_get(parameters_matrix,0,i));
 				mlfw_mat_double_set(tmp_matrix,1,0,mlfw_mat_double_get(parameters_matrix,1,i));
 			mlfw_scale_double_z_score(matrix,0,j,matrix_rows-1,j,&tmp_matrix,scaled_column_matrix);
@@ -849,13 +852,14 @@ if (algorithm == NULL) {
 			{
 				mlfw_mat_double_copy(matrix,scaled_column_matrix,0,j,0,0,matrix_rows-1,0);
 			}
+		
+
 			}
-     			free(column_name);
+   			free(column_name);
 			break;	
 			}
 			free(column_name);		
 		}// inner loop ends
-		free(scale_column_name);
 		if(j==matrix_header_size) // the column name in columns_to_scale is incorrect
 		{
 		_mlfw_set_error(MLFW_INVALID_COLUMN_NAME_CODE,MLFW_INVALID_COLUMN_NAME,scale_column_name);
