@@ -11,7 +11,7 @@ int main(int argc,char *argv[])
 	char *target;
 	char error_string[512];
 	
-	if(argc!=4)
+	if(argc!=5)
 	{
 		printf("Specify [source_csv] [target_csv] [algorithm] [parameters_csv]\n");
 		return 0;
