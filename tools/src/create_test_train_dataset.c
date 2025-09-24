@@ -22,7 +22,7 @@ int main(int args,char *argv[])
 	// as arguments (dataset file, test_file, train_file, minor_percentage)
 	if(args!=5)
 	{
-		printf("Usage : [create_test_train_dataset  test_file train_file minor_percentage]\n");
+		printf("Usage : [create_test_train_dataset test_file train_file minor_percentage]\n");
 		return 0;
 	}
 	dataset_file=argv[1];
