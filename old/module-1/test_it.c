@@ -1,6 +1,6 @@
-#include<mlfw_matrix.h>
-#include<mlfw_vector.h>
-#include<mlfw_operations.h>
+#include<dmlfw_matrix.h>
+#include<dmlfw_vector.h>
+#include<dmlfw_operations.h>
 #include<stdlib.h>
 #include<stdio.h>
 // global variable
@@ -11,36 +11,36 @@ void test_it()
 {
 	index_t r,c;
 	FILE *result_file;
-	mlfw_mat_double *dataset;
+	dmlfw_mat_double *dataset;
 	dimension_t dataset_rows;
 	dimension_t dataset_columns;
 	
-	mlfw_mat_double *I;
+	dmlfw_mat_double *I;
 	dimension_t I_rows;
 	dimension_t I_columns;
 
 
-	mlfw_column_vec_double *m;
+	dmlfw_column_vec_double *m;
 
-	mlfw_column_vec_double *P;
+	dmlfw_column_vec_double *P;
 
 
-	dataset=mlfw_mat_double_from_csv(DATASET_FILE_NAME);
+	dataset=dmlfw_mat_double_from_csv(DATASET_FILE_NAME);
 	if(dataset==NULL)
 	{
 		printf("Unable to load dataset from %s\n",DATASET_FILE_NAME);
 		return;
 	}
-	mlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
+	dmlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
 
 	I_rows=dataset_rows;
 	I_columns=dataset_columns-1+1; // no need to do -1+1, this is just for understanding
 
-	I=mlfw_mat_double_create_new(I_rows,I_columns);
+	I=dmlfw_mat_double_create_new(I_rows,I_columns);
 	if(I==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(dataset);
 		return;
 	}
 
@@ -61,7 +61,7 @@ void test_it()
 	// so here we're copying dataset 0th column to last input column 
 	// In I matrix 1 index column to last index copying 
 	
-	mlfw_mat_double_copy(I,dataset,0,1,0,0,dataset_rows-1,dataset_columns-2);
+	dmlfw_mat_double_copy(I,dataset,0,1,0,0,dataset_rows-1,dataset_columns-2);
 
 	/*
 	 1st arg : matrix to fill
@@ -72,26 +72,26 @@ void test_it()
 	 6th arg : what to fill
 	 */
 
-	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
+	dmlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
 	
-	m=mlfw_column_vec_double_from_csv(PARAMETERS_FILE_NAME);
+	m=dmlfw_column_vec_double_from_csv(PARAMETERS_FILE_NAME);
 	
 	if(m==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
 		return;
 	}
 
-	P=mlfw_multiply_double_matrix_with_column_vector(I,m);
+	P=dmlfw_multiply_double_matrix_with_column_vector(I,m);
 	if(P==NULL)
 	{
 	
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
-		mlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
+		dmlfw_column_vec_double_destroy(m);
 		return;
 	}
 	
@@ -103,17 +103,17 @@ void test_it()
 	{
 		for(c=0;c<dataset_columns;++c)
 		{
-			fprintf(result_file,"%lf,",mlfw_mat_double_get(dataset,r,c));
+			fprintf(result_file,"%lf,",dmlfw_mat_double_get(dataset,r,c));
 		}
-		fprintf(result_file,"%lf\n",mlfw_column_vec_double_get(P,r));
+		fprintf(result_file,"%lf\n",dmlfw_column_vec_double_get(P,r));
 	}
 	fclose(result_file);
 		// release resources
 	
-                mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_column_vec_double_destroy(m); // the last m which was actually UM
-		mlfw_column_vec_double_destroy(P);
+                dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_column_vec_double_destroy(m); // the last m which was actually UM
+		dmlfw_column_vec_double_destroy(P);
 }
 
 
