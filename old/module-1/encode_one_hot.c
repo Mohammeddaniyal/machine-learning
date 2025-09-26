@@ -1,4 +1,4 @@
-#include<mlfw_encoder.h>
+#include<dmlfw_encoder.h>
 #include<stdio.h>
 #include<stdlib.h>
 int main(int argc,char *argv[])
@@ -63,5 +63,5 @@ int main(int argc,char *argv[])
 		printf("%d ",encode_columns[i]);
 	}
 	*/
-	mlfw_encoder_encode_one_hot(input_file,output_file,encode_columns,size,header_exists);
+	dmlfw_encoder_encode_one_hot(input_file,output_file,encode_columns,size,header_exists);
 }
