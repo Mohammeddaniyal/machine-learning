@@ -1,7 +1,7 @@
-#include<mlfw_matrix.h>
-#include<mlfw_vector.h>
-#include<mlfw_scale.h>
-#include<mlfw_operations.h>
+#include<dmlfw_matrix.h>
+#include<dmlfw_vector.h>
+#include<dmlfw_scale.h>
+#include<dmlfw_operations.h>
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -34,10 +34,10 @@ int main()
 	double region_southeast=0;
 
 	
-	mlfw_row_vec_double *I;
-	mlfw_mat_double *min_max_matrix;
-	mlfw_column_vec_double *m;
-	mlfw_column_vec_double *result;
+	dmlfw_row_vec_double *I;
+	dmlfw_mat_double *min_max_matrix;
+	dmlfw_column_vec_double *m;
+	dmlfw_column_vec_double *result;
 
 	dimension_t min_max_rows,min_max_columns;
 	index_t c;
@@ -129,78 +129,78 @@ int main()
 	}
 	
 
-	I=mlfw_row_vec_double_create_new(12);
+	I=dmlfw_row_vec_double_create_new(12);
 	if(I==NULL)
 	{
 		printf("Low memory\n");
 		return 0;
 	}
 
-	mlfw_row_vec_double_set(I,0,1);
-	mlfw_row_vec_double_set(I,1,(double)age);
-	mlfw_row_vec_double_set(I,2,sex_female);
-	mlfw_row_vec_double_set(I,3,sex_male);
-	mlfw_row_vec_double_set(I,4,body_mass_index);
-	mlfw_row_vec_double_set(I,5,(double)number_of_children);
-	mlfw_row_vec_double_set(I,6,smokes_yes);
-	mlfw_row_vec_double_set(I,7,smokes_no);
-	mlfw_row_vec_double_set(I,8,region_southwest);
-	mlfw_row_vec_double_set(I,9,region_southeast);
-	mlfw_row_vec_double_set(I,10,region_northwest);
-	mlfw_row_vec_double_set(I,11,region_northeast);
+	dmlfw_row_vec_double_set(I,0,1);
+	dmlfw_row_vec_double_set(I,1,(double)age);
+	dmlfw_row_vec_double_set(I,2,sex_female);
+	dmlfw_row_vec_double_set(I,3,sex_male);
+	dmlfw_row_vec_double_set(I,4,body_mass_index);
+	dmlfw_row_vec_double_set(I,5,(double)number_of_children);
+	dmlfw_row_vec_double_set(I,6,smokes_yes);
+	dmlfw_row_vec_double_set(I,7,smokes_no);
+	dmlfw_row_vec_double_set(I,8,region_southwest);
+	dmlfw_row_vec_double_set(I,9,region_southeast);
+	dmlfw_row_vec_double_set(I,10,region_northwest);
+	dmlfw_row_vec_double_set(I,11,region_northeast);
 
 
-	min_max_matrix=mlfw_mat_double_from_csv("min_max_scale.csv");
+	min_max_matrix=dmlfw_mat_double_from_csv("min_max_scale.csv");
 	if(min_max_matrix==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_row_vec_double_destroy(I);
+		dmlfw_row_vec_double_destroy(I);
 		return 0;
 	}
 
-	mlfw_mat_double_get_dimensions(min_max_matrix,&min_max_rows,&min_max_columns);
+	dmlfw_mat_double_get_dimensions(min_max_matrix,&min_max_rows,&min_max_columns);
 	for(c=0,i=1;c<min_max_columns-1;++c,++i)
 	{
-		min=mlfw_mat_double_get(min_max_matrix,0,c);
-		max=mlfw_mat_double_get(min_max_matrix,1,c);
-		value=mlfw_row_vec_double_get(I,i);
+		min=dmlfw_mat_double_get(min_max_matrix,0,c);
+		max=dmlfw_mat_double_get(min_max_matrix,1,c);
+		value=dmlfw_row_vec_double_get(I,i);
 		scaled_value=(value-min)/(max-min);
-		mlfw_row_vec_double_set(I,i,scaled_value);
+		dmlfw_row_vec_double_set(I,i,scaled_value);
 	}
 
 	
-	m=mlfw_column_vec_double_from_csv("model.csv");
+	m=dmlfw_column_vec_double_from_csv("model.csv");
 	if(m==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_row_vec_double_destroy(I);
-		mlfw_mat_double_destroy(min_max_matrix);
+		dmlfw_row_vec_double_destroy(I);
+		dmlfw_mat_double_destroy(min_max_matrix);
 		return 0;
 	}
 	
-	result=mlfw_multiply_double_row_vector_with_column_vector(I,m);
+	result=dmlfw_multiply_double_row_vector_with_column_vector(I,m);
 	if(result==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_row_vec_double_destroy(I);
-		mlfw_mat_double_destroy(min_max_matrix);
-		mlfw_column_vec_double_destroy(m);	
+		dmlfw_row_vec_double_destroy(I);
+		dmlfw_mat_double_destroy(min_max_matrix);
+		dmlfw_column_vec_double_destroy(m);	
 		return 0;
 	}
 	
 	// now reverse the scaled the value
-	scaled_value=mlfw_column_vec_double_get(result,0);
+	scaled_value=dmlfw_column_vec_double_get(result,0);
 
-	min=mlfw_mat_double_get(min_max_matrix,0,min_max_columns-1);
-	max=mlfw_mat_double_get(min_max_matrix,1,min_max_columns-1);
+	min=dmlfw_mat_double_get(min_max_matrix,0,min_max_columns-1);
+	max=dmlfw_mat_double_get(min_max_matrix,1,min_max_columns-1);
 
 	value=(scaled_value*(max-min))+min;
 
 	printf("Prediction %lf\n",value);
 
-	mlfw_row_vec_double_destroy(I);
-	mlfw_mat_double_destroy(min_max_matrix);
-	mlfw_column_vec_double_destroy(m);	
-	mlfw_column_vec_double_destroy(result);
+	dmlfw_row_vec_double_destroy(I);
+	dmlfw_mat_double_destroy(min_max_matrix);
+	dmlfw_column_vec_double_destroy(m);	
+	dmlfw_column_vec_double_destroy(result);
 	return 0;
 }
