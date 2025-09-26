@@ -1,13 +1,13 @@
-#include<mlfw_matrix.h>
+#include<dmlfw_matrix.h>
 #include<stdio.h>
 #include<stdlib.h>
 int main(int args,char *argv[])
 {
-	mlfw_mat_double *matrix;
-	mlfw_mat_double *shuffled_matrix;
+	dmlfw_mat_double *matrix;
+	dmlfw_mat_double *shuffled_matrix;
 	
-	mlfw_mat_double *minor_matrix;
-	mlfw_mat_double *major_matrix;
+	dmlfw_mat_double *minor_matrix;
+	dmlfw_mat_double *major_matrix;
 	
 	dimension_t shuffled_matrix_rows;
 	dimension_t shuffled_matrix_columns;
@@ -34,51 +34,51 @@ int main(int args,char *argv[])
 		printf("Invalid minor percentage %d\n",minor_percentage);
 		return 0;
 	}
-	matrix=mlfw_mat_double_from_csv(dataset_file);
+	matrix=dmlfw_mat_double_from_csv(dataset_file);
 	if(matrix==NULL)
 	{
 		printf("Unable to load %s\n",dataset_file);
 		return 0;
 	}
-	shuffled_matrix=mlfw_mat_double_shuffle(matrix,3); // shuffle 3 times
+	shuffled_matrix=dmlfw_mat_double_shuffle(matrix,3); // shuffle 3 times
 	if(shuffled_matrix==NULL)
 	{
 		printf("Unable to create test/train data file\n");
-		mlfw_mat_double_destroy(matrix);
+		dmlfw_mat_double_destroy(matrix);
 		return 0;
 	}
-	mlfw_mat_double_get_dimensions(shuffled_matrix,&shuffled_matrix_rows,&shuffled_matrix_columns);
+	dmlfw_mat_double_get_dimensions(shuffled_matrix,&shuffled_matrix_rows,&shuffled_matrix_columns);
 	
 	minor_rows=(minor_percentage*shuffled_matrix_rows)/100;
 	major_rows=shuffled_matrix_rows-minor_rows;
 	
-	minor_matrix=mlfw_mat_double_create_new(minor_rows,shuffled_matrix_columns);
+	minor_matrix=dmlfw_mat_double_create_new(minor_rows,shuffled_matrix_columns);
 	if(minor_matrix==NULL)
 	{
 		printf("Unable to load the test/train data file\n");
-		mlfw_mat_double_destroy(matrix);
-		mlfw_mat_double_destroy(shuffled_matrix);
+		dmlfw_mat_double_destroy(matrix);
+		dmlfw_mat_double_destroy(shuffled_matrix);
 		return 0;
 	}
-	major_matrix=mlfw_mat_double_create_new(major_rows,shuffled_matrix_columns);
+	major_matrix=dmlfw_mat_double_create_new(major_rows,shuffled_matrix_columns);
 	if(major_matrix==NULL)
 	{
 		printf("Unable to load the test/train data file\n");
-		mlfw_mat_double_destroy(matrix);
-		mlfw_mat_double_destroy(shuffled_matrix);
-		mlfw_mat_double_destroy(minor_matrix);
+		dmlfw_mat_double_destroy(matrix);
+		dmlfw_mat_double_destroy(shuffled_matrix);
+		dmlfw_mat_double_destroy(minor_matrix);
 		return 0;
 	}
 	
-mlfw_mat_double_copy(minor_matrix,shuffled_matrix,0,0,0,0,minor_rows-1,shuffled_matrix_columns-1);
-mlfw_mat_double_copy(major_matrix,shuffled_matrix,0,0,minor_rows,0,shuffled_matrix_rows-1,shuffled_matrix_columns-1);
+dmlfw_mat_double_copy(minor_matrix,shuffled_matrix,0,0,0,0,minor_rows-1,shuffled_matrix_columns-1);
+dmlfw_mat_double_copy(major_matrix,shuffled_matrix,0,0,minor_rows,0,shuffled_matrix_rows-1,shuffled_matrix_columns-1);
 
-	mlfw_mat_double_to_csv(minor_matrix,test_file);
-	mlfw_mat_double_to_csv(major_matrix,train_file);
+	dmlfw_mat_double_to_csv(minor_matrix,test_file);
+	dmlfw_mat_double_to_csv(major_matrix,train_file);
 
-	mlfw_mat_double_destroy(matrix);
-	mlfw_mat_double_destroy(shuffled_matrix);
-	mlfw_mat_double_destroy(minor_matrix);
-	mlfw_mat_double_destroy(major_matrix);
+	dmlfw_mat_double_destroy(matrix);
+	dmlfw_mat_double_destroy(shuffled_matrix);
+	dmlfw_mat_double_destroy(minor_matrix);
+	dmlfw_mat_double_destroy(major_matrix);
 	return 0;
 }
