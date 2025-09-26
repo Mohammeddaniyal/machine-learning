@@ -1,4 +1,4 @@
-#include<mlfw_encoder.h>
+#include<dmlfw_encoder.h>
 #include<stdio.h>
 #include<stdlib.h>
 int main(int argc,char *argv[])
@@ -6,7 +6,7 @@ int main(int argc,char *argv[])
 	char *input_file;
 	char *output_file;
 	
-	mlfw_row_vec_string *columns_to_encode;
+	dmlfw_row_vec_string *columns_to_encode;
 	
 	index_t i;
 	if(argc<4)
@@ -17,7 +17,7 @@ int main(int argc,char *argv[])
 	input_file=argv[1];
 	output_file=argv[2];
 	
-	columns_to_encode=mlfw_row_vec_string_create_new(argc-3);
+	columns_to_encode=dmlfw_row_vec_string_create_new(argc-3);
 	if(columns_to_encode==NULL)
 	{
 		printf("Low memory\n");
@@ -25,9 +25,9 @@ int main(int argc,char *argv[])
 	}
 	for(i=3;i<argc;i++)
 	{
-		mlfw_row_vec_string_set(columns_to_encode,i-3,argv[i]);
+		dmlfw_row_vec_string_set(columns_to_encode,i-3,argv[i]);
 	}
-	mlfw_encoder_encode_binary(input_file,output_file,columns_to_encode);
-	mlfw_row_vec_string_destroy(columns_to_encode);
+	dmlfw_encoder_encode_binary(input_file,output_file,columns_to_encode);
+	dmlfw_row_vec_string_destroy(columns_to_encode);
 	return 0;
 }
