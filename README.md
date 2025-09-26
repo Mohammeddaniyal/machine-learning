@@ -85,11 +85,11 @@ tools/src
 ```
 Compile them the same way as your own program, for example:
 ```
-gcc batch_gd.c -I ../ml-framework/include -L ../ml-framework/lib -lml-framework -lm -o batch_gd
+gcc encode_one_hot.c -I ../ml-framework/include -L ../ml-framework/lib -lml-framework -lm -o encode_one_hot
 ```
 
 ###  Test the setup
-Run a tool (from `tools/build`):
+Run a tool :
 ```
 ./encode_one_hot ../../tools/testcases/insurance.csv output.csv sex smoker region
 ```
@@ -163,4 +163,3 @@ If you want to connect, give feedback, or just chat about ML:
 ✨ Thanks for checking this out. This is still the beginning of my ML journey, and DMLFW is the notebook where I write code instead of just notes. Hopefully, it grows into something more useful over time.
 ```
 
-Would you like me to also create a shorter "Quick Start" snippet (just build + run example) for people who might not want to read the whole README?
