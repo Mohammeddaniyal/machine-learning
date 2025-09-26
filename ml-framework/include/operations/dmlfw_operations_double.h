@@ -1,0 +1,24 @@
+#ifndef __DMLFW__OPERATIONS__DOUBLE__
+#define __DMLFW__OPERATIONS__DOUBLE__
+
+dmlfw_column_vec_double * dmlfw_multiply_double_row_vector_with_column_vector(dmlfw_row_vec_double *left_vector,dmlfw_column_vec_double *right_vector,dmlfw_column_vec_double *product_vector);
+
+dmlfw_column_vec_double * dmlfw_multiply_double_matrix_with_column_vector(dmlfw_mat_double *left_matrix,dmlfw_column_vec_double * right_vector,dmlfw_column_vec_double *product_vector);
+dmlfw_column_vec_double * dmlfw_subtract_double_column_vector(dmlfw_column_vec_double *left_vector,dmlfw_column_vec_double *right_vector,dmlfw_column_vec_double *diff_vector);
+
+dmlfw_column_vec_double * dmlfw_multiply_double_scalar_with_column_vector(double scalar_value,dmlfw_column_vec_double *vector,dmlfw_column_vec_double *product_vector);
+
+dmlfw_mat_double * dmlfw_multiply_double_matrix_with_matrix(dmlfw_mat_double *left_matrix,dmlfw_mat_double *right_matrix,dmlfw_mat_double *product_matrix);
+
+dmlfw_mat_double * dmlfw_add_double_matrix_with_matrix(dmlfw_mat_double *left_matrix,dmlfw_mat_double *right_matrix,dmlfw_mat_double *new_matrix);
+
+dmlfw_mat_double * dmlfw_subtract_double_matrix_from_matrix(dmlfw_mat_double *left_matrix,dmlfw_mat_double *right_matrix,dmlfw_mat_double *new_matrix);
+
+dmlfw_mat_double * dmlfw_multiply_double_matrix_with_matrix_strassens(dmlfw_mat_double *left_matrix,dmlfw_mat_double *right_matrix,dmlfw_mat_double *new_matrix);
+
+dmlfw_column_vec_double * dmlfw_subtract_double_column_vector_from_scalar(dmlfw_column_vec_double *vector,double scalar_value,dmlfw_column_vec_double *new_vector);
+
+dmlfw_column_vec_double * dmlfw_element_wise_multiply_double_column_vector(dmlfw_column_vec_double *left_vector,dmlfw_column_vec_double *right_vector,dmlfw_column_vec_double *new_vector);
+
+dmlfw_column_vec_double * dmlfw_add_double_column_vector(dmlfw_column_vec_double *left_vector,dmlfw_column_vec_double *right_vector,dmlfw_column_vec_double *new_vector);
+#endif
