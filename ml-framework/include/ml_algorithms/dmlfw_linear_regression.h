@@ -1,0 +1,14 @@
+#ifndef __DMLFW__LINEAR_REGRESSION__
+#define __DMLFW__LINEAR_REGRESSION__
+#include<dmlfw_vector.h>
+#include<dmlfw_matrix.h>
+#include<dmlfw_algorithms.h>
+dmlfw_column_vec_double * dmlfw_linear_regression_fit_using_batch_gradient_descent(dmlfw_gradient_descent_options  *gd_options,dmlfw_mat_double *x,dmlfw_column_vec_double *y,double regularization_parameter,dmlfw_column_vec_double *model);
+
+dmlfw_column_vec_double * dmlfw_linear_regression_predict(dmlfw_mat_double *x,dmlfw_column_vec_double *model);
+
+dmlfw_column_vec_double * dmlfw_linear_regression_fit_using_stochastic_gradient_descent(dmlfw_gradient_descent_options *gd_options,double regularization_parameter,dmlfw_column_vec_double *model);
+
+dmlfw_column_vec_double * dmlfw_linear_regression_fit_using_mini_batch_gradient_descent(dmlfw_gradient_descent_options *gd_options,double regularization_parameter,dmlfw_column_vec_double *model);
+
+#endif
