@@ -129,11 +129,11 @@
 #define MLFW_DUPLICATE_INDEX_CODE 42
 #define MLFW_DUPLICATE_INDEX "Duplicate index detected: %u"
 
-void mlfw_reset_error();
+void dmlfw_reset_error();
 
-#define _mlfw_set_error(code,string,...) \
-    _mlfw_error_code=code; \
-    snprintf(_mlfw_error_string,511,string,## __VA_ARGS__); \
-    snprintf(_mlfw_debug_string,511,"File : %s\nFunction : %s\nLine : %d",__FILE__,__FUNCTION__,__LINE__);
+#define _dmlfw_set_error(code,string,...) \
+    _dmlfw_error_code=code; \
+    snprintf(_dmlfw_error_string,511,string,## __VA_ARGS__); \
+    snprintf(_dmlfw_debug_string,511,"File : %s\nFunction : %s\nLine : %d",__FILE__,__FUNCTION__,__LINE__);
 
 #endif
