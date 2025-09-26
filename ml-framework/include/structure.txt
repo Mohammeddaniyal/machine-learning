@@ -1,0 +1,49 @@
+.
+├── dmlfw.h
+├── dmlfw_algorithms.h
+├── dmlfw_encoder.h
+├── dmlfw_error.h (DONE) or maybe do some improvements will do later
+├── dmlfw_list.h (DONE)
+├── dmlfw_math.h 
+├── dmlfw_matrix.h (DONE)
+├── dmlfw_model_accuracy.h
+├── dmlfw_operations.h
+├── dmlfw_scale.h
+├── dmlfw_set.h (DONE)
+├── dmlfw_utils.h 
+├── dmlfw_vector.h (DONE)
+├── encoder
+│   └── dmlfw_data_encoder.h
+├── list
+│   └── dmlfw_list_double.h
+├── math
+│   └── dmlfw_math_operations.h
+├── matrix
+│   ├── dmlfw_mat_double.h
+│   └── dmlfw_mat_string.h
+├── ml_algorithms
+│   ├── dmlfw_linear_regression.h
+│   └── dmlfw_ml_configurations.h
+├── model_accuracy
+│   └── dmlfw_model_accuracy_score.h
+├── old
+│   ├── dmlfw_learning.h
+│   └── learning
+│       ├── dmlfw_linear_regression.h
+│       ├── dmlfw_logistic_regression.h
+│       └── dmlfw_score.h
+├── operations
+│   └── dmlfw_operations_double.h
+├── scaling
+│   └── dmlfw_scale_double.h
+├── set
+│   └── dmlfw_set_string.h
+├── structure.txt
+├── utils
+│   ├── dmlfw_utils_file.h
+│   └── dmlfw_utils_string.h
+└── vector
+    ├── dmlfw_vec_double.h
+    └── dmlfw_vec_string.h
+
+14 directories, 33 files
