@@ -1,195 +1,7 @@
-#include<mlfw.h>
+#include<dmlfw.h>
 #include<unistd.h>
 #include<stdio.h>
 #include<stdlib.h>
-#include<___mlfw_error.h>
-
-extern __thread uint64_t _mlfw_error_code;
-extern __thread char _mlfw_error_string[512];
-extern __thread char _mlfw_debug_string[512];
-
-mlfw_column_vec_double * mlfw_linear_regression_fit_using_mini_batch_gradient_descent(mlfw_gradient_descent_options *gd_options,double regularization_parameter,mlfw_column_vec_double *model)
-{
-	int end_process=0;
-	uint64_t from_row_number;
-	uint32_t how_many_rows;
-	dimension_t x_rows,x_columns;
-	dimension_t theta_rows;
-	double theta_0; // to store value of theta[0] before setting to 0
-				 // as it is to be ignore in regularization term
-	mlfw_gradient_descent_lin_reg_progress_callback_t progress_callback;
-
-	mlfw_mat_double *x=NULL;
-	mlfw_column_vec_double *y=NULL;	
-	mlfw_mat_double *x_transposed=NULL;
-	mlfw_column_vec_double *predicted_y=NULL;
-	mlfw_column_vec_double *prediction_error=NULL;
-	mlfw_column_vec_double *theta=NULL;
-	mlfw_column_vec_double *tmp1=NULL;
-	mlfw_column_vec_double *tmp2=NULL;
-	mlfw_column_vec_double *tmp3=NULL;
-	mlfw_column_vec_double *tmp4=NULL;
-	mlfw_column_vec_double *regularization_term=NULL;
-	mlfw_column_vec_double *tmp_theta=NULL;
-
-	index_t n;
-	uint64_t number_of_iterations;
-	double learning_rate;
-	dimension_t model_size;
-	mlfw_gradient_descent_lin_reg_data_provider_t data_provider;
-	uint32_t mini_batch_size;
-	mlfw_reset_error();
-	// validations
-	// i can also apply validation here
-	number_of_iterations=mlfw_gradient_descent_options_get_number_of_iterations(gd_options);
-	learning_rate=mlfw_gradient_descent_options_get_learning_rate(gd_options);
-	progress_callback=mlfw_gradient_descent_options_get_progress_callback(gd_options);
-	data_provider=mlfw_gradient_descent_options_get_data_provider(gd_options);
-	mini_batch_size=mlfw_gradient_descent_options_get_mini_batch_size(gd_options);
-	if(data_provider==NULL)
-	{
-		_mlfw_set_error(MLFW_NULL_ARGUMENT_CODE,MLFW_NULL_ARGUMENT,"gd_options[data_provider]");
-		goto err;
-	}
-
-	// get first data, so that we can perform initial setup
-	how_many_rows=mini_batch_size;
-	data_provider(&x,&y,1,how_many_rows);
-	if(x==NULL)
-	{
-		_mlfw_set_error(MLFW_DATA_PROVIDER_PROVIDED_NO_ROWS_CODE,MLFW_DATA_PROVIDER_PROVIDED_NO_ROWS);
-		goto err;
-	}
-	// set up initial parameters
-	mlfw_mat_double_get_dimensions(x,&x_rows,&x_columns);
-	theta=mlfw_column_vec_double_create_new_filled(x_columns,0.0,NULL);
-	if(mlfw_error()) goto err;
-	x_transposed=mlfw_mat_double_transpose(x,NULL);
-	if(mlfw_error()) goto err;
-
-	if(model!=NULL)
-	{	
-		// validate model size
-		model_size=mlfw_column_vec_double_get_size(model);
-		if(model_size!=x_columns)
-		{
-			_mlfw_set_error(MLFW_INVALID_MODEL_VECTOR_SIZE_CODE,MLFW_INVALID_MODEL_VECTOR_SIZE,"model",model_size,x_columns);
-			goto err;
-		}
-		// populate theta with values from model
-		mlfw_column_vec_double_copy(theta,model);
-		if(mlfw_error()) goto err;
-	}
-	// created vector for storing predicted values
-	theta_rows=x_columns;
-	predicted_y=mlfw_column_vec_double_create_new(x_rows);
-	if(mlfw_error()) goto err;
-	prediction_error=mlfw_column_vec_double_create_new(x_rows);
-	if(mlfw_error()) goto err;
-	tmp1=mlfw_column_vec_double_create_new(theta_rows);
-	if(mlfw_error()) goto err;
-	tmp2=mlfw_column_vec_double_create_new(theta_rows);
-	if(mlfw_error()) goto err;
-	tmp3=mlfw_column_vec_double_create_new(theta_rows);
-	if(mlfw_error()) goto err;
-	tmp4=mlfw_column_vec_double_create_new(theta_rows);
-	if(mlfw_error()) goto err;
-	tmp_theta=mlfw_column_vec_double_create_new(theta_rows);
-	if(mlfw_error()) goto err;
-	regularization_term=mlfw_column_vec_double_create_new(theta_rows);
-	if(mlfw_error()) goto err;
-	
-	n=1;
-	while(1)
-	{
-	if(n>number_of_iterations) break;
-	from_row_number=1; // we are fetching 1, earlier to just for initial setup
-	while(1)
-	{
-		data_provider(&x,&y,from_row_number,how_many_rows);
-		if(mlfw_error())
-		{
-			goto err;
-		}
-		if(x==NULL)
-		{
-			break;
-		}
-			//transpose x
-				mlfw_mat_double_transpose(x,x_transposed);
-				if(mlfw_error()) goto err;
-		// predict
-		mlfw_multiply_double_matrix_with_column_vector(x,theta,predicted_y);
-		if(mlfw_error()) goto err;
-		// compute error
-		mlfw_subtract_double_column_vector(predicted_y,y,prediction_error);
-		if(mlfw_error()) goto err;
-		// tmp calculation, store in tmp1=x_transposed * prediction_error
-		mlfw_multiply_double_matrix_with_column_vector(x_transposed,prediction_error,tmp1);
-		if(mlfw_error()) goto err;
-		// tmp calculation, store in tmp2=(1.0/x_rows))*tmp2;
-		mlfw_multiply_double_scalar_with_column_vector(1.0/x_rows,tmp1,tmp2);
-		if(mlfw_error()) goto err;
-		// pick theta[0]
-		theta_0=mlfw_column_vec_double_get(theta,0);
-		if(mlfw_error()) goto err;
-		// set theta[0] for regularization
-		mlfw_column_vec_double_set(theta,0,0.0);
-		if(mlfw_error()) goto err;
-		// regularization_term calculation, store in regularization_term=lambda/m*theta (ignoring_bias)
-		mlfw_multiply_double_scalar_with_column_vector(regularization_parameter/x_rows,theta,regularization_term);
-		if(mlfw_error()) goto err;
-		// set back theta[0], what we picked into theta_0
-		mlfw_column_vec_double_set(theta,0,theta_0);
-		if(mlfw_error()) goto err;
-		// tmp calculation, tmp3=tmp2+regularization_term
-		mlfw_add_double_column_vector(tmp2,regularization_term,tmp3);
-		if(mlfw_error()) goto err;
-		// tmp calculation, tmp4=learning_rate*tmp3
-		mlfw_multiply_double_scalar_with_column_vector(learning_rate,tmp3,tmp4);
-		if(mlfw_error()) goto err;
-		// tmp theta calculation, store in tmp_theta=theta-tmp4
-		mlfw_subtract_double_column_vector(theta,tmp4,tmp_theta);
-		if(mlfw_error()) goto err;
-		// copy tmp_theta to theta, to update theta
-		mlfw_column_vec_double_copy(theta,tmp_theta);
-		if(mlfw_error()) goto err;
-		// theta updated
-		// iteration complete, call progress_callback, if it returns, -1 break
-		if(progress_callback!=NULL)
-		{
-		end_process=progress_callback(n,y,predicted_y,theta,regularization_parameter);
-		}
-		from_row_number++;
-		}// infinite loop ends
-		if(end_process==-1) break;
-		++n;
-		}
-		mlfw_mat_double_destroy(x_transposed);
-		mlfw_column_vec_double_destroy(predicted_y);
-		mlfw_column_vec_double_destroy(prediction_error);
-		mlfw_column_vec_double_destroy(tmp1);
-		mlfw_column_vec_double_destroy(tmp2);
-		mlfw_column_vec_double_destroy(tmp3);
-		mlfw_column_vec_double_destroy(tmp4);
-		mlfw_column_vec_double_destroy(tmp_theta);
-		mlfw_column_vec_double_destroy(regularization_term);
-		return theta;
-		err:
-		mlfw_mat_double_destroy(x_transposed);
-		mlfw_column_vec_double_destroy(predicted_y);
-		mlfw_column_vec_double_destroy(prediction_error);
-		mlfw_column_vec_double_destroy(theta);
-		mlfw_column_vec_double_destroy(tmp1);
-		mlfw_column_vec_double_destroy(tmp2);
-		mlfw_column_vec_double_destroy(tmp3);
-		mlfw_column_vec_double_destroy(tmp4);
-		mlfw_column_vec_double_destroy(tmp_theta);
-		mlfw_column_vec_double_destroy(regularization_term);
-		return NULL; 
-}
-
-
 
 #define TRAINING_DATASET "IceCreamSales_training_examples.csv"
 #define MODEL_FILE_NAME "example-3-model.csv"
@@ -207,28 +19,28 @@ uint32_t MINI_BATCH_SIZE=46; // not a macro as it may have to be changed
 	// following global variables used in get_from_file_buffer & init_buffers
 	uint64_t number_of_training_examples=0;
 	uint64_t number_of_columns_in_training_examples=0;
-	mlfw_mat_double *buffer_matrix_1=NULL;
-	mlfw_mat_double *buffer_matrix_2=NULL;
-	mlfw_mat_double *buffer_matrix_1_shuffled=NULL;
-	mlfw_mat_double *buffer_matrix_2_shuffled=NULL;
+	dmlfw_mat_double *buffer_matrix_1=NULL;
+	dmlfw_mat_double *buffer_matrix_2=NULL;
+	dmlfw_mat_double *buffer_matrix_1_shuffled=NULL;
+	dmlfw_mat_double *buffer_matrix_2_shuffled=NULL;
 	
 	// following global variables used in progress_callback (on_iteration_complete)
-	mlfw_column_vec_double *prediction_error=NULL;
-	mlfw_row_vec_double *prediction_error_transposed=NULL;
-	mlfw_column_vec_double *product_vector=NULL;
-	mlfw_row_vec_double *model_transposed=NULL;
-	mlfw_column_vec_double *model_squared_sum_vector=NULL;
+	dmlfw_column_vec_double *prediction_error=NULL;
+	dmlfw_row_vec_double *prediction_error_transposed=NULL;
+	dmlfw_column_vec_double *product_vector=NULL;
+	dmlfw_row_vec_double *model_transposed=NULL;
+	dmlfw_column_vec_double *model_squared_sum_vector=NULL;
 
 	// following global variables used in data_provider (data_loader)
-	mlfw_mat_double *x_matrix=NULL;
-	mlfw_column_vec_double *y_vector=NULL;
-	mlfw_mat_double *xy_matrix=NULL;
+	dmlfw_mat_double *x_matrix=NULL;
+	dmlfw_column_vec_double *y_vector=NULL;
+	dmlfw_mat_double *xy_matrix=NULL;
 
 
 void print_error_and_exit()
 {
 	char error_string[512];
-	mlfw_get_error_string(error_string,512);
+	dmlfw_get_error_string(error_string,512);
 	printf("Error : %s\n",error_string);
 	exit(0);
 }
@@ -238,8 +50,8 @@ void print_error_and_exit()
 
 void init_buffers()
 {
-	mlfw_get_csv_dimensions(TRAINING_DATASET,&number_of_training_examples,&number_of_columns_in_training_examples);
-	if(mlfw_error()) return;
+	dmlfw_get_csv_dimensions(TRAINING_DATASET,&number_of_training_examples,&number_of_columns_in_training_examples);
+	if(dmlfw_error()) return;
 	if(number_of_training_examples<MINI_BATCH_SIZE)
 	{
 		MINI_BATCH_SIZE=number_of_training_examples;
@@ -258,28 +70,28 @@ void init_buffers()
 	}
 	if(number_of_training_examples>=BUFFER_SIZE)
 	{
-		buffer_matrix_1=mlfw_mat_double_create_new(BUFFER_SIZE,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
-		buffer_matrix_1_shuffled=mlfw_mat_double_create_new(BUFFER_SIZE,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
+		buffer_matrix_1=dmlfw_mat_double_create_new(BUFFER_SIZE,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
+		buffer_matrix_1_shuffled=dmlfw_mat_double_create_new(BUFFER_SIZE,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
 	if(number_of_training_examples%BUFFER_SIZE>0)
 	{
-		buffer_matrix_2=mlfw_mat_double_create_new(number_of_training_examples%BUFFER_SIZE,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
-		buffer_matrix_2_shuffled=mlfw_mat_double_create_new(number_of_training_examples%BUFFER_SIZE,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
+		buffer_matrix_2=dmlfw_mat_double_create_new(number_of_training_examples%BUFFER_SIZE,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
+		buffer_matrix_2_shuffled=dmlfw_mat_double_create_new(number_of_training_examples%BUFFER_SIZE,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
 	}
 	}
 	else
 	{
-		buffer_matrix_2=mlfw_mat_double_create_new(number_of_training_examples,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
-		buffer_matrix_2_shuffled=mlfw_mat_double_create_new(number_of_training_examples,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
+		buffer_matrix_2=dmlfw_mat_double_create_new(number_of_training_examples,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
+		buffer_matrix_2_shuffled=dmlfw_mat_double_create_new(number_of_training_examples,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
 	}
 }
 
-void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint32_t how_many_rows)
+void get_from_file_buffer(dmlfw_mat_double **target_matrix,uint64_t from_row,uint32_t how_many_rows)
 {
 	// this function will only get called till records are available
 	// it won't happen that  the demand is invalid
@@ -303,11 +115,11 @@ void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint
 
 	if(buffer_matrix_1!=NULL)
 	{
-		mlfw_mat_double_get_dimensions(buffer_matrix_1,&buffer_matrix_1_rows,&buffer_matrix_1_columns);
+		dmlfw_mat_double_get_dimensions(buffer_matrix_1,&buffer_matrix_1_rows,&buffer_matrix_1_columns);
 	}
 	if(buffer_matrix_2!=NULL)
 	{
-		mlfw_mat_double_get_dimensions(buffer_matrix_2,&buffer_matrix_2_rows,&buffer_matrix_2_columns);
+		dmlfw_mat_double_get_dimensions(buffer_matrix_2,&buffer_matrix_2_rows,&buffer_matrix_2_columns);
 	}
 	if(buffer_matrix_1!=NULL)
 	{
@@ -323,8 +135,8 @@ void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint
 	// if target matrix is NULL
 	if(*target_matrix==NULL)
 	{
-		*target_matrix=mlfw_mat_double_create_new(how_many_rows,number_of_columns_in_training_examples);
-		if(mlfw_error()) return;
+		*target_matrix=dmlfw_mat_double_create_new(how_many_rows,number_of_columns_in_training_examples);
+		if(dmlfw_error()) return;
 	}
 	if(buffers_populated==0)
 	{
@@ -332,18 +144,18 @@ void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint
 		if(buffer_matrix_2!=NULL)
 		{
 			f_position=0;
-			mlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_2,buffer_matrix_1_last_possible_row+1,buffer_matrix_2_rows,&f_position);
-			if(mlfw_error()) return;
-			mlfw_mat_double_shuffle(buffer_matrix_2,2,buffer_matrix_2_shuffled);
+			dmlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_2,buffer_matrix_1_last_possible_row+1,buffer_matrix_2_rows,&f_position);
+			if(dmlfw_error()) return;
+			dmlfw_mat_double_shuffle(buffer_matrix_2,2,buffer_matrix_2_shuffled);
 			f_position=0;
 			buffer_matrix_2_starts_at_row=buffer_matrix_1_last_possible_row+1;
 		}
 		if(buffer_matrix_1!=NULL)
 		{
 			f_position=0;
-			mlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_1,1,buffer_matrix_1_rows,&f_position);
-			if(mlfw_error()) return;
-			mlfw_mat_double_shuffle(buffer_matrix_1,2,buffer_matrix_1_shuffled);
+			dmlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_1,1,buffer_matrix_1_rows,&f_position);
+			if(dmlfw_error()) return;
+			dmlfw_mat_double_shuffle(buffer_matrix_1,2,buffer_matrix_1_shuffled);
 			buffer_matrix_1_starts_at_row=1;
 			buffer_matrix_1_ends_at_row=buffer_matrix_1_starts_at_row+buffer_matrix_1_rows-1;
 		}
@@ -354,7 +166,7 @@ void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint
 
 		from_buffer_matrix_index=from_row-buffer_matrix_2_starts_at_row;
 		to_buffer_matrix_index=from_buffer_matrix_index+how_many_rows-1; // because 1 only
-		mlfw_mat_double_copy(*target_matrix,buffer_matrix_2_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+		dmlfw_mat_double_copy(*target_matrix,buffer_matrix_2_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 		return;
 	}
 	if(from_row>=buffer_matrix_1_starts_at_row && from_row<=buffer_matrix_1_ends_at_row)
@@ -362,7 +174,7 @@ void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint
 		// data available in buffer_matrix_1_shuffled
 		from_buffer_matrix_index=from_row-buffer_matrix_1_starts_at_row;
 		to_buffer_matrix_index=from_buffer_matrix_index+how_many_rows-1;
-		mlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+		dmlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 		return;
 	}
 
@@ -376,30 +188,30 @@ void get_from_file_buffer(mlfw_mat_double **target_matrix,uint64_t from_row,uint
 	{
 		buffer_matrix_1_starts_at_row=buffer_matrix_1_ends_at_row+1;
 	}
-	mlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_1,buffer_matrix_1_starts_at_row,buffer_matrix_1_rows,&f_position);
-	if(mlfw_error()) return;
-	mlfw_mat_double_shuffle(buffer_matrix_1,2,buffer_matrix_1_shuffled);
+	dmlfw_mat_double_get_block_from_csv(TRAINING_DATASET,buffer_matrix_1,buffer_matrix_1_starts_at_row,buffer_matrix_1_rows,&f_position);
+	if(dmlfw_error()) return;
+	dmlfw_mat_double_shuffle(buffer_matrix_1,2,buffer_matrix_1_shuffled);
 	buffer_matrix_1_ends_at_row=buffer_matrix_1_starts_at_row+buffer_matrix_1_rows-1;
 	
 	from_buffer_matrix_index=from_row-buffer_matrix_1_starts_at_row;
 	to_buffer_matrix_index=from_buffer_matrix_index+how_many_rows-1;
-	mlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
+	dmlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 	
 }
 
 
 void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 {
-	mlfw_mat_double **xxx_matrix=NULL;
-	mlfw_column_vec_double **yyy_vector=NULL;
+	dmlfw_mat_double **xxx_matrix=NULL;
+	dmlfw_column_vec_double **yyy_vector=NULL;
 	dimension_t xy_matrix_rows;
 	dimension_t xy_matrix_columns;
 
 	double value;
 	index_t i;
 
-	xxx_matrix=(mlfw_mat_double **)x;
-	yyy_vector=(mlfw_column_vec_double **)y;
+	xxx_matrix=(dmlfw_mat_double **)x;
+	yyy_vector=(dmlfw_column_vec_double **)y;
 
 	if(x==NULL)
 	{
@@ -424,21 +236,21 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 		return;
 	}
 	get_from_file_buffer(&xy_matrix,from_row,how_many_rows);
-	mlfw_mat_double_get_dimensions(xy_matrix,&xy_matrix_rows,&xy_matrix_columns);
+	dmlfw_mat_double_get_dimensions(xy_matrix,&xy_matrix_rows,&xy_matrix_columns);
 	if(x_matrix==NULL)
 	{
-		x_matrix=mlfw_mat_double_create_new(xy_matrix_rows,xy_matrix_columns);
-		if(mlfw_error()) return;
-		y_vector=mlfw_column_vec_double_create_new(xy_matrix_rows);
-		if(mlfw_error()) return;
+		x_matrix=dmlfw_mat_double_create_new(xy_matrix_rows,xy_matrix_columns);
+		if(dmlfw_error()) return;
+		y_vector=dmlfw_column_vec_double_create_new(xy_matrix_rows);
+		if(dmlfw_error()) return;
 	}
-	mlfw_mat_double_copy(x_matrix,xy_matrix,0,1,0,0,xy_matrix_rows-1,xy_matrix_columns-2);
+	dmlfw_mat_double_copy(x_matrix,xy_matrix,0,1,0,0,xy_matrix_rows-1,xy_matrix_columns-2);
 	
-	mlfw_mat_double_fill(x_matrix,0,0,xy_matrix_rows-1,0,1.0);
+	dmlfw_mat_double_fill(x_matrix,0,0,xy_matrix_rows-1,0,1.0);
 	for(i=0;i<xy_matrix_rows;++i)
 	{
-		value=mlfw_mat_double_get(xy_matrix,i,xy_matrix_columns-1);
-		mlfw_column_vec_double_set(y_vector,i,value);
+		value=dmlfw_mat_double_get(xy_matrix,i,xy_matrix_columns-1);
+		dmlfw_column_vec_double_set(y_vector,i,value);
 	}
 	*xxx_matrix=x_matrix;
 	*yyy_vector=y_vector;
@@ -483,8 +295,8 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 	
 	number_of_training_examples_processed++;
 	
-	y_size=mlfw_column_vec_double_get_size(y);
-	model_size=mlfw_column_vec_double_get_size(model);
+	y_size=dmlfw_column_vec_double_get_size(y);
+	model_size=dmlfw_column_vec_double_get_size(model);
 
 	if(iteration_number==1)
 	{
@@ -502,42 +314,42 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 			cost_file=fopen("cost.csv","w");
 			fclose(cost_file); // ensure cost.csv is empty
 		}
-		prediction_error=mlfw_column_vec_double_create_new(y_size);
-		if(mlfw_error()) goto err;
-		prediction_error_transposed=mlfw_row_vec_double_create_new(y_size);
-		if(mlfw_error()) goto err;
-		product_vector=mlfw_column_vec_double_create_new(1);
-		if(mlfw_error()) goto err;
-		model_transposed=mlfw_row_vec_double_create_new(model_size);
-		if(mlfw_error()) goto err;
-		model_squared_sum_vector=mlfw_column_vec_double_create_new(1);
-		if(mlfw_error()) goto err;
+		prediction_error=dmlfw_column_vec_double_create_new(y_size);
+		if(dmlfw_error()) goto err;
+		prediction_error_transposed=dmlfw_row_vec_double_create_new(y_size);
+		if(dmlfw_error()) goto err;
+		product_vector=dmlfw_column_vec_double_create_new(1);
+		if(dmlfw_error()) goto err;
+		model_transposed=dmlfw_row_vec_double_create_new(model_size);
+		if(dmlfw_error()) goto err;
+		model_squared_sum_vector=dmlfw_column_vec_double_create_new(1);
+		if(dmlfw_error()) goto err;
 	}
 	// calculate error
-	mlfw_subtract_double_column_vector(predicted_y,y,prediction_error);
-	if(mlfw_error()) goto err;
+	dmlfw_subtract_double_column_vector(predicted_y,y,prediction_error);
+	if(dmlfw_error()) goto err;
 	// calculate error squared sum
-	mlfw_column_vec_double_transpose(prediction_error,prediction_error_transposed);
-	if(mlfw_error()) goto err;
-	mlfw_multiply_double_row_vector_with_column_vector(prediction_error_transposed,prediction_error,product_vector);
-	if(mlfw_error()) goto err;
-	sum_of_squared_errors=mlfw_column_vec_double_get(product_vector,0);
+	dmlfw_column_vec_double_transpose(prediction_error,prediction_error_transposed);
+	if(dmlfw_error()) goto err;
+	dmlfw_multiply_double_row_vector_with_column_vector(prediction_error_transposed,prediction_error,product_vector);
+	if(dmlfw_error()) goto err;
+	sum_of_squared_errors=dmlfw_column_vec_double_get(product_vector,0);
 
 	// pick model[0] and set model[0] to 0 as we want to ignore
 	// bias while calculating regularization_term
-	model_0=mlfw_column_vec_double_get(model,0);
-	mlfw_column_vec_double_set(model,0,0.0);
-	mlfw_column_vec_double_transpose(model,model_transposed);
-	if(mlfw_error())
+	model_0=dmlfw_column_vec_double_get(model,0);
+	dmlfw_column_vec_double_set(model,0,0.0);
+	dmlfw_column_vec_double_transpose(model,model_transposed);
+	if(dmlfw_error())
 	{
-		mlfw_column_vec_double_set(model,0,model_0);
+		dmlfw_column_vec_double_set(model,0,model_0);
 		goto err;
 	}
 	// calculate model/theta squared sum
-	mlfw_multiply_double_row_vector_with_column_vector(model_transposed,model,model_squared_sum_vector);
-	mlfw_column_vec_double_set(model,0,model_0);
-	if(mlfw_error()) goto err;
-	model_squared_sum=mlfw_column_vec_double_get(model_squared_sum_vector,0);
+	dmlfw_multiply_double_row_vector_with_column_vector(model_transposed,model,model_squared_sum_vector);
+	dmlfw_column_vec_double_set(model,0,model_0);
+	if(dmlfw_error()) goto err;
+	model_squared_sum=dmlfw_column_vec_double_get(model_squared_sum_vector,0);
 	// calculate regularization term
 	regularization_term=(regularization_parameter/(2*y_size))*model_squared_sum;
 
@@ -575,8 +387,8 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 				fprintf(gnuplot,"plot 'cost.csv' with lines lw 1 notitle\n");
 				fflush(gnuplot);
 				// y=mx+c
-				c=mlfw_column_vec_double_get(model,0);
-				m=mlfw_column_vec_double_get(model,1);
+				c=dmlfw_column_vec_double_get(model,0);
+				m=dmlfw_column_vec_double_get(model,1);
 				x1=0.0;
 				y1=m*x1+c;
 				x2=110.0;
@@ -607,21 +419,21 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 err:
 	return -1;
 }
-mlfw_gradient_descent_options * get_gradient_descent_options()
+dmlfw_gradient_descent_options * get_gradient_descent_options()
 {
-	mlfw_gradient_descent_options *gd_options;
+	dmlfw_gradient_descent_options *gd_options;
 	double learning_rate;
 	uint64_t number_of_iterations;
-	gd_options=mlfw_gradient_descent_options_create_new();
-	if(mlfw_error()) return NULL;
+	gd_options=dmlfw_gradient_descent_options_create_new();
+	if(dmlfw_error()) return NULL;
 	learning_rate=LEARNING_RATE;
 	number_of_iterations=NUMBER_OF_ITERATIONS;
-	mlfw_gradient_descent_options_set_learning_rate(gd_options,learning_rate);
-	mlfw_gradient_descent_options_set_number_of_iterations(gd_options,number_of_iterations);
-	mlfw_gradient_descent_options_set_gradient_descent_type(gd_options,MLFW_MINI_BATCH_GRADIENT_DESCENT);
-	mlfw_gradient_descent_options_set_progress_callback(gd_options,on_iteration_complete);
-	mlfw_gradient_descent_options_set_data_provider(gd_options,data_loader);
-	mlfw_gradient_descent_options_set_mini_batch_size(gd_options,MINI_BATCH_SIZE);
+	dmlfw_gradient_descent_options_set_learning_rate(gd_options,learning_rate);
+	dmlfw_gradient_descent_options_set_number_of_iterations(gd_options,number_of_iterations);
+	dmlfw_gradient_descent_options_set_gradient_descent_type(gd_options,MLFW_MINI_BATCH_GRADIENT_DESCENT);
+	dmlfw_gradient_descent_options_set_progress_callback(gd_options,on_iteration_complete);
+	dmlfw_gradient_descent_options_set_data_provider(gd_options,data_loader);
+	dmlfw_gradient_descent_options_set_mini_batch_size(gd_options,MINI_BATCH_SIZE);
 	return gd_options;
 }
 int main()
@@ -629,48 +441,48 @@ int main()
 	double regularization_parameter;
 	char error_string[512];
 	char debug_string[512];
-	mlfw_column_vec_double *model=NULL;// for parameters
-	mlfw_row_vec_string *model_header=NULL;
-	mlfw_gradient_descent_options *gd_options=NULL;
+	dmlfw_column_vec_double *model=NULL;// for parameters
+	dmlfw_row_vec_string *model_header=NULL;
+	dmlfw_gradient_descent_options *gd_options=NULL;
 
 	regularization_parameter=REGULARIZATION_PARAMETER;
 	
 	init_buffers();
-	if(mlfw_error()) goto err;
+	if(dmlfw_error()) goto err;
 	gd_options=get_gradient_descent_options(); // function defined by framework user
-	if(mlfw_error()) goto err;
-	model=mlfw_linear_regression_fit_using_stochastic_gradient_descent(gd_options,regularization_parameter,NULL);
-	if(mlfw_error()) goto err;
-	model_header=mlfw_row_vec_string_create_new(1);
-	if(mlfw_error()) goto err;
-	mlfw_row_vec_string_set(model_header,0,"theta");
-	if(mlfw_error()) goto err;
-	mlfw_column_vec_double_to_csv(model,MODEL_FILE_NAME,model_header);
-	if(mlfw_error()) goto err;
+	if(dmlfw_error()) goto err;
+	model=dmlfw_linear_regression_fit_using_stochastic_gradient_descent(gd_options,regularization_parameter,NULL);
+	if(dmlfw_error()) goto err;
+	model_header=dmlfw_row_vec_string_create_new(1);
+	if(dmlfw_error()) goto err;
+	dmlfw_row_vec_string_set(model_header,0,"theta");
+	if(dmlfw_error()) goto err;
+	dmlfw_column_vec_double_to_csv(model,MODEL_FILE_NAME,model_header);
+	if(dmlfw_error()) goto err;
 	
 	printf("Model saved to %s\n",MODEL_FILE_NAME);
 
 	// the globals used by init_buffers
-	mlfw_mat_double_destroy(buffer_matrix_1);
-	mlfw_mat_double_destroy(buffer_matrix_2);
-	mlfw_mat_double_destroy(buffer_matrix_1_shuffled);
-	mlfw_mat_double_destroy(buffer_matrix_2_shuffled);
+	dmlfw_mat_double_destroy(buffer_matrix_1);
+	dmlfw_mat_double_destroy(buffer_matrix_2);
+	dmlfw_mat_double_destroy(buffer_matrix_1_shuffled);
+	dmlfw_mat_double_destroy(buffer_matrix_2_shuffled);
 
 	// the globals used in on_iteration_complete
-	mlfw_column_vec_double_destroy(prediction_error);
-	mlfw_row_vec_double_destroy(prediction_error_transposed);
-	mlfw_column_vec_double_destroy(product_vector);
-	mlfw_row_vec_double_destroy(model_transposed);
-	mlfw_column_vec_double_destroy(model_squared_sum_vector);
+	dmlfw_column_vec_double_destroy(prediction_error);
+	dmlfw_row_vec_double_destroy(prediction_error_transposed);
+	dmlfw_column_vec_double_destroy(product_vector);
+	dmlfw_row_vec_double_destroy(model_transposed);
+	dmlfw_column_vec_double_destroy(model_squared_sum_vector);
 
 	// the globals used in data_loader
-	mlfw_mat_double_destroy(xy_matrix);
-	mlfw_mat_double_destroy(x_matrix);
-	mlfw_column_vec_double_destroy(y_vector);
+	dmlfw_mat_double_destroy(xy_matrix);
+	dmlfw_mat_double_destroy(x_matrix);
+	dmlfw_column_vec_double_destroy(y_vector);
 
-	mlfw_column_vec_double_destroy(model);
-	mlfw_row_vec_string_destroy(model_header);
-	mlfw_gradient_descent_options_destroy(gd_options);
+	dmlfw_column_vec_double_destroy(model);
+	dmlfw_row_vec_string_destroy(model_header);
+	dmlfw_gradient_descent_options_destroy(gd_options);
 	if(gnuplot!=NULL)
 	{
 		fprintf(gnuplot,"exit\n");
@@ -681,32 +493,32 @@ int main()
 	}
 	return 0;
 	err:
-	mlfw_get_error_string(error_string,512);
-	mlfw_get_debug_string(debug_string,512);
+	dmlfw_get_error_string(error_string,512);
+	dmlfw_get_debug_string(debug_string,512);
 	printf("Error : %s\n",error_string);
 	printf("Error debug details : %s\n",debug_string);
 	
 	// the globals used by init_buffers
-	mlfw_mat_double_destroy(buffer_matrix_1);
-	mlfw_mat_double_destroy(buffer_matrix_2);
-	mlfw_mat_double_destroy(buffer_matrix_1_shuffled);
-	mlfw_mat_double_destroy(buffer_matrix_2_shuffled);
+	dmlfw_mat_double_destroy(buffer_matrix_1);
+	dmlfw_mat_double_destroy(buffer_matrix_2);
+	dmlfw_mat_double_destroy(buffer_matrix_1_shuffled);
+	dmlfw_mat_double_destroy(buffer_matrix_2_shuffled);
 
 	// the globals used in on_iteration_complete
-	mlfw_column_vec_double_destroy(prediction_error);
-	mlfw_row_vec_double_destroy(prediction_error_transposed);
-	mlfw_column_vec_double_destroy(product_vector);
-	mlfw_row_vec_double_destroy(model_transposed);
-	mlfw_column_vec_double_destroy(model_squared_sum_vector);
+	dmlfw_column_vec_double_destroy(prediction_error);
+	dmlfw_row_vec_double_destroy(prediction_error_transposed);
+	dmlfw_column_vec_double_destroy(product_vector);
+	dmlfw_row_vec_double_destroy(model_transposed);
+	dmlfw_column_vec_double_destroy(model_squared_sum_vector);
 
 	// the globals used in data_loader
-	mlfw_mat_double_destroy(xy_matrix);
-	mlfw_mat_double_destroy(x_matrix);
-	mlfw_column_vec_double_destroy(y_vector);
+	dmlfw_mat_double_destroy(xy_matrix);
+	dmlfw_mat_double_destroy(x_matrix);
+	dmlfw_column_vec_double_destroy(y_vector);
 
-	mlfw_column_vec_double_destroy(model);
-	mlfw_row_vec_string_destroy(model_header);
-	mlfw_gradient_descent_options_destroy(gd_options);
+	dmlfw_column_vec_double_destroy(model);
+	dmlfw_row_vec_string_destroy(model_header);
+	dmlfw_gradient_descent_options_destroy(gd_options);
 	if(gnuplot!=NULL)
 	{
 		fprintf(gnuplot,"exit\n");
