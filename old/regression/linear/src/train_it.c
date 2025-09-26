@@ -1,6 +1,6 @@
-#include<mlfw_matrix.h>
-#include<mlfw_vector.h>
-#include<mlfw_operations.h>
+#include<dmlfw_matrix.h>
+#include<dmlfw_vector.h>
+#include<dmlfw_operations.h>
 #include<stdlib.h>
 #include<stdio.h>
 #include<pthread.h>
@@ -20,63 +20,63 @@ uint8_t STOP_FLAG=0;
 void train_it()
 {
 	FILE *graph_file;
-	mlfw_mat_double *history;
+	dmlfw_mat_double *history;
 	dimension_t history_rows,history_columns;
 	index_t history_index;
 	double iteration_number;
 	index_t i,j;
 
 	uint64_t k;
-	mlfw_mat_double *dataset;
-	mlfw_row_vec_string *dataset_header;
+	dmlfw_mat_double *dataset;
+	dmlfw_row_vec_string *dataset_header;
 	dimension_t dataset_rows;
 	dimension_t dataset_columns;
 
 
-	mlfw_mat_double *I;
+	dmlfw_mat_double *I;
 	dimension_t I_rows;
 	dimension_t I_columns;
 
-	mlfw_column_vec_double *A;
+	dmlfw_column_vec_double *A;
 
-	mlfw_column_vec_double *m;
+	dmlfw_column_vec_double *m;
 
-	mlfw_column_vec_double *P;
+	dmlfw_column_vec_double *P;
 
-	mlfw_column_vec_double *E;
+	dmlfw_column_vec_double *E;
 
-	mlfw_row_vec_double *ET;
+	dmlfw_row_vec_double *ET;
 
-	mlfw_column_vec_double *ETE;
+	dmlfw_column_vec_double *ETE;
 
-	mlfw_mat_double *IT;
+	dmlfw_mat_double *IT;
 
-	mlfw_column_vec_double *ITE; 
+	dmlfw_column_vec_double *ITE; 
 
-	mlfw_column_vec_double *TMP;
+	dmlfw_column_vec_double *TMP;
 
-	mlfw_column_vec_double *UM;
+	dmlfw_column_vec_double *UM;
 
 	double sum_of_squared_error_values;
 	double final_error_value;
 
-	dataset=mlfw_mat_double_from_csv(DATASET_FILE_NAME,NULL,&dataset_header);
+	dataset=dmlfw_mat_double_from_csv(DATASET_FILE_NAME,NULL,&dataset_header);
 	if(dataset==NULL)
 	{
 		printf("Unable to load dataset from %s\n",DATASET_FILE_NAME);
 		return;
 	}
-	mlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
+	dmlfw_mat_double_get_dimensions(dataset,&dataset_rows,&dataset_columns);
 
 	I_rows=dataset_rows;
 	I_columns=dataset_columns-1+1; // no need to do -1+1, this is just for understanding
 
-	I=mlfw_mat_double_create_new(I_rows,I_columns);
+	I=dmlfw_mat_double_create_new(I_rows,I_columns);
 	if(I==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
@@ -96,7 +96,7 @@ void train_it()
 	// it means, from 0 to columns-2 are input columns and columns-1 is output column
 	// so here we're copying dataset 0th column to last input column 
 	// In I matrix 1 index column to last index copying 
-	mlfw_mat_double_copy(I,dataset,0,1,0,0,dataset_rows-1,dataset_columns-2);
+	dmlfw_mat_double_copy(I,dataset,0,1,0,0,dataset_rows-1,dataset_columns-2);
 
 	/*
 	 1st arg : matrix to fill
@@ -107,15 +107,15 @@ void train_it()
 	 6th arg : what to fill
 	 */
 
-	mlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
+	dmlfw_mat_double_fill(I,0,0,I_rows-1,0,1.0);
 
-	IT=mlfw_mat_double_transpose(I,NULL);
+	IT=dmlfw_mat_double_transpose(I,NULL);
 	if(IT==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return; 
 	}
 
@@ -124,45 +124,45 @@ void train_it()
 	2nd arg : which column to use to create column vector
 	 */
 
-	A=mlfw_mat_double_create_column_vec(dataset,dataset_columns-1,NULL); // last column is the output feature
+	A=dmlfw_mat_double_create_column_vec(dataset,dataset_columns-1,NULL); // last column is the output feature
 	if(A==NULL)
 	{
 		printf("Unable to create column vector\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 	// We had discussed that c will be 0 and m will be 1
 	// But we had also discussed that value of m and c can be anything
 	// hence we're taking c as 0 and m also as 0
 	
-	m=mlfw_column_vec_double_create_new_filled(I_columns,0.0,NULL);
+	m=dmlfw_column_vec_double_create_new_filled(I_columns,0.0,NULL);
 	if(m==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-		mlfw_column_vec_double_destroy(A);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+		dmlfw_column_vec_double_destroy(A);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
 	history_rows=HISTORY_SIZE;
 	history_columns=I_columns+2; // 1 extra for iteration_number 
 				     // 1 extra for error value at 0 index
-	history=mlfw_mat_double_create_new(history_rows,history_columns);
+	history=dmlfw_mat_double_create_new(history_rows,history_columns);
 	if(history==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-		mlfw_column_vec_double_destroy(A);
-		mlfw_column_vec_double_destroy(m);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+		dmlfw_column_vec_double_destroy(A);
+		dmlfw_column_vec_double_destroy(m);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
@@ -170,7 +170,7 @@ void train_it()
 
 	// filling with initial value as 0.0 to avoid garbage value in whole history matrix
 
-	mlfw_mat_double_fill(history,0,0,history_rows-1,history_columns-1,0.0);
+	dmlfw_mat_double_fill(history,0,0,history_rows-1,history_columns-1,0.0);
 
 	history_index=0;
 
@@ -183,18 +183,18 @@ void train_it()
 	while(STOP_FLAG==0)
 	{	
 	if(k==NUMBER_OF_ITERATIONS+1) break;
-	P=mlfw_multiply_double_matrix_with_column_vector(I,m,NULL);
+	P=dmlfw_multiply_double_matrix_with_column_vector(I,m,NULL);
 	if(P==NULL)
 	{
 	
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-		mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-		mlfw_column_vec_double_destroy(A);
-		mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+		dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+		dmlfw_column_vec_double_destroy(A);
+		dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
@@ -204,55 +204,55 @@ void train_it()
 	 2nd arg : right operand
 	 */
 
-	E=mlfw_subtract_double_column_vector(P,A,NULL);
+	E=dmlfw_subtract_double_column_vector(P,A,NULL);
 	if(E==NULL)
 	{
        		printf("Low memory\n");
-                mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-                mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-        	mlfw_column_vec_double_destroy(P);
-		mlfw_row_vec_string_destroy(dataset_header);
+                dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+                dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+        	dmlfw_column_vec_double_destroy(P);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
-	ET=mlfw_column_vec_double_transpose(E,NULL);
+	ET=dmlfw_column_vec_double_transpose(E,NULL);
 	
 	if(ET==NULL)
 	{
-	    	mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-                mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-                mlfw_column_vec_double_destroy(P);
-                mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_string_destroy(dataset_header);
+	    	dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+                dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+                dmlfw_column_vec_double_destroy(P);
+                dmlfw_column_vec_double_destroy(E);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
 
-	ETE=mlfw_multiply_double_row_vector_with_column_vector(ET,E,NULL);
+	ETE=dmlfw_multiply_double_row_vector_with_column_vector(ET,E,NULL);
 
 	if(ETE==NULL)
 	{
 		printf("Low memory\n");
-	    	mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-                mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-                mlfw_column_vec_double_destroy(P);
-                mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_double_destroy(ET);
-		mlfw_row_vec_string_destroy(dataset_header);
+	    	dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+                dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+                dmlfw_column_vec_double_destroy(P);
+                dmlfw_column_vec_double_destroy(E);
+		dmlfw_row_vec_double_destroy(ET);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
-	sum_of_squared_error_values=mlfw_column_vec_double_get(ETE,0);
+	sum_of_squared_error_values=dmlfw_column_vec_double_get(ETE,0);
 	// reason for using 2
 	// we introduced 2 for the derivative to make the expression simple
 	// in lec 13 
@@ -272,109 +272,109 @@ void train_it()
 		{
 			for(j=0;j<history_columns;++j)
 			{
-				mlfw_mat_double_set(history,i-1,j,mlfw_mat_double_get(history,i,j));
+				dmlfw_mat_double_set(history,i-1,j,dmlfw_mat_double_get(history,i,j));
 			}
 		}
 		history_index--;
 	}
 	
-	mlfw_mat_double_set(history,history_index,0,iteration_number);
-	mlfw_mat_double_set(history,history_index,1,final_error_value);
-	j=mlfw_column_vec_double_get_size(m);
+	dmlfw_mat_double_set(history,history_index,0,iteration_number);
+	dmlfw_mat_double_set(history,history_index,1,final_error_value);
+	j=dmlfw_column_vec_double_get_size(m);
 	for(i=0;i<j;++i)
 	{
-		mlfw_mat_double_set(history,history_index,2+i,mlfw_column_vec_double_get(m,i));
+		dmlfw_mat_double_set(history,history_index,2+i,dmlfw_column_vec_double_get(m,i));
 	}
 	history_index++;
 	// logic to add history ends here
 
 	// logic to update m and c, technically our m column vector
 
-	ITE=mlfw_multiply_double_matrix_with_column_vector(IT,E,NULL);
+	ITE=dmlfw_multiply_double_matrix_with_column_vector(IT,E,NULL);
 	if(ITE==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-	       	mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-                mlfw_column_vec_double_destroy(P);
-                mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_double_destroy(ET);
-                mlfw_column_vec_double_destroy(ETE);	
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+	       	dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+                dmlfw_column_vec_double_destroy(P);
+                dmlfw_column_vec_double_destroy(E);
+		dmlfw_row_vec_double_destroy(ET);
+                dmlfw_column_vec_double_destroy(ETE);	
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
-	TMP=mlfw_multiply_double_scalar_with_column_vector((LEARNING_RATE*(1.0/I_rows)),ITE,NULL);
+	TMP=dmlfw_multiply_double_scalar_with_column_vector((LEARNING_RATE*(1.0/I_rows)),ITE,NULL);
 
 	if(TMP==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-	       	mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-                mlfw_column_vec_double_destroy(P);
-                mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_double_destroy(ET);
-                mlfw_column_vec_double_destroy(ETE);	
-		mlfw_column_vec_double_destroy(ITE);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+	       	dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+                dmlfw_column_vec_double_destroy(P);
+                dmlfw_column_vec_double_destroy(E);
+		dmlfw_row_vec_double_destroy(ET);
+                dmlfw_column_vec_double_destroy(ETE);	
+		dmlfw_column_vec_double_destroy(ITE);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
-	UM=mlfw_subtract_double_column_vector(m,TMP,NULL);
+	UM=dmlfw_subtract_double_column_vector(m,TMP,NULL);
 	if(UM==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-	       	mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m);
-		mlfw_mat_double_destroy(history);
-                mlfw_column_vec_double_destroy(P);
-                mlfw_column_vec_double_destroy(E);
-		mlfw_row_vec_double_destroy(ET);
-                mlfw_column_vec_double_destroy(ETE);	
-		mlfw_column_vec_double_destroy(ITE);
-		mlfw_column_vec_double_destroy(TMP);
-		mlfw_row_vec_string_destroy(dataset_header);
+		dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+	       	dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m);
+		dmlfw_mat_double_destroy(history);
+                dmlfw_column_vec_double_destroy(P);
+                dmlfw_column_vec_double_destroy(E);
+		dmlfw_row_vec_double_destroy(ET);
+                dmlfw_column_vec_double_destroy(ETE);	
+		dmlfw_column_vec_double_destroy(ITE);
+		dmlfw_column_vec_double_destroy(TMP);
+		dmlfw_row_vec_string_destroy(dataset_header);
 		return;
 	}
 
-	mlfw_column_vec_double_destroy(m); // Old m vector release
+	dmlfw_column_vec_double_destroy(m); // Old m vector release
 	m=UM; // now m is pointing to newly create vector with updated values
 
 
-	mlfw_column_vec_double_destroy(P);
-	mlfw_column_vec_double_destroy(E);
-	mlfw_row_vec_double_destroy(ET);
-	mlfw_column_vec_double_destroy(ETE);
-	mlfw_column_vec_double_destroy(ITE);
-	mlfw_column_vec_double_destroy(TMP);
+	dmlfw_column_vec_double_destroy(P);
+	dmlfw_column_vec_double_destroy(E);
+	dmlfw_row_vec_double_destroy(ET);
+	dmlfw_column_vec_double_destroy(ETE);
+	dmlfw_column_vec_double_destroy(ITE);
+	dmlfw_column_vec_double_destroy(TMP);
 	++k;
 	}
 
 	fclose(graph_file);
 	// code to store the contents of  (m vector) to csv file
 	
-		mlfw_mat_double_to_csv(history,HISTORY_FILE_NAME,NULL);
-		mlfw_column_vec_double_to_csv(m,PARAMETERS_FILE_NAME,NULL);	
+		dmlfw_mat_double_to_csv(history,HISTORY_FILE_NAME,NULL);
+		dmlfw_column_vec_double_to_csv(m,PARAMETERS_FILE_NAME,NULL);	
 	// release resources
 	
-                mlfw_mat_double_destroy(dataset);
-                mlfw_mat_double_destroy(I);
-                mlfw_mat_double_destroy(IT);
-                mlfw_column_vec_double_destroy(A);
-                mlfw_column_vec_double_destroy(m); // the last m which was actually UM
-		mlfw_mat_double_destroy(history);
-		mlfw_row_vec_string_destroy(dataset_header);
+                dmlfw_mat_double_destroy(dataset);
+                dmlfw_mat_double_destroy(I);
+                dmlfw_mat_double_destroy(IT);
+                dmlfw_column_vec_double_destroy(A);
+                dmlfw_column_vec_double_destroy(m); // the last m which was actually UM
+		dmlfw_mat_double_destroy(history);
+		dmlfw_row_vec_string_destroy(dataset_header);
 }
 
 // lec 15 17:00
