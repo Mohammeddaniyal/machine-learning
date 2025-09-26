@@ -1,7 +1,7 @@
-#include<mlfw_matrix.h>
+#include<dmlfw_matrix.h>
 #include<stdlib.h>
 #include<stdio.h>
-#include<mlfw_vector.h>
+#include<dmlfw_vector.h>
 int main(int argc,char *argv[])
 {
 	char *input_file;
@@ -13,12 +13,12 @@ int main(int argc,char *argv[])
 	double scaled_value;
 	double value;
 	
-	mlfw_mat_double *matrix;
-	mlfw_row_vec_string *matrix_header;
+	dmlfw_mat_double *matrix;
+	dmlfw_row_vec_string *matrix_header;
 	dimension_t matrix_rows,matrix_columns;
 
-	mlfw_mat_double *min_max_matrix;
-	mlfw_row_vec_string *min_max_matrix_header;
+	dmlfw_mat_double *min_max_matrix;
+	dmlfw_row_vec_string *min_max_matrix_header;
 	dimension_t min_max_rows,min_max_columns;
 
 	index_t r,c;
@@ -32,44 +32,44 @@ int main(int argc,char *argv[])
 	output_file=argv[2];
 	min_max_file=argv[3];
 
-	matrix=mlfw_mat_double_from_csv(input_file,NULL,&matrix_header);
+	matrix=dmlfw_mat_double_from_csv(input_file,NULL,&matrix_header);
 	if(matrix==NULL)
 	{
 		printf("Low memory\n");
 		return 0;
 	}
-	mlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
-	min_max_matrix=mlfw_mat_double_from_csv(min_max_file,NULL,&min_max_matrix_header);
+	dmlfw_mat_double_get_dimensions(matrix,&matrix_rows,&matrix_columns);
+	min_max_matrix=dmlfw_mat_double_from_csv(min_max_file,NULL,&min_max_matrix_header);
 	if(min_max_matrix==NULL)
 	{
 		printf("Low memory\n");
-		mlfw_mat_double_destroy(matrix);
-		mlfw_row_vec_string_destroy(matrix_header);
+		dmlfw_mat_double_destroy(matrix);
+		dmlfw_row_vec_string_destroy(matrix_header);
 		return 0;
 	}
-	mlfw_mat_double_get_dimensions(min_max_matrix,&min_max_rows,&min_max_columns);
+	dmlfw_mat_double_get_dimensions(min_max_matrix,&min_max_rows,&min_max_columns);
 	
 	
 	// last column is the output (min and max values)
 	// and we only care about the output not input columns
-	min=mlfw_mat_double_get(min_max_matrix,0,min_max_columns-1);
-	max=mlfw_mat_double_get(min_max_matrix,1,min_max_columns-1);
+	min=dmlfw_mat_double_get(min_max_matrix,0,min_max_columns-1);
+	max=dmlfw_mat_double_get(min_max_matrix,1,min_max_columns-1);
 
 
 	for(r=0;r<matrix_rows;++r)
 	{
 		for(c=matrix_columns-2;c<matrix_columns;++c)
 		{
-			scaled_value=mlfw_mat_double_get(matrix,r,c);
+			scaled_value=dmlfw_mat_double_get(matrix,r,c);
 			value=(scaled_value*(max-min))+min;
-			mlfw_mat_double_set(matrix,r,c,value);
+			dmlfw_mat_double_set(matrix,r,c,value);
 		}
 	}
-	mlfw_mat_double_to_csv(matrix,output_file,matrix_header);
-	mlfw_mat_double_destroy(matrix);
-	mlfw_row_vec_string_destroy(matrix_header);
-	mlfw_mat_double_destroy(min_max_matrix);
-	mlfw_row_vec_string_destroy(min_max_matrix_header);
+	dmlfw_mat_double_to_csv(matrix,output_file,matrix_header);
+	dmlfw_mat_double_destroy(matrix);
+	dmlfw_row_vec_string_destroy(matrix_header);
+	dmlfw_mat_double_destroy(min_max_matrix);
+	dmlfw_row_vec_string_destroy(min_max_matrix_header);
 	return 0;
 }
 
