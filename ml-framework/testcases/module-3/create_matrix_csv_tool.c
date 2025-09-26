@@ -1,11 +1,11 @@
 #include<stdio.h>
-#include<mlfw_matrix.h>
+#include<dmlfw_matrix.h>
 #include<stdlib.h>
 int main(int argc,char *argv[])
 {
-	mlfw_mat_double *matrix;
+	dmlfw_mat_double *matrix;
 	char column_title[11];
-	mlfw_row_vec_string *header;
+	dmlfw_row_vec_string *header;
 	char *end;
 	double min,max;
 	int rows,columns;
@@ -23,26 +23,26 @@ int main(int argc,char *argv[])
 	max=strtod(argv[4],&end);
 	filename=argv[5];
 
-	matrix=mlfw_mat_double_create_new_random_filled(rows,columns,min,max,NULL);
+	matrix=dmlfw_mat_double_create_new_random_filled(rows,columns,min,max,NULL);
 	if(matrix==NULL)
 	{
 		printf("Unable to create matrix for csv file\n");
 		return 0;
 	}
-	header=mlfw_row_vec_string_create_new(columns);
+	header=dmlfw_row_vec_string_create_new(columns);
 	if(header==NULL)
 	{
 		printf("Unable to create matrix for csv file\n");
-		mlfw_mat_double_destroy(matrix);
+		dmlfw_mat_double_destroy(matrix);
 		return 0;
 	}
 	for(x=1;x<=columns;++x)
 	{
 		sprintf(column_title,"%u",x);
-		mlfw_row_vec_string_set(header,x-1,column_title);
+		dmlfw_row_vec_string_set(header,x-1,column_title);
 	}
-	mlfw_mat_double_to_csv(matrix,filename,header);
-	mlfw_mat_double_destroy(matrix);
-	mlfw_row_vec_string_destroy(header);
+	dmlfw_mat_double_to_csv(matrix,filename,header);
+	dmlfw_mat_double_destroy(matrix);
+	dmlfw_row_vec_string_destroy(header);
 	return 0;
 }
