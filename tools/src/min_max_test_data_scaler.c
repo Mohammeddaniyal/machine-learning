@@ -1,8 +1,50 @@
+/**
+ * @file min_max_test_data_scaler.c
+ * @brief Scales CSV dataset columns using predefined min-max parameters.
+ * @ingroup ml-tools-scaling
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ *
+ * This tool loads a dataset, loads a min-max parameters CSV file, 
+ * and applies scaling to specified columns using the loaded min-max values.
+ * The scaled dataset is saved to an output CSV.
+ *
+ * Usage:
+ *   ./min_max_scaler.out input_file output_file from_column to_column min_max_file
+ *
+ * Parameters:
+ *   - input_file: Path to the input CSV dataset.
+ *   - output_file: Path to save the scaled CSV dataset.
+ *   - from_column: Starting column index for scaling (inclusive).
+ *   - to_column: Ending column index for scaling (inclusive).
+ *   - min_max_file: CSV file containing min-max parameters for scaling.
+ *
+ * Uses ml-framework matrix and scaling modules.
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<dmlfw_scale.h>
 #include<dmlfw_matrix.h>
 #include<dmlfw_vector.h>
+/**
+ * @brief Main entry point for scaling tool using min-max parameters file.
+ *
+ * Loads dataset and min-max parameter matrix, scales specified columns,
+ * and writes the scaled data to CSV.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Command-line argument vector.
+ * @return Returns 0 on success or with usage/memory errors.
+ *
+ * Example:
+ * @code
+ * ./min_max_scaler.out dataset.csv scaled.csv 0 5 min_max_params.csv
+ * @endcode
+ */
 int main(int argc,char *argv[])
 {
 	dmlfw_mat_double *matrix;
@@ -67,3 +109,4 @@ int main(int argc,char *argv[])
 	return 0;
 }
 
+/** @} */

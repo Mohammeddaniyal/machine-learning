@@ -1,6 +1,45 @@
+/**
+ * @file encode_binary.c
+ * @brief Command-line tool for binary encoding specified CSV columns.
+ * @ingroup ml-tools-encoding
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ * This tool reads an input CSV file and encodes selected categorical columns 
+ * into binary format using the ml-framework's encoder capabilities.
+ *
+ * Usage:
+ *   ./encode_binary input_file output_file column_name1 column_name2 ...
+ *
+ * Parameters:
+ *   - input_file: Path to the input CSV file.
+ *   - output_file: Path to the output CSV file with encoded columns.
+ *   - column_name(s): One or more column names to apply binary encoding.
+ *
+ * This tool uses ml-framework's dmlfw_encoder and dmlfw_row_vec_string modules.
+ */
+
 #include<dmlfw_encoder.h>
 #include<stdio.h>
 #include<stdlib.h>
+/**
+ * @brief Main entry point for the binary encoding tool.
+ *
+ * Parses command-line arguments, collects column names into vector,
+ * and calls encoder to apply binary encoding.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Argument vector.
+ * @return Returns 0 on success or with usage/memory error message.
+ *
+ * Example:
+ * @code
+ * ./encode_binary data.csv encoded_data.csv Gender Occupation
+ * @endcode
+ */
 int main(int argc,char *argv[])
 {
 	char *input_file;
@@ -31,3 +70,4 @@ int main(int argc,char *argv[])
 	dmlfw_row_vec_string_destroy(columns_to_encode);
 	return 0;
 }
+/** @} */

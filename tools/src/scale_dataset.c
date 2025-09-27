@@ -1,6 +1,44 @@
-#include<stdio.h>
-#include<dmlfw.h>
-int main(int argc,char *argv[])
+/**
+ * @file scale_dataset.c
+ * @brief Generic scaling tool for datasets using specified algorithm and parameters.
+ * @ingroup ml-tools-scaling
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ * This tool reads a CSV dataset, scales specified columns with a chosen scaling algorithm 
+ * and parameters from a CSV file, then writes the scaled dataset to a target CSV file.
+ *
+ * Usage:
+ *   ./scale_double source.csv target.csv algorithm parameters_csv column1 column2 ...
+ *
+ * Parameters:
+ *   - source.csv: Path to input dataset CSV file.
+ *   - target.csv: Path to output scaled dataset CSV file.
+ *   - algorithm: Scaling algorithm name (e.g., "min_max", "z_score").
+ *   - parameters_csv: CSV file containing scaling parameters.
+ *   - column1, column2, ... : List of column names to scale.
+ */
+
+#include <stdio.h>
+#include <dmlfw.h>
+
+/**
+ * @brief Main entry point for the generic scaling tool.
+ *
+ * Loads dataset, sets columns to scale, applies scaling algorithm, and saves output.
+ *
+ * @param argc Argument count.
+ * @param argv Argument vector.
+ * @return 0 on success, prints error on failure.
+ *
+ * Example:
+ * @code
+ * ./scale_double data.csv scaled.csv min_max params.csv Age Salary
+ * @endcode
+ */int main(int argc,char *argv[])
 {
 	dmlfw_mat_double *scaled_matrix=NULL;
 	dmlfw_row_vec_string *columns_to_scale=NULL;
@@ -53,3 +91,4 @@ err:
 	dmlfw_mat_double_destroy(matrix);
 	return 0;
 }
+/** @} */

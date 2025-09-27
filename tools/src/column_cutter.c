@@ -1,8 +1,48 @@
+/**
+ * @file column_cutter.c
+ * @brief Command-line tool to cut specified columns from a CSV file.
+ * @ingroup ml-tools-dataset
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ *
+ * This tool loads a CSV file into a string matrix, removes specified columns by name,
+ * and saves the resulting matrix to a new CSV file. It helps extract subsets of data for
+ * preprocessing or analysis using the ml-framework matrix and utility modules.
+ *
+ * Usage:
+ *   ./column_cutter source.csv target.csv column_to_cut_1 column_to_cut_2 ...
+ * 
+ * Parameters:
+ *   - source_csv: Path to the input CSV file.
+ *   - target_csv: Path to the output CSV file with specified columns removed.
+ *   - columns_to_cut: List of column names to remove from the CSV.
+ *
+ * This tool uses ml-framework headers: dmlfw_matrix.h, dmlfw_vector.h, dmlfw_utils.h.
+ */
 #include<dmlfw_matrix.h>
 #include<dmlfw_vector.h>
 #include<dmlfw_utils.h>
 #include<stdio.h>
 #include<stdlib.h>
+/**
+ * @brief Main entry point for the column cutter tool.
+ *
+ * Loads the CSV into an ml-framework string matrix, identifies column indices to remove,
+ * deletes those columns, and writes the reduced matrix back to CSV.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Command-line argument vector.
+ * @return Returns 0 on success or with usage/error messages.
+ *
+ * Example:
+ * @code
+ * ./column_cutter input.csv output.csv Gender Age
+ * @endcode
+ */
 int main(int argc,char *argv[])
 {
 	char *str;
@@ -124,3 +164,4 @@ int main(int argc,char *argv[])
 	dmlfw_row_vec_string_destroy(matrix_header);
 	return 0;
 }
+/** @} */

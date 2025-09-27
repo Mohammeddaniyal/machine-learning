@@ -1,7 +1,40 @@
+/**
+ * @file polynomial_dataset_generator.c
+ * @brief Generates a polynomial feature dataset from input CSV.
+ * @ingroup ml-tools-dataset
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ * This tool reads a numeric dataset CSV, generates polynomial feature expansions 
+ * up to a specified exponent for the feature columns (excluding the target column),
+ * and writes the expanded polynomial dataset including target values to a CSV file.
+ *
+ * Core polynomial feature generation is performed recursively with ml-framework row vectors and forward lists.
+ *
+ * Usage:
+ *   ./polynomial_dataset_generator source.csv target.csv exponent
+ *
+ * Parameters:
+ *   - source.csv: Input CSV file containing features and target.
+ *   - target.csv: Output CSV file with polynomial feature expansion.
+ *   - exponent: Maximum polynomial degree (integer >= 1).
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<dmlfw.h>
 
+/**
+ * @brief Recursive helper to generate polynomial terms from feature vector.
+ *
+ * @param dataset Feature vector of doubles.
+ * @param i Current index in dataset.
+ * @param accumulated_value Running product of terms for polynomial.
+ * @param exponent Current power level to generate.
+ * @param polynomial_dataset Forward list accumulating generated terms.
+ */	
 void __dmlfw_double_generate_polynomial_dataset(dmlfw_row_vec_double *dataset,index_t i,double accumulated_value,uint8_t exponent,dmlfw_forward_list_double *polynomial_dataset)
 {
 	double yes_value;
@@ -16,6 +49,13 @@ void __dmlfw_double_generate_polynomial_dataset(dmlfw_row_vec_double *dataset,in
 	__dmlfw_double_generate_polynomial_dataset(dataset,i+1,accumulated_value,exponent,polynomial_dataset);
 	}
 }
+/**
+ * @brief Generates polynomial feature vector for given dataset and exponent.
+ *
+ * @param dataset Feature vector of doubles.
+ * @param exponent Maximum polynomial power.
+ * @return Vector with generated polynomial features or NULL on error.
+ */
 dmlfw_row_vec_double * dmlfw_double_generate_polynomial_dataset(dmlfw_row_vec_double *dataset,uint8_t exponent)
 {
 	dmlfw_forward_list_double *polynomial_dataset=NULL;
@@ -42,6 +82,20 @@ err:
 	return NULL;
 }
 
+/**
+ * @brief Main entry point for polynomial dataset generation tool.
+ *
+ * Reads input CSV, generates polynomial features for each row, and outputs expanded CSV.
+ *
+ * @param argc Argument count.
+ * @param argv Argument vector.
+ * @return 0 on success or prints error message on failure.
+ *
+ * Example:
+ * @code
+ * ./polynomial_dataset_generator source.csv target.csv 3
+ * @endcode
+ */
 int main(int argc,char *argv[])
 {
 	dmlfw_mat_double *source_matrix=NULL;
@@ -144,3 +198,4 @@ err:
 	dmlfw_row_vec_double_destroy(polynomial_feature_vector);
 	return 0;
 }
+/** @} */

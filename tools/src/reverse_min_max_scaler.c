@@ -1,8 +1,46 @@
-#include<dmlfw_matrix.h>
-#include<stdlib.h>
-#include<stdio.h>
-#include<dmlfw_vector.h>
-int main(int argc,char *argv[])
+/**
+ * @file reverse_min_max_scaler.c
+ * @brief Reverses min-max scaling on specified columns of a dataset CSV.
+ * @ingroup ml-tools-scaling
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ * This tool reads a scaled dataset CSV and a min-max parameters CSV,
+ * reverses the scaling on the last two columns of the dataset using the min and max from the parameters file,
+ * and writes the unscaled dataset back to a CSV file.
+ *
+ * Usage:
+ *   ./reverse_scale_output.out input_file output_file min_max_file
+ *
+ * Parameters:
+ *   - input_file: Path to the scaled input CSV dataset.
+ *   - output_file: Path to save the unscaled dataset CSV.
+ *   - min_max_file: CSV file containing min and max values used for original scaling.
+ */
+
+#include <dmlfw_matrix.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <dmlfw_vector.h>
+
+/**
+ * @brief Main entry point for reversing min-max scaling on dataset columns.
+ *
+ * Reads scaled dataset and min-max parameters, reverses scaling on last two columns,
+ * and outputs unscaled dataset CSV.
+ *
+ * @param argc Number of command line arguments.
+ * @param argv Command line arguments vector.
+ * @return 0 on success, prints usage on incorrect args.
+ *
+ * Example:
+ * @code
+ * ./reverse_scale_output.out scaled.csv unscaled.csv min_max_params.csv
+ * @endcode
+ */int main(int argc,char *argv[])
 {
 	char *input_file;
 	char *output_file;
@@ -73,3 +111,4 @@ int main(int argc,char *argv[])
 	return 0;
 }
 
+/** @} */

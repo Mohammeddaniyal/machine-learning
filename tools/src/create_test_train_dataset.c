@@ -1,6 +1,47 @@
+/**
+ * @file create_test_train_dataset.c
+ * @brief Command-line tool to split a dataset CSV into test and training sets.
+ * @ingroup ml-tools-dataset	
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ *
+ * This tool loads a dataset as a double matrix, shuffles it multiple times, and splits it
+ * into a test (minor) set and a training (major) set based on a specified minor percentage.
+ * The resulting datasets are saved to two separate CSV files.
+ *
+ * Usage:
+ *   ./create_test_train_dataset dataset.csv test.csv train.csv minor_percentage
+ *
+ * Parameters:
+ *   - dataset.csv: Input dataset CSV file path.
+ *   - test.csv: Output CSV file path for test subset.
+ *   - train.csv: Output CSV file path for training subset.
+ *   - minor_percentage: Percentage of rows for the test set (1-50).
+ *
+ * This tool uses ml-framework matrix modules for data manipulation.
+ */
 #include<dmlfw_matrix.h>
 #include<stdio.h>
 #include<stdlib.h>
+/**
+ * @brief Main entry point for the dataset splitter tool.
+ *
+ * Validates inputs, loads dataset matrix, shuffles rows, splits into test/train sets,
+ * and writes subsets to CSV files.
+ *
+ * @param args Number of command-line arguments.
+ * @param argv Command-line argument vector.
+ * @return Returns 0 on success or with usage/error messages.
+ *
+ * Example:
+ * @code
+ * ./create_test_train_dataset dataset.csv test.csv train.csv 20
+ * @endcode
+ */
 int main(int args,char *argv[])
 {
 	dmlfw_row_vec_string *header;
@@ -88,3 +129,4 @@ dmlfw_mat_double_copy(major_matrix,shuffled_matrix,0,0,minor_rows,0,shuffled_mat
 	dmlfw_mat_double_destroy(major_matrix);
 	return 0;
 }
+/** @} */

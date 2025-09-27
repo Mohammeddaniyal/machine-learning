@@ -1,9 +1,37 @@
+/**
+ * @file r2score.c
+ * @brief Computes and prints the R2 score from a results CSV file.
+ * @ingroup ml-tools-metrics
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @date 2025-09-26
+ * @version 1.0
+ *
+ * This tool reads a results CSV containing actual and predicted values, 
+ * calculates the coefficient of determination (R2 score), and outputs it.
+ * It uses ml-framework matrix and vector operations for calculations.
+ *
+ * Usage:
+ *   ./r2score result_file.csv
+ *
+ * Parameters:
+ *   - result_file.csv: CSV file with actual and predicted values in last two columns.
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<dmlfw_matrix.h>
 #include<dmlfw_vector.h>
 #include<dmlfw_operations.h>
-
+/**
+ * @brief Computes R2 score given a results CSV filename.
+ *
+ * Loads dataset, extracts actual and predicted columns, calculates residuals and statistics,
+ * computes R2 score, prints result, and cleans up resources.
+ *
+ * @param result_file_name Path to the results CSV file.
+ */
 void score_it(char *result_file_name)
 {
 	dmlfw_mat_double *dataset;
@@ -172,3 +200,4 @@ int main(int argc,char *argv[])
 	score_it(argv[1]);
 	return 0;
 }
+/** @} */
