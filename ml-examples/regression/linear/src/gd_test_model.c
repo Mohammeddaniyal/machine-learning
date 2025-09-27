@@ -1,9 +1,32 @@
+/**
+ * @file gd_test_model.c
+ * @brief Tests a linear regression model by predicting and evaluating accuracy using R2 score.
+ * @ingroup ml-examples-regression-linear
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
+ * This tool loads a test dataset and pre-trained model parameters, makes predictions
+ * using ml-framework linear regression prediction functionality, computes the R2 accuracy score,
+ * and prints the result. It also handles errors and resource cleanup.
+ *
+ * Usage:
+ *   ./gd_test_model model_csv_file
+ *
+ * Parameters:
+ *   - model_csv_file: Path to CSV file containing saved model parameters.
+ */
 #include<stdio.h>
 #include<dmlfw.h>
 #include<stdlib.h>
 
 #define TESTING_DATASET "IceCreamSales_testing_examples.csv"
 char *MODEL;
+/**
+ * @brief Prints the ml-framework error string and exits the program.
+ */
 void print_error_and_exit()
 {
 	char error_string[512];
@@ -12,6 +35,16 @@ void print_error_and_exit()
 	exit(0);
 }
 
+/**
+ * @brief Loads test dataset features X, target values Y, and model parameters.
+ *
+ * The dataset used is fixed to IceCreamSales_testing_examples.csv.
+ * A bias column of all 1.0 is prepended to features.
+ *
+ * @param[out] x Pointer to features matrix pointer.
+ * @param[out] y Pointer to target column vector pointer.
+ * @param[out] model Pointer to model parameters vector pointer.
+ */
 void load_dataset(dmlfw_mat_double **x,dmlfw_column_vec_double **y,dmlfw_column_vec_double **model)
 {
 	dmlfw_mat_double *matrix=NULL;
@@ -60,6 +93,16 @@ void load_dataset(dmlfw_mat_double **x,dmlfw_column_vec_double **y,dmlfw_column_
 	}
 	*x=matrix;
 }
+/**
+ * @brief Main function to run the model testing example.
+ *
+ * Loads dataset and model, performs prediction, computes accuracy using R2 score,
+ * prints accuracy, and manages resources.
+ *
+ * @param argc Argument count.
+ * @param argv Argument vector.
+ * @return 0 on success or error.
+ */
 int main(int argc,char *argv[])
 {
 	char error_string[512];
@@ -104,3 +147,4 @@ int main(int argc,char *argv[])
 	dmlfw_column_vec_double_destroy(model);
 	return 0;
 }
+/** @} */

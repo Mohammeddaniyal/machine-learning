@@ -1,42 +1,117 @@
+/**
+ * @file mini_batch_gd.c
+ * @brief Mini-batch stochastic gradient descent training example using DMLFW.
+ * @ingroup ml-examples-regression-linear
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-27
+ *
+ * This program trains a linear regression model on the IceCreamSales dataset using
+ * mini-batch stochastic gradient descent with regularization. It manages data buffering,
+ * shuffling, and mini-batch provision for efficient training.
+ * 
+ * The training progress is logged and optionally visualized with gnuplot showing cost descent 
+ * and fitted line graphs. The final model parameters are saved to a CSV file.
+ *
+ * Global buffers are used for dataset handling, and a custom progress callback logs 
+ * iteration-wise cost with early termination support.
+ *
+ *
+ * Usage:
+ *   ./mini_batch_gd
+ *
+ *
+ */
+
 #include<dmlfw.h>
 #include<unistd.h>
 #include<stdio.h>
 #include<stdlib.h>
 
+/** Training dataset CSV file path */
 #define TRAINING_DATASET "IceCreamSales_training_examples.csv"
+
+/** Output model CSV file path */
 #define MODEL_FILE_NAME "example-3-model.csv"
+
+/** Maximum number of gradient descent iterations */
 #define NUMBER_OF_ITERATIONS 100000
+
+/** Learning rate for gradient descent */
 #define LEARNING_RATE 0.00001
+
+/** Regularization parameter lambda */
 #define REGULARIZATION_PARAMETER 0.5
+
+/** Frequency of printing/logging cost */
 #define FREQUENCY_OF_PRINTING_COST 100
+
+/** Enable or disable plotting with gnuplot (1 = enabled) */
 #define SHOW_GRAPH 1
-uint32_t BUFFER_SIZE=50; // not a macro as it may have to be changed
-uint32_t MINI_BATCH_SIZE=46; // not a macro as it may have to be changed
+
+/** Buffer size, adjustable at runtime for batch loading */
+uint32_t BUFFER_SIZE = 50;
+
+/** Mini batch size, adjustable at runtime */
+uint32_t MINI_BATCH_SIZE = 46;
 
 
+/** Gnuplot pipe pointer used for plotting graphs */
+FILE *gnuplot;
 
-	FILE *gnuplot;
 	// following global variables used in get_from_file_buffer & init_buffers
-	uint64_t number_of_training_examples=0;
-	uint64_t number_of_columns_in_training_examples=0;
-	dmlfw_mat_double *buffer_matrix_1=NULL;
-	dmlfw_mat_double *buffer_matrix_2=NULL;
-	dmlfw_mat_double *buffer_matrix_1_shuffled=NULL;
-	dmlfw_mat_double *buffer_matrix_2_shuffled=NULL;
+
+
+/** Total number of training examples (rows) in dataset */
+uint64_t number_of_training_examples = 0;
+
+/** Number of columns (features + target) in training dataset */
+uint64_t number_of_columns_in_training_examples = 0;
+
+/** Primary buffer matrix holding dataset block for training */
+dmlfw_mat_double *buffer_matrix_1 = NULL;
+
+/** Secondary buffer matrix holding remaining dataset block */
+dmlfw_mat_double *buffer_matrix_2 = NULL;
+
+/** Shuffled copy of primary buffer matrix */
+dmlfw_mat_double *buffer_matrix_1_shuffled = NULL;
+
+/** Shuffled copy of secondary buffer matrix */
+dmlfw_mat_double *buffer_matrix_2_shuffled = NULL;
 	
 	// following global variables used in progress_callback (on_iteration_complete)
-	dmlfw_column_vec_double *prediction_error=NULL;
-	dmlfw_row_vec_double *prediction_error_transposed=NULL;
-	dmlfw_column_vec_double *product_vector=NULL;
-	dmlfw_row_vec_double *model_transposed=NULL;
-	dmlfw_column_vec_double *model_squared_sum_vector=NULL;
+/** Vector holding prediction errors during training progress callback */
+dmlfw_column_vec_double *prediction_error = NULL;
+
+/** Transposed version of prediction_error vector */
+dmlfw_row_vec_double *prediction_error_transposed = NULL;
+
+/** Temporary vector used for intermediate matrix products */
+dmlfw_column_vec_double *product_vector = NULL;
+
+/** Transposed vector of current model parameters during callback */
+dmlfw_row_vec_double *model_transposed = NULL;
+
+/** Vector holding squared sum of model parameters for regularization calculation */
+dmlfw_column_vec_double *model_squared_sum_vector = NULL;
 
 	// following global variables used in data_provider (data_loader)
-	dmlfw_mat_double *x_matrix=NULL;
-	dmlfw_column_vec_double *y_vector=NULL;
-	dmlfw_mat_double *xy_matrix=NULL;
 
+/** Feature matrix pointer used in data loading for mini-batches */
+dmlfw_mat_double *x_matrix = NULL;
 
+/** Target vector pointer used in data loading for mini-batches */
+dmlfw_column_vec_double *y_vector = NULL;
+
+/** Combined feature-target matrix used temporarily for data loading */
+dmlfw_mat_double *xy_matrix = NULL;
+
+/**
+ * @brief Prints ml-framework error string and terminates program.
+ */
 void print_error_and_exit()
 {
 	char error_string[512];
@@ -47,7 +122,9 @@ void print_error_and_exit()
 
 
 
-
+/**
+ * @brief Initializes minibatch data buffers before training.
+ */
 void init_buffers()
 {
 	dmlfw_get_csv_dimensions(TRAINING_DATASET,&number_of_training_examples,&number_of_columns_in_training_examples);
@@ -91,6 +168,13 @@ void init_buffers()
 	}
 }
 
+/**
+ * @brief Retrieves a data block for training from buffers.
+ *
+ * @param target_matrix Matrix pointer to fill.
+ * @param from_row Starting row index in dataset.
+ * @param how_many_rows Number of rows to retrieve.
+ */
 void get_from_file_buffer(dmlfw_mat_double **target_matrix,uint64_t from_row,uint32_t how_many_rows)
 {
 	// this function will only get called till records are available
@@ -199,7 +283,14 @@ void get_from_file_buffer(dmlfw_mat_double **target_matrix,uint64_t from_row,uin
 	
 }
 
-
+/**
+ * @brief Supplies mini-batch data to gradient descent algorithm.
+ *
+ * @param x Pointer to feature matrix pointer.
+ * @param y Pointer to target vector pointer.
+ * @param from_row Starting row of data to load.
+ * @param how_many_rows Number of rows to load.
+ */
 void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 {
 	dmlfw_mat_double **xxx_matrix=NULL;
@@ -255,6 +346,17 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 	*xxx_matrix=x_matrix;
 	*yyy_vector=y_vector;
 }
+
+/**
+ * @brief Callback after each gradient descent iteration to log cost and plot progress.
+ *
+ * @param iteration_number Current iteration index.
+ * @param y Actual target values.
+ * @param predicted_y Model predicted values.
+ * @param model Current model parameters.
+ * @param regularization_parameter Lambda regularization value.
+ * @return 0 to continue optimization, -1 to terminate early.
+ */
 int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,void *model,double regularization_parameter)
 {
 	
@@ -419,6 +521,12 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 err:
 	return -1;
 }
+
+/**
+ * @brief Creates and configures options for mini-batch stochastic gradient descent.
+ *
+ * @return Pointer to configured options struct or NULL on error.
+ */
 dmlfw_gradient_descent_options * get_gradient_descent_options()
 {
 	dmlfw_gradient_descent_options *gd_options;
@@ -436,6 +544,12 @@ dmlfw_gradient_descent_options * get_gradient_descent_options()
 	dmlfw_gradient_descent_options_set_mini_batch_size(gd_options,MINI_BATCH_SIZE);
 	return gd_options;
 }
+
+/**
+ * @brief Main entry point running the mini-batch stochastic gradient descent training example.
+ *
+ * @return 0 on success or error code.
+ */
 int main()
 {
 	double regularization_parameter;
@@ -529,3 +643,4 @@ int main()
 	}
 	return 0;
 }
+/** @} */

@@ -1,3 +1,21 @@
+/**
+ * @file polynomial_batch_gd.c
+ * @brief Batch gradient descent linear regression example using polynomial features.
+ * @ingroup ml-examples-regression-linear
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
+ * This example trains a linear regression model on the scaled polynomial trends training dataset.
+ * It tracks training cost with optional graphing, uses regularization, and saves the trained model.
+ * Includes custom progress callback with gnuplot visualization.
+ *
+ * Usage:
+ *   ./polynomial_batch_gd
+ *
+ */
 #include<stdio.h>
 #include<dmlfw.h>
 #include<stdlib.h>
@@ -13,6 +31,9 @@
 #define SHOW_GRAPH 1
 FILE *gnuplot;
 
+/**
+ * @brief Prints ml-framework error and exits.
+ */
 void print_error_and_exit()
 {
 	char error_string[512];
@@ -21,6 +42,12 @@ void print_error_and_exit()
 	exit(0);
 }
 
+/**
+ * @brief Loads features and target from scaled polynomial dataset with bias column.
+ *
+ * @param[out] x Pointer to features matrix pointer.
+ * @param[out] y Pointer to target column vector pointer.
+ */
 void load_dataset(dmlfw_mat_double **x,dmlfw_column_vec_double **y)
 {
 	dmlfw_mat_double *matrix=NULL;
@@ -61,6 +88,17 @@ void load_dataset(dmlfw_mat_double **x,dmlfw_column_vec_double **y)
 	dmlfw_mat_double_fill(matrix,0,0,matrix_rows-1,0,1.0);
 	*x=matrix;
 }
+
+/**
+ * @brief Callback invoked at each gradient descent iteration to log cost and update graphs.
+ *
+ * @param iteration_number Current iteration index.
+ * @param y Actual target vector.
+ * @param predicted_y Predicted target vector.
+ * @param model Current model parameters vector.
+ * @param regularization_parameter Regularization coefficient.
+ * @return 0 to continue gradient descent, negative to abort.
+ */
 int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,void *model,double regularization_parameter)
 {
 	static dmlfw_column_vec_double *prediction_error=NULL;
@@ -236,6 +274,12 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 		dmlfw_row_vec_string_destroy(actual_dataset_matrix_header);
 		return -1;
 }
+
+/**
+ * @brief Creates gradient descent configuration for batch gradient descent.
+ *
+ * @return Configured gradient descent options structure or NULL on error.
+ */
 dmlfw_gradient_descent_options * get_gradient_descent_options()
 {
 	dmlfw_gradient_descent_options *gd_options;
@@ -251,6 +295,12 @@ dmlfw_gradient_descent_options * get_gradient_descent_options()
 	dmlfw_gradient_descent_options_set_progress_callback(gd_options,on_iteration_complete);
 	return gd_options;
 }
+
+/**
+ * @brief Main program execution for polynomial batch gradient descent linear regression.
+ *
+ * @return 0 on success or an error code.
+ */
 int main()
 {
 	double regularization_parameter;
@@ -311,3 +361,4 @@ int main()
 	}
 	return 0;
 }
+/** @} */

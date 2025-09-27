@@ -1,3 +1,23 @@
+ /**
+ * @file stochastic_gd.c
+ * @brief Demonstrates mini-batch stochastic gradient descent for linear regression using ml-framework.
+ * @ingroup ml-examples-regression-linear
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
+ * This example trains a linear regression model on the IceCreamSales training dataset using
+ * mini-batch stochastic gradient descent with specified batch size, learning rate, and regularization.
+ * Includes custom data loader, progress callback logging with cost visualization using gnuplot,
+ * and buffer management for data loading.
+ *
+ *
+ * Usage:
+ *   ./stochastic_gd
+ *
+ */
 #include<dmlfw.h>
 #include<unistd.h>
 #include<stdio.h>
@@ -5,37 +25,80 @@
 
 
 
+/** Training dataset CSV file path */
 #define TRAINING_DATASET "IceCreamSales_training_examples.csv"
+
+/** Output model CSV file path */
 #define MODEL_FILE_NAME "example-2-model.csv"
+
+/** Maximum number of gradient descent iterations */
 #define NUMBER_OF_ITERATIONS 100000
+
+/** Learning rate for gradient descent */
 #define LEARNING_RATE 0.00001
+
+/** Regularization parameter lambda */
 #define REGULARIZATION_PARAMETER 0.5
+
+/** Frequency of printing/logging cost */
 #define FREQUENCY_OF_PRINTING_COST 100
+
+/** Buffer size used for batch data loading */
 #define BUFFER_SIZE 50
+
+/** Enable or disable plotting with gnuplot (1 = enabled) */
 #define SHOW_GRAPH 1
+
 	
 	FILE *gnuplot;
 	// following global variables used in get_from_file_buffer & init_buffers
-	uint64_t number_of_training_examples=0;
-	uint64_t number_of_columns_in_training_examples=0;
-	dmlfw_mat_double *buffer_matrix_1=NULL;
-	dmlfw_mat_double *buffer_matrix_2=NULL;
-	dmlfw_mat_double *buffer_matrix_1_shuffled=NULL;
-	dmlfw_mat_double *buffer_matrix_2_shuffled=NULL;
-	
+	/** Total number of training examples (rows) in dataset */
+uint64_t number_of_training_examples = 0;
+
+/** Number of columns (features + target) in training dataset */
+uint64_t number_of_columns_in_training_examples = 0;
+
+/** Primary buffer matrix holding dataset block for training */
+dmlfw_mat_double *buffer_matrix_1 = NULL;
+
+/** Secondary buffer matrix holding remaining dataset block */
+dmlfw_mat_double *buffer_matrix_2 = NULL;
+
+/** Shuffled copy of primary buffer matrix */
+dmlfw_mat_double *buffer_matrix_1_shuffled = NULL;
+
+/** Shuffled copy of secondary buffer matrix */
+dmlfw_mat_double *buffer_matrix_2_shuffled = NULL;
+
 	// following global variables used in progress_callback (on_iteration_complete)
-	dmlfw_column_vec_double *prediction_error=NULL;
-	dmlfw_row_vec_double *prediction_error_transposed=NULL;
-	dmlfw_column_vec_double *product_vector=NULL;
-	dmlfw_row_vec_double *model_transposed=NULL;
-	dmlfw_column_vec_double *model_squared_sum_vector=NULL;
+/** Vector holding prediction errors during training progress callback */
+dmlfw_column_vec_double *prediction_error = NULL;
+
+/** Transposed version of prediction_error vector */
+dmlfw_row_vec_double *prediction_error_transposed = NULL;
+
+/** Temporary vector used for intermediate matrix products */
+dmlfw_column_vec_double *product_vector = NULL;
+
+/** Transposed vector of current model parameters during callback */
+dmlfw_row_vec_double *model_transposed = NULL;
+
+/** Vector holding squared sum of model parameters for regularization calculation */
+dmlfw_column_vec_double *model_squared_sum_vector = NULL;
 
 	// following global variables used in data_provider (data_loader)
-	dmlfw_mat_double *x_matrix=NULL;
-	dmlfw_column_vec_double *y_vector=NULL;
-	dmlfw_mat_double *xy_matrix=NULL;
+/** Feature matrix pointer used in data loading for mini-batches */
+dmlfw_mat_double *x_matrix = NULL;
 
+/** Target vector pointer used in data loading for mini-batches */
+dmlfw_column_vec_double *y_vector = NULL;
 
+/** Combined feature-target matrix used temporarily for data loading */
+dmlfw_mat_double *xy_matrix = NULL;
+
+/**
+ * @brief Prints ml-framework error and terminates execution.
+ */
 void print_error_and_exit()
 {
 	char error_string[512];
@@ -45,8 +108,9 @@ void print_error_and_exit()
 }
 
 
-
-
+/**
+ * @brief Initializes data buffers used for training data management.
+ */
 void init_buffers()
 {
 	dmlfw_get_csv_dimensions(TRAINING_DATASET,&number_of_training_examples,&number_of_columns_in_training_examples);
@@ -74,6 +138,12 @@ void init_buffers()
 	}
 }
 
+/**
+ * @brief Retrieves a single row from buffered training data.
+ *
+ * @param target_matrix Output pointer to matrix containing the row.
+ * @param from_row Row index to retrieve.
+ */
 void get_one_from_file_buffer(dmlfw_mat_double **target_matrix,uint64_t from_row)
 {
 	// this function will only get called till records are available
@@ -180,7 +250,14 @@ void get_one_from_file_buffer(dmlfw_mat_double **target_matrix,uint64_t from_row
 	dmlfw_mat_double_copy(*target_matrix,buffer_matrix_1_shuffled,0,0,from_buffer_matrix_index,0,to_buffer_matrix_index,number_of_columns_in_training_examples-1);
 }
 
-
+/**
+ * @brief Supplies training data batches to SGD optimizer via buffer loading.
+ *
+ * @param x Pointer to feature matrix pointer to populate.
+ * @param y Pointer to target vector pointer to populate.
+ * @param from_row Starting row index for batch.
+ * @param how_many_rows Number of rows requested.
+ */
 void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 {
 	dmlfw_mat_double **xxx_matrix=NULL;
@@ -240,6 +317,17 @@ void data_loader(void *x,void *y,uint64_t from_row,uint32_t how_many_rows)
 	*xxx_matrix=x_matrix;
 	*yyy_vector=y_vector;
 }
+
+/**
+ * @brief SGD iteration callback to calculate and log cost function.
+ *
+ * @param iteration_number Current iteration count.
+ * @param y Actual target vector.
+ * @param predicted_y Predicted output by model.
+ * @param model Current model weights.
+ * @param regularization_parameter Regularization factor.
+ * @return 0 to continue training, -1 to abort.
+ */
 int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,void *model,double regularization_parameter)
 {
 	
@@ -403,6 +491,12 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 err:
 	return -1;
 }
+
+/**
+ * @brief Configures options for SGD training.
+ *
+ * @return Pointer to gradient descent options configured for stochastic GD.
+ */
 dmlfw_gradient_descent_options * get_gradient_descent_options()
 {
 	dmlfw_gradient_descent_options *gd_options;
@@ -419,6 +513,12 @@ dmlfw_gradient_descent_options * get_gradient_descent_options()
 	dmlfw_gradient_descent_options_set_data_provider(gd_options,data_loader);
 	return gd_options;
 }
+
+/**
+ * @brief Main entry point to run buffered stochastic gradient descent linear regression.
+ *
+ * @return 0 on success, or error code.
+ */
 int main()
 {
 	double regularization_parameter;
@@ -512,3 +612,4 @@ int main()
 	}
 	return 0;
 }
+/** @} */

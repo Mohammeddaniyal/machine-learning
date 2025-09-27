@@ -1,17 +1,55 @@
+/**
+ * @file batch_gd.c
+ * @brief Demonstrates batch gradient descent for linear regression using ml-framework.
+ * @ingroup ml-examples-regression-linear
+ * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
+ * This example loads the IceCreamSales training dataset, trains a linear regression model
+ * using batch gradient descent with regularization, tracks cost progress,
+ * optionally plots cost and fitted line using gnuplot, and saves the final model to CSV.
+ *
+ * Defines custom progress callback for iteration logging and visualization.
+ *
+ * Usage:
+ *   ./batch_gd
+ *
+ */
 #include<stdio.h>
 #include<dmlfw.h>
 #include<stdlib.h>
 #include<unistd.h>
 
+/** Training dataset CSV file path */
 #define TRAINING_DATASET "IceCreamSales_training_examples.csv"
+
+/** Output model CSV file path */
 #define MODEL_FILE_NAME "example-1-model.csv"
+
+/** Maximum number of iterations for gradient descent */
 #define NUMBER_OF_ITERATIONS 3000000
+
+/** Learning rate for gradient descent */
 #define LEARNING_RATE 0.0001
+
+/** Regularization parameter (lambda) */
 #define REGULARIZATION_PARAMETER 0.5
+
+/** Frequency of printing/logging cost during training */
 #define FREQUENCY_OF_PRINTING_COST 50000
+
+/** Flag to enable (1) or disable (0) graph plotting */
 #define SHOW_GRAPH 1
+
+/** Gnuplot file pointer used for plotting progress */
 FILE *gnuplot;
 
+/**
+ * @brief Prints error string from ml-framework and exits program.
+ */
 void print_error_and_exit()
 {
 	char error_string[512];
@@ -20,6 +58,13 @@ void print_error_and_exit()
 	exit(0);
 }
 
+/**
+ * @brief Loads the dataset into X (features matrix) and Y (target vector).
+ *        Adds bias column filled with 1.0.
+ *
+ * @param[out] x Pointer to the features matrix pointer.
+ * @param[out] y Pointer to the target column vector pointer.
+ */
 void load_dataset(dmlfw_mat_double **x,dmlfw_column_vec_double **y)
 {
 	dmlfw_mat_double *matrix=NULL;
@@ -60,6 +105,17 @@ void load_dataset(dmlfw_mat_double **x,dmlfw_column_vec_double **y)
 	dmlfw_mat_double_fill(matrix,0,0,matrix_rows-1,0,1.0);
 	*x=matrix;
 }
+/**
+ * @brief Progress callback called on each gradient descent iteration.
+ *        Logs cost, updates plot files, shows graph via gnuplot at intervals.
+ *
+ * @param iteration_number Current iteration number.
+ * @param y Actual target vector.
+ * @param predicted_y Predicted target vector.
+ * @param model Current model parameters.
+ * @param regularization_parameter Regularization coefficient lambda.
+ * @return 0 on success, negative to abort.
+ */
 int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,void *model,double regularization_parameter)
 {
 	static dmlfw_column_vec_double *prediction_error=NULL;
@@ -226,6 +282,14 @@ int on_iteration_complete(uint64_t iteration_number,void *y,void *predicted_y,vo
 		dmlfw_column_vec_double_destroy(model_squared_sum_vector);
 		return -1;
 }
+/**
+ * @brief Creates and configures gradient descent options object.
+ *
+ * Sets learning rate, number of iterations, gradient descent type,
+ * and associates the progress callback.
+ *
+ * @return Pointer to configured dmlfw_gradient_descent_options or NULL on error.
+ */
 dmlfw_gradient_descent_options * get_gradient_descent_options()
 {
 	dmlfw_gradient_descent_options *gd_options;
@@ -241,6 +305,14 @@ dmlfw_gradient_descent_options * get_gradient_descent_options()
 	dmlfw_gradient_descent_options_set_progress_callback(gd_options,on_iteration_complete);
 	return gd_options;
 }
+/**
+ * @brief Main function to execute batch gradient descent linear regression example.
+ *
+ * Loads dataset, creates gradient descent options, fits model,
+ * saves model parameters to CSV, and manages resources.
+ *
+ * @return 0 on success.
+ */
 int main()
 {
 	double regularization_parameter;
@@ -301,3 +373,4 @@ int main()
 	}
 	return 0;
 }
+/** @} */
