@@ -2,14 +2,12 @@
 #define __DMLFW__ML_CONFIGURATIONS__
 /**
  * @file dmlfw_ml_configurations.h
- * @defgroup configurations Gradient Descent Configuration
- * @ingroup algorithms
  * @brief Gradient descent configuration data structures and APIs.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup configurations
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
  *
  * This module provides definitions and management functions for gradient descent
  * configuration objects used with ML algorithms such as linear regression.

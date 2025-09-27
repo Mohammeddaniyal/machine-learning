@@ -2,14 +2,13 @@
 #define __DMLFW__VEC__STRING__
 /**
  * @file dmlfw_vec_string.h
- * @defgroup vector_string String Vectors
- * @ingroup vector
  * @brief String column and row vector types and functions.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup vector_string
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This header defines opaque vector data structures for string values.
  * It provides APIs for creating, destroying, accessing, modifying,
  * and manipulating both column and row string vectors.

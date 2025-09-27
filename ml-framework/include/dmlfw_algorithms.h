@@ -1,16 +1,16 @@
 #ifndef __DMLFW__ALGORITHM__
 #define __DMLFW__ALGORITHM__
+
 /**
  * @file dmlfw_algorithms.h
- * @defgroup algorithms Machine Learning Algorithms
- * @ingroup ml-framework
  * @brief Core machine learning algorithms and configuration facilities.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  *
  * This umbrella header consolidates machine learning algorithm modules and their
  * configuration utilities, providing access to major ML workflows such as:

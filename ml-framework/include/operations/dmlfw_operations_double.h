@@ -1,15 +1,14 @@
  #ifndef __DMLFW__OPERATIONS__DOUBLE__
  #define __DMLFW__OPERATIONS__DOUBLE__
-/**
+ /**
  * @file dmlfw_operations_double.h
- * @defgroup operations_double Double Precision Arithmetic
- * @ingroup operations
  * @brief Core double precision vector and matrix arithmetic operations.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup operations_double
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This module provides fundamental arithmetic operations specialized for double precision
  * vectors and matrices, including multiplication, addition, subtraction, scalar scaling,
  * and advanced matrix multiplication algorithms like Strassen’s method.

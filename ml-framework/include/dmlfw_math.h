@@ -2,15 +2,14 @@
 #define __DMLFW__MATH__
 /**
  * @file dmlfw_math.h
- * @defgroup math Mathematical Operations
- * @ingroup ml-framework
  * @brief Core mathematical operations for vectors and matrices.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  * This umbrella header consolidates vector and matrix mathematical operations,
  * providing access to mathematical transformations and reductions including:
  * - Element-wise activation functions (sigmoid, log, etc.)

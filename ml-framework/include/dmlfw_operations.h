@@ -2,15 +2,14 @@
 #define __DMLFW__OPERATIONS__
 /**
  * @file dmlfw_operations.h
- * @defgroup operations Vector and Matrix Arithmetic
- * @ingroup math
  * @brief Fundamental vector and matrix arithmetic.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup math
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  * This umbrella header consolidates core arithmetic and matrix operations
  * supporting double precision vectors and matrices.
  * Included operations encompass:

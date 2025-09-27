@@ -2,15 +2,14 @@
 #define __DMLFW__VECTOR__
 /**
  * @file dmlfw_vector.h
- * @defgroup vector Vector Types and Utilities
- * @ingroup ml-framework
  * @brief Core vector types and utilities for double and string data.
+ * @ingroup ml-framework
+ * @{ 
  *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
  *
- * @{
  * This umbrella header consolidates the vector types for
  * double and string elements, providing access to core
  * functionalities such as:

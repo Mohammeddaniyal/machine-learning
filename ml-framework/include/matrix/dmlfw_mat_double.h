@@ -2,14 +2,13 @@
 #define DMLFW_MAT_DOUBLE_H
 /**
  * @file dmlfw_mat_double.h
- * @defgroup matrix_double Double Precision Matrices
- * @ingroup matrix
  * @brief Core double precision matrix types and utilities.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup matrix_double
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This header defines opaque matrix structures for double precision floating-point data.
  * It provides APIs for creation, destruction, element access and mutation, CSV import/export,
  * matrix operations such as transpose, reshape, shuffle, block extraction, and statistical functions.

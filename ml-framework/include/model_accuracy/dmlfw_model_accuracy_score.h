@@ -2,14 +2,13 @@
 #define __DMLFW__MODEL__ACCURACY__SCORE__
 /**
  * @file dmlfw_model_accuracy_score.h
- * @defgroup model_accuracy_score Regression Metrics
- * @ingroup model_accuracy
  * @brief Regression model evaluation metrics.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup model_accuracy_score
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This header provides functions to evaluate the accuracy of regression models
  * using numerical metrics such as the R2 score (coefficient of determination).
  *

@@ -2,25 +2,32 @@
 #define __DMLFW__ML__
 
 /**
- * @defgroup ml-framework Daniyal Machine Learning Framework
- * @brief Core modules and components of the Daniyal Machine Learning framework,
- *        including data structures, algorithms, and utilities.
- * @{
- */
-
-/**
- * @file dmlfw_ml.h
- * @ingroup ml-framework
+ * @file dmlfw.h
  * @brief Primary main header for the Daniyal Machine Learning Framework (dmlfw).
+ * @ingroup ml-framework
+ * @{
  *
  * This header includes core definitions, types, and API declarations 
  * for the entire machine learning framework.
  * It serves as the primary inclusion point for using the ml-framework.
  *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
  *
+ *
+ * @see dmlfw_algorithms.h "Machine Learning Algorithms Module"
+ * @see dmlfw_encoder.h "Data Encoding Module"
+ * @see dmlfw_error.h "Error Handling Module"
+ * @see dmlfw_list.h "Double Precision List Module"
+ * @see dmlfw_math.h "Mathematical Operations Module"
+ * @see dmlfw_matrix.h "Matrix Types and Utilities Module"
+ * @see dmlfw_model_accuracy.h "Model Accuracy Module"
+ * @see dmlfw_scale.h "Feature Scaling Module"
+ * @see dmlfw_set.h "Unordered Sets Module"
+ * @see dmlfw_types.h "Core Type Definitions Module"
+ * @see dmlfw_utils.h "Utility Functions Module"
+ * @see dmlfw_vector.h "Vector Types and Utilities Module"
  */
 
 #include <dmlfw_types.h>

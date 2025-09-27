@@ -2,14 +2,13 @@
 #define __DMLFW__LIST__DOUBLE__
 /**
  * @file dmlfw_list_double.h
- * @defgroup list_double Forward List (Double)
- * @ingroup list
  * @brief Core singly linked list type for double precision data.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup list_double
  * @{ 
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  *
  * This module provides a singly linked list (forward list) implementation 
  * for double precision floating point data. It supports creating, 

@@ -2,14 +2,13 @@
 #define __DMLFW__LINEAR_REGRESSION__
 /**
  * @file dmlfw_linear_regression.h
- * @defgroup linear_regression Linear Regression
- * @ingroup algorithms
  * @brief Gradient descent-based linear regression training and prediction.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup linear_regression
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  *
  * This module provides APIs to fit linear regression models using
  * batch, stochastic, and mini-batch gradient descent methods, including support

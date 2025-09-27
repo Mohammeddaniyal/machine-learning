@@ -2,14 +2,13 @@
 #define __DMLFW__MATH_OPERATIONS__
 /**
  * @file dmlfw_math_operations.h
- * @defgroup math_ops Mathematical Functions
- * @ingroup math
  * @brief Core mathematical vector and matrix functions.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup math_ops
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This module provides functions for common mathematical transformations (sigmoid, log)
  * and reductions (sum) on double precision vectors and matrices, supporting ML and
  * numeric data workflows.

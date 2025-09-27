@@ -2,15 +2,14 @@
 #define __DMLFW__MATRIX__
 /**
  * @file dmlfw_matrix.h
- * @defgroup matrix Matrix Types and Utilities
- * @ingroup ml-framework
  * @brief Core matrix types and utilities for double and string data.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  * This umbrella header consolidates matrix types for
  * double and string elements, providing access to core functionalities such as:
  * - Creation and destruction

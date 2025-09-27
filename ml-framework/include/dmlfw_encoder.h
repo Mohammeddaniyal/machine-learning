@@ -2,15 +2,14 @@
 #define __DMLFW__ENCODER__
 /**
  * @file dmlfw_encoder.h
- * @defgroup encoder Data Encoding
- * @ingroup ml-framework
  * @brief Core data encoding and transformation utilities.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  *
  * This umbrella header consolidates the encoder modules for 
  * categorical and binary feature encoding, providing access to core

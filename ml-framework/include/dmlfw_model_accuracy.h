@@ -2,15 +2,14 @@
 #define __DMLFW__MODEL__ACCURACY__
 /**
  * @file dmlfw_model_accuracy.h
- * @defgroup model_accuracy Model Accuracy
- * @ingroup ml-framework
  * @brief Core accuracy scoring utilities for ML models.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  * This umbrella header consolidates modules providing accuracy scores and
  * evaluation metrics for machine learning models, particularly regression metrics.
  * It currently includes:

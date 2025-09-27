@@ -2,15 +2,14 @@
 #define __DMLFW__ERROR__
 /**
  * @file dmlfw_error.h
- * @defgroup error_handling Error Handling
- * @ingroup ml-framework
  * @brief Centralized error handling interface for the framework.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  *
  * This module provides functions to check and retrieve error statuses,
  * error codes, human-readable messages, and debugging information
@@ -29,8 +28,8 @@
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include "dmlfw_matrix.h"
- * #include "dmlfw_error.h"
+ * #include <dmlfw_matrix.h>
+ * #include <dmlfw_error.h>
  *
  * int main(void) {
  *     char err[512];

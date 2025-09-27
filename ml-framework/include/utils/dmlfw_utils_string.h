@@ -1,16 +1,14 @@
 #ifndef __DMLFW__UTILS__STRING__
 #define __DMLFW__UTILS__STRING__
-
 /**
  * @file dmlfw_utils_string.h
- * @defgroup utils_string String Utilities
- * @ingroup utils
  * @brief Common string-related utility functions.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup utils_string
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This header provides essential string operations:
  * - Case-insensitive string comparison
  * - Conversion of uint32_t integer to its binary string representation

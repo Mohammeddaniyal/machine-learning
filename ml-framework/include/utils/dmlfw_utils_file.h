@@ -1,16 +1,14 @@
 #ifndef __DMLFW__UTILS__FILE__
 #define __DMLFW__UTILS__FILE__
-
 /**
  * @file dmlfw_utils_file.h
- * @defgroup utils_file File Utilities
- * @ingroup utils
  * @brief Functions for CSV file dimensions and inspection.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup utils_file
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This header provides functions to retrieve dimension information from CSV files,
  * such as the number of rows, columns, and both dimensions together.
  *

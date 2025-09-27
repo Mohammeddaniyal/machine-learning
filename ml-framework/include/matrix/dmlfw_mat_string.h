@@ -2,14 +2,13 @@
 #define __DMLFW__MAT__STRING__
 /**
  * @file dmlfw_mat_string.h
- * @defgroup matrix_string String Matrices
- * @ingroup matrix
  * @brief Core string matrix types and utilities.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup matrix_string
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  *
  * This header defines opaque matrix structures specialized for string data.
  * It provides APIs for creation, destruction, element access and mutation,

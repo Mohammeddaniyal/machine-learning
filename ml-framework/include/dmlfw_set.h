@@ -2,15 +2,14 @@
 #define __DMLFW__SET__
 /**
  * @file dmlfw_set.h
- * @defgroup set Unordered Sets
- * @ingroup ml-framework
  * @brief Core unordered set types and utilities for string data.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  * This umbrella header consolidates the unordered set types, providing access 
  * to core functionalities such as:
  * - Creation and destruction

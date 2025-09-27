@@ -2,14 +2,13 @@
 #define __DMLFW__DATA__ENCODER__
 /**
  * @file dmlfw_data_encoder.h
- * @defgroup data_encoder Feature Encoding
- * @ingroup encoder
  * @brief Categorical and binary feature encoding utilities.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup data_encoder
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  *
  * This module provides functions for encoding categorical/textual data
  * columns from CSV files into numerical formats suitable for ML models.

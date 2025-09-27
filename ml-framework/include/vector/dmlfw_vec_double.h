@@ -2,14 +2,13 @@
 #define __DMLFW__VEC__DOUBLE__
 /**
  * @file dmlfw_vec_double.h
- * @defgroup vector_double Double Precision Vectors
- * @ingroup vector
  * @brief Double precision column and row vector types and functions.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup vector_double
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This header defines opaque vector data structures for double precision
  * floating-point values. It provides APIs for creating, destroying,
  * accessing, modifying, and manipulating both column and row vectors.

@@ -1,16 +1,14 @@
 #ifndef __DMLFW__SCALE__DOUBLE__
 #define __DMLFW__SCALE__DOUBLE__
-
 /**
  * @file dmlfw_scale_double.h
- * @defgroup scale_double Double Precision Scaling
- * @ingroup scale
  * @brief Matrix data scaling and normalization using double precision.
- *
- * Version: 1.0
- * Date: 2025-09-25
- *
+ * @ingroup scale_double
  * @{
+ *
+ * @version 1.0
+ * @date 2025-09-25
+ *
  * This module provides scaling algorithms applied to double precision matrices,
  * such as min-max normalization and z-score standardization.
  *
@@ -80,12 +78,12 @@
 #include <dmlfw_matrix.h>
 
 /**
- * @brief Min-Max scaling algorithm identifier string.
+ * Min-Max scaling algorithm identifier string.
  */
 #define MLFW_MIN_MAX_SCALING_ALGORITHM "min-max"
 
 /**
- * @brief Z-Score scaling algorithm identifier string.
+ * Z-Score scaling algorithm identifier string.
  */
 #define MLFW_Z_SCORE_SCALING_ALGORITHM "z-score"
 

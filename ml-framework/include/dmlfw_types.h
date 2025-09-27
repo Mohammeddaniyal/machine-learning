@@ -2,15 +2,14 @@
 #define __DMLFW__TYPES__
 /**
  * @file dmlfw_types.h
- * @defgroup core_types Core Type Definitions
- * @ingroup ml-framework
  * @brief Fundamental scalar typedefs used across the framework.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  *
  * This header centralizes typedefs for indices, dimensions,
  * and other fundamental scalar types. All modules should

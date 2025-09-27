@@ -2,15 +2,14 @@
 #define __DMLFW__UTILS__
 /**
  * @file dmlfw_utils.h
- * @defgroup utils Utility Functions
- * @ingroup ml-framework
  * @brief Core utility functions for file and string processing.
- *
- * Author: Mohammed Daniyal
- * Version: 1.0
- * Date: 2025-09-26
- *
+ * @ingroup ml-framework
  * @{
+ *
+ * @author Mohammed Daniyal
+ * @version 1.0
+ * @date 2025-09-26
+ *
  * This umbrella header consolidates core utility submodules,
  * including file and string utilities.
  *
@@ -26,9 +25,6 @@
  * See also the specialized headers for detailed APIs:
  * - @ref dmlfw_utils_file.h "File Utilities"
  * - @ref dmlfw_utils_string.h "String Utilities"
- *
- * Author: Mohammed Daniyal
- * Date: 2025-09-26
  *
  */
 
