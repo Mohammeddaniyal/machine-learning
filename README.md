@@ -62,7 +62,7 @@ Daniyal Machine Learning Framework (DMLFW) is a personal educational project to 
 
 ## Learn More
 
-* Explore comprehensive API references, detailed usage examples, and generated documentation in the [Doxygen Documentation](docs/html/index.html).  
+* Explore comprehensive API references, detailed usage examples, and generated documentation in the [Doxygen Documentation](https://Mohammeddaniyal.github.io/machine-learning).  
 * Browse additional practical code samples and supporting materials in the [`ml-examples/`](ml-examples/) folder to deepen your understanding and experimentation.  
 * For broader context on framework design and implementation, consult the documentation files inside the [`docs/`](docs/) folder.
 
