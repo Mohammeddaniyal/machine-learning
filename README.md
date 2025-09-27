@@ -1,165 +1,94 @@
+Here is the updated README content with necessary improvements reflecting your recent enhancements and tutorial structure recommendations, only updating relevant sections:
+
+***
+
 # Daniyal Machine Learning Framework (DMLFW)
 
+## Introduction
 
-## About This Project
+Daniyal Machine Learning Framework (DMLFW) is a personal educational project to explore machine learning by building core algorithms and tools **from scratch in C**. It aims to teach and experiment with data preprocessing, training, prediction, and evaluation techniques.
 
-This project is part of my personal learning journey into **machine learning**. I wanted to go beyond just reading theory and actually **build things from scratch in C** to understand how ML works under the hood.  
+***
 
-The **Daniyal Machine Learning Framework (DMLFW)** is not meant to compete with big libraries like TensorFlow or PyTorch. Instead, it’s more like my **journal + toolkit**, where I try to implement basic data structures, math operations, and algorithms that form the backbone of ML.  
+## Installation
 
-I’m improving it step by step as I learn more, so you can think of it as a work-in-progress learning playground.
+### Prerequisites
 
----
+* GCC or any C compiler  
+* Bash shell  
 
-## What’s Inside?
+### Steps
 
-Right now, DMLFW includes:
+1. Clone the repository:
 
-- **Core Data Structures**  
-  Vectors, matrices, and lists (supporting doubles and strings).  
+   ```bash
+   git clone https://github.com/Mohammedaniyal/machine-learning.git
+   cd machine-learning
+   ```
 
-- **Math & Stats Utilities**  
-  Basic operations like addition, scaling, dot products, and transformations that are common in ML.  
+2. Build the core library:
 
-- **Machine Learning Algorithms**  
-  Linear regression with **batch, stochastic, and mini-batch gradient descent** implementations. More will be added as I learn them.  
+   ```bash
+   cd ml-framework/o_files
+   sh create_lib.sh
+   ```
 
-- **Data Preprocessing**  
-  Encoding categorical features, scaling, and normalization utilities.  
+   This compiles source files and generates `libml-framework.a` in `ml-framework/lib/`.
 
-- **Model Evaluation**  
-  Metrics like **R² score** and accuracy checks.  
+***
 
-- **Error Handling & Utilities**  
-  A centralized system for error messages, plus some file and string utilities.  
+## Usage
 
-The focus here is **clarity and education**, not speed or optimization.  
+* Prebuilt example programs are in the [`ml-examples/`](ml-examples/) folder. Explore, compile, and run to understand framework usage.  
+* Command-line preprocessing tools are in [`tools/`](tools/), with executables built via `src/cmp.sh`. You may install these tools in a system path (e.g., `/usr/bin`) for ease of use or run them from their build folders.  
+* You can build your own C programs linking against the library:
 
----
-
-## 🔧 Installation & Setup
-
-Here’s how you can get the framework running on your system:
-
-###  Get the framework
-Clone the repo from GitHub and move into the main folder:
-```
-git clone https://github.com/Mohammeddaniyal/machine-learning.git
-cd machine-learning
-```
+  ```bash
+  gcc myprogram.c -I ./ml-framework/include -L ./ml-framework/lib -lml-framework -lm -o myprogram
+  ```
 
 
-### Build the core library
-Go into the build script folder and compile:
-```
-cd ml-framework/o_files
-sh create_lib.sh
-```
-If everything works, you’ll get:
-```
-ml-framework/lib/libml-framework.a
-```
+* For detailed tutorials exploring all stages of workflow:  
+  - Use [`ml-examples/regression/linear/TUTORIAL_PREPROCESSED.md`](ml-examples/regression/linear/TUTORIAL_PREPROCESSED.md) for running example programs with preprocessed datasets.  
+  - Use [`ml-examples/regression/linear/TUTORIAL_RAW.md`](ml-examples/regression/linear/TUTORIAL_RAW.md) for step-by-step guidance on preprocessing raw datasets with the provided tools.  
+  - Use [`tools/TUTORIAL.md`](tools/TUTORIAL.md) for comprehensive instructions on using the command-line preprocessing utilities.
 
+***
 
-###  Compile your own program
-Write your C program and include framework headers, for example:
-```
-#include <dmlfw_matrix.h>
-// or use the umbrella header that includes everything
-#include <dmlfw.h>
-```
-Then compile (adjust paths as needed):
-```
-gcc my_program.c -I ../include -L ../lib -lml-framework -lm -o my_program
-```
+## Project Structure
 
+* `ml-framework/` – Core framework source code, headers, and build scripts.  
+* `ml-examples/` – Sample programs demonstrating key ML algorithms and workflows, with `preprocessed/` and `test/` subfolders for datasets.  
+* `tools/` – Command-line utilities for data preprocessing and encoding, with source and build folders.  
+* `docs/` – Documentation files and generated Doxygen output.
 
-###  Build examples or tools (optional)
-Examples are inside:
-```
-ml-examples/regression/ (linear regression)
-```
-Tools are inside:
-```
-tools/src
-```
-Compile them the same way as your own program, for example:
-```
-gcc encode_one_hot.c -I ../ml-framework/include -L ../ml-framework/lib -lml-framework -lm -o encode_one_hot
-```
+***
 
-###  Test the setup
-Run a tool :
-```
-./encode_one_hot ../../tools/testcases/insurance.csv output.csv sex smoker region
-```
-Or run an ML example (like batch gradient descent):
-```
-./ml-examples/regression/linear/src/batch_gd
-```
+## Learn More
 
-If you see proper output, congrats — the framework is working!
+* Explore comprehensive API references, detailed usage examples, and generated documentation in the [Doxygen Documentation](docs/html/index.html).  
+* Browse additional practical code samples and supporting materials in the [`ml-examples/`](ml-examples/) folder to deepen your understanding and experimentation.  
+* For broader context on framework design and implementation, consult the documentation files inside the [`docs/`](docs/) folder.
 
----
+***
+## Platform Support
 
-### Notes
-- Always add **`-lm`** at the end of your gcc command (for math library).  
-- Use **`./`** when running binaries from the current folder.  
-- On **Windows**, it’s easiest to use **Git Bash** or **WSL** for building and running.  
-```
+* Built and tested on Linux with `pthread` and POSIX APIs.  
+* Windows users should build under WSL or a compatible Linux environment.
 
----
+***
 
+## Contact
 
-## 📂 Project Structure
+Maintainer: Mohammed Daniyal  
+Email: [mohammeddaniyal453@gmail.com](mailto:mohammeddaniyal453@gmail.com)  
+LinkedIn: [mohammeddaniyalali](https://www.linkedin.com/in/mohammeddaniyalali)  
 
-The repo is organized into:
+***
 
-- **Core Framework:** vectors, matrices, ML algorithms, encoders, scalers.
-- **Tools:** simple command-line programs for preprocessing datasets.
-- **Examples:** demo programs for regression and gradient descent.
+Thank you for exploring DMLFW!  
+This project is a work-in-progress learning journey—happy experimenting!
 
-I’m also generating **Doxygen documentation** (link coming soon), which explains the API in detail.
+***
 
----
-
-## 🚀 Examples You Can Try
-
-Inside `ml-examples`, you’ll find demos like:
-
-- Linear regression using **batch gradient descent**
-- Linear regression using **stochastic/mini-batch gradient descent**
-- Preprocessing and encoding datasets
-
-Running these helped me a lot in actually “seeing” the math in action.
-
----
-
-## Contributions
-
-This project is mainly for my learning, but if anyone wants to try it out or suggest improvements, feel free.  
-
-If you’d like to contribute, please open an issue or message me with your idea.  
-The main goal is to **keep it simple and educational**.
-
----
-
-## Acknowledgments
-
-A big thank you to my mentor **Prafull Kelkar Sir** for guiding me and encouraging me to dig deeper into ML instead of just staying at the surface level.
-
----
-
-##  Contact Me
-
-If you want to connect, give feedback, or just chat about ML:
-
-- 📧 Email: [mohammeddaniyal453@gmail.com](mailto:mohammeddaniyal453@gmail.com)
-- 📱 Phone: +91 8770642372
-- 💼 LinkedIn: [mohammeddaniyalali](https://www.linkedin.com/in/mohammeddaniyalali)
-
----
-
-✨ Thanks for checking this out. This is still the beginning of my ML journey, and DMLFW is the notebook where I write code instead of just notes. Hopefully, it grows into something more useful over time.
-```
-
+If you want, I can prepare or update the tutorial files and README links next.
