@@ -656,7 +656,6 @@ dmlfw_mat_double * dmlfw_scale_double(char *dataset_file_name,dmlfw_row_vec_stri
 			}
 			free(column_name);	
 		}// inner loop ends
-		free(scale_column_name);
 		if(j==matrix_header_size) // the column name in columns_to_scale is incorrect
 		{
 		_dmlfw_set_error(MLFW_INVALID_COLUMN_NAME_CODE,MLFW_INVALID_COLUMN_NAME,scale_column_name);
