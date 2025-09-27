@@ -1,7 +1,15 @@
+#ifndef __DMLFW__SET__STRING__
+#define __DMLFW__SET__STRING__
 /**
  * @file dmlfw_set_string.h
- * @brief Unordered set of unique strings with basic operations.
+ * @defgroup set_string Unordered String Sets
+ * @ingroup set
+ * @brief Core unordered string set types and utilities.
  *
+ * Version: 1.0
+ * Date: 2025-09-25
+ *
+ * @{
  * This header defines opaque unordered set structures specialized for string data.
  * It provides APIs for creation, destruction, element access, adding unique strings,
  * and querying the set size.
@@ -18,16 +26,12 @@
  * who is responsible for freeing with `dmlfw_set_string_destroy()`.
  * Returned strings from get operations are allocated and must be freed by callers.
  *
- * @defgroup set_string Unordered String Set Module
- * @ingroup set
- * @brief Core unordered string set types and utilities.
- *
  * @example example_set_string.c
  * Typical usage:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include "dmlfw_set_string.h"
+ * #include <dmlfw_set.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
@@ -67,8 +71,6 @@
  * @endcode
  */
 
-#ifndef __DMLFW__SET__STRING__
-#define __DMLFW__SET__STRING__
 
 #include <dmlfw_types.h>
 struct __dmlfw_set_string;
@@ -184,3 +186,4 @@ int dmlfw_set_string_add(dmlfw_set_string *set, char *string);
 dimension_t dmlfw_set_string_get_size(dmlfw_set_string *set);
 
 #endif /* __DMLFW__SET__STRING__ */
+/** @} */ // end of group

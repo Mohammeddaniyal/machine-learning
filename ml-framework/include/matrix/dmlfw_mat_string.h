@@ -1,6 +1,15 @@
+#ifndef __DMLFW__MAT__STRING__
+#define __DMLFW__MAT__STRING__
 /**
  * @file dmlfw_mat_string.h
- * @brief String matrix types and operations.
+ * @defgroup matrix_string String Matrices
+ * @ingroup matrix
+ * @brief Core string matrix types and utilities.
+ *
+ * Version: 1.0
+ * Date: 2025-09-25
+ *
+ * @{
  *
  * This header defines opaque matrix structures specialized for string data.
  * It provides APIs for creation, destruction, element access and mutation,
@@ -20,17 +29,12 @@
  * Indexing Notes:
  * ---------------
  * All indices are zero-based.
- *
- * @defgroup matrix String Matrix Module
- * @ingroup matrix
- * @brief Core string matrix types and utilities.
- *
  * @example example_mat_string.c
  * Example usage:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include "dmlfw_mat_string.h"
+ * #include <dmlfw_matrix.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
@@ -59,9 +63,6 @@
  * }
  * @endcode
  */
-
-#ifndef __DMLFW__MAT__STRING__
-#define __DMLFW__MAT__STRING__
 
 #include <dmlfw_types.h>
 
@@ -342,6 +343,6 @@ dmlfw_mat_string *dmlfw_mat_string_shuffle(dmlfw_mat_string *matrix, uint8_t how
  */
 dmlfw_mat_string *dmlfw_mat_string_delete_columns(dmlfw_mat_string *matrix, index_t *indexes, dimension_t indexes_size, dmlfw_mat_string *new_matrix);
 
-#endif // __DMLFW__MAT__STRING__
 
 /** @} */
+#endif // __DMLFW__MAT__STRING__

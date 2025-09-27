@@ -1,7 +1,15 @@
+#ifndef __DMLFW__VEC__DOUBLE__
+#define __DMLFW__VEC__DOUBLE__
 /**
  * @file dmlfw_vec_double.h
- * @brief Double precision row and column vector types and operations.
+ * @defgroup vector_double Double Precision Vectors
+ * @ingroup vector
+ * @brief Double precision column and row vector types and functions.
  *
+ * Version: 1.0
+ * Date: 2025-09-25
+ *
+ * @{
  * This header defines opaque vector data structures for double precision
  * floating-point values. It provides APIs for creating, destroying,
  * accessing, modifying, and manipulating both column and row vectors.
@@ -25,19 +33,13 @@
  * - Passing NULL pointers or invalid arguments sets error status.
  * - On error, functions return NULL, 0, or 0.0 depending on return type.
  *
- * Version: 1.0
- * Date: 2025-09-25
  *
- * @defgroup vector Double Vectors
- * @ingroup vector
- * @brief Double precision column and row vector types and functions.
- *
- * @example example_usage.c
+ * @example example_dmlfw_vec_double.c
  * Typical usage example:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include "dmlfw_vec_double.h"
+ * #include <dmlfw_vector.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
@@ -62,11 +64,8 @@
  * }
  * @endcode
  *
- * @{
  */
 
-#ifndef __DMLFW__VEC__DOUBLE__
-#define __DMLFW__VEC__DOUBLE__
 
 #include <dmlfw_types.h>
 
@@ -283,7 +282,6 @@ dmlfw_column_vec_double_get_mean(dmlfw_column_vec_double *vector);
  * @note The `header` is always a row vector, even when representing a column vector's header.
  * @note Check errors using the centralized error API after calling this function.
  *
- * @note Check errors using the centralized error API after calling this function.
  * @see dmlfw_row_vec_string
  * @see dmlfw_vec_string.h
  *
@@ -585,7 +583,6 @@ dmlfw_row_vec_double_get_mean(dmlfw_row_vec_double *vector);
  * @note The `header` is always a row vector, even when representing a column vector's header.
  * @note Check errors using the centralized error API after calling this function.
  *
- * @note Check errors using the centralized error API after calling this function.
  * @see dmlfw_row_vec_string
  * @see dmlfw_vec_string.h
  *

@@ -1,6 +1,16 @@
+#ifndef __DMLFW__ERROR__
+#define __DMLFW__ERROR__
 /**
  * @file dmlfw_error.h
+ * @defgroup error_handling Error Handling
+ * @ingroup ml-framework
  * @brief Centralized error handling interface for the framework.
+ *
+ * Author: Mohammed Daniyal
+ * Version: 1.0
+ * Date: 2025-09-26
+ *
+ * @{
  *
  * This module provides functions to check and retrieve error statuses,
  * error codes, human-readable messages, and debugging information
@@ -14,20 +24,36 @@
  * - The error message via `dmlfw_get_error_string()`.
  * - Debugging details via `dmlfw_get_debug_string()`.
  *
- * Typical usage pattern:
+ * @example example_dmlfw_error.c
+ * Example usage:
  * @code
- * char err[512];
- * char debug[512];
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include "dmlfw_matrix.h"
+ * #include "dmlfw_error.h"
  *
- * dmlfw_mat_double *matrix = NULL;
- * // Example framework call
- * matrix = dmlfw_mat_double_create_new(2, 3);
+ * int main(void) {
+ *     char err[512];
+ *     char debug[512];
  *
- * if(dmlfw_error()) {
- *     dmlfw_get_error_string(err, sizeof(err));
- *     dmlfw_get_debug_string(debug, sizeof(debug));
- *     printf("Error: %s, Debugging: %s\n", err, debug);
- *     // Handle error and clean up
+ *     dmlfw_mat_double *matrix = NULL;
+ *     // Example framework call
+ *     matrix = dmlfw_mat_double_create_new(2, 3);
+ *
+ *     if(dmlfw_error()) {
+ *         dmlfw_get_error_string(err, sizeof(err));
+ *         dmlfw_get_debug_string(debug, sizeof(debug));
+ *         printf("Error: %s, Debugging: %s\n", err, debug);
+ *         // Handle error and clean up
+ *         return EXIT_FAILURE;
+ *     }
+ *
+ *     // Do some work with matrix...
+ *
+ *     // Cleanup
+ *     dmlfw_mat_double_destroy(matrix);
+ *
+ *     return EXIT_SUCCESS;
  * }
  * @endcode
  * Note: For `dmlfw_get_error_string()` and `dmlfw_get_debug_string()`,
@@ -36,14 +62,8 @@
  *
  * This enables robust and consistent error tracking across the framework.
  *
- * @defgroup error_handling Error Handling
- * @brief Functions and utilities for retrieving error information.
- *
- * @{
  */
 
-#ifndef __DMLFW__ERROR__
-#define __DMLFW__ERROR__
 
 #include <inttypes.h>
 #include <dmlfw_types.h>

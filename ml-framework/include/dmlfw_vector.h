@@ -1,7 +1,16 @@
+#ifndef __DMLFW__VECTOR__
+#define __DMLFW__VECTOR__
 /**
  * @file dmlfw_vector.h
- * @brief Unified interface for vector data structures.
+ * @defgroup vector Vector Types and Utilities
+ * @ingroup ml-framework
+ * @brief Core vector types and utilities for double and string data.
  *
+ * Author: Mohammed Daniyal
+ * Version: 1.0
+ * Date: 2025-09-26
+ *
+ * @{
  * This umbrella header consolidates the vector types for
  * double and string elements, providing access to core
  * functionalities such as:
@@ -21,23 +30,17 @@
  * collections within the framework and is widely reused
  * in higher-level components.
  *
- * @defgroup vector Vector Module
- * @brief Core vector types and utilities for double and string data.
- *
  * See also the specialized headers for detailed APIs:
  * - @ref dmlfw_vec_double.h "Double Vectors"
  * - @ref dmlfw_vec_string.h "String Vectors"
  *
- * @{
  */
 
-#ifndef __DMLFW__VECTOR__
-#define __DMLFW__VECTOR__
 
 #include <dmlfw_types.h>            // Core typedefs
 #include <vector/dmlfw_vec_string.h>
 #include <vector/dmlfw_vec_double.h>
 
-#endif // __DMLFW__VECTOR__
 
 /** @} */ ///< End of vector group
+#endif // __DMLFW__VECTOR__

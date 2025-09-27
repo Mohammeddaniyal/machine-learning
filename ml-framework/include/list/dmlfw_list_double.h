@@ -1,6 +1,15 @@
+#ifndef __DMLFW__LIST__DOUBLE__
+#define __DMLFW__LIST__DOUBLE__
 /**
  * @file dmlfw_list_double.h
- * @brief Forward list of double precision floating point values.
+ * @defgroup list_double Forward List (Double)
+ * @ingroup list
+ * @brief Core singly linked list type for double precision data.
+ *
+ * Version: 1.0
+ * Date: 2025-09-25
+ *
+ * @{ 
  *
  * This module provides a singly linked list (forward list) implementation 
  * for double precision floating point data. It supports creating, 
@@ -18,16 +27,13 @@
  * The list owns its nodes and their double values.
  * The vector returned by conversion functions must be explicitly freed by callers.
  *
- * @defgroup list_double Forward List Double Module
- * @ingroup list
- * @brief Core singly linked list type for double precision data.
  *
- * @example example_list_double.c
+ * @example example_dmlfw_list_double.c
  * Example usage:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include "dmlfw_list_double.h"
+ * #include <dmlfw_list.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
@@ -66,8 +72,6 @@
  * @endcode
  */
 
-#ifndef __DMLFW__LIST__DOUBLE__
-#define __DMLFW__LIST__DOUBLE__
 
 #include <dmlfw_vector.h>
 
@@ -196,5 +200,6 @@ dimension_t dmlfw_forward_list_double_get_size(dmlfw_forward_list_double *forwar
  */
 void dmlfw_forward_list_double_clear(dmlfw_forward_list_double *forward_list);
 
+/** @} */
 #endif // __DMLFW__LIST__DOUBLE__
 

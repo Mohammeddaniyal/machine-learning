@@ -1,7 +1,15 @@
+#ifndef __DMLFW__VEC__STRING__
+#define __DMLFW__VEC__STRING__
 /**
  * @file dmlfw_vec_string.h
- * @brief String row and column vector types and operations.
+ * @defgroup vector_string String Vectors
+ * @ingroup vector
+ * @brief String column and row vector types and functions.
  *
+ * Version: 1.0
+ * Date: 2025-09-25
+ *
+ * @{
  * This header defines opaque vector data structures for string values.
  * It provides APIs for creating, destroying, accessing, modifying,
  * and manipulating both column and row string vectors.
@@ -24,19 +32,12 @@
  * - Passing NULL pointers or invalid arguments sets error status.
  * - On error, functions return NULL or 0 depending on return type.
  *
- * Version: 1.0
- * Date: 2025-09-25
- *
- * @defgroup vector String Vectors
- * @ingroup vector
- * @brief String column and row vector types and functions.
- *
- * @example example_usage_string.c
+ * @example example_dmlfw_vec_string.c
  * Typical usage example:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include <dmlfw_vec_string.h>
+ * #include <dmlfw_vector.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
@@ -63,11 +64,8 @@
  * }
  * @endcode
  *
- * @{
  */
 
-#ifndef __DMLFW__VEC__STRING__
-#define __DMLFW__VEC__STRING__
 
 #include <dmlfw_types.h>
 
@@ -439,6 +437,6 @@ dimension_t dmlfw_column_vec_string_get_size(dmlfw_column_vec_string *vector);
 dmlfw_row_vec_string * dmlfw_column_vec_string_transpose(dmlfw_column_vec_string *vector,
                                                         dmlfw_row_vec_string *transposed_vector);
 
-#endif // __DMLFW__VEC__STRING__
 
 /** @} */ // end of vector group
+#endif // __DMLFW__VEC__STRING__

@@ -1,14 +1,22 @@
+#ifndef __DMLFW__TYPES__
+#define __DMLFW__TYPES__
 /**
  * @file dmlfw_types.h
- * @brief Core type definitions used across the framework.
+ * @defgroup core_types Core Type Definitions
+ * @ingroup ml-framework
+ * @brief Fundamental scalar typedefs used across the framework.
+ *
+ * Author: Mohammed Daniyal
+ * Version: 1.0
+ * Date: 2025-09-26
+ *
+ * @{
  *
  * This header centralizes typedefs for indices, dimensions,
  * and other fundamental scalar types. All modules should
  * include this instead of redefining these types.
  */
 
-#ifndef __DMLFW__TYPES__
-#define __DMLFW__TYPES__
 
 #include <inttypes.h>
 
@@ -24,4 +32,6 @@ typedef uint32_t dimension_t;
  */
 typedef uint32_t index_t;
 
+
+/** @} */ // end of core_types group
 #endif // __DMLFW__TYPES__

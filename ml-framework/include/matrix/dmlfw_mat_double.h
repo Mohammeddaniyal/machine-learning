@@ -1,7 +1,15 @@
+#ifndef DMLFW_MAT_DOUBLE_H
+#define DMLFW_MAT_DOUBLE_H
 /**
  * @file dmlfw_mat_double.h
- * @brief Double precision matrix types and operations.
+ * @defgroup matrix_double Double Precision Matrices
+ * @ingroup matrix
+ * @brief Core double precision matrix types and utilities.
  *
+ * Version: 1.0
+ * Date: 2025-09-25
+ *
+ * @{
  * This header defines opaque matrix structures for double precision floating-point data.
  * It provides APIs for creation, destruction, element access and mutation, CSV import/export,
  * matrix operations such as transpose, reshape, shuffle, block extraction, and statistical functions.
@@ -23,16 +31,13 @@
  *   which may use one-based indexing (documented explicitly in their parameter list).
  * - Range parameters (start/end) are inclusive unless explicitly stated otherwise.
  *
- * @defgroup matrix Double Precision Matrix Module
- * @ingroup matrix
- * @brief Core double precision matrix types and utilities.
  *
- * @example example_mat_double.c
+ * @example example_dmlfw_mat_double.c
  * Example usage:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include <dmlfw_mat_double.h>
+ * #include <dmlfw_matrix.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
@@ -54,8 +59,6 @@
  * @endcode
  */
 
-#ifndef DMLFW_MAT_DOUBLE_H
-#define DMLFW_MAT_DOUBLE_H
 
 #include <dmlfw_types.h>
 
@@ -868,6 +871,6 @@ dmlfw_mat_double *dmlfw_mat_double_get_block_from_csv(const char *csv_file_name,
                                                       long *pos);
 
 
-#endif /* DMLFW_MAT_DOUBLE_H */
 
 /** @} */
+#endif /* DMLFW_MAT_DOUBLE_H */
