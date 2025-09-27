@@ -45,8 +45,8 @@ Daniyal Machine Learning Framework (DMLFW) is a personal educational project to 
 
 
 * For detailed tutorials exploring all stages of workflow:  
-  - Use [`ml-examples/regression/linear/TUTORIAL_PREPROCESSED.md`](ml-examples/regression/linear/TUTORIAL_PREPROCESSED.md) for running example programs with preprocessed datasets.  
-  - Use [`ml-examples/regression/linear/TUTORIAL_RAW.md`](ml-examples/regression/linear/TUTORIAL_RAW.md) for step-by-step guidance on preprocessing raw datasets with the provided tools.  
+  - Use [`ml-examples/TUTORIAL_PREPROCESSED.md`](ml-examples/regression/linear/TUTORIAL_PREPROCESSED.md) for running example programs with preprocessed datasets.  
+  - Use [`ml-examples/TUTORIAL_RAW.md`](ml-examples/regression/linear/TUTORIAL_RAW.md) for step-by-step guidance on preprocessing raw datasets with the provided tools.  
   - Use [`tools/TUTORIAL.md`](tools/TUTORIAL.md) for comprehensive instructions on using the command-line preprocessing utilities.
 
 ***
