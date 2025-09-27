@@ -1,7 +1,3 @@
-Here is the updated README content with necessary improvements reflecting your recent enhancements and tutorial structure recommendations, only updating relevant sections:
-
-***
-
 # Daniyal Machine Learning Framework (DMLFW)
 
 ## Introduction
@@ -91,4 +87,3 @@ This project is a work-in-progress learning journey—happy experimenting!
 
 ***
 
-If you want, I can prepare or update the tutorial files and README links next.
