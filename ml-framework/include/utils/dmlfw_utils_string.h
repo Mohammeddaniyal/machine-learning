@@ -24,6 +24,7 @@
  * @code
  * #include <stdio.h>
  * #include <string.h>
+ * #include <dmlfw_error.h>
  * #include <dmlfw_utils.h>
  *
  * int main(void) {

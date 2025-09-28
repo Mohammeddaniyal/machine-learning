@@ -37,9 +37,11 @@
  * #include <stdio.h>
  * #include <stdlib.h>
  * #include <dmlfw_vector.h>
+ * #include <dmlfw_error.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
+ *     char *val = NULL;
  *     dmlfw_row_vec_string *row_vec = dmlfw_row_vec_string_create_new(3);
  *     if (dmlfw_error()) {
  *         dmlfw_get_error_string(err, sizeof(err));
@@ -52,7 +54,6 @@
  *     dmlfw_row_vec_string_set(row_vec, 1, "World");
  *     dmlfw_row_vec_string_set(row_vec, 2, "!");
  *
- *     char *val = NULL;
  *     dmlfw_row_vec_string_get(row_vec, 1, &val);
  *     if (!dmlfw_error() && val) {
  *         printf("Element at index 1: %s\n", val);

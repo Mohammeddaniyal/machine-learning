@@ -23,6 +23,7 @@
  * @code
  * #include <stdio.h>
  * #include <dmlfw_utils.h>
+ * #include <dmlfw_error.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];

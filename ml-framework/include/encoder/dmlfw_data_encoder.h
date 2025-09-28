@@ -32,6 +32,7 @@
  * #include <stdio.h>
  * #include <stdlib.h>
  * #include <dmlfw_encoder.h>
+ * #include <dmlfw_error.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];

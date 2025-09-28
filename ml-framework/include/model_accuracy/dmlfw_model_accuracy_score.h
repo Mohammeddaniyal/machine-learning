@@ -28,6 +28,7 @@
  * #include <stdio.h>
  * #include <stdlib.h>
  * #include <dmlfw_model_accuracy.h>
+ * #include <dmlfw_error.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];

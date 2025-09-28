@@ -39,9 +39,11 @@
  * #include <stdio.h>
  * #include <stdlib.h>
  * #include <dmlfw_vector.h>
+ * #include <dmlfw_error.h>
  *
  * int main(void) {
  *     char err[512], dbg[512];
+ *     double mean=0.0;
  *     // Create a column vector with 3 rows (elements)
  *     dmlfw_column_vec_double *col_vec = dmlfw_column_vec_double_create_new(3);
  *     if (dmlfw_error()) {
@@ -55,7 +57,7 @@
  *     dmlfw_column_vec_double_set(col_vec, 1, 2.0);
  *     dmlfw_column_vec_double_set(col_vec, 2, 3.0);
  *
- *     double mean = dmlfw_column_vec_double_get_mean(col_vec);
+ *     mean = dmlfw_column_vec_double_get_mean(col_vec);
  *     printf("Mean of column vector: %lf\n", mean);
  *
  *     dmlfw_column_vec_double_destroy(col_vec);
