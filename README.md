@@ -35,6 +35,8 @@ Daniyal Machine Learning Framework (DMLFW) is a personal educational project to 
 
 ## **Quick Start Example (Anywhere on your system)**
 
+**What this example demonstrates:** *Creating a column vector, setting values, and computing the mean using DMLFW.*
+
 1. **Create a C file** anywhere you like — for example, in the **root folder** where `ml-framework/` exists:
 
 ```bash
