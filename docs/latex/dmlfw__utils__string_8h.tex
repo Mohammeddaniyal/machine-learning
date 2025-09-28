@@ -1,0 +1,89 @@
+\doxysection{ml-\/framework/include/utils/dmlfw\+\_\+utils\+\_\+string.h File Reference}
+\hypertarget{dmlfw__utils__string_8h}{}\label{dmlfw__utils__string_8h}\index{ml-\/framework/include/utils/dmlfw\_utils\_string.h@{ml-\/framework/include/utils/dmlfw\_utils\_string.h}}
+
+
+Common string-\/related utility functions.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__utils__string_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dmlfw__utils__string_8h_af16be2a6a141abf8280237dff594296e}{dmlfw\+\_\+strcmp\+\_\+case\+\_\+insensitive}} (const char \texorpdfstring{$\ast$}{*}left, const char \texorpdfstring{$\ast$}{*}right)
+\begin{DoxyCompactList}\small\item\em Compares two strings ignoring case differences. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__utils__string_8h_a7babdea2cbaa4962879a60bd544efe1d}{dmlfw\+\_\+uint32\+\_\+to\+\_\+binary}} (uint32\+\_\+t number, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Converts a 32-\/bit unsigned integer to a binary string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Common string-\/related utility functions. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header provides essential string operations\+:
+\begin{DoxyItemize}
+\item Case-\/insensitive string comparison
+\item Conversion of uint32\+\_\+t integer to its binary string representation
+\end{DoxyItemize}\hypertarget{dmlfw__utils__string_8h_autotoc_md25}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__utils__string_8h_autotoc_md25}
+Functions use the centralized error API to report failures. Use {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} after calls to check status, and {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} plus {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}} for diagnostics. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__utils__string_8h_af16be2a6a141abf8280237dff594296e}\label{dmlfw__utils__string_8h_af16be2a6a141abf8280237dff594296e} 
+\index{dmlfw\_utils\_string.h@{dmlfw\_utils\_string.h}!dmlfw\_strcmp\_case\_insensitive@{dmlfw\_strcmp\_case\_insensitive}}
+\index{dmlfw\_strcmp\_case\_insensitive@{dmlfw\_strcmp\_case\_insensitive}!dmlfw\_utils\_string.h@{dmlfw\_utils\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_strcmp\_case\_insensitive()}{dmlfw\_strcmp\_case\_insensitive()}}
+{\footnotesize\ttfamily int dmlfw\+\_\+strcmp\+\_\+case\+\_\+insensitive (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{left,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two strings ignoring case differences. 
+
+Performs a case-\/insensitive comparison of {\ttfamily left} and {\ttfamily right}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \mbox{[}in\mbox{]} Left string (must not be NULL). \\
+\hline
+{\em right} & \mbox{[}in\mbox{]} Right string (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if strings are equal ignoring case, negative if left \texorpdfstring{$<$}{<} right, positive if left \texorpdfstring{$>$}{>} right. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_utils_string_8c-example}{example\+\_\+utils\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__utils__string_8h_a7babdea2cbaa4962879a60bd544efe1d}\label{dmlfw__utils__string_8h_a7babdea2cbaa4962879a60bd544efe1d} 
+\index{dmlfw\_utils\_string.h@{dmlfw\_utils\_string.h}!dmlfw\_uint32\_to\_binary@{dmlfw\_uint32\_to\_binary}}
+\index{dmlfw\_uint32\_to\_binary@{dmlfw\_uint32\_to\_binary}!dmlfw\_utils\_string.h@{dmlfw\_utils\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_uint32\_to\_binary()}{dmlfw\_uint32\_to\_binary()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+uint32\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{number,  }\item[{char \texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Converts a 32-\/bit unsigned integer to a binary string. 
+
+Converts {\ttfamily number} to a null-\/terminated string of \textquotesingle{}0\textquotesingle{} and \textquotesingle{}1\textquotesingle{} characters, representing the binary format from most significant bit to least.
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & \mbox{[}in\mbox{]} Number to convert. \\
+\hline
+{\em string} & \mbox{[}out\mbox{]} Destination buffer to hold binary string. Must be at least 33 bytes in size (32 bits + null). \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_utils_string_8c-example}{example\+\_\+utils\+\_\+string.\+c}}.\end{Desc}

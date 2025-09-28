@@ -1,0 +1,78 @@
+\doxysection{tools/src/scale\+\_\+using\+\_\+parameters\+\_\+file.c File Reference}
+\hypertarget{scale__using__parameters__file_8c}{}\label{scale__using__parameters__file_8c}\index{tools/src/scale\_using\_parameters\_file.c@{tools/src/scale\_using\_parameters\_file.c}}
+
+
+Scales a dataset using given parameters and a specified algorithm.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw.\+h$>$}\newline
+Include dependency graph for scale\+\_\+using\+\_\+parameters\+\_\+file.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{scale__using__parameters__file_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{scale__using__parameters__file_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function entry point for scaling tool using given parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Scales a dataset using given parameters and a specified algorithm. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool loads a dataset CSV and scales it according to parameters specified in a separate CSV file using the given scaling algorithm, saving the result to a target CSV file.
+
+Usage\+: ./scale\+\_\+double\+\_\+with\+\_\+given\+\_\+parameters source\+\_\+csv target\+\_\+csv algorithm parameters\+\_\+csv
+
+Parameters\+:
+\begin{DoxyItemize}
+\item source\+\_\+csv\+: Path to the input dataset CSV.
+\item target\+\_\+csv\+: Path to write the scaled dataset CSV.
+\item algorithm\+: Scaling algorithm name (e.\+g., "{}min\+\_\+max"{}, "{}z\+\_\+score"{}).
+\item parameters\+\_\+csv\+: CSV file with scaling parameters to apply. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{scale__using__parameters__file_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{scale__using__parameters__file_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{scale\_using\_parameters\_file.c@{scale\_using\_parameters\_file.c}!main@{main}}
+\index{main@{main}!scale\_using\_parameters\_file.c@{scale\_using\_parameters\_file.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function entry point for scaling tool using given parameters. 
+
+Loads dataset, applies scaling with specified algorithm and parameters file, and writes scaled dataset to output CSV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Command line argument count. \\
+\hline
+{\em argv} & Command line arguments vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, prints errors if encountered.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./scale\_double\_with\_given\_parameters\ data.csv\ scaled.csv\ min\_max\ params.csv}
+
+\end{DoxyCode}
+ 

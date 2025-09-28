@@ -1,0 +1,82 @@
+\doxysection{tools/src/column\+\_\+cutter.c File Reference}
+\hypertarget{column__cutter_8c}{}\label{column__cutter_8c}\index{tools/src/column\_cutter.c@{tools/src/column\_cutter.c}}
+
+
+Command-\/line tool to cut specified columns from a CSV file.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+matrix.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+utils.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for column\+\_\+cutter.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{column__cutter_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{column__cutter_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for the column cutter tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Command-\/line tool to cut specified columns from a CSV file. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool loads a CSV file into a string matrix, removes specified columns by name, and saves the resulting matrix to a new CSV file. It helps extract subsets of data for preprocessing or analysis using the ml-\/framework matrix and utility modules.
+
+Usage\+: ./column\+\_\+cutter source.\+csv target.\+csv column\+\_\+to\+\_\+cut\+\_\+1 column\+\_\+to\+\_\+cut\+\_\+2 ...
+
+Parameters\+:
+\begin{DoxyItemize}
+\item source\+\_\+csv\+: Path to the input CSV file.
+\item target\+\_\+csv\+: Path to the output CSV file with specified columns removed.
+\item columns\+\_\+to\+\_\+cut\+: List of column names to remove from the CSV.
+\end{DoxyItemize}
+
+This tool uses ml-\/framework headers\+: \doxylink{dmlfw__matrix_8h}{dmlfw\+\_\+matrix.\+h}, \doxylink{dmlfw__vector_8h}{dmlfw\+\_\+vector.\+h}, \doxylink{dmlfw__utils_8h}{dmlfw\+\_\+utils.\+h}. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{column__cutter_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{column__cutter_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{column\_cutter.c@{column\_cutter.c}!main@{main}}
+\index{main@{main}!column\_cutter.c@{column\_cutter.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for the column cutter tool. 
+
+Loads the CSV into an ml-\/framework string matrix, identifies column indices to remove, deletes those columns, and writes the reduced matrix back to CSV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Command-\/line argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on success or with usage/error messages.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./column\_cutter\ input.csv\ output.csv\ Gender\ Age}
+
+\end{DoxyCode}
+ 

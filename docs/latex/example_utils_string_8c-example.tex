@@ -1,0 +1,44 @@
+\doxysection{example\+\_\+utils\+\_\+string.\+c}
+\hypertarget{example_utils_string_8c-example}{}\label{example_utils_string_8c-example}Typical usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__error_8h}{dmlfw\_error.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__utils_8h}{dmlfw\_utils.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *s1\ =\ \textcolor{stringliteral}{"{}Hello"{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *s2\ =\ \textcolor{stringliteral}{"{}hello"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ cmp\ =\ \mbox{\hyperlink{dmlfw__utils__string_8h_af16be2a6a141abf8280237dff594296e}{dmlfw\_strcmp\_case\_insensitive}}(s1,\ s2);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Comparison\ error:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Comparison\ result:\ \%d\(\backslash\)n"{}},\ cmp);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ binary\_str[33];\ \textcolor{comment}{//\ 32\ bits\ +\ null}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__utils__string_8h_a7babdea2cbaa4962879a60bd544efe1d}{dmlfw\_uint32\_to\_binary}}(12345U,\ binary\_str);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Conversion\ error:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Binary\ representation:\ \%s\(\backslash\)n"{}},\ binary\_str);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

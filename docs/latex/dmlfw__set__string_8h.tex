@@ -1,0 +1,228 @@
+\doxysection{ml-\/framework/include/set/dmlfw\+\_\+set\+\_\+string.h File Reference}
+\hypertarget{dmlfw__set__string_8h}{}\label{dmlfw__set__string_8h}\index{ml-\/framework/include/set/dmlfw\_set\_string.h@{ml-\/framework/include/set/dmlfw\_set\_string.h}}
+
+
+Core unordered string set types and utilities.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+types.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+set\+\_\+string.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{dmlfw__set__string_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__set__string_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+set\+\_\+string \mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing an unordered set of unique strings. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dmlfw__set__string_8h_ab49881a8152a9c66924bf636cf8a97df}{dmlfw\+\_\+set\+\_\+string\+\_\+add}} (\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}set, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Adds a unique string to the set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__set__string_8h_a029487f7f6b0d38c71b539c31a0d541e}{dmlfw\+\_\+set\+\_\+string\+\_\+create\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em Creates an empty unordered set of strings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__set__string_8h_ae9f566880579332b68c428fdec0d0e11}{dmlfw\+\_\+set\+\_\+string\+\_\+destroy}} (\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}set)
+\begin{DoxyCompactList}\small\item\em Destroys the string set, freeing all resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__set__string_8h_a0c94b26be039ee96ae6a0b3289e0916b}{dmlfw\+\_\+set\+\_\+string\+\_\+get}} (\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}set, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} i, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Retrieves a copy of the string at the given index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{dmlfw__set__string_8h_a0771bdbff0ec2dc3c16d1ea700dc1059}{dmlfw\+\_\+set\+\_\+string\+\_\+get\+\_\+size}} (\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}set)
+\begin{DoxyCompactList}\small\item\em Retrieves the number of unique strings in the set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core unordered string set types and utilities. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header defines opaque unordered set structures specialized for string data. It provides APIs for creation, destruction, element access, adding unique strings, and querying the set size.\hypertarget{dmlfw__set__string_8h_autotoc_md22}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__set__string_8h_autotoc_md22}
+All functions report errors via the centralized error API. Use {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} to check for errors after calls. {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}} provide diagnostic details.\hypertarget{dmlfw__set__string_8h_autotoc_md23}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__set__string_8h_autotoc_md23}
+Functions returning new set pointers transfer ownership to the caller, who is responsible for freeing with {\ttfamily \doxylink{dmlfw__set__string_8h_ae9f566880579332b68c428fdec0d0e11}{dmlfw\+\_\+set\+\_\+string\+\_\+destroy()}}. Returned strings from get operations are allocated and must be freed by callers. 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}\label{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6} 
+\index{dmlfw\_set\_string.h@{dmlfw\_set\_string.h}!dmlfw\_set\_string@{dmlfw\_set\_string}}
+\index{dmlfw\_set\_string@{dmlfw\_set\_string}!dmlfw\_set\_string.h@{dmlfw\_set\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_set\_string}{dmlfw\_set\_string}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+set\+\_\+string \mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}}}
+
+
+
+Opaque structure representing an unordered set of unique strings. 
+
+The internal details are encapsulated. Use provided API functions for creation, manipulation, and destruction. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__set__string_8h_ab49881a8152a9c66924bf636cf8a97df}\label{dmlfw__set__string_8h_ab49881a8152a9c66924bf636cf8a97df} 
+\index{dmlfw\_set\_string.h@{dmlfw\_set\_string.h}!dmlfw\_set\_string\_add@{dmlfw\_set\_string\_add}}
+\index{dmlfw\_set\_string\_add@{dmlfw\_set\_string\_add}!dmlfw\_set\_string.h@{dmlfw\_set\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_set\_string\_add()}{dmlfw\_set\_string\_add()}}
+{\footnotesize\ttfamily int dmlfw\+\_\+set\+\_\+string\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{set,  }\item[{char \texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Adds a unique string to the set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & \mbox{[}in\mbox{]} Set (must not be NULL). \\
+\hline
+{\em string} & \mbox{[}in\mbox{]} String to add (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 on memory failure, 0 if string was added or already exists.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ result\ =\ \mbox{\hyperlink{dmlfw__set__string_8h_ab49881a8152a9c66924bf636cf8a97df}{dmlfw\_set\_string\_add}}(set,\ \textcolor{stringliteral}{"{}example"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (result\ ==\ -\/1\ \&\&\ \mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ add\ string:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_set_string_8c-example}{example\+\_\+set\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__set__string_8h_a029487f7f6b0d38c71b539c31a0d541e}\label{dmlfw__set__string_8h_a029487f7f6b0d38c71b539c31a0d541e} 
+\index{dmlfw\_set\_string.h@{dmlfw\_set\_string.h}!dmlfw\_set\_string\_create\_new@{dmlfw\_set\_string\_create\_new}}
+\index{dmlfw\_set\_string\_create\_new@{dmlfw\_set\_string\_create\_new}!dmlfw\_set\_string.h@{dmlfw\_set\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_set\_string\_create\_new()}{dmlfw\_set\_string\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+set\+\_\+string\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates an empty unordered set of strings. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to newly created set or NULL if allocation failed.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\_set\_string}}\ *set\ =\ \mbox{\hyperlink{dmlfw__set__string_8h_a029487f7f6b0d38c71b539c31a0d541e}{dmlfw\_set\_string\_create\_new}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ create\ set:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_set_string_8c-example}{example\+\_\+set\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__set__string_8h_ae9f566880579332b68c428fdec0d0e11}\label{dmlfw__set__string_8h_ae9f566880579332b68c428fdec0d0e11} 
+\index{dmlfw\_set\_string.h@{dmlfw\_set\_string.h}!dmlfw\_set\_string\_destroy@{dmlfw\_set\_string\_destroy}}
+\index{dmlfw\_set\_string\_destroy@{dmlfw\_set\_string\_destroy}!dmlfw\_set\_string.h@{dmlfw\_set\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_set\_string\_destroy()}{dmlfw\_set\_string\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+set\+\_\+string\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{set }\end{DoxyParamCaption})}
+
+
+
+Destroys the string set, freeing all resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & \mbox{[}in\mbox{]} Pointer to set or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__set__string_8h_ae9f566880579332b68c428fdec0d0e11}{dmlfw\_set\_string\_destroy}}(set);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_set_string_8c-example}{example\+\_\+set\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__set__string_8h_a0c94b26be039ee96ae6a0b3289e0916b}\label{dmlfw__set__string_8h_a0c94b26be039ee96ae6a0b3289e0916b} 
+\index{dmlfw\_set\_string.h@{dmlfw\_set\_string.h}!dmlfw\_set\_string\_get@{dmlfw\_set\_string\_get}}
+\index{dmlfw\_set\_string\_get@{dmlfw\_set\_string\_get}!dmlfw\_set\_string.h@{dmlfw\_set\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_set\_string\_get()}{dmlfw\_set\_string\_get()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+set\+\_\+string\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{set,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{i,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Retrieves a copy of the string at the given index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & \mbox{[}in\mbox{]} Set (must not be NULL). \\
+\hline
+{\em i} & \mbox{[}in\mbox{]} Zero-\/based index. \\
+\hline
+{\em string} & \mbox{[}out\mbox{]} Pointer to receive newly allocated string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Caller must free the allocated string. 
+
+On error sets error status and string is NULL.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ *str\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__set__string_8h_a0c94b26be039ee96ae6a0b3289e0916b}{dmlfw\_set\_string\_get}}(set,\ 0,\ \&str);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ getting\ string:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}String:\ \%s\(\backslash\)n"{}},\ str);}
+\DoxyCodeLine{\ \ \ \ free(str);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_set_string_8c-example}{example\+\_\+set\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__set__string_8h_a0771bdbff0ec2dc3c16d1ea700dc1059}\label{dmlfw__set__string_8h_a0771bdbff0ec2dc3c16d1ea700dc1059} 
+\index{dmlfw\_set\_string.h@{dmlfw\_set\_string.h}!dmlfw\_set\_string\_get\_size@{dmlfw\_set\_string\_get\_size}}
+\index{dmlfw\_set\_string\_get\_size@{dmlfw\_set\_string\_get\_size}!dmlfw\_set\_string.h@{dmlfw\_set\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_set\_string\_get\_size()}{dmlfw\_set\_string\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} dmlfw\+\_\+set\+\_\+string\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__set__string_8h_a21f129832c1c3fdb3c8be8af601c4ea6}{dmlfw\+\_\+set\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{set }\end{DoxyParamCaption})}
+
+
+
+Retrieves the number of unique strings in the set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & \mbox{[}in\mbox{]} Set (may be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements or 0 if NULL or error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ size\ =\ \mbox{\hyperlink{dmlfw__set__string_8h_a0771bdbff0ec2dc3c16d1ea700dc1059}{dmlfw\_set\_string\_get\_size}}(set);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ getting\ size:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Set\ size:\ \%u\(\backslash\)n"{}},\ size);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_set_string_8c-example}{example\+\_\+set\+\_\+string.\+c}}.\end{Desc}

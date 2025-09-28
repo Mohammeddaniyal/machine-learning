@@ -1,0 +1,40 @@
+\doxysection{example\+\_\+dmlfw\+\_\+vec\+\_\+string.\+c}
+\hypertarget{example_dmlfw_vec_string_8c-example}{}\label{example_dmlfw_vec_string_8c-example}Typical usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__vector_8h}{dmlfw\_vector.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__error_8h}{dmlfw\_error.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ *val\ =\ NULL;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *row\_vec\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(3);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(row\_vec,\ 0,\ \textcolor{stringliteral}{"{}Hello"{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(row\_vec,\ 1,\ \textcolor{stringliteral}{"{}World"{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(row\_vec,\ 2,\ \textcolor{stringliteral}{"{}!"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga5bf815d73d03538f322b7e13952ad7b7}{dmlfw\_row\_vec\_string\_get}}(row\_vec,\ 1,\ \&val);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}()\ \&\&\ val)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Element\ at\ index\ 1:\ \%s\(\backslash\)n"{}},\ val);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(row\_vec);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

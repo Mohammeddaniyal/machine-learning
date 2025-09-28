@@ -1,0 +1,105 @@
+\doxysection{ml-\/framework/include/vector/dmlfw\+\_\+vec\+\_\+double.h File Reference}
+\hypertarget{dmlfw__vec__double_8h}{}\label{dmlfw__vec__double_8h}\index{ml-\/framework/include/vector/dmlfw\_vec\_double.h@{ml-\/framework/include/vector/dmlfw\_vec\_double.h}}
+
+
+Double precision column and row vector types and functions.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+types.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+vec\+\_\+double.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{dmlfw__vec__double_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__vec__double_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+column\+\_\+vec\+\_\+double \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a column vector of doubles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gafa67e4bf64807f5701cfed23ae11913f}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+copy}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}target\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}source\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Copies the contents of one column vector to another. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows)
+\begin{DoxyCompactList}\small\item\em Creates a new column vector of specified size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_gab00fab434cddf235a03066d050c600e2}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+create\+\_\+new\+\_\+filled}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows, double value, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Creates or fills a column vector with a specified value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+destroy}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a column vector and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga869b876bcfcc1d011ea55ec865aad593}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a column vector from a one-\/column CSV file. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_ga38fb83c100ce68ed9cf0d17100ced98f}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index)
+\begin{DoxyCompactList}\small\item\em Retrieves the value of an element in a column vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_gacc0f0c0d157de326e370518055d4746f}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get\+\_\+mean}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Computes the mean of all elements in a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_ga5d283de1d05c7493bc9409d12147e30d}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the number of elements in a column vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+set}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, double value)
+\begin{DoxyCompactList}\small\item\em Sets the value of an element in a column vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga455fc9a93df5c22a1896034908248f21}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a column vector to a CSV file with a header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+transpose}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a column vector into a row vector. \end{DoxyCompactList}\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+row\+\_\+vec\+\_\+double \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a row vector of doubles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga39afb92b941927734ed4fdf313426c27}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+copy}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}target\+\_\+vector, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}source\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Copies the contents of one row vector to another. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga6b5d3611f5e5b1339ae5718a5fc1ea2c}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns)
+\begin{DoxyCompactList}\small\item\em Creates a new row vector of specified size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga764802999ba53e6a8398a6707eed5992}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+create\+\_\+new\+\_\+filled}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns, double value, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Creates or fills a row vector with a specified value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+destroy}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a row vector and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga7afb4564cf1866d196dddc95f29dc240}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a row vector from a CSV file. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_gaff904fd14a48616b438379ff893abc69}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index)
+\begin{DoxyCompactList}\small\item\em Retrieves the value of an element in a row vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_ga49f0e80baff95728d89fd93dbcd522b2}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get\+\_\+mean}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Computes the mean of all elements in a row vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_gaa564c0d14664a9049368e2a08574813e}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the number of elements in a row vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga69101f1cab5d3935cb374e5856227d0e}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+set}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, double value)
+\begin{DoxyCompactList}\small\item\em Sets the value of an element in a row vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga4c605a9d7a2313db87f2fb823792fccd}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a row vector to a CSV file with a header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga7d698fb0259adeadeef52c149dee2887}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+transpose}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a row vector into a column vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Double precision column and row vector types and functions. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header defines opaque vector data structures for double precision floating-\/point values. It provides APIs for creating, destroying, accessing, modifying, and manipulating both column and row vectors.
+
+Common operations include\+:
+\begin{DoxyItemize}
+\item Creation and destruction
+\item Element access and mutation
+\item Transposing between row and column vectors
+\item CSV import/export
+\item Basic statistics (mean, size, etc.)
+\item Copying contents
+\end{DoxyItemize}\hypertarget{dmlfw__vec__double_8h_autotoc_md26}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__vec__double_8h_autotoc_md26}
+All functions report errors through the centralized error API\+:
+\begin{DoxyItemize}
+\item Call \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()} to check whether an error occurred.
+\item Use \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()} and \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()} for error details and debugging info.
+\end{DoxyItemize}
+
+Unless otherwise stated\+:
+\begin{DoxyItemize}
+\item Passing NULL pointers or invalid arguments sets error status.
+\item On error, functions return NULL, 0, or 0.\+0 depending on return type. 
+\end{DoxyItemize}

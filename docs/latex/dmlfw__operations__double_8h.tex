@@ -1,0 +1,497 @@
+\doxysection{ml-\/framework/include/operations/dmlfw\+\_\+operations\+\_\+double.h File Reference}
+\hypertarget{dmlfw__operations__double_8h}{}\label{dmlfw__operations__double_8h}\index{ml-\/framework/include/operations/dmlfw\_operations\_double.h@{ml-\/framework/include/operations/dmlfw\_operations\_double.h}}
+
+
+Core double precision vector and matrix arithmetic operations.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__operations__double_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_ae3a859b0ac320264774b3f6f1a88e794}{dmlfw\+\_\+add\+\_\+double\+\_\+column\+\_\+vector}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Adds two column vectors element-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a3f32a2277c412c8aeb93695ba2215937}{dmlfw\+\_\+add\+\_\+double\+\_\+matrix\+\_\+with\+\_\+matrix}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Adds two matrices element-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a6435b7eb93d58dae335810441ccb2227}{dmlfw\+\_\+element\+\_\+wise\+\_\+multiply\+\_\+double\+\_\+column\+\_\+vector}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Element-\/wise multiply two column vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a9a793c96bf4f11ff13cc63298ee52149}{dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+column\+\_\+vector}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+matrix, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mini__batch__gd_8c_a9fe8cee25422ce7b5b66c98f38847152}{product\+\_\+vector}})
+\begin{DoxyCompactList}\small\item\em Multiplies a matrix with a column vector, producing a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_af6d5de1d9b3960a5c64c131f6abc7ea4}{dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+matrix}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}product\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Multiplies two matrices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a4a012074a2118a3981486228d7865a5e}{dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+matrix\+\_\+strassens}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Multiplies two square matrices using Strassen\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a4b5ae707cb0ef9237b47c3ec222e2f1b}{dmlfw\+\_\+multiply\+\_\+double\+\_\+row\+\_\+vector\+\_\+with\+\_\+column\+\_\+vector}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mini__batch__gd_8c_a9fe8cee25422ce7b5b66c98f38847152}{product\+\_\+vector}})
+\begin{DoxyCompactList}\small\item\em Multiplies a row vector with a column vector, producing a single-\/value column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_ac0c53e52de3aa6bdd624603ffb4c3346}{dmlfw\+\_\+multiply\+\_\+double\+\_\+scalar\+\_\+with\+\_\+column\+\_\+vector}} (double scalar\+\_\+value, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mini__batch__gd_8c_a9fe8cee25422ce7b5b66c98f38847152}{product\+\_\+vector}})
+\begin{DoxyCompactList}\small\item\em Multiplies a scalar with a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a978a49d2d79a6f60cd3b2751617fa0ef}{dmlfw\+\_\+subtract\+\_\+double\+\_\+column\+\_\+vector}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}difference\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Subtracts two column vectors element-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a60586656eaf47b42b837344237dd1c91}{dmlfw\+\_\+subtract\+\_\+double\+\_\+column\+\_\+vector\+\_\+from\+\_\+scalar}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, double scalar\+\_\+value, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Subtracts each element of a column vector from a scalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__operations__double_8h_a8097f2f40ff8de6d862f01aeaf32d9d8}{dmlfw\+\_\+subtract\+\_\+double\+\_\+matrix\+\_\+from\+\_\+matrix}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}left\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}right\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Subtracts second matrix from first element-\/wise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Core double precision vector and matrix arithmetic operations. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This module provides fundamental arithmetic operations specialized for double precision vectors and matrices, including multiplication, addition, subtraction, scalar scaling, and advanced matrix multiplication algorithms like Strassen’s method.\hypertarget{dmlfw__operations__double_8h_autotoc_md18}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__operations__double_8h_autotoc_md18}
+Functions validate all input pointers and vector/matrix dimensions. Errors are reported through a centralized error API. After calling functions, check {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} and retrieve error details via {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}}.\hypertarget{dmlfw__operations__double_8h_autotoc_md19}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__operations__double_8h_autotoc_md19}
+Inputs are owned by the caller. Functions allocate new output vectors/matrices if corresponding pointers are {\ttfamily NULL}. Any allocated output vectors/matrices are owned by the caller who must free them. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__operations__double_8h_ae3a859b0ac320264774b3f6f1a88e794}\label{dmlfw__operations__double_8h_ae3a859b0ac320264774b3f6f1a88e794} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_add\_double\_column\_vector@{dmlfw\_add\_double\_column\_vector}}
+\index{dmlfw\_add\_double\_column\_vector@{dmlfw\_add\_double\_column\_vector}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_add\_double\_column\_vector()}{dmlfw\_add\_double\_column\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+add\+\_\+double\+\_\+column\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Adds two column vectors element-\/wise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+vector} & \mbox{[}in\mbox{]} First vector (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+vector} & \mbox{[}in\mbox{]} Second vector (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional output vector, same size. If NULL, new vector allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to output vector or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Vectors must have equal size.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *sum\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_ae3a859b0ac320264774b3f6f1a88e794}{dmlfw\_add\_double\_column\_vector}}(vec1,\ vec2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ adding\ vectors:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ sum...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(sum);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a3f32a2277c412c8aeb93695ba2215937}\label{dmlfw__operations__double_8h_a3f32a2277c412c8aeb93695ba2215937} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_add\_double\_matrix\_with\_matrix@{dmlfw\_add\_double\_matrix\_with\_matrix}}
+\index{dmlfw\_add\_double\_matrix\_with\_matrix@{dmlfw\_add\_double\_matrix\_with\_matrix}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_add\_double\_matrix\_with\_matrix()}{dmlfw\_add\_double\_matrix\_with\_matrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+add\+\_\+double\+\_\+matrix\+\_\+with\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Adds two matrices element-\/wise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+matrix} & \mbox{[}in\mbox{]} First matrix (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+matrix} & \mbox{[}in\mbox{]} Second matrix (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional output matrix, must match input sizes. If NULL, new matrix allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to sum matrix or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Matrices must be of equal dimensions.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *sum\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a3f32a2277c412c8aeb93695ba2215937}{dmlfw\_add\_double\_matrix\_with\_matrix}}(mat1,\ mat2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ adding\ matrices:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ sum}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(sum);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a6435b7eb93d58dae335810441ccb2227}\label{dmlfw__operations__double_8h_a6435b7eb93d58dae335810441ccb2227} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_element\_wise\_multiply\_double\_column\_vector@{dmlfw\_element\_wise\_multiply\_double\_column\_vector}}
+\index{dmlfw\_element\_wise\_multiply\_double\_column\_vector@{dmlfw\_element\_wise\_multiply\_double\_column\_vector}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_element\_wise\_multiply\_double\_column\_vector()}{dmlfw\_element\_wise\_multiply\_double\_column\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+element\+\_\+wise\+\_\+multiply\+\_\+double\+\_\+column\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Element-\/wise multiply two column vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+vector} & \mbox{[}in\mbox{]} First vector (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+vector} & \mbox{[}in\mbox{]} Second vector (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional output vector, same size as inputs. If NULL, new vector allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to output vector or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Vectors must have equal size.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *result\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a6435b7eb93d58dae335810441ccb2227}{dmlfw\_element\_wise\_multiply\_double\_column\_vector}}(vec1,\ vec2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ element-\/wise\ multiplication:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ result...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(result);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a9a793c96bf4f11ff13cc63298ee52149}\label{dmlfw__operations__double_8h_a9a793c96bf4f11ff13cc63298ee52149} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_multiply\_double\_matrix\_with\_column\_vector@{dmlfw\_multiply\_double\_matrix\_with\_column\_vector}}
+\index{dmlfw\_multiply\_double\_matrix\_with\_column\_vector@{dmlfw\_multiply\_double\_matrix\_with\_column\_vector}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_multiply\_double\_matrix\_with\_column\_vector()}{dmlfw\_multiply\_double\_matrix\_with\_column\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+column\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+matrix,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{product\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Multiplies a matrix with a column vector, producing a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+matrix} & \mbox{[}in\mbox{]} Input matrix (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+vector} & \mbox{[}in\mbox{]} Column vector (non-\/\+NULL). \\
+\hline
+{\em product\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional output vector with size matching matrix rows. If NULL, a new vector is allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to output column vector or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Matrix columns must match vector size.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__operations__double_8h_a4b5ae707cb0ef9237b47c3ec222e2f1b}{dmlfw\+\_\+multiply\+\_\+double\+\_\+row\+\_\+vector\+\_\+with\+\_\+column\+\_\+vector}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *result\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a9a793c96bf4f11ff13cc63298ee52149}{dmlfw\_multiply\_double\_matrix\_with\_column\_vector}}(matrix,\ col\_vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ multiplying\ matrix\ and\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ result...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(result);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_af6d5de1d9b3960a5c64c131f6abc7ea4}\label{dmlfw__operations__double_8h_af6d5de1d9b3960a5c64c131f6abc7ea4} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_multiply\_double\_matrix\_with\_matrix@{dmlfw\_multiply\_double\_matrix\_with\_matrix}}
+\index{dmlfw\_multiply\_double\_matrix\_with\_matrix@{dmlfw\_multiply\_double\_matrix\_with\_matrix}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_multiply\_double\_matrix\_with\_matrix()}{dmlfw\_multiply\_double\_matrix\_with\_matrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{product\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Multiplies two matrices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+matrix} & \mbox{[}in\mbox{]} Left matrix (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+matrix} & \mbox{[}in\mbox{]} Right matrix (non-\/\+NULL). \\
+\hline
+{\em product\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional output matrix with appropriate dimensions. If NULL, a new matrix is allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to product matrix or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Left matrix columns must match right matrix rows.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *prod\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_af6d5de1d9b3960a5c64c131f6abc7ea4}{dmlfw\_multiply\_double\_matrix\_with\_matrix}}(mat1,\ mat2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ multiplying\ matrices:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ prod}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(prod);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a4a012074a2118a3981486228d7865a5e}\label{dmlfw__operations__double_8h_a4a012074a2118a3981486228d7865a5e} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens@{dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens}}
+\index{dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens@{dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens()}{dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+matrix\+\_\+strassens (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Multiplies two square matrices using Strassen\textquotesingle{}s algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+matrix} & \mbox{[}in\mbox{]} Left square matrix with power-\/of-\/two dimensions (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+matrix} & \mbox{[}in\mbox{]} Right square matrix matching left matrix dimensions (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional output matrix, square of same size. If NULL, new matrix allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to product matrix or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Dimensions must be power-\/of-\/two for Strassen\textquotesingle{}s algorithm.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *prod\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a4a012074a2118a3981486228d7865a5e}{dmlfw\_multiply\_double\_matrix\_with\_matrix\_strassens}}(mat1,\ mat2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ multiplying\ matrices\ with\ Strassen's:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ prod}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(prod);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a4b5ae707cb0ef9237b47c3ec222e2f1b}\label{dmlfw__operations__double_8h_a4b5ae707cb0ef9237b47c3ec222e2f1b} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector@{dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector}}
+\index{dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector@{dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector()}{dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+multiply\+\_\+double\+\_\+row\+\_\+vector\+\_\+with\+\_\+column\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{product\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Multiplies a row vector with a column vector, producing a single-\/value column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+vector} & \mbox{[}in\mbox{]} Left row vector (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+vector} & \mbox{[}in\mbox{]} Right column vector (non-\/\+NULL). \\
+\hline
+{\em product\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional pre-\/allocated output vector, size must be 1. If NULL, a new vector is allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the resulting single-\/value column vector or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Input vectors must have the same size.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__operations__double_8h_a9a793c96bf4f11ff13cc63298ee52149}{dmlfw\+\_\+multiply\+\_\+double\+\_\+matrix\+\_\+with\+\_\+column\+\_\+vector}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *result\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a4b5ae707cb0ef9237b47c3ec222e2f1b}{dmlfw\_multiply\_double\_row\_vector\_with\_column\_vector}}(row\_vec,\ col\_vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ multiplying\ vectors:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Cleanup\ if\ needed}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ result...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(result);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__operations__double_8h_ac0c53e52de3aa6bdd624603ffb4c3346}\label{dmlfw__operations__double_8h_ac0c53e52de3aa6bdd624603ffb4c3346} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_multiply\_double\_scalar\_with\_column\_vector@{dmlfw\_multiply\_double\_scalar\_with\_column\_vector}}
+\index{dmlfw\_multiply\_double\_scalar\_with\_column\_vector@{dmlfw\_multiply\_double\_scalar\_with\_column\_vector}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_multiply\_double\_scalar\_with\_column\_vector()}{dmlfw\_multiply\_double\_scalar\_with\_column\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+multiply\+\_\+double\+\_\+scalar\+\_\+with\+\_\+column\+\_\+vector (\begin{DoxyParamCaption}\item[{double}]{scalar\+\_\+value,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{product\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Multiplies a scalar with a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar\+\_\+value} & \mbox{[}in\mbox{]} Scalar to multiply. \\
+\hline
+{\em vector} & \mbox{[}in\mbox{]} Input vector (non-\/\+NULL). \\
+\hline
+{\em product\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional output vector matching input size. If NULL, a new vector is allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to product vector or NULL on error.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__operations__double_8h_a4b5ae707cb0ef9237b47c3ec222e2f1b}{dmlfw\+\_\+multiply\+\_\+double\+\_\+row\+\_\+vector\+\_\+with\+\_\+column\+\_\+vector}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *prod\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_ac0c53e52de3aa6bdd624603ffb4c3346}{dmlfw\_multiply\_double\_scalar\_with\_column\_vector}}(3.14,\ vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ scaling\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ prod...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(prod);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a978a49d2d79a6f60cd3b2751617fa0ef}\label{dmlfw__operations__double_8h_a978a49d2d79a6f60cd3b2751617fa0ef} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_subtract\_double\_column\_vector@{dmlfw\_subtract\_double\_column\_vector}}
+\index{dmlfw\_subtract\_double\_column\_vector@{dmlfw\_subtract\_double\_column\_vector}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_subtract\_double\_column\_vector()}{dmlfw\_subtract\_double\_column\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+subtract\+\_\+double\+\_\+column\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{difference\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Subtracts two column vectors element-\/wise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+vector} & \mbox{[}in\mbox{]} Minuend vector (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+vector} & \mbox{[}in\mbox{]} Subtrahend vector (non-\/\+NULL). \\
+\hline
+{\em difference\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional output vector matching input size. If NULL, a new vector is allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to difference vector or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Vectors must have the same size.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__operations__double_8h_ae3a859b0ac320264774b3f6f1a88e794}{dmlfw\+\_\+add\+\_\+double\+\_\+column\+\_\+vector}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *diff\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a978a49d2d79a6f60cd3b2751617fa0ef}{dmlfw\_subtract\_double\_column\_vector}}(vec1,\ vec2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ subtracting\ vectors:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ diff...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(diff);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a60586656eaf47b42b837344237dd1c91}\label{dmlfw__operations__double_8h_a60586656eaf47b42b837344237dd1c91} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_subtract\_double\_column\_vector\_from\_scalar@{dmlfw\_subtract\_double\_column\_vector\_from\_scalar}}
+\index{dmlfw\_subtract\_double\_column\_vector\_from\_scalar@{dmlfw\_subtract\_double\_column\_vector\_from\_scalar}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_subtract\_double\_column\_vector\_from\_scalar()}{dmlfw\_subtract\_double\_column\_vector\_from\_scalar()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+subtract\+\_\+double\+\_\+column\+\_\+vector\+\_\+from\+\_\+scalar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{double}]{scalar\+\_\+value,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Subtracts each element of a column vector from a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Input vector (non-\/\+NULL). \\
+\hline
+{\em scalar\+\_\+value} & \mbox{[}in\mbox{]} Scalar to subtract from. \\
+\hline
+{\em new\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional output vector same size as input. If NULL, new vector allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to output vector or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *result\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a60586656eaf47b42b837344237dd1c91}{dmlfw\_subtract\_double\_column\_vector\_from\_scalar}}(vec,\ 3.14,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ subtracting\ scalar\ from\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ result...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(result);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__operations__double_8h_a8097f2f40ff8de6d862f01aeaf32d9d8}\label{dmlfw__operations__double_8h_a8097f2f40ff8de6d862f01aeaf32d9d8} 
+\index{dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}!dmlfw\_subtract\_double\_matrix\_from\_matrix@{dmlfw\_subtract\_double\_matrix\_from\_matrix}}
+\index{dmlfw\_subtract\_double\_matrix\_from\_matrix@{dmlfw\_subtract\_double\_matrix\_from\_matrix}!dmlfw\_operations\_double.h@{dmlfw\_operations\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_subtract\_double\_matrix\_from\_matrix()}{dmlfw\_subtract\_double\_matrix\_from\_matrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+subtract\+\_\+double\+\_\+matrix\+\_\+from\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{left\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{right\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Subtracts second matrix from first element-\/wise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left\+\_\+matrix} & \mbox{[}in\mbox{]} Minuend matrix (non-\/\+NULL). \\
+\hline
+{\em right\+\_\+matrix} & \mbox{[}in\mbox{]} Subtrahend matrix (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional output matrix, must match input sizes. If NULL, new matrix allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to difference matrix or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Matrices must be of equal dimensions.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *diff\ =\ \mbox{\hyperlink{dmlfw__operations__double_8h_a8097f2f40ff8de6d862f01aeaf32d9d8}{dmlfw\_subtract\_double\_matrix\_from\_matrix}}(mat1,\ mat2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ subtracting\ matrices:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ diff}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(diff);}
+
+\end{DoxyCode}
+ 

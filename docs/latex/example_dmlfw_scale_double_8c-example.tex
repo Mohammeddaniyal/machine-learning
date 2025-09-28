@@ -1,0 +1,52 @@
+\doxysection{example\+\_\+dmlfw\+\_\+scale\+\_\+double.\+c}
+\hypertarget{example_dmlfw_scale_double_8c-example}{}\label{example_dmlfw_scale_double_8c-example}Usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__scale_8h}{dmlfw\_scale.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__vector_8h}{dmlfw\_vector.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__error_8h}{dmlfw\_error.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Create\ a\ vector\ of\ column\ names\ to\ scale}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *columns\_to\_scale\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(2);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ columns\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(columns\_to\_scale,\ 0,\ \textcolor{stringliteral}{"{}feature1"{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(columns\_to\_scale,\ 1,\ \textcolor{stringliteral}{"{}feature2"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Perform\ min-\/max\ scaling\ on\ dataset\ columns,\ save\ parameters\ to\ "{}params.json"{}}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *scaled\_matrix\ =\ \mbox{\hyperlink{dmlfw__scale__double_8h_a66984503ee4ccc9dfdaf8197ee9825c5}{dmlfw\_scale\_double}}(\textcolor{stringliteral}{"{}input.csv"{}},\ columns\_to\_scale,\ \textcolor{stringliteral}{"{}params.json"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__scale__double_8h_a981de1e8481af4ca40da02b07022c9d0}{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM}},\ NULL);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Scaling\ error:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(columns\_to\_scale);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Use\ scaled\_matrix\ for\ further\ processing...}}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Scaling\ completed\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Cleanup}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(scaled\_matrix);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(columns\_to\_scale);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

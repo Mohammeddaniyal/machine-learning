@@ -1,0 +1,249 @@
+\doxysection{ml-\/framework/include/list/dmlfw\+\_\+list\+\_\+double.h File Reference}
+\hypertarget{dmlfw__list__double_8h}{}\label{dmlfw__list__double_8h}\index{ml-\/framework/include/list/dmlfw\_list\_double.h@{ml-\/framework/include/list/dmlfw\_list\_double.h}}
+
+
+Core singly linked list type for double precision data.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+list\+\_\+double.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__list__double_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__list__double_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+forward\+\_\+list\+\_\+double \mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a forward list of double values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__list__double_8h_a62b890d447b6ca2e4052ae302bc9c5a0}{dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+clear}} (\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}forward\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Removes all elements from the list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__list__double_8h_a0d6dc4b25709543425de95fb8d7997b8}{dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+create\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em Creates a new empty forward list of doubles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__list__double_8h_aa2d3c38ef8c749806cb1ecf58f740ec6}{dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+destroy}} (\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}forward\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Destroys the forward list and frees all memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__list__double_8h_aefbb9b59cc869096b87fb889e340e0db}{dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+get\+\_\+row\+\_\+vector}} (\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}forward\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Converts the forward list into a row vector of doubles. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{dmlfw__list__double_8h_a8c920fedf2bb644ebc07d15d39742890}{dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+get\+\_\+size}} (\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}forward\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Returns the number of elements in the list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__list__double_8h_a92573efef5c55c0ef7621576d178f451}{dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+insert}} (\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}forward\+\_\+list, double value)
+\begin{DoxyCompactList}\small\item\em Inserts a double value at the front of the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core singly linked list type for double precision data. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This module provides a singly linked list (forward list) implementation for double precision floating point data. It supports creating, destroying, inserting elements, converting the list to a row vector, querying size, and clearing elements.\hypertarget{dmlfw__list__double_8h_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__list__double_8h_autotoc_md2}
+All functions report errors through a centralized error API. Use {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} to check for errors after each call. {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}} provide diagnostic messages.\hypertarget{dmlfw__list__double_8h_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__list__double_8h_autotoc_md3}
+The list owns its nodes and their double values. The vector returned by conversion functions must be explicitly freed by callers. 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}\label{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double@{dmlfw\_forward\_list\_double}}
+\index{dmlfw\_forward\_list\_double@{dmlfw\_forward\_list\_double}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double}{dmlfw\_forward\_list\_double}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+forward\+\_\+list\+\_\+double \mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}}}
+
+
+
+Opaque structure representing a forward list of double values. 
+
+The internal details are hidden to enforce encapsulation. Use the provided API functions to create, manipulate, and destroy instances. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__list__double_8h_a62b890d447b6ca2e4052ae302bc9c5a0}\label{dmlfw__list__double_8h_a62b890d447b6ca2e4052ae302bc9c5a0} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double\_clear@{dmlfw\_forward\_list\_double\_clear}}
+\index{dmlfw\_forward\_list\_double\_clear@{dmlfw\_forward\_list\_double\_clear}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double\_clear()}{dmlfw\_forward\_list\_double\_clear()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{forward\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Removes all elements from the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forward\+\_\+list} & \mbox{[}in,out\mbox{]} List to clear (non-\/\+NULL).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__list__double_8h_a62b890d447b6ca2e4052ae302bc9c5a0}{dmlfw\_forward\_list\_double\_clear}}(list);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ clear\ list:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__list__double_8h_a0d6dc4b25709543425de95fb8d7997b8}\label{dmlfw__list__double_8h_a0d6dc4b25709543425de95fb8d7997b8} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double\_create\_new@{dmlfw\_forward\_list\_double\_create\_new}}
+\index{dmlfw\_forward\_list\_double\_create\_new@{dmlfw\_forward\_list\_double\_create\_new}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double\_create\_new()}{dmlfw\_forward\_list\_double\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new empty forward list of doubles. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to newly allocated empty list or NULL on failure.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\_forward\_list\_double}}\ *list\ =\ \mbox{\hyperlink{dmlfw__list__double_8h_a0d6dc4b25709543425de95fb8d7997b8}{dmlfw\_forward\_list\_double\_create\_new}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ create\ forward\ list:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__list__double_8h_aa2d3c38ef8c749806cb1ecf58f740ec6}\label{dmlfw__list__double_8h_aa2d3c38ef8c749806cb1ecf58f740ec6} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double\_destroy@{dmlfw\_forward\_list\_double\_destroy}}
+\index{dmlfw\_forward\_list\_double\_destroy@{dmlfw\_forward\_list\_double\_destroy}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double\_destroy()}{dmlfw\_forward\_list\_double\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{forward\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Destroys the forward list and frees all memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forward\+\_\+list} & \mbox{[}in\mbox{]} Pointer to the list to destroy, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__list__double_8h_aa2d3c38ef8c749806cb1ecf58f740ec6}{dmlfw\_forward\_list\_double\_destroy}}(list);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__list__double_8h_aefbb9b59cc869096b87fb889e340e0db}\label{dmlfw__list__double_8h_aefbb9b59cc869096b87fb889e340e0db} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double\_get\_row\_vector@{dmlfw\_forward\_list\_double\_get\_row\_vector}}
+\index{dmlfw\_forward\_list\_double\_get\_row\_vector@{dmlfw\_forward\_list\_double\_get\_row\_vector}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double\_get\_row\_vector()}{dmlfw\_forward\_list\_double\_get\_row\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+get\+\_\+row\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{forward\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Converts the forward list into a row vector of doubles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forward\+\_\+list} & \mbox{[}in\mbox{]} List to convert (non-\/\+NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to newly allocated row vector or NULL on error. Caller is responsible for destroying the returned vector.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vec\ =\ \mbox{\hyperlink{dmlfw__list__double_8h_aefbb9b59cc869096b87fb889e340e0db}{dmlfw\_forward\_list\_double\_get\_row\_vector}}(list);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ convert\ list\ to\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ use\ vec...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\_row\_vec\_double\_destroy}}(vec);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__list__double_8h_a8c920fedf2bb644ebc07d15d39742890}\label{dmlfw__list__double_8h_a8c920fedf2bb644ebc07d15d39742890} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double\_get\_size@{dmlfw\_forward\_list\_double\_get\_size}}
+\index{dmlfw\_forward\_list\_double\_get\_size@{dmlfw\_forward\_list\_double\_get\_size}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double\_get\_size()}{dmlfw\_forward\_list\_double\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{forward\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Returns the number of elements in the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forward\+\_\+list} & \mbox{[}in\mbox{]} List to query. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements or 0 if list is NULL.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ size\ =\ \mbox{\hyperlink{dmlfw__list__double_8h_a8c920fedf2bb644ebc07d15d39742890}{dmlfw\_forward\_list\_double\_get\_size}}(list);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ get\ list\ size:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}List\ size:\ \%u\(\backslash\)n"{}},\ size);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__list__double_8h_a92573efef5c55c0ef7621576d178f451}\label{dmlfw__list__double_8h_a92573efef5c55c0ef7621576d178f451} 
+\index{dmlfw\_list\_double.h@{dmlfw\_list\_double.h}!dmlfw\_forward\_list\_double\_insert@{dmlfw\_forward\_list\_double\_insert}}
+\index{dmlfw\_forward\_list\_double\_insert@{dmlfw\_forward\_list\_double\_insert}!dmlfw\_list\_double.h@{dmlfw\_list\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_forward\_list\_double\_insert()}{dmlfw\_forward\_list\_double\_insert()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+forward\+\_\+list\+\_\+double\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{forward\+\_\+list,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+
+
+Inserts a double value at the front of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forward\+\_\+list} & \mbox{[}in,out\mbox{]} List to insert into (non-\/\+NULL). \\
+\hline
+{\em value} & \mbox{[}in\mbox{]} Value to insert.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__list__double_8h_a92573efef5c55c0ef7621576d178f451}{dmlfw\_forward\_list\_double\_insert}}(list,\ 4.56);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ insert\ value:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}

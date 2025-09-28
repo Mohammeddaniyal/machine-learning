@@ -1,0 +1,92 @@
+\doxysection{ml-\/framework/include/vector/dmlfw\+\_\+vec\+\_\+string.h File Reference}
+\hypertarget{dmlfw__vec__string_8h}{}\label{dmlfw__vec__string_8h}\index{ml-\/framework/include/vector/dmlfw\_vec\_string.h@{ml-\/framework/include/vector/dmlfw\_vec\_string.h}}
+
+
+String column and row vector types and functions.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+types.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+vec\+\_\+string.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{dmlfw__vec__string_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__vec__string_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+column\+\_\+vec\+\_\+string \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a column vector of strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga460b366420918f2679204159a1500576}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows)
+\begin{DoxyCompactList}\small\item\em Creates a new column vector of strings of specified length. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga346fbe0621daaa0052ee266e78085a0d}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+destroy}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a column vector of strings and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga35448e7e5696dd69ad2bbfdb6c8662d8}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a column vector of strings from a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gaac0629082c71fcd565c46d6661489af2}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+get}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Retrieves a string element from a column vector by index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_ga5d0d53a0b05e5535a8a6c340646372f8}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the size (number of elements) in a column vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gab6c103ed7a05e0acbc5b9820941408f8}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+set}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Sets a string element in the column vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga8da1bfd2bc3b13c60bf2571df5e2d4c5}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a column vector of strings to a CSV file with a header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_gaf5d66bd14cc1ccbd83e349d7c3210561}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+transpose}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a column vector of strings into a row vector. \end{DoxyCompactList}\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+row\+\_\+vec\+\_\+string \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a row vector of strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns)
+\begin{DoxyCompactList}\small\item\em Creates a new row vector of strings of specified length. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+destroy}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a row vector of strings and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga377e8e2e9657ab5b3adeea30fef6f2da}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a row vector of strings from a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga5bf815d73d03538f322b7e13952ad7b7}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+get}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Retrieves a string element from a row vector by index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_ga5bbd4645d30256f3cb7ccdc666f494fc}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the size (number of elements) in a row vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+set}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Sets a string element in the row vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga04367dcd07eada45608edd1936fca609}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a row vector of strings to a CSV file with a header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga69044e759e7d776be14d19cd3ce2811a}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+transpose}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a row vector of strings into a column vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+String column and row vector types and functions. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header defines opaque vector data structures for string values. It provides APIs for creating, destroying, accessing, modifying, and manipulating both column and row string vectors.
+
+Common operations include\+:
+\begin{DoxyItemize}
+\item Creation and destruction
+\item Element access and mutation
+\item Transposing between row and column vectors
+\item CSV import/export
+\item Size retrieval
+\end{DoxyItemize}\hypertarget{dmlfw__vec__string_8h_autotoc_md27}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__vec__string_8h_autotoc_md27}
+All functions report errors through the centralized error API\+:
+\begin{DoxyItemize}
+\item Call \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()} to check whether an error occurred.
+\item Use \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()} and \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()} for error details and debugging info.
+\end{DoxyItemize}
+
+Unless otherwise stated\+:
+\begin{DoxyItemize}
+\item Passing NULL pointers or invalid arguments sets error status.
+\item On error, functions return NULL or 0 depending on return type. 
+\end{DoxyItemize}

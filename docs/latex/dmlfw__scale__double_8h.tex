@@ -1,0 +1,269 @@
+\doxysection{ml-\/framework/include/scaling/dmlfw\+\_\+scale\+\_\+double.h File Reference}
+\hypertarget{dmlfw__scale__double_8h}{}\label{dmlfw__scale__double_8h}\index{ml-\/framework/include/scaling/dmlfw\_scale\_double.h@{ml-\/framework/include/scaling/dmlfw\_scale\_double.h}}
+
+
+Matrix data scaling and normalization using double precision.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+matrix.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+scale\+\_\+double.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__scale__double_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__scale__double_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__scale__double_8h_a66984503ee4ccc9dfdaf8197ee9825c5}{dmlfw\+\_\+scale\+\_\+double}} (char \texorpdfstring{$\ast$}{*}dataset\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}columns\+\_\+to\+\_\+scale, char \texorpdfstring{$\ast$}{*}parameters\+\_\+file\+\_\+name, char \texorpdfstring{$\ast$}{*}algorithm, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix)
+\begin{DoxyCompactList}\small\item\em Scales data from a dataset according to specified columns and algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__scale__double_8h_a1771905ede192a75c91cf19234fb13d6}{dmlfw\+\_\+scale\+\_\+double\+\_\+min\+\_\+max}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}min\+\_\+max\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}scaled\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Performs min-\/max scaling on a submatrix slice and optionally returns min-\/max matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__scale__double_8h_a4001b4768390b1989068a58e182a040b}{dmlfw\+\_\+scale\+\_\+double\+\_\+with\+\_\+given\+\_\+min\+\_\+max}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}min\+\_\+max\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}scaled\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Scales matrix using given min-\/max matrix for normalization. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__scale__double_8h_a8146663fb0677a18e470225cf1f0bdfd}{dmlfw\+\_\+scale\+\_\+double\+\_\+with\+\_\+given\+\_\+parameters}} (char \texorpdfstring{$\ast$}{*}dataset\+\_\+file\+\_\+name, char \texorpdfstring{$\ast$}{*}parameters\+\_\+file\+\_\+name, char \texorpdfstring{$\ast$}{*}algorithm, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix)
+\begin{DoxyCompactList}\small\item\em Scales data using pre-\/computed parameters according to algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__scale__double_8h_a3574df2f7508899b1a857f01cbdd8d8e}{dmlfw\+\_\+scale\+\_\+double\+\_\+z\+\_\+score}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}mean\+\_\+standard\+\_\+deviation\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}scaled\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Performs z-\/score scaling on a submatrix slice, optionally returning mean/std matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__scale__double_8h_a62b1faae9d3987e6331fad9b8cade64f}{dmlfw\+\_\+scale\+\_\+double\+\_\+z\+\_\+score\+\_\+with\+\_\+given\+\_\+mean\+\_\+standard\+\_\+deviation}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} start\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} end\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}mean\+\_\+standard\+\_\+deviation\+\_\+matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}scaled\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Scales matrix using given mean and standard deviation matrix. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{dmlfw__scale__double_8h_a981de1e8481af4ca40da02b07022c9d0}{MLFW\+\_\+\+MIN\+\_\+\+MAX\+\_\+\+SCALING\+\_\+\+ALGORITHM}}~"{}min-\/max"{}
+\item 
+\#define \mbox{\hyperlink{dmlfw__scale__double_8h_ae662a22b7d212def556903b5e64dd380}{MLFW\+\_\+\+Z\+\_\+\+SCORE\+\_\+\+SCALING\+\_\+\+ALGORITHM}}~"{}z-\/score"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Matrix data scaling and normalization using double precision. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This module provides scaling algorithms applied to double precision matrices, such as min-\/max normalization and z-\/score standardization.
+
+Algorithms include\+:
+\begin{DoxyItemize}
+\item Min-\/\+Max scaling (rescale to \mbox{[}0,1\mbox{]})
+\item Z-\/\+Score scaling (mean 0, standard deviation 1)
+\end{DoxyItemize}
+
+Functions support loading scaling parameters from files and applying previously computed parameters to new data.\hypertarget{dmlfw__scale__double_8h_autotoc_md20}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__scale__double_8h_autotoc_md20}
+All functions validate input parameters and interoperability. Errors are reported via the centralized error API, using {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}}, {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}}, and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}}.\hypertarget{dmlfw__scale__double_8h_autotoc_md21}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__scale__double_8h_autotoc_md21}
+Caller owns all input matrices. Output matrices are allocated if {\ttfamily NULL} is passed, and ownership passes to the caller, who must free them. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{dmlfw__scale__double_8h_a981de1e8481af4ca40da02b07022c9d0}\label{dmlfw__scale__double_8h_a981de1e8481af4ca40da02b07022c9d0} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!MLFW\_MIN\_MAX\_SCALING\_ALGORITHM@{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM}}
+\index{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM@{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM}{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM}}
+{\footnotesize\ttfamily \#define MLFW\+\_\+\+MIN\+\_\+\+MAX\+\_\+\+SCALING\+\_\+\+ALGORITHM~"{}min-\/max"{}}
+
+Min-\/\+Max scaling algorithm identifier string. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_scale_double_8c-example}{example\+\_\+dmlfw\+\_\+scale\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__scale__double_8h_ae662a22b7d212def556903b5e64dd380}\label{dmlfw__scale__double_8h_ae662a22b7d212def556903b5e64dd380} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!MLFW\_Z\_SCORE\_SCALING\_ALGORITHM@{MLFW\_Z\_SCORE\_SCALING\_ALGORITHM}}
+\index{MLFW\_Z\_SCORE\_SCALING\_ALGORITHM@{MLFW\_Z\_SCORE\_SCALING\_ALGORITHM}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{MLFW\_Z\_SCORE\_SCALING\_ALGORITHM}{MLFW\_Z\_SCORE\_SCALING\_ALGORITHM}}
+{\footnotesize\ttfamily \#define MLFW\+\_\+\+Z\+\_\+\+SCORE\+\_\+\+SCALING\+\_\+\+ALGORITHM~"{}z-\/score"{}}
+
+Z-\/\+Score scaling algorithm identifier string. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__scale__double_8h_a66984503ee4ccc9dfdaf8197ee9825c5}\label{dmlfw__scale__double_8h_a66984503ee4ccc9dfdaf8197ee9825c5} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!dmlfw\_scale\_double@{dmlfw\_scale\_double}}
+\index{dmlfw\_scale\_double@{dmlfw\_scale\_double}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_scale\_double()}{dmlfw\_scale\_double()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+scale\+\_\+double (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dataset\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{columns\+\_\+to\+\_\+scale,  }\item[{char \texorpdfstring{$\ast$}{*}}]{parameters\+\_\+file\+\_\+name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{algorithm,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix }\end{DoxyParamCaption})}
+
+
+
+Scales data from a dataset according to specified columns and algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} File path of the dataset (CSV or supported format). \\
+\hline
+{\em columns\+\_\+to\+\_\+scale} & \mbox{[}in\mbox{]} Row vector of column names/labels to scale. \\
+\hline
+{\em parameters\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Path to save or read scaling parameters. \\
+\hline
+{\em algorithm} & \mbox{[}in\mbox{]} Scaling algorithm identifier\+: "{}min-\/max"{} or "{}z-\/score"{}. \\
+\hline
+{\em matrix} & \mbox{[}in,out\mbox{]} Optional pre-\/allocated matrix to store scaled data, or NULL to allocate a new one. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the scaled matrix or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *scaled\ =\ \mbox{\hyperlink{dmlfw__scale__double_8h_a66984503ee4ccc9dfdaf8197ee9825c5}{dmlfw\_scale\_double}}(\textcolor{stringliteral}{"{}input.csv"{}},\ cols\_to\_scale,\ \textcolor{stringliteral}{"{}params.json"{}},\ \mbox{\hyperlink{dmlfw__scale__double_8h_a981de1e8481af4ca40da02b07022c9d0}{MLFW\_MIN\_MAX\_SCALING\_ALGORITHM}},\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Scaling\ error:\ \%s\(\backslash\)nDebug:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ use\ scaled...}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(scaled);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_scale_double_8c-example}{example\+\_\+dmlfw\+\_\+scale\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__scale__double_8h_a1771905ede192a75c91cf19234fb13d6}\label{dmlfw__scale__double_8h_a1771905ede192a75c91cf19234fb13d6} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!dmlfw\_scale\_double\_min\_max@{dmlfw\_scale\_double\_min\_max}}
+\index{dmlfw\_scale\_double\_min\_max@{dmlfw\_scale\_double\_min\_max}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_scale\_double\_min\_max()}{dmlfw\_scale\_double\_min\_max()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+scale\+\_\+double\+\_\+min\+\_\+max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{min\+\_\+max\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{scaled\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Performs min-\/max scaling on a submatrix slice and optionally returns min-\/max matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Input matrix. \\
+\hline
+{\em start\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Start index for rows (inclusive). \\
+\hline
+{\em start\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Start index for columns (inclusive). \\
+\hline
+{\em end\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} End index for rows (inclusive). \\
+\hline
+{\em end\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} End index for columns (inclusive). \\
+\hline
+{\em min\+\_\+max\+\_\+matrix} & \mbox{[}out\mbox{]} Optional pointer to store min and max values matrix, allocated if NULL. \\
+\hline
+{\em scaled\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional matrix to store the scaled data, or NULL to allocate a new matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to scaled matrix or NULL on error. 
+\end{DoxyReturn}
+\Hypertarget{dmlfw__scale__double_8h_a4001b4768390b1989068a58e182a040b}\label{dmlfw__scale__double_8h_a4001b4768390b1989068a58e182a040b} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!dmlfw\_scale\_double\_with\_given\_min\_max@{dmlfw\_scale\_double\_with\_given\_min\_max}}
+\index{dmlfw\_scale\_double\_with\_given\_min\_max@{dmlfw\_scale\_double\_with\_given\_min\_max}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_scale\_double\_with\_given\_min\_max()}{dmlfw\_scale\_double\_with\_given\_min\_max()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+scale\+\_\+double\+\_\+with\+\_\+given\+\_\+min\+\_\+max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{min\+\_\+max\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{scaled\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Scales matrix using given min-\/max matrix for normalization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Input matrix to scale. \\
+\hline
+{\em start\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Start row index for submatrix. \\
+\hline
+{\em start\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Start column index for submatrix. \\
+\hline
+{\em end\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} End row index for submatrix. \\
+\hline
+{\em end\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} End column index for submatrix. \\
+\hline
+{\em min\+\_\+max\+\_\+matrix} & \mbox{[}in\mbox{]} Matrix containing min and max values per column. \\
+\hline
+{\em scaled\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional matrix to hold scaled result, or NULL for allocation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to scaled matrix or NULL on error. 
+\end{DoxyReturn}
+\Hypertarget{dmlfw__scale__double_8h_a8146663fb0677a18e470225cf1f0bdfd}\label{dmlfw__scale__double_8h_a8146663fb0677a18e470225cf1f0bdfd} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!dmlfw\_scale\_double\_with\_given\_parameters@{dmlfw\_scale\_double\_with\_given\_parameters}}
+\index{dmlfw\_scale\_double\_with\_given\_parameters@{dmlfw\_scale\_double\_with\_given\_parameters}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_scale\_double\_with\_given\_parameters()}{dmlfw\_scale\_double\_with\_given\_parameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+scale\+\_\+double\+\_\+with\+\_\+given\+\_\+parameters (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dataset\+\_\+file\+\_\+name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{parameters\+\_\+file\+\_\+name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{algorithm,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix }\end{DoxyParamCaption})}
+
+
+
+Scales data using pre-\/computed parameters according to algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Dataset source file path. \\
+\hline
+{\em parameters\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} File for reading pre-\/computed scaling parameters. \\
+\hline
+{\em algorithm} & \mbox{[}in\mbox{]} Scaling algorithm identifier. \\
+\hline
+{\em matrix} & \mbox{[}in,out\mbox{]} Optional matrix to output scaled data, or NULL to allocate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to scaled matrix or NULL on error. 
+\end{DoxyReturn}
+\Hypertarget{dmlfw__scale__double_8h_a3574df2f7508899b1a857f01cbdd8d8e}\label{dmlfw__scale__double_8h_a3574df2f7508899b1a857f01cbdd8d8e} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!dmlfw\_scale\_double\_z\_score@{dmlfw\_scale\_double\_z\_score}}
+\index{dmlfw\_scale\_double\_z\_score@{dmlfw\_scale\_double\_z\_score}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_scale\_double\_z\_score()}{dmlfw\_scale\_double\_z\_score()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+scale\+\_\+double\+\_\+z\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{mean\+\_\+standard\+\_\+deviation\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{scaled\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Performs z-\/score scaling on a submatrix slice, optionally returning mean/std matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Input matrix. \\
+\hline
+{\em start\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Start row index (inclusive). \\
+\hline
+{\em start\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Start column index (inclusive). \\
+\hline
+{\em end\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} End row index (inclusive). \\
+\hline
+{\em end\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} End column index (inclusive). \\
+\hline
+{\em mean\+\_\+standard\+\_\+deviation\+\_\+matrix} & \mbox{[}out\mbox{]} Optional pointer for mean and std dev, allocated if NULL. \\
+\hline
+{\em scaled\+\_\+matrix} & \mbox{[}in,out\mbox{]} Matrix to store scaled data or NULL to allocate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to scaled matrix or NULL on error. 
+\end{DoxyReturn}
+\Hypertarget{dmlfw__scale__double_8h_a62b1faae9d3987e6331fad9b8cade64f}\label{dmlfw__scale__double_8h_a62b1faae9d3987e6331fad9b8cade64f} 
+\index{dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}!dmlfw\_scale\_double\_z\_score\_with\_given\_mean\_standard\_deviation@{dmlfw\_scale\_double\_z\_score\_with\_given\_mean\_standard\_deviation}}
+\index{dmlfw\_scale\_double\_z\_score\_with\_given\_mean\_standard\_deviation@{dmlfw\_scale\_double\_z\_score\_with\_given\_mean\_standard\_deviation}!dmlfw\_scale\_double.h@{dmlfw\_scale\_double.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_scale\_double\_z\_score\_with\_given\_mean\_standard\_deviation()}{dmlfw\_scale\_double\_z\_score\_with\_given\_mean\_standard\_deviation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+scale\+\_\+double\+\_\+z\+\_\+score\+\_\+with\+\_\+given\+\_\+mean\+\_\+standard\+\_\+deviation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{start\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{end\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{mean\+\_\+standard\+\_\+deviation\+\_\+matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{scaled\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Scales matrix using given mean and standard deviation matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Input matrix. \\
+\hline
+{\em start\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Start row index for scaling. \\
+\hline
+{\em start\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Start column index for scaling. \\
+\hline
+{\em end\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} End row index for scaling. \\
+\hline
+{\em end\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} End column index for scaling. \\
+\hline
+{\em mean\+\_\+standard\+\_\+deviation\+\_\+matrix} & \mbox{[}in\mbox{]} Matrix with mean and std deviation. \\
+\hline
+{\em scaled\+\_\+matrix} & \mbox{[}in,out\mbox{]} Matrix for scaled output or NULL to allocate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to scaled matrix or NULL on error. 
+\end{DoxyReturn}

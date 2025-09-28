@@ -1,0 +1,354 @@
+\doxysection{ml-\/examples/regression/linear/src/stochastic\+\_\+gd.c File Reference}
+\hypertarget{stochastic__gd_8c}{}\label{stochastic__gd_8c}\index{ml-\/examples/regression/linear/src/stochastic\_gd.c@{ml-\/examples/regression/linear/src/stochastic\_gd.c}}
+
+
+Demonstrates mini-\/batch stochastic gradient descent for linear regression using ml-\/framework.  
+
+
+{\ttfamily \#include $<$dmlfw.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for stochastic\+\_\+gd.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stochastic__gd_8c__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a329195b8889a5038c920242b46fefdc5}{buffer\+\_\+matrix\+\_\+1}} = NULL
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_af60a50b24dd8e3e0979be7ce8902da85}{buffer\+\_\+matrix\+\_\+1\+\_\+shuffled}} = NULL
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a9524ef2394757f073ecb5f25b019f243}{buffer\+\_\+matrix\+\_\+2}} = NULL
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_adba91386b0a714d6c0f1c0869c5d8ce8}{buffer\+\_\+matrix\+\_\+2\+\_\+shuffled}} = NULL
+\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~50
+\item 
+void \mbox{\hyperlink{stochastic__gd_8c_aab80b3d54e2cd8694e8d5a5b45e1fe13}{data\+\_\+loader}} (void \texorpdfstring{$\ast$}{*}x, void \texorpdfstring{$\ast$}{*}y, uint64\+\_\+t from\+\_\+row, uint32\+\_\+t how\+\_\+many\+\_\+rows)
+\begin{DoxyCompactList}\small\item\em Supplies training data batches to SGD optimizer via buffer loading. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_a7513b0d99f0c7deabaff1659a8dda375}{FREQUENCY\+\_\+\+OF\+\_\+\+PRINTING\+\_\+\+COST}}~100
+\item 
+\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a2754096c627697d74d32cbd750a2a69b}{get\+\_\+gradient\+\_\+descent\+\_\+options}} ()
+\begin{DoxyCompactList}\small\item\em Configures options for SGD training. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stochastic__gd_8c_ad826ca9e562f020f26b6331eb9144607}{get\+\_\+one\+\_\+from\+\_\+file\+\_\+buffer}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}target\+\_\+matrix, uint64\+\_\+t from\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Retrieves a single row from buffered training data. \end{DoxyCompactList}\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a25270fcb3ace46b90bdb1f80116728eb}{gnuplot}}
+\item 
+void \mbox{\hyperlink{stochastic__gd_8c_ad241cc00b1a92e6d85827df96778e442}{init\+\_\+buffers}} ()
+\begin{DoxyCompactList}\small\item\em Initializes data buffers used for training data management. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_ac9d3b34ee7e35eab6a81ed21f18f6e64}{LEARNING\+\_\+\+RATE}}~0.\+00001
+\item 
+int \mbox{\hyperlink{stochastic__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main entry point to run buffered stochastic gradient descent linear regression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_ac94a9c9bf7748b94127b6a171fb2e535}{MODEL\+\_\+\+FILE\+\_\+\+NAME}}~"{}example-\/2-\/model.\+csv"{}
+\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_af17836e53ea7f1854f0df858804ad78d}{model\+\_\+squared\+\_\+sum\+\_\+vector}} = NULL
+\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a2f6641181fa7991a839dd321b9ebc0c4}{model\+\_\+transposed}} = NULL
+\item 
+uint64\+\_\+t \mbox{\hyperlink{stochastic__gd_8c_a91b953e5fc54f41add9c2dee3835d48f}{number\+\_\+of\+\_\+columns\+\_\+in\+\_\+training\+\_\+examples}} = 0
+\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_ac260198d25bc63d8715eea2518ead070}{NUMBER\+\_\+\+OF\+\_\+\+ITERATIONS}}~100000
+\item 
+uint64\+\_\+t \mbox{\hyperlink{stochastic__gd_8c_a0b29ba4f663d760f823246b518ab2e20}{number\+\_\+of\+\_\+training\+\_\+examples}} = 0
+\item 
+int \mbox{\hyperlink{stochastic__gd_8c_a50ca0b3ab5a73f76a2d36062ee40c8c4}{on\+\_\+iteration\+\_\+complete}} (uint64\+\_\+t iteration\+\_\+number, void \texorpdfstring{$\ast$}{*}y, void \texorpdfstring{$\ast$}{*}predicted\+\_\+y, void \texorpdfstring{$\ast$}{*}model, double regularization\+\_\+parameter)
+\begin{DoxyCompactList}\small\item\em SGD iteration callback to calculate and log cost function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a76a450feba110729ba13164cff5efb6c}{prediction\+\_\+error}} = NULL
+\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a5a07c4cba599733c6fd1c847de54ff48}{prediction\+\_\+error\+\_\+transposed}} = NULL
+\item 
+void \mbox{\hyperlink{stochastic__gd_8c_a926dabe718454fc42513a0382f9a5e98}{print\+\_\+error\+\_\+and\+\_\+exit}} ()
+\begin{DoxyCompactList}\small\item\em Prints ml-\/framework error and terminates execution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a9fe8cee25422ce7b5b66c98f38847152}{product\+\_\+vector}} = NULL
+\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_a384a53d551ae62a683d9955c58bce87b}{REGULARIZATION\+\_\+\+PARAMETER}}~0.\+5
+\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_ad2d31173df7fba3749f1d93713d41dc5}{SHOW\+\_\+\+GRAPH}}~1
+\item 
+\#define \mbox{\hyperlink{stochastic__gd_8c_a7280eb48be50e267a940d1316f8156c0}{TRAINING\+\_\+\+DATASET}}~"{}Ice\+Cream\+Sales\+\_\+training\+\_\+examples.\+csv"{}
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a2d4ee2a9cbf3c7e59153f2bd45b214c6}{x\+\_\+matrix}} = NULL
+\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_ae6827eb44c2c4457b11469690ef0e0d9}{xy\+\_\+matrix}} = NULL
+\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{stochastic__gd_8c_a61e4d144df266fcbdcddb5bd00fa0318}{y\+\_\+vector}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Demonstrates mini-\/batch stochastic gradient descent for linear regression using ml-\/framework. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26
+\end{DoxyDate}
+This example trains a linear regression model on the Ice\+Cream\+Sales training dataset using mini-\/batch stochastic gradient descent with specified batch size, learning rate, and regularization. Includes custom data loader, progress callback logging with cost visualization using gnuplot, and buffer management for data loading.
+
+Usage\+: ./stochastic\+\_\+gd 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{stochastic__gd_8c_a6b20d41d6252e9871430c242cb1a56e7}\label{stochastic__gd_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~50}
+
+Buffer size used for batch data loading \Hypertarget{stochastic__gd_8c_a7513b0d99f0c7deabaff1659a8dda375}\label{stochastic__gd_8c_a7513b0d99f0c7deabaff1659a8dda375} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!FREQUENCY\_OF\_PRINTING\_COST@{FREQUENCY\_OF\_PRINTING\_COST}}
+\index{FREQUENCY\_OF\_PRINTING\_COST@{FREQUENCY\_OF\_PRINTING\_COST}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{FREQUENCY\_OF\_PRINTING\_COST}{FREQUENCY\_OF\_PRINTING\_COST}}
+{\footnotesize\ttfamily \#define FREQUENCY\+\_\+\+OF\+\_\+\+PRINTING\+\_\+\+COST~100}
+
+Frequency of printing/logging cost \Hypertarget{stochastic__gd_8c_ac9d3b34ee7e35eab6a81ed21f18f6e64}\label{stochastic__gd_8c_ac9d3b34ee7e35eab6a81ed21f18f6e64} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!LEARNING\_RATE@{LEARNING\_RATE}}
+\index{LEARNING\_RATE@{LEARNING\_RATE}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{LEARNING\_RATE}{LEARNING\_RATE}}
+{\footnotesize\ttfamily \#define LEARNING\+\_\+\+RATE~0.\+00001}
+
+Learning rate for gradient descent \Hypertarget{stochastic__gd_8c_ac94a9c9bf7748b94127b6a171fb2e535}\label{stochastic__gd_8c_ac94a9c9bf7748b94127b6a171fb2e535} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!MODEL\_FILE\_NAME@{MODEL\_FILE\_NAME}}
+\index{MODEL\_FILE\_NAME@{MODEL\_FILE\_NAME}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{MODEL\_FILE\_NAME}{MODEL\_FILE\_NAME}}
+{\footnotesize\ttfamily \#define MODEL\+\_\+\+FILE\+\_\+\+NAME~"{}example-\/2-\/model.\+csv"{}}
+
+Output model CSV file path \Hypertarget{stochastic__gd_8c_ac260198d25bc63d8715eea2518ead070}\label{stochastic__gd_8c_ac260198d25bc63d8715eea2518ead070} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!NUMBER\_OF\_ITERATIONS@{NUMBER\_OF\_ITERATIONS}}
+\index{NUMBER\_OF\_ITERATIONS@{NUMBER\_OF\_ITERATIONS}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_OF\_ITERATIONS}{NUMBER\_OF\_ITERATIONS}}
+{\footnotesize\ttfamily \#define NUMBER\+\_\+\+OF\+\_\+\+ITERATIONS~100000}
+
+Maximum number of gradient descent iterations \Hypertarget{stochastic__gd_8c_a384a53d551ae62a683d9955c58bce87b}\label{stochastic__gd_8c_a384a53d551ae62a683d9955c58bce87b} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!REGULARIZATION\_PARAMETER@{REGULARIZATION\_PARAMETER}}
+\index{REGULARIZATION\_PARAMETER@{REGULARIZATION\_PARAMETER}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{REGULARIZATION\_PARAMETER}{REGULARIZATION\_PARAMETER}}
+{\footnotesize\ttfamily \#define REGULARIZATION\+\_\+\+PARAMETER~0.\+5}
+
+Regularization parameter lambda \Hypertarget{stochastic__gd_8c_ad2d31173df7fba3749f1d93713d41dc5}\label{stochastic__gd_8c_ad2d31173df7fba3749f1d93713d41dc5} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!SHOW\_GRAPH@{SHOW\_GRAPH}}
+\index{SHOW\_GRAPH@{SHOW\_GRAPH}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{SHOW\_GRAPH}{SHOW\_GRAPH}}
+{\footnotesize\ttfamily \#define SHOW\+\_\+\+GRAPH~1}
+
+Enable or disable plotting with gnuplot (1 = enabled) \Hypertarget{stochastic__gd_8c_a7280eb48be50e267a940d1316f8156c0}\label{stochastic__gd_8c_a7280eb48be50e267a940d1316f8156c0} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!TRAINING\_DATASET@{TRAINING\_DATASET}}
+\index{TRAINING\_DATASET@{TRAINING\_DATASET}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{TRAINING\_DATASET}{TRAINING\_DATASET}}
+{\footnotesize\ttfamily \#define TRAINING\+\_\+\+DATASET~"{}Ice\+Cream\+Sales\+\_\+training\+\_\+examples.\+csv"{}}
+
+Training dataset CSV file path 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{stochastic__gd_8c_aab80b3d54e2cd8694e8d5a5b45e1fe13}\label{stochastic__gd_8c_aab80b3d54e2cd8694e8d5a5b45e1fe13} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!data\_loader@{data\_loader}}
+\index{data\_loader@{data\_loader}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{data\_loader()}{data\_loader()}}
+{\footnotesize\ttfamily void data\+\_\+loader (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{x,  }\item[{void \texorpdfstring{$\ast$}{*}}]{y,  }\item[{uint64\+\_\+t}]{from\+\_\+row,  }\item[{uint32\+\_\+t}]{how\+\_\+many\+\_\+rows }\end{DoxyParamCaption})}
+
+
+
+Supplies training data batches to SGD optimizer via buffer loading. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to feature matrix pointer to populate. \\
+\hline
+{\em y} & Pointer to target vector pointer to populate. \\
+\hline
+{\em from\+\_\+row} & Starting row index for batch. \\
+\hline
+{\em how\+\_\+many\+\_\+rows} & Number of rows requested. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{stochastic__gd_8c_a2754096c627697d74d32cbd750a2a69b}\label{stochastic__gd_8c_a2754096c627697d74d32cbd750a2a69b} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!get\_gradient\_descent\_options@{get\_gradient\_descent\_options}}
+\index{get\_gradient\_descent\_options@{get\_gradient\_descent\_options}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{get\_gradient\_descent\_options()}{get\_gradient\_descent\_options()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*} get\+\_\+gradient\+\_\+descent\+\_\+options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Configures options for SGD training. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to gradient descent options configured for stochastic GD. 
+\end{DoxyReturn}
+\Hypertarget{stochastic__gd_8c_ad826ca9e562f020f26b6331eb9144607}\label{stochastic__gd_8c_ad826ca9e562f020f26b6331eb9144607} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!get\_one\_from\_file\_buffer@{get\_one\_from\_file\_buffer}}
+\index{get\_one\_from\_file\_buffer@{get\_one\_from\_file\_buffer}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{get\_one\_from\_file\_buffer()}{get\_one\_from\_file\_buffer()}}
+{\footnotesize\ttfamily void get\+\_\+one\+\_\+from\+\_\+file\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{target\+\_\+matrix,  }\item[{uint64\+\_\+t}]{from\+\_\+row }\end{DoxyParamCaption})}
+
+
+
+Retrieves a single row from buffered training data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+matrix} & Output pointer to matrix containing the row. \\
+\hline
+{\em from\+\_\+row} & Row index to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{stochastic__gd_8c_ad241cc00b1a92e6d85827df96778e442}\label{stochastic__gd_8c_ad241cc00b1a92e6d85827df96778e442} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!init\_buffers@{init\_buffers}}
+\index{init\_buffers@{init\_buffers}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{init\_buffers()}{init\_buffers()}}
+{\footnotesize\ttfamily void init\+\_\+buffers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes data buffers used for training data management. 
+
+\Hypertarget{stochastic__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{stochastic__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!main@{main}}
+\index{main@{main}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main entry point to run buffered stochastic gradient descent linear regression. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, or error code. 
+\end{DoxyReturn}
+\Hypertarget{stochastic__gd_8c_a50ca0b3ab5a73f76a2d36062ee40c8c4}\label{stochastic__gd_8c_a50ca0b3ab5a73f76a2d36062ee40c8c4} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!on\_iteration\_complete@{on\_iteration\_complete}}
+\index{on\_iteration\_complete@{on\_iteration\_complete}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{on\_iteration\_complete()}{on\_iteration\_complete()}}
+{\footnotesize\ttfamily int on\+\_\+iteration\+\_\+complete (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{iteration\+\_\+number,  }\item[{void \texorpdfstring{$\ast$}{*}}]{y,  }\item[{void \texorpdfstring{$\ast$}{*}}]{predicted\+\_\+y,  }\item[{void \texorpdfstring{$\ast$}{*}}]{model,  }\item[{double}]{regularization\+\_\+parameter }\end{DoxyParamCaption})}
+
+
+
+SGD iteration callback to calculate and log cost function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iteration\+\_\+number} & Current iteration count. \\
+\hline
+{\em y} & Actual target vector. \\
+\hline
+{\em predicted\+\_\+y} & Predicted output by model. \\
+\hline
+{\em model} & Current model weights. \\
+\hline
+{\em regularization\+\_\+parameter} & Regularization factor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 to continue training, -\/1 to abort. 
+\end{DoxyReturn}
+\Hypertarget{stochastic__gd_8c_a926dabe718454fc42513a0382f9a5e98}\label{stochastic__gd_8c_a926dabe718454fc42513a0382f9a5e98} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!print\_error\_and\_exit@{print\_error\_and\_exit}}
+\index{print\_error\_and\_exit@{print\_error\_and\_exit}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{print\_error\_and\_exit()}{print\_error\_and\_exit()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+and\+\_\+exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints ml-\/framework error and terminates execution. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{stochastic__gd_8c_a329195b8889a5038c920242b46fefdc5}\label{stochastic__gd_8c_a329195b8889a5038c920242b46fefdc5} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!buffer\_matrix\_1@{buffer\_matrix\_1}}
+\index{buffer\_matrix\_1@{buffer\_matrix\_1}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_matrix\_1}{buffer\_matrix\_1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}}\texorpdfstring{$\ast$}{*} buffer\+\_\+matrix\+\_\+1 = NULL}
+
+Primary buffer matrix holding dataset block for training \Hypertarget{stochastic__gd_8c_af60a50b24dd8e3e0979be7ce8902da85}\label{stochastic__gd_8c_af60a50b24dd8e3e0979be7ce8902da85} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!buffer\_matrix\_1\_shuffled@{buffer\_matrix\_1\_shuffled}}
+\index{buffer\_matrix\_1\_shuffled@{buffer\_matrix\_1\_shuffled}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_matrix\_1\_shuffled}{buffer\_matrix\_1\_shuffled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}}\texorpdfstring{$\ast$}{*} buffer\+\_\+matrix\+\_\+1\+\_\+shuffled = NULL}
+
+Shuffled copy of primary buffer matrix \Hypertarget{stochastic__gd_8c_a9524ef2394757f073ecb5f25b019f243}\label{stochastic__gd_8c_a9524ef2394757f073ecb5f25b019f243} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!buffer\_matrix\_2@{buffer\_matrix\_2}}
+\index{buffer\_matrix\_2@{buffer\_matrix\_2}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_matrix\_2}{buffer\_matrix\_2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}}\texorpdfstring{$\ast$}{*} buffer\+\_\+matrix\+\_\+2 = NULL}
+
+Secondary buffer matrix holding remaining dataset block \Hypertarget{stochastic__gd_8c_adba91386b0a714d6c0f1c0869c5d8ce8}\label{stochastic__gd_8c_adba91386b0a714d6c0f1c0869c5d8ce8} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!buffer\_matrix\_2\_shuffled@{buffer\_matrix\_2\_shuffled}}
+\index{buffer\_matrix\_2\_shuffled@{buffer\_matrix\_2\_shuffled}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_matrix\_2\_shuffled}{buffer\_matrix\_2\_shuffled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}}\texorpdfstring{$\ast$}{*} buffer\+\_\+matrix\+\_\+2\+\_\+shuffled = NULL}
+
+Shuffled copy of secondary buffer matrix \Hypertarget{stochastic__gd_8c_a25270fcb3ace46b90bdb1f80116728eb}\label{stochastic__gd_8c_a25270fcb3ace46b90bdb1f80116728eb} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!gnuplot@{gnuplot}}
+\index{gnuplot@{gnuplot}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{gnuplot}{gnuplot}}
+{\footnotesize\ttfamily FILE\texorpdfstring{$\ast$}{*} gnuplot}
+
+\Hypertarget{stochastic__gd_8c_af17836e53ea7f1854f0df858804ad78d}\label{stochastic__gd_8c_af17836e53ea7f1854f0df858804ad78d} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!model\_squared\_sum\_vector@{model\_squared\_sum\_vector}}
+\index{model\_squared\_sum\_vector@{model\_squared\_sum\_vector}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{model\_squared\_sum\_vector}{model\_squared\_sum\_vector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}\texorpdfstring{$\ast$}{*} model\+\_\+squared\+\_\+sum\+\_\+vector = NULL}
+
+Vector holding squared sum of model parameters for regularization calculation \Hypertarget{stochastic__gd_8c_a2f6641181fa7991a839dd321b9ebc0c4}\label{stochastic__gd_8c_a2f6641181fa7991a839dd321b9ebc0c4} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!model\_transposed@{model\_transposed}}
+\index{model\_transposed@{model\_transposed}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{model\_transposed}{model\_transposed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}}\texorpdfstring{$\ast$}{*} model\+\_\+transposed = NULL}
+
+Transposed vector of current model parameters during callback \Hypertarget{stochastic__gd_8c_a91b953e5fc54f41add9c2dee3835d48f}\label{stochastic__gd_8c_a91b953e5fc54f41add9c2dee3835d48f} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!number\_of\_columns\_in\_training\_examples@{number\_of\_columns\_in\_training\_examples}}
+\index{number\_of\_columns\_in\_training\_examples@{number\_of\_columns\_in\_training\_examples}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{number\_of\_columns\_in\_training\_examples}{number\_of\_columns\_in\_training\_examples}}
+{\footnotesize\ttfamily uint64\+\_\+t number\+\_\+of\+\_\+columns\+\_\+in\+\_\+training\+\_\+examples = 0}
+
+Number of columns (features + target) in training dataset \Hypertarget{stochastic__gd_8c_a0b29ba4f663d760f823246b518ab2e20}\label{stochastic__gd_8c_a0b29ba4f663d760f823246b518ab2e20} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!number\_of\_training\_examples@{number\_of\_training\_examples}}
+\index{number\_of\_training\_examples@{number\_of\_training\_examples}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{number\_of\_training\_examples}{number\_of\_training\_examples}}
+{\footnotesize\ttfamily uint64\+\_\+t number\+\_\+of\+\_\+training\+\_\+examples = 0}
+
+Total number of training examples (rows) in dataset \Hypertarget{stochastic__gd_8c_a76a450feba110729ba13164cff5efb6c}\label{stochastic__gd_8c_a76a450feba110729ba13164cff5efb6c} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!prediction\_error@{prediction\_error}}
+\index{prediction\_error@{prediction\_error}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{prediction\_error}{prediction\_error}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}\texorpdfstring{$\ast$}{*} prediction\+\_\+error = NULL}
+
+Vector holding prediction errors during training progress callback \Hypertarget{stochastic__gd_8c_a5a07c4cba599733c6fd1c847de54ff48}\label{stochastic__gd_8c_a5a07c4cba599733c6fd1c847de54ff48} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!prediction\_error\_transposed@{prediction\_error\_transposed}}
+\index{prediction\_error\_transposed@{prediction\_error\_transposed}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{prediction\_error\_transposed}{prediction\_error\_transposed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}}\texorpdfstring{$\ast$}{*} prediction\+\_\+error\+\_\+transposed = NULL}
+
+Transposed version of prediction\+\_\+error vector \Hypertarget{stochastic__gd_8c_a9fe8cee25422ce7b5b66c98f38847152}\label{stochastic__gd_8c_a9fe8cee25422ce7b5b66c98f38847152} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!product\_vector@{product\_vector}}
+\index{product\_vector@{product\_vector}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{product\_vector}{product\_vector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}\texorpdfstring{$\ast$}{*} product\+\_\+vector = NULL}
+
+Temporary vector used for intermediate matrix products \Hypertarget{stochastic__gd_8c_a2d4ee2a9cbf3c7e59153f2bd45b214c6}\label{stochastic__gd_8c_a2d4ee2a9cbf3c7e59153f2bd45b214c6} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!x\_matrix@{x\_matrix}}
+\index{x\_matrix@{x\_matrix}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{x\_matrix}{x\_matrix}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}}\texorpdfstring{$\ast$}{*} x\+\_\+matrix = NULL}
+
+Feature matrix pointer used in data loading for mini-\/batches \Hypertarget{stochastic__gd_8c_ae6827eb44c2c4457b11469690ef0e0d9}\label{stochastic__gd_8c_ae6827eb44c2c4457b11469690ef0e0d9} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!xy\_matrix@{xy\_matrix}}
+\index{xy\_matrix@{xy\_matrix}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{xy\_matrix}{xy\_matrix}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}}\texorpdfstring{$\ast$}{*} xy\+\_\+matrix = NULL}
+
+Combined feature-\/target matrix used temporarily for data loading \Hypertarget{stochastic__gd_8c_a61e4d144df266fcbdcddb5bd00fa0318}\label{stochastic__gd_8c_a61e4d144df266fcbdcddb5bd00fa0318} 
+\index{stochastic\_gd.c@{stochastic\_gd.c}!y\_vector@{y\_vector}}
+\index{y\_vector@{y\_vector}!stochastic\_gd.c@{stochastic\_gd.c}}
+\doxysubsubsection{\texorpdfstring{y\_vector}{y\_vector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}\texorpdfstring{$\ast$}{*} y\+\_\+vector = NULL}
+
+Target vector pointer used in data loading for mini-\/batches 

@@ -1,0 +1,124 @@
+\doxysection{ml-\/examples/regression/linear/src/gd\+\_\+test\+\_\+model.c File Reference}
+\hypertarget{gd__test__model_8c}{}\label{gd__test__model_8c}\index{ml-\/examples/regression/linear/src/gd\_test\_model.c@{ml-\/examples/regression/linear/src/gd\_test\_model.c}}
+
+
+Tests a linear regression model by predicting and evaluating accuracy using R2 score.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for gd\+\_\+test\+\_\+model.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gd__test__model_8c__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gd__test__model_8c_af0aa4a8532b802df2b819aefe24f1eee}{load\+\_\+dataset}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}x, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}y, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Loads test dataset features X, target values Y, and model parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gd__test__model_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function to run the model testing example. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{gd__test__model_8c_a850b5c4deea67083371796a873b6130c}{MODEL}}
+\item 
+void \mbox{\hyperlink{gd__test__model_8c_a926dabe718454fc42513a0382f9a5e98}{print\+\_\+error\+\_\+and\+\_\+exit}} ()
+\begin{DoxyCompactList}\small\item\em Prints the ml-\/framework error string and exits the program. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{gd__test__model_8c_a85588112f0b35207a31ff3817b6c5411}{TESTING\+\_\+\+DATASET}}~"{}Ice\+Cream\+Sales\+\_\+testing\+\_\+examples.\+csv"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tests a linear regression model by predicting and evaluating accuracy using R2 score. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26
+\end{DoxyDate}
+This tool loads a test dataset and pre-\/trained model parameters, makes predictions using ml-\/framework linear regression prediction functionality, computes the R2 accuracy score, and prints the result. It also handles errors and resource cleanup.
+
+Usage\+: ./gd\+\_\+test\+\_\+model model\+\_\+csv\+\_\+file
+
+Parameters\+:
+\begin{DoxyItemize}
+\item model\+\_\+csv\+\_\+file\+: Path to CSV file containing saved model parameters. 
+\end{DoxyItemize}
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{gd__test__model_8c_a85588112f0b35207a31ff3817b6c5411}\label{gd__test__model_8c_a85588112f0b35207a31ff3817b6c5411} 
+\index{gd\_test\_model.c@{gd\_test\_model.c}!TESTING\_DATASET@{TESTING\_DATASET}}
+\index{TESTING\_DATASET@{TESTING\_DATASET}!gd\_test\_model.c@{gd\_test\_model.c}}
+\doxysubsubsection{\texorpdfstring{TESTING\_DATASET}{TESTING\_DATASET}}
+{\footnotesize\ttfamily \#define TESTING\+\_\+\+DATASET~"{}Ice\+Cream\+Sales\+\_\+testing\+\_\+examples.\+csv"{}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{gd__test__model_8c_af0aa4a8532b802df2b819aefe24f1eee}\label{gd__test__model_8c_af0aa4a8532b802df2b819aefe24f1eee} 
+\index{gd\_test\_model.c@{gd\_test\_model.c}!load\_dataset@{load\_dataset}}
+\index{load\_dataset@{load\_dataset}!gd\_test\_model.c@{gd\_test\_model.c}}
+\doxysubsubsection{\texorpdfstring{load\_dataset()}{load\_dataset()}}
+{\footnotesize\ttfamily void load\+\_\+dataset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{x,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{y,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{model }\end{DoxyParamCaption})}
+
+
+
+Loads test dataset features X, target values Y, and model parameters. 
+
+The dataset used is fixed to Ice\+Cream\+Sales\+\_\+testing\+\_\+examples.\+csv. A bias column of all 1.\+0 is prepended to features.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to features matrix pointer. \\
+\hline
+\mbox{\texttt{ out}}  & {\em y} & Pointer to target column vector pointer. \\
+\hline
+\mbox{\texttt{ out}}  & {\em model} & Pointer to model parameters vector pointer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gd__test__model_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{gd__test__model_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{gd\_test\_model.c@{gd\_test\_model.c}!main@{main}}
+\index{main@{main}!gd\_test\_model.c@{gd\_test\_model.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function to run the model testing example. 
+
+Loads dataset and model, performs prediction, computes accuracy using R2 score, prints accuracy, and manages resources.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success or error. 
+\end{DoxyReturn}
+\Hypertarget{gd__test__model_8c_a926dabe718454fc42513a0382f9a5e98}\label{gd__test__model_8c_a926dabe718454fc42513a0382f9a5e98} 
+\index{gd\_test\_model.c@{gd\_test\_model.c}!print\_error\_and\_exit@{print\_error\_and\_exit}}
+\index{print\_error\_and\_exit@{print\_error\_and\_exit}!gd\_test\_model.c@{gd\_test\_model.c}}
+\doxysubsubsection{\texorpdfstring{print\_error\_and\_exit()}{print\_error\_and\_exit()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+and\+\_\+exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints the ml-\/framework error string and exits the program. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{gd__test__model_8c_a850b5c4deea67083371796a873b6130c}\label{gd__test__model_8c_a850b5c4deea67083371796a873b6130c} 
+\index{gd\_test\_model.c@{gd\_test\_model.c}!MODEL@{MODEL}}
+\index{MODEL@{MODEL}!gd\_test\_model.c@{gd\_test\_model.c}}
+\doxysubsubsection{\texorpdfstring{MODEL}{MODEL}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} MODEL}
+

@@ -1,0 +1,39 @@
+\doxysection{example\+\_\+dmlfw\+\_\+vec\+\_\+double.\+c}
+\hypertarget{example_dmlfw_vec_double_8c-example}{}\label{example_dmlfw_vec_double_8c-example}Typical usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__vector_8h}{dmlfw\_vector.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__error_8h}{dmlfw\_error.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ mean=0.0;}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Create\ a\ column\ vector\ with\ 3\ rows\ (elements)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *col\_vec\ =\ \mbox{\hyperlink{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}{dmlfw\_column\_vec\_double\_create\_new}}(3);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(col\_vec,\ 0,\ 1.0);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(col\_vec,\ 1,\ 2.0);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(col\_vec,\ 2,\ 3.0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ mean\ =\ \mbox{\hyperlink{group__vector_gacc0f0c0d157de326e370518055d4746f}{dmlfw\_column\_vec\_double\_get\_mean}}(col\_vec);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Mean\ of\ column\ vector:\ \%lf\(\backslash\)n"{}},\ mean);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(col\_vec);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

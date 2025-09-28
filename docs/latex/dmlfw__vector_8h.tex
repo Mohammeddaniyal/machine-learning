@@ -1,0 +1,57 @@
+\doxysection{ml-\/framework/include/dmlfw\+\_\+vector.h File Reference}
+\hypertarget{dmlfw__vector_8h}{}\label{dmlfw__vector_8h}\index{ml-\/framework/include/dmlfw\_vector.h@{ml-\/framework/include/dmlfw\_vector.h}}
+
+
+Core vector types and utilities for double and string data.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+types.\+h$>$}\newline
+{\ttfamily \#include $<$vector/dmlfw\+\_\+vec\+\_\+string.\+h$>$}\newline
+{\ttfamily \#include $<$vector/dmlfw\+\_\+vec\+\_\+double.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+vector.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__vector_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__vector_8h__dep__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Core vector types and utilities for double and string data. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26
+\end{DoxyDate}
+This umbrella header consolidates the vector types for double and string elements, providing access to core functionalities such as\+:
+\begin{DoxyItemize}
+\item Creation and destruction
+\item Element access and mutation
+\item CSV import/export
+\item Basic manipulation utilities
+\end{DoxyItemize}
+
+The module supports both row and column vector types for each data specialization, allowing flexible handling of linear arrays. Operations specific to each vector orientation are defined in their respective headers.
+
+Each vector type is specialized for its element type, offering tailored operations for numeric or textual data.
+
+The vector module forms a foundation for managing linear collections within the framework and is widely reused in higher-\/level components.
+
+See also the specialized headers for detailed APIs\+:
+\begin{DoxyItemize}
+\item \doxylink{dmlfw__vec__double_8h}{Double Vectors}
+\item \doxylink{dmlfw__vec__string_8h}{String Vectors} 
+\end{DoxyItemize}

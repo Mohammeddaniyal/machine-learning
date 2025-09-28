@@ -1,0 +1,614 @@
+\doxysection{ml-\/framework/include/ml\+\_\+algorithms/dmlfw\+\_\+ml\+\_\+configurations.h File Reference}
+\hypertarget{dmlfw__ml__configurations_8h}{}\label{dmlfw__ml__configurations_8h}\index{ml-\/framework/include/ml\_algorithms/dmlfw\_ml\_configurations.h@{ml-\/framework/include/ml\_algorithms/dmlfw\_ml\_configurations.h}}
+
+
+Gradient descent configuration data structures and APIs.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__ml__configurations_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+data\+\_\+provider\+\_\+t}}) (void \texorpdfstring{$\ast$}{*}x, void \texorpdfstring{$\ast$}{*}y, uint64\+\_\+t from\+\_\+row\+\_\+index, uint32\+\_\+t how\+\_\+many\+\_\+rows)
+\begin{DoxyCompactList}\small\item\em Data provider callback for gradient descent linear regression. \end{DoxyCompactList}\item 
+typedef int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+progress\+\_\+callback\+\_\+t}}) (uint64\+\_\+t iteration\+\_\+number, void \texorpdfstring{$\ast$}{*}y, void \texorpdfstring{$\ast$}{*}predicted\+\_\+y, void \texorpdfstring{$\ast$}{*}model, double regularization\+\_\+parameter)
+\begin{DoxyCompactList}\small\item\em Progress callback for gradient descent linear regression. \end{DoxyCompactList}\item 
+typedef struct \+\_\+dmlfw\+\_\+gradient\+\_\+descent\+\_\+options \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing gradient descent configuration options. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+create\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em Creates a new gradient descent options object with default values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+destroy}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Destroys a gradient descent options object and frees associated memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+data\+\_\+provider\+\_\+t}} \mbox{\hyperlink{dmlfw__ml__configurations_8h_a1bdb148c587ea49afbd57b3b5d3aa159}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+data\+\_\+provider}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Gets the data provider callback pointer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dmlfw__ml__configurations_8h_a96b730152f47cc6526cf4d19129f48b1}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+gradient\+\_\+descent\+\_\+type}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Gets the gradient descent type. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{dmlfw__ml__configurations_8h_a54f8859d30c4f9bb69ff34500eb3d9c4}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+learning\+\_\+rate}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Gets the learning rate. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{dmlfw__ml__configurations_8h_a71d3d67c2943bf8d75470406bfee0454}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+mini\+\_\+batch\+\_\+size}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Gets the mini-\/batch size. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{dmlfw__ml__configurations_8h_a174d01bf3e329f6611b61838442b5544}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+number\+\_\+of\+\_\+iterations}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Gets the number of iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+progress\+\_\+callback\+\_\+t}} \mbox{\hyperlink{dmlfw__ml__configurations_8h_a2ec8df2da87e75f9ff8f2a8acbb7a729}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+progress\+\_\+callback}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options)
+\begin{DoxyCompactList}\small\item\em Gets the progress callback pointer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_a338b95cced425ea43cb84b162ed01556}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+data\+\_\+provider}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options, \mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+data\+\_\+provider\+\_\+t}} data\+\_\+provider)
+\begin{DoxyCompactList}\small\item\em Sets the data provider callback. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa6711d8dbc27317398e29645925fa631}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+gradient\+\_\+descent\+\_\+type}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options, int gradient\+\_\+descent\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Sets the gradient descent type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_ac1af0879cf0fe5aa48942a6d01bfd96b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+learning\+\_\+rate}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options, double learning\+\_\+rate)
+\begin{DoxyCompactList}\small\item\em Sets the learning rate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_a33732a39515c93c77d9171276dd29a61}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+mini\+\_\+batch\+\_\+size}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options, uint32\+\_\+t mini\+\_\+batch\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Sets the mini-\/batch size for mini-\/batch gradient descent. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_a662f65aee3fa813528db5be5ffbaf175}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+number\+\_\+of\+\_\+iterations}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options, uint64\+\_\+t number\+\_\+of\+\_\+iterations)
+\begin{DoxyCompactList}\small\item\em Sets the number of iterations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__ml__configurations_8h_a6e1927a6991787e03f567a98f86b292f}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+progress\+\_\+callback}} (\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}gd\+\_\+options, \mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+progress\+\_\+callback\+\_\+t}} progress\+\_\+callback)
+\begin{DoxyCompactList}\small\item\em Sets the progress callback. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517c}{MLFW\+\_\+\+GRADIENT\+\_\+\+DESCENT\+\_\+\+TYPE}} \{ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca1d9b4f104a8f742e31386e0feec42acb}{MLFW\+\_\+\+BATCH\+\_\+\+GRADIENT\+\_\+\+DESCENT}}
+, \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca515e7d8bd4a7f739ba64818444cd92b0}{MLFW\+\_\+\+STOCHASTIC\+\_\+\+GRADIENT\+\_\+\+DESCENT}}
+, \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca41d394edfb35e39218ff9f465f990cf1}{MLFW\+\_\+\+MINI\+\_\+\+BATCH\+\_\+\+GRADIENT\+\_\+\+DESCENT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Gradient descent algorithm types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gradient descent configuration data structures and APIs. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This module provides definitions and management functions for gradient descent configuration objects used with ML algorithms such as linear regression. It enables detailed customization of learning rate, iterations, gradient descent type, progress callbacks, data provisioning, and mini-\/batch processing.\hypertarget{dmlfw__ml__configurations_8h_autotoc_md14}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__ml__configurations_8h_autotoc_md14}
+All functions validate input parameters and report errors via the centralized error API. After function calls, check {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} to detect if an error occurred. Retrieve descriptive error messages with {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and diagnostic info with {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}}. 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}\label{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t@{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}}
+\index{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t@{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+data\+\_\+provider\+\_\+t) (void \texorpdfstring{$\ast$}{*}x, void \texorpdfstring{$\ast$}{*}y, uint64\+\_\+t from\+\_\+row\+\_\+index, uint32\+\_\+t how\+\_\+many\+\_\+rows)}
+
+
+
+Data provider callback for gradient descent linear regression. 
+
+Supplies batches of data for training.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Feature matrix subset. \\
+\hline
+{\em y} & Target vector subset. \\
+\hline
+{\em from\+\_\+row\+\_\+index} & Index of first row in batch. \\
+\hline
+{\em how\+\_\+many\+\_\+rows} & Number of rows in batch. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}\label{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t@{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}}
+\index{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t@{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}}
+{\footnotesize\ttfamily typedef int(\texorpdfstring{$\ast$}{*} dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+progress\+\_\+callback\+\_\+t) (uint64\+\_\+t iteration\+\_\+number, void \texorpdfstring{$\ast$}{*}y, void \texorpdfstring{$\ast$}{*}predicted\+\_\+y, void \texorpdfstring{$\ast$}{*}model, double regularization\+\_\+parameter)}
+
+
+
+Progress callback for gradient descent linear regression. 
+
+Called during each iteration to report training status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iteration\+\_\+number} & Current iteration count. \\
+\hline
+{\em y} & Actual target values. \\
+\hline
+{\em predicted\+\_\+y} & Predicted target values. \\
+\hline
+{\em model} & Current model parameters. \\
+\hline
+{\em regularization\+\_\+parameter} & Regularization term used.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zero to continue training, negative to terminate early. 
+\end{DoxyReturn}
+\Hypertarget{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}\label{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options@{dmlfw\_gradient\_descent\_options}}
+\index{dmlfw\_gradient\_descent\_options@{dmlfw\_gradient\_descent\_options}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options}{dmlfw\_gradient\_descent\_options}}
+{\footnotesize\ttfamily typedef struct \+\_\+dmlfw\+\_\+gradient\+\_\+descent\+\_\+options \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}}}
+
+
+
+Opaque structure representing gradient descent configuration options. 
+
+The internal details are hidden. Use the provided API functions to create, manipulate, and destroy instances. 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517c}\label{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517c} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!MLFW\_GRADIENT\_DESCENT\_TYPE@{MLFW\_GRADIENT\_DESCENT\_TYPE}}
+\index{MLFW\_GRADIENT\_DESCENT\_TYPE@{MLFW\_GRADIENT\_DESCENT\_TYPE}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{MLFW\_GRADIENT\_DESCENT\_TYPE}{MLFW\_GRADIENT\_DESCENT\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517c}{MLFW\+\_\+\+GRADIENT\+\_\+\+DESCENT\+\_\+\+TYPE}}}
+
+
+
+Gradient descent algorithm types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MLFW\_BATCH\_GRADIENT\_DESCENT@{MLFW\_BATCH\_GRADIENT\_DESCENT}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!MLFW\_BATCH\_GRADIENT\_DESCENT@{MLFW\_BATCH\_GRADIENT\_DESCENT}}}\Hypertarget{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca1d9b4f104a8f742e31386e0feec42acb}\label{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca1d9b4f104a8f742e31386e0feec42acb} 
+MLFW\+\_\+\+BATCH\+\_\+\+GRADIENT\+\_\+\+DESCENT&Full batch gradient descent. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MLFW\_STOCHASTIC\_GRADIENT\_DESCENT@{MLFW\_STOCHASTIC\_GRADIENT\_DESCENT}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!MLFW\_STOCHASTIC\_GRADIENT\_DESCENT@{MLFW\_STOCHASTIC\_GRADIENT\_DESCENT}}}\Hypertarget{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca515e7d8bd4a7f739ba64818444cd92b0}\label{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca515e7d8bd4a7f739ba64818444cd92b0} 
+MLFW\+\_\+\+STOCHASTIC\+\_\+\+GRADIENT\+\_\+\+DESCENT&Stochastic gradient descent. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MLFW\_MINI\_BATCH\_GRADIENT\_DESCENT@{MLFW\_MINI\_BATCH\_GRADIENT\_DESCENT}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!MLFW\_MINI\_BATCH\_GRADIENT\_DESCENT@{MLFW\_MINI\_BATCH\_GRADIENT\_DESCENT}}}\Hypertarget{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca41d394edfb35e39218ff9f465f990cf1}\label{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca41d394edfb35e39218ff9f465f990cf1} 
+MLFW\+\_\+\+MINI\+\_\+\+BATCH\+\_\+\+GRADIENT\+\_\+\+DESCENT&Mini-\/batch gradient descent. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8}\label{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_create\_new@{dmlfw\_gradient\_descent\_options\_create\_new}}
+\index{dmlfw\_gradient\_descent\_options\_create\_new@{dmlfw\_gradient\_descent\_options\_create\_new}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_create\_new()}{dmlfw\_gradient\_descent\_options\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new gradient descent options object with default values. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to allocated options or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must destroy the returned object via \doxylink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+destroy()}.
+\end{DoxyNote}
+Usage example in API context\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *opts\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8}{dmlfw\_gradient\_descent\_options\_create\_new}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (opts\ ==\ NULL\ ||\ \mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error\ (e.g.,\ return\ NULL\ up\ the\ call\ chain)}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ use\ opts...}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\_gradient\_descent\_options\_destroy}}(opts);}
+
+\end{DoxyCode}
+
+
+Usage example in \doxylink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main()}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *opts\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8}{dmlfw\_gradient\_descent\_options\_create\_new}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ create\ options:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ use\ opts...}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\_gradient\_descent\_options\_destroy}}(opts);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+destroy} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_linear_regression_8c-example}{example\+\_\+dmlfw\+\_\+linear\+\_\+regression.\+c}}, and \mbox{\hyperlink{example_dmlfw_ml_configurations_8c-example}{example\+\_\+dmlfw\+\_\+ml\+\_\+configurations.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}\label{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_destroy@{dmlfw\_gradient\_descent\_options\_destroy}}
+\index{dmlfw\_gradient\_descent\_options\_destroy@{dmlfw\_gradient\_descent\_options\_destroy}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_destroy()}{dmlfw\_gradient\_descent\_options\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Destroys a gradient descent options object and frees associated memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Pointer to options to destroy, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\_gradient\_descent\_options\_destroy}}(opts);}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+create\+\_\+new} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_linear_regression_8c-example}{example\+\_\+dmlfw\+\_\+linear\+\_\+regression.\+c}}, and \mbox{\hyperlink{example_dmlfw_ml_configurations_8c-example}{example\+\_\+dmlfw\+\_\+ml\+\_\+configurations.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__ml__configurations_8h_a1bdb148c587ea49afbd57b3b5d3aa159}\label{dmlfw__ml__configurations_8h_a1bdb148c587ea49afbd57b3b5d3aa159} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_get\_data\_provider@{dmlfw\_gradient\_descent\_options\_get\_data\_provider}}
+\index{dmlfw\_gradient\_descent\_options\_get\_data\_provider@{dmlfw\_gradient\_descent\_options\_get\_data\_provider}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_get\_data\_provider()}{dmlfw\_gradient\_descent\_options\_get\_data\_provider()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+data\+\_\+provider\+\_\+t}} dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+data\+\_\+provider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Gets the data provider callback pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data provider callback function pointer or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ dp\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a1bdb148c587ea49afbd57b3b5d3aa159}{dmlfw\_gradient\_descent\_options\_get\_data\_provider}}(opts);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a338b95cced425ea43cb84b162ed01556}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+data\+\_\+provider} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a96b730152f47cc6526cf4d19129f48b1}\label{dmlfw__ml__configurations_8h_a96b730152f47cc6526cf4d19129f48b1} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type@{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type}}
+\index{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type@{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type()}{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type()}}
+{\footnotesize\ttfamily int dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+gradient\+\_\+descent\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Gets the gradient descent type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Gradient descent type or -\/1 on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ type\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a96b730152f47cc6526cf4d19129f48b1}{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type}}(opts);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_aa6711d8dbc27317398e29645925fa631}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+gradient\+\_\+descent\+\_\+type} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a54f8859d30c4f9bb69ff34500eb3d9c4}\label{dmlfw__ml__configurations_8h_a54f8859d30c4f9bb69ff34500eb3d9c4} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_get\_learning\_rate@{dmlfw\_gradient\_descent\_options\_get\_learning\_rate}}
+\index{dmlfw\_gradient\_descent\_options\_get\_learning\_rate@{dmlfw\_gradient\_descent\_options\_get\_learning\_rate}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_get\_learning\_rate()}{dmlfw\_gradient\_descent\_options\_get\_learning\_rate()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+learning\+\_\+rate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Gets the learning rate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current learning rate or NaN on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ rate\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a54f8859d30c4f9bb69ff34500eb3d9c4}{dmlfw\_gradient\_descent\_options\_get\_learning\_rate}}(opts);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_ac1af0879cf0fe5aa48942a6d01bfd96b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+learning\+\_\+rate} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a71d3d67c2943bf8d75470406bfee0454}\label{dmlfw__ml__configurations_8h_a71d3d67c2943bf8d75470406bfee0454} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size@{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size}}
+\index{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size@{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size()}{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size()}}
+{\footnotesize\ttfamily uint32\+\_\+t dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+mini\+\_\+batch\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Gets the mini-\/batch size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mini-\/batch size or 0 on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint32\_t\ size\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a71d3d67c2943bf8d75470406bfee0454}{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size}}(opts);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a33732a39515c93c77d9171276dd29a61}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+mini\+\_\+batch\+\_\+size} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a174d01bf3e329f6611b61838442b5544}\label{dmlfw__ml__configurations_8h_a174d01bf3e329f6611b61838442b5544} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations@{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations}}
+\index{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations@{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations()}{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations()}}
+{\footnotesize\ttfamily uint64\+\_\+t dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+number\+\_\+of\+\_\+iterations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Gets the number of iterations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of iterations or 0 on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint64\_t\ num\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a174d01bf3e329f6611b61838442b5544}{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations}}(opts);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a662f65aee3fa813528db5be5ffbaf175}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+number\+\_\+of\+\_\+iterations} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a2ec8df2da87e75f9ff8f2a8acbb7a729}\label{dmlfw__ml__configurations_8h_a2ec8df2da87e75f9ff8f2a8acbb7a729} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_get\_progress\_callback@{dmlfw\_gradient\_descent\_options\_get\_progress\_callback}}
+\index{dmlfw\_gradient\_descent\_options\_get\_progress\_callback@{dmlfw\_gradient\_descent\_options\_get\_progress\_callback}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_get\_progress\_callback()}{dmlfw\_gradient\_descent\_options\_get\_progress\_callback()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+progress\+\_\+callback\+\_\+t}} dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+progress\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options }\end{DoxyParamCaption})}
+
+
+
+Gets the progress callback pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Progress callback function pointer or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ cb\ =\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a2ec8df2da87e75f9ff8f2a8acbb7a729}{dmlfw\_gradient\_descent\_options\_get\_progress\_callback}}(opts);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a6e1927a6991787e03f567a98f86b292f}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+progress\+\_\+callback} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a338b95cced425ea43cb84b162ed01556}\label{dmlfw__ml__configurations_8h_a338b95cced425ea43cb84b162ed01556} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_set\_data\_provider@{dmlfw\_gradient\_descent\_options\_set\_data\_provider}}
+\index{dmlfw\_gradient\_descent\_options\_set\_data\_provider@{dmlfw\_gradient\_descent\_options\_set\_data\_provider}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_set\_data\_provider()}{dmlfw\_gradient\_descent\_options\_set\_data\_provider()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+data\+\_\+provider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options,  }\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+data\+\_\+provider\+\_\+t}}}]{data\+\_\+provider }\end{DoxyParamCaption})}
+
+
+
+Sets the data provider callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in,out\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+{\em data\+\_\+provider} & \mbox{[}in\mbox{]} Callback function pointer or NULL.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_a338b95cced425ea43cb84b162ed01556}{dmlfw\_gradient\_descent\_options\_set\_data\_provider}}(opts,\ my\_data\_provider);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a1bdb148c587ea49afbd57b3b5d3aa159}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+data\+\_\+provider} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_aa6711d8dbc27317398e29645925fa631}\label{dmlfw__ml__configurations_8h_aa6711d8dbc27317398e29645925fa631} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type@{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type}}
+\index{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type@{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type()}{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+gradient\+\_\+descent\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options,  }\item[{int}]{gradient\+\_\+descent\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Sets the gradient descent type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in,out\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+{\em gradient\+\_\+descent\+\_\+type} & \mbox{[}in\mbox{]} One of MLFW\+\_\+\+BATCH\+\_\+\+GRADIENT\+\_\+\+DESCENT, MLFW\+\_\+\+STOCHASTIC\+\_\+\+GRADIENT\+\_\+\+DESCENT, MLFW\+\_\+\+MINI\+\_\+\+BATCH\+\_\+\+GRADIENT\+\_\+\+DESCENT.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa6711d8dbc27317398e29645925fa631}{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type}}(opts,\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca1d9b4f104a8f742e31386e0feec42acb}{MLFW\_BATCH\_GRADIENT\_DESCENT}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a96b730152f47cc6526cf4d19129f48b1}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+gradient\+\_\+descent\+\_\+type} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_ac1af0879cf0fe5aa48942a6d01bfd96b}\label{dmlfw__ml__configurations_8h_ac1af0879cf0fe5aa48942a6d01bfd96b} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_set\_learning\_rate@{dmlfw\_gradient\_descent\_options\_set\_learning\_rate}}
+\index{dmlfw\_gradient\_descent\_options\_set\_learning\_rate@{dmlfw\_gradient\_descent\_options\_set\_learning\_rate}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_set\_learning\_rate()}{dmlfw\_gradient\_descent\_options\_set\_learning\_rate()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+learning\+\_\+rate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options,  }\item[{double}]{learning\+\_\+rate }\end{DoxyParamCaption})}
+
+
+
+Sets the learning rate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in,out\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+{\em learning\+\_\+rate} & \mbox{[}in\mbox{]} Learning rate value.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_ac1af0879cf0fe5aa48942a6d01bfd96b}{dmlfw\_gradient\_descent\_options\_set\_learning\_rate}}(opts,\ 0.01);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a54f8859d30c4f9bb69ff34500eb3d9c4}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+learning\+\_\+rate} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_linear_regression_8c-example}{example\+\_\+dmlfw\+\_\+linear\+\_\+regression.\+c}}, and \mbox{\hyperlink{example_dmlfw_ml_configurations_8c-example}{example\+\_\+dmlfw\+\_\+ml\+\_\+configurations.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__ml__configurations_8h_a33732a39515c93c77d9171276dd29a61}\label{dmlfw__ml__configurations_8h_a33732a39515c93c77d9171276dd29a61} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size@{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size}}
+\index{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size@{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size()}{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+mini\+\_\+batch\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options,  }\item[{uint32\+\_\+t}]{mini\+\_\+batch\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Sets the mini-\/batch size for mini-\/batch gradient descent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in,out\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+{\em mini\+\_\+batch\+\_\+size} & \mbox{[}in\mbox{]} Number of samples in a mini-\/batch.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_a33732a39515c93c77d9171276dd29a61}{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size}}(opts,\ 32);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a71d3d67c2943bf8d75470406bfee0454}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+mini\+\_\+batch\+\_\+size} 
+\end{DoxySeeAlso}
+\Hypertarget{dmlfw__ml__configurations_8h_a662f65aee3fa813528db5be5ffbaf175}\label{dmlfw__ml__configurations_8h_a662f65aee3fa813528db5be5ffbaf175} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations@{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations}}
+\index{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations@{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations()}{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+number\+\_\+of\+\_\+iterations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options,  }\item[{uint64\+\_\+t}]{number\+\_\+of\+\_\+iterations }\end{DoxyParamCaption})}
+
+
+
+Sets the number of iterations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in,out\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+{\em number\+\_\+of\+\_\+iterations} & \mbox{[}in\mbox{]} Number of iterations.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_a662f65aee3fa813528db5be5ffbaf175}{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations}}(opts,\ 1000);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a174d01bf3e329f6611b61838442b5544}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+number\+\_\+of\+\_\+iterations} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_linear_regression_8c-example}{example\+\_\+dmlfw\+\_\+linear\+\_\+regression.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__ml__configurations_8h_a6e1927a6991787e03f567a98f86b292f}\label{dmlfw__ml__configurations_8h_a6e1927a6991787e03f567a98f86b292f} 
+\index{dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}!dmlfw\_gradient\_descent\_options\_set\_progress\_callback@{dmlfw\_gradient\_descent\_options\_set\_progress\_callback}}
+\index{dmlfw\_gradient\_descent\_options\_set\_progress\_callback@{dmlfw\_gradient\_descent\_options\_set\_progress\_callback}!dmlfw\_ml\_configurations.h@{dmlfw\_ml\_configurations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_gradient\_descent\_options\_set\_progress\_callback()}{dmlfw\_gradient\_descent\_options\_set\_progress\_callback()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+set\+\_\+progress\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{gd\+\_\+options,  }\item[{\mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+lin\+\_\+reg\+\_\+progress\+\_\+callback\+\_\+t}}}]{progress\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+Sets the progress callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gd\+\_\+options} & \mbox{[}in,out\mbox{]} Gradient descent options (must not be NULL). \\
+\hline
+{\em progress\+\_\+callback} & \mbox{[}in\mbox{]} Callback function pointer or NULL.\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__ml__configurations_8h_a6e1927a6991787e03f567a98f86b292f}{dmlfw\_gradient\_descent\_options\_set\_progress\_callback}}(opts,\ my\_callback);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Handle\ error}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__ml__configurations_8h_a2ec8df2da87e75f9ff8f2a8acbb7a729}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options\+\_\+get\+\_\+progress\+\_\+callback} 
+\end{DoxySeeAlso}

@@ -1,0 +1,127 @@
+\doxysection{tools/src/polynomial\+\_\+dataset\+\_\+generator.c File Reference}
+\hypertarget{polynomial__dataset__generator_8c}{}\label{polynomial__dataset__generator_8c}\index{tools/src/polynomial\_dataset\_generator.c@{tools/src/polynomial\_dataset\_generator.c}}
+
+
+Generates a polynomial feature dataset from input CSV.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw.\+h$>$}\newline
+Include dependency graph for polynomial\+\_\+dataset\+\_\+generator.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{polynomial__dataset__generator_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{polynomial__dataset__generator_8c_a360e31637eb2730a18e344d3f434f058}{\+\_\+\+\_\+dmlfw\+\_\+double\+\_\+generate\+\_\+polynomial\+\_\+dataset}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}dataset, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} i, double accumulated\+\_\+value, uint8\+\_\+t exponent, \mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}polynomial\+\_\+dataset)
+\begin{DoxyCompactList}\small\item\em Recursive helper to generate polynomial terms from feature vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{polynomial__dataset__generator_8c_a429496f6689df45416d6bf877eaa1677}{dmlfw\+\_\+double\+\_\+generate\+\_\+polynomial\+\_\+dataset}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}dataset, uint8\+\_\+t exponent)
+\begin{DoxyCompactList}\small\item\em Generates polynomial feature vector for given dataset and exponent. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{polynomial__dataset__generator_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for polynomial dataset generation tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Generates a polynomial feature dataset from input CSV. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool reads a numeric dataset CSV, generates polynomial feature expansions up to a specified exponent for the feature columns (excluding the target column), and writes the expanded polynomial dataset including target values to a CSV file.
+
+Core polynomial feature generation is performed recursively with ml-\/framework row vectors and forward lists.
+
+Usage\+: ./polynomial\+\_\+dataset\+\_\+generator source.\+csv target.\+csv exponent
+
+Parameters\+:
+\begin{DoxyItemize}
+\item source.\+csv\+: Input CSV file containing features and target.
+\item target.\+csv\+: Output CSV file with polynomial feature expansion.
+\item exponent\+: Maximum polynomial degree (integer \texorpdfstring{$>$}{>}= 1). 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{polynomial__dataset__generator_8c_a360e31637eb2730a18e344d3f434f058}\label{polynomial__dataset__generator_8c_a360e31637eb2730a18e344d3f434f058} 
+\index{polynomial\_dataset\_generator.c@{polynomial\_dataset\_generator.c}!\_\_dmlfw\_double\_generate\_polynomial\_dataset@{\_\_dmlfw\_double\_generate\_polynomial\_dataset}}
+\index{\_\_dmlfw\_double\_generate\_polynomial\_dataset@{\_\_dmlfw\_double\_generate\_polynomial\_dataset}!polynomial\_dataset\_generator.c@{polynomial\_dataset\_generator.c}}
+\doxysubsubsection{\texorpdfstring{\_\_dmlfw\_double\_generate\_polynomial\_dataset()}{\_\_dmlfw\_double\_generate\_polynomial\_dataset()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+dmlfw\+\_\+double\+\_\+generate\+\_\+polynomial\+\_\+dataset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{dataset,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{i,  }\item[{double}]{accumulated\+\_\+value,  }\item[{uint8\+\_\+t}]{exponent,  }\item[{\mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\+\_\+forward\+\_\+list\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{polynomial\+\_\+dataset }\end{DoxyParamCaption})}
+
+
+
+Recursive helper to generate polynomial terms from feature vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & Feature vector of doubles. \\
+\hline
+{\em i} & Current index in dataset. \\
+\hline
+{\em accumulated\+\_\+value} & Running product of terms for polynomial. \\
+\hline
+{\em exponent} & Current power level to generate. \\
+\hline
+{\em polynomial\+\_\+dataset} & Forward list accumulating generated terms. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{polynomial__dataset__generator_8c_a429496f6689df45416d6bf877eaa1677}\label{polynomial__dataset__generator_8c_a429496f6689df45416d6bf877eaa1677} 
+\index{polynomial\_dataset\_generator.c@{polynomial\_dataset\_generator.c}!dmlfw\_double\_generate\_polynomial\_dataset@{dmlfw\_double\_generate\_polynomial\_dataset}}
+\index{dmlfw\_double\_generate\_polynomial\_dataset@{dmlfw\_double\_generate\_polynomial\_dataset}!polynomial\_dataset\_generator.c@{polynomial\_dataset\_generator.c}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_double\_generate\_polynomial\_dataset()}{dmlfw\_double\_generate\_polynomial\_dataset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+double\+\_\+generate\+\_\+polynomial\+\_\+dataset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{dataset,  }\item[{uint8\+\_\+t}]{exponent }\end{DoxyParamCaption})}
+
+
+
+Generates polynomial feature vector for given dataset and exponent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & Feature vector of doubles. \\
+\hline
+{\em exponent} & Maximum polynomial power. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector with generated polynomial features or NULL on error. 
+\end{DoxyReturn}
+\Hypertarget{polynomial__dataset__generator_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{polynomial__dataset__generator_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{polynomial\_dataset\_generator.c@{polynomial\_dataset\_generator.c}!main@{main}}
+\index{main@{main}!polynomial\_dataset\_generator.c@{polynomial\_dataset\_generator.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for polynomial dataset generation tool. 
+
+Reads input CSV, generates polynomial features for each row, and outputs expanded CSV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success or prints error message on failure.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./polynomial\_dataset\_generator\ source.csv\ target.csv\ 3}
+
+\end{DoxyCode}
+ 

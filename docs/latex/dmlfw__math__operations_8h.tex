@@ -1,0 +1,195 @@
+\doxysection{ml-\/framework/include/math/dmlfw\+\_\+math\+\_\+operations.h File Reference}
+\hypertarget{dmlfw__math__operations_8h}{}\label{dmlfw__math__operations_8h}\index{ml-\/framework/include/math/dmlfw\_math\_operations.h@{ml-\/framework/include/math/dmlfw\_math\_operations.h}}
+
+
+Core mathematical vector and matrix functions.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+matrix.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+math\+\_\+operations.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__math__operations_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__math__operations_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__math__operations_8h_a9365fed8e8c4cd374ef6aabd3c7a9440}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+log}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Applies natural logarithm element-\/wise to column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__math__operations_8h_a2ecc8f5230dc8307aaff63976096e373}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+sigmoid}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Applies sigmoid function element-\/wise to column vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{dmlfw__math__operations_8h_ad08199f063f0dafd2d695a7c0f40fa0d}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+sum}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Computes sum of all values in column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__math__operations_8h_ada1c9ffa8a89f4bf22aa386107ac3846}{dmlfw\+\_\+mat\+\_\+double\+\_\+sigmoid}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}new\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Applies sigmoid function element-\/wise to a matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Core mathematical vector and matrix functions. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This module provides functions for common mathematical transformations (sigmoid, log) and reductions (sum) on double precision vectors and matrices, supporting ML and numeric data workflows.\hypertarget{dmlfw__math__operations_8h_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__math__operations_8h_autotoc_md4}
+All functions use a centralized error API. After calls, check {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} and access full details via {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}}.\hypertarget{dmlfw__math__operations_8h_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__math__operations_8h_autotoc_md5}
+Functions that allocate new containers (vectors/matrices) transfer ownership to caller. Returned vectors/matrices must be destroyed with the appropriate API function. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__math__operations_8h_a9365fed8e8c4cd374ef6aabd3c7a9440}\label{dmlfw__math__operations_8h_a9365fed8e8c4cd374ef6aabd3c7a9440} 
+\index{dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}!dmlfw\_column\_vec\_double\_log@{dmlfw\_column\_vec\_double\_log}}
+\index{dmlfw\_column\_vec\_double\_log@{dmlfw\_column\_vec\_double\_log}!dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_log()}{dmlfw\_column\_vec\_double\_log()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Applies natural logarithm element-\/wise to column vector. 
+
+If new\+\_\+vector is NULL, allocates a new container; otherwise, fills provided container. Input and output sizes must match if container is reused.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Source column vector (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional result vector. If NULL, allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to result vector or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *logv\ =\ \mbox{\hyperlink{dmlfw__math__operations_8h_a9365fed8e8c4cd374ef6aabd3c7a9440}{dmlfw\_column\_vec\_double\_log}}(vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ log:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(logv);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__math__operations_8h_a2ecc8f5230dc8307aaff63976096e373}\label{dmlfw__math__operations_8h_a2ecc8f5230dc8307aaff63976096e373} 
+\index{dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}!dmlfw\_column\_vec\_double\_sigmoid@{dmlfw\_column\_vec\_double\_sigmoid}}
+\index{dmlfw\_column\_vec\_double\_sigmoid@{dmlfw\_column\_vec\_double\_sigmoid}!dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_sigmoid()}{dmlfw\_column\_vec\_double\_sigmoid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+sigmoid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Applies sigmoid function element-\/wise to column vector. 
+
+If new\+\_\+vector is NULL, allocates a result container; otherwise, fills provided container. Input and output sizes must match if container is reused.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Source column vector (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional result vector to fill. If NULL, allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to result vector, or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *sig\ =\ \mbox{\hyperlink{dmlfw__math__operations_8h_a2ecc8f5230dc8307aaff63976096e373}{dmlfw\_column\_vec\_double\_sigmoid}}(vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ sigmoid:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(sig);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_math_operations_8c-example}{example\+\_\+dmlfw\+\_\+math\+\_\+operations.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__math__operations_8h_ad08199f063f0dafd2d695a7c0f40fa0d}\label{dmlfw__math__operations_8h_ad08199f063f0dafd2d695a7c0f40fa0d} 
+\index{dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}!dmlfw\_column\_vec\_double\_sum@{dmlfw\_column\_vec\_double\_sum}}
+\index{dmlfw\_column\_vec\_double\_sum@{dmlfw\_column\_vec\_double\_sum}!dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_sum()}{dmlfw\_column\_vec\_double\_sum()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+sum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Computes sum of all values in column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Source vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sum or 0.\+0 on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ total\ =\ \mbox{\hyperlink{dmlfw__math__operations_8h_ad08199f063f0dafd2d695a7c0f40fa0d}{dmlfw\_column\_vec\_double\_sum}}(vec);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ sum:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Sum:\ \%lf\(\backslash\)n"{}},\ total);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_math_operations_8c-example}{example\+\_\+dmlfw\+\_\+math\+\_\+operations.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__math__operations_8h_ada1c9ffa8a89f4bf22aa386107ac3846}\label{dmlfw__math__operations_8h_ada1c9ffa8a89f4bf22aa386107ac3846} 
+\index{dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}!dmlfw\_mat\_double\_sigmoid@{dmlfw\_mat\_double\_sigmoid}}
+\index{dmlfw\_mat\_double\_sigmoid@{dmlfw\_mat\_double\_sigmoid}!dmlfw\_math\_operations.h@{dmlfw\_math\_operations.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_double\_sigmoid()}{dmlfw\_mat\_double\_sigmoid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+mat\+\_\+double\+\_\+sigmoid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Applies sigmoid function element-\/wise to a matrix. 
+
+If new\+\_\+matrix is NULL, allocates a new matrix; otherwise, fills provided container. Dimensions must match if container is reused.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Source matrix (non-\/\+NULL). \\
+\hline
+{\em new\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional result matrix. If NULL, allocated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to result matrix or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *sig\_mat\ =\ \mbox{\hyperlink{dmlfw__math__operations_8h_ada1c9ffa8a89f4bf22aa386107ac3846}{dmlfw\_mat\_double\_sigmoid}}(mat,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ sigmoid\ matrix:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__double_8h_aba8401e53d505743ef0ed0e6bab33b05}{dmlfw\_mat\_double\_destroy}}(sig\_mat);}
+
+\end{DoxyCode}
+ 

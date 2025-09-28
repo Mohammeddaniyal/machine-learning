@@ -1,0 +1,84 @@
+\doxysection{tools/src/min\+\_\+max\+\_\+test\+\_\+data\+\_\+scaler.c File Reference}
+\hypertarget{min__max__test__data__scaler_8c}{}\label{min__max__test__data__scaler_8c}\index{tools/src/min\_max\_test\_data\_scaler.c@{tools/src/min\_max\_test\_data\_scaler.c}}
+
+
+Scales CSV dataset columns using predefined min-\/max parameters.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+scale.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+matrix.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+Include dependency graph for min\+\_\+max\+\_\+test\+\_\+data\+\_\+scaler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{min__max__test__data__scaler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{min__max__test__data__scaler_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for scaling tool using min-\/max parameters file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Scales CSV dataset columns using predefined min-\/max parameters. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool loads a dataset, loads a min-\/max parameters CSV file, and applies scaling to specified columns using the loaded min-\/max values. The scaled dataset is saved to an output CSV.
+
+Usage\+: ./min\+\_\+max\+\_\+scaler.out input\+\_\+file output\+\_\+file from\+\_\+column to\+\_\+column min\+\_\+max\+\_\+file
+
+Parameters\+:
+\begin{DoxyItemize}
+\item input\+\_\+file\+: Path to the input CSV dataset.
+\item output\+\_\+file\+: Path to save the scaled CSV dataset.
+\item from\+\_\+column\+: Starting column index for scaling (inclusive).
+\item to\+\_\+column\+: Ending column index for scaling (inclusive).
+\item min\+\_\+max\+\_\+file\+: CSV file containing min-\/max parameters for scaling.
+\end{DoxyItemize}
+
+Uses ml-\/framework matrix and scaling modules. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{min__max__test__data__scaler_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{min__max__test__data__scaler_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{min\_max\_test\_data\_scaler.c@{min\_max\_test\_data\_scaler.c}!main@{main}}
+\index{main@{main}!min\_max\_test\_data\_scaler.c@{min\_max\_test\_data\_scaler.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for scaling tool using min-\/max parameters file. 
+
+Loads dataset and min-\/max parameter matrix, scales specified columns, and writes the scaled data to CSV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Command-\/line argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on success or with usage/memory errors.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./min\_max\_scaler.out\ dataset.csv\ scaled.csv\ 0\ 5\ min\_max\_params.csv}
+
+\end{DoxyCode}
+ 

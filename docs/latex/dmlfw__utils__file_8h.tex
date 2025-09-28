@@ -1,0 +1,110 @@
+\doxysection{ml-\/framework/include/utils/dmlfw\+\_\+utils\+\_\+file.h File Reference}
+\hypertarget{dmlfw__utils__file_8h}{}\label{dmlfw__utils__file_8h}\index{ml-\/framework/include/utils/dmlfw\_utils\_file.h@{ml-\/framework/include/utils/dmlfw\_utils\_file.h}}
+
+
+Functions for CSV file dimensions and inspection.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__utils__file_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{dmlfw__utils__file_8h_a99e4b71208645ec93c1cadada1c6468d}{dmlfw\+\_\+get\+\_\+csv\+\_\+columns\+\_\+count}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Counts the number of columns in a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__utils__file_8h_ae14513f53ef8ffd7ded157c96a355347}{dmlfw\+\_\+get\+\_\+csv\+\_\+dimensions}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, uint64\+\_\+t \texorpdfstring{$\ast$}{*}rows, uint64\+\_\+t \texorpdfstring{$\ast$}{*}columns)
+\begin{DoxyCompactList}\small\item\em Retrieves both the row and column counts of a CSV file. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{dmlfw__utils__file_8h_a0c62367d1a1d5508f96af2f7ac5aca74}{dmlfw\+\_\+get\+\_\+csv\+\_\+rows\+\_\+count}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Counts the number of rows in a CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Functions for CSV file dimensions and inspection. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header provides functions to retrieve dimension information from CSV files, such as the number of rows, columns, and both dimensions together.\hypertarget{dmlfw__utils__file_8h_autotoc_md24}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__utils__file_8h_autotoc_md24}
+Functions set error status on failure using the centralized error API. Use {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} to check error status after calls. Use {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}} for details. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__utils__file_8h_a99e4b71208645ec93c1cadada1c6468d}\label{dmlfw__utils__file_8h_a99e4b71208645ec93c1cadada1c6468d} 
+\index{dmlfw\_utils\_file.h@{dmlfw\_utils\_file.h}!dmlfw\_get\_csv\_columns\_count@{dmlfw\_get\_csv\_columns\_count}}
+\index{dmlfw\_get\_csv\_columns\_count@{dmlfw\_get\_csv\_columns\_count}!dmlfw\_utils\_file.h@{dmlfw\_utils\_file.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_get\_csv\_columns\_count()}{dmlfw\_get\_csv\_columns\_count()}}
+{\footnotesize\ttfamily uint64\+\_\+t dmlfw\+\_\+get\+\_\+csv\+\_\+columns\+\_\+count (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Counts the number of columns in a CSV file. 
+
+Determines the number of columns in the first data row (or header).
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Path to the CSV file to be analyzed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of columns in the CSV file, or 0 on failure (check error). 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_utils_file_8c-example}{example\+\_\+dmlfw\+\_\+utils\+\_\+file.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__utils__file_8h_ae14513f53ef8ffd7ded157c96a355347}\label{dmlfw__utils__file_8h_ae14513f53ef8ffd7ded157c96a355347} 
+\index{dmlfw\_utils\_file.h@{dmlfw\_utils\_file.h}!dmlfw\_get\_csv\_dimensions@{dmlfw\_get\_csv\_dimensions}}
+\index{dmlfw\_get\_csv\_dimensions@{dmlfw\_get\_csv\_dimensions}!dmlfw\_utils\_file.h@{dmlfw\_utils\_file.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_get\_csv\_dimensions()}{dmlfw\_get\_csv\_dimensions()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+get\+\_\+csv\+\_\+dimensions (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{uint64\+\_\+t \texorpdfstring{$\ast$}{*}}]{rows,  }\item[{uint64\+\_\+t \texorpdfstring{$\ast$}{*}}]{columns }\end{DoxyParamCaption})}
+
+
+
+Retrieves both the row and column counts of a CSV file. 
+
+Reads the CSV file and fills in the number of rows and columns.
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Path to the CSV file. \\
+\hline
+{\em rows} & \mbox{[}out\mbox{]} Pointer to store the number of rows. \\
+\hline
+{\em columns} & \mbox{[}out\mbox{]} Pointer to store the number of columns. \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_utils_file_8c-example}{example\+\_\+dmlfw\+\_\+utils\+\_\+file.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__utils__file_8h_a0c62367d1a1d5508f96af2f7ac5aca74}\label{dmlfw__utils__file_8h_a0c62367d1a1d5508f96af2f7ac5aca74} 
+\index{dmlfw\_utils\_file.h@{dmlfw\_utils\_file.h}!dmlfw\_get\_csv\_rows\_count@{dmlfw\_get\_csv\_rows\_count}}
+\index{dmlfw\_get\_csv\_rows\_count@{dmlfw\_get\_csv\_rows\_count}!dmlfw\_utils\_file.h@{dmlfw\_utils\_file.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_get\_csv\_rows\_count()}{dmlfw\_get\_csv\_rows\_count()}}
+{\footnotesize\ttfamily uint64\+\_\+t dmlfw\+\_\+get\+\_\+csv\+\_\+rows\+\_\+count (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Counts the number of rows in a CSV file. 
+
+Counts all lines except possibly header depending on implementation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Path to the CSV file to be analyzed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of rows in the CSV file, or 0 on failure (check error). 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_utils_file_8c-example}{example\+\_\+dmlfw\+\_\+utils\+\_\+file.\+c}}.\end{Desc}

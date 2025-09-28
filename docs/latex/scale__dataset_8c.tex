@@ -1,0 +1,79 @@
+\doxysection{tools/src/scale\+\_\+dataset.c File Reference}
+\hypertarget{scale__dataset_8c}{}\label{scale__dataset_8c}\index{tools/src/scale\_dataset.c@{tools/src/scale\_dataset.c}}
+
+
+Generic scaling tool for datasets using specified algorithm and parameters.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw.\+h$>$}\newline
+Include dependency graph for scale\+\_\+dataset.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{scale__dataset_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{scale__dataset_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for the generic scaling tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Generic scaling tool for datasets using specified algorithm and parameters. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool reads a CSV dataset, scales specified columns with a chosen scaling algorithm and parameters from a CSV file, then writes the scaled dataset to a target CSV file.
+
+Usage\+: ./scale\+\_\+double source.\+csv target.\+csv algorithm parameters\+\_\+csv column1 column2 ...
+
+Parameters\+:
+\begin{DoxyItemize}
+\item source.\+csv\+: Path to input dataset CSV file.
+\item target.\+csv\+: Path to output scaled dataset CSV file.
+\item algorithm\+: Scaling algorithm name (e.\+g., "{}min\+\_\+max"{}, "{}z\+\_\+score"{}).
+\item parameters\+\_\+csv\+: CSV file containing scaling parameters.
+\item column1, column2, ... \+: List of column names to scale. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{scale__dataset_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{scale__dataset_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{scale\_dataset.c@{scale\_dataset.c}!main@{main}}
+\index{main@{main}!scale\_dataset.c@{scale\_dataset.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for the generic scaling tool. 
+
+Loads dataset, sets columns to scale, applies scaling algorithm, and saves output.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, prints error on failure.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./scale\_double\ data.csv\ scaled.csv\ min\_max\ params.csv\ Age\ Salary}
+
+\end{DoxyCode}
+ 

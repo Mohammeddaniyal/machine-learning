@@ -1,0 +1,41 @@
+\doxysection{dmlfw\+\_\+mat\+\_\+string.\+h}
+\hypertarget{dmlfw__mat__string_8h_source}{}\label{dmlfw__mat__string_8h_source}\index{ml-\/framework/include/matrix/dmlfw\_mat\_string.h@{ml-\/framework/include/matrix/dmlfw\_mat\_string.h}}
+\mbox{\hyperlink{dmlfw__mat__string_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_DMLFW\_\_MAT\_\_STRING\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_DMLFW\_\_MAT\_\_STRING\_\_}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__types_8h}{dmlfw\_types.h}}>}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{struct\ }\_\_dmlfw\_mat\_string;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_dmlfw\_mat\_string\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00102\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *\mbox{\hyperlink{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35}{dmlfw\_mat\_string\_create\_new}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ rows,\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ columns);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\_mat\_string\_destroy}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00147\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *\mbox{\hyperlink{dmlfw__mat__string_8h_a15a4cd285daee47a68c09c2bd7ccd964}{dmlfw\_mat\_string\_from\_csv}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ **header);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__mat__string_8h_ab57cc016049e8a710bc5501250001caa}{dmlfw\_mat\_string\_to\_csv}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__mat__string_8h_a5ad5040ec34df84387078e670fcca0bf}{dmlfw\_mat\_string\_get}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ row,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ column,\ \textcolor{keywordtype}{char}\ **\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00226\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__mat__string_8h_aa7a8d892c13cfd55897d38ceb8222801}{dmlfw\_mat\_string\_set}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ row,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ column,\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00243\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__mat__string_8h_aeb29339d8f7ef4a3b10da0ce2f2aeb95}{dmlfw\_mat\_string\_get\_dimensions}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ *rows,\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ *columns);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00264\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *\mbox{\hyperlink{dmlfw__mat__string_8h_aef25a0e24aeeaa8f4a34ce18962e36c7}{dmlfw\_mat\_string\_transpose}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *transposed\_matrix);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00291\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__mat__string_8h_aa64d95723f50c989c40abcc6dc2f62f9}{dmlfw\_mat\_string\_copy}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *target,\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *source,}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ target\_row\_index,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ target\_column\_index,}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ source\_from\_row\_index,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ source\_from\_column\_index,}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ source\_to\_row\_index,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ source\_to\_column\_index);}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00318\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *\mbox{\hyperlink{dmlfw__mat__string_8h_ae85c4b7e84cb20a7c4ebd90be729fc94}{dmlfw\_mat\_string\_shuffle}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ uint8\_t\ how\_many\_times\_to\_shuffle,\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *shuffled\_matrix);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00344\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *\mbox{\hyperlink{dmlfw__mat__string_8h_af97c1b6d006551c2450a8176adcc38d6}{dmlfw\_mat\_string\_delete\_columns}}(\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *matrix,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ *indexes,\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ indexes\_size,\ \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *new\_matrix);}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_DMLFW\_\_MAT\_\_STRING\_\_}}
+
+\end{DoxyCode}

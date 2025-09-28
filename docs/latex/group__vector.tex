@@ -1,0 +1,1549 @@
+\doxysubsection{Vector Types and Utilities}
+\hypertarget{group__vector}{}\label{group__vector}\index{Vector Types and Utilities@{Vector Types and Utilities}}
+
+
+Core vector data structures and utility functions.  
+
+
+Collaboration diagram for Vector Types and Utilities\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__vector}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__vector__string}{String Vectors}}
+\begin{DoxyCompactList}\small\item\em Opaque vector data structures and utilities for string values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector__double}{Double Precision Vectors}}
+\begin{DoxyCompactList}\small\item\em Opaque vector data structures and utilities for double precision floating-\/point values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+column\+\_\+vec\+\_\+double \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a column vector of doubles. \end{DoxyCompactList}\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+row\+\_\+vec\+\_\+double \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a row vector of doubles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gafa67e4bf64807f5701cfed23ae11913f}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+copy}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}target\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}source\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Copies the contents of one column vector to another. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga6b5d3611f5e5b1339ae5718a5fc1ea2c}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns)
+\begin{DoxyCompactList}\small\item\em Creates a new row vector of specified size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+destroy}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a row vector and frees its memory. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_gaff904fd14a48616b438379ff893abc69}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index)
+\begin{DoxyCompactList}\small\item\em Retrieves the value of an element in a row vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga69101f1cab5d3935cb374e5856227d0e}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+set}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, double value)
+\begin{DoxyCompactList}\small\item\em Sets the value of an element in a row vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga764802999ba53e6a8398a6707eed5992}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+create\+\_\+new\+\_\+filled}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns, double value, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Creates or fills a row vector with a specified value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga7d698fb0259adeadeef52c149dee2887}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+transpose}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a row vector into a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_gaa564c0d14664a9049368e2a08574813e}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the number of elements in a row vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_ga49f0e80baff95728d89fd93dbcd522b2}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get\+\_\+mean}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Computes the mean of all elements in a row vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga4c605a9d7a2313db87f2fb823792fccd}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a row vector to a CSV file with a header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga7afb4564cf1866d196dddc95f29dc240}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a row vector from a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga39afb92b941927734ed4fdf313426c27}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+copy}} (\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}target\+\_\+vector, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}source\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Copies the contents of one row vector to another. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows)
+\begin{DoxyCompactList}\small\item\em Creates a new column vector of specified size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+destroy}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a column vector and frees its memory. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_ga38fb83c100ce68ed9cf0d17100ced98f}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index)
+\begin{DoxyCompactList}\small\item\em Retrieves the value of an element in a column vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+set}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, double value)
+\begin{DoxyCompactList}\small\item\em Sets the value of an element in a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_gab00fab434cddf235a03066d050c600e2}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+create\+\_\+new\+\_\+filled}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows, double value, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Creates or fills a column vector with a specified value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+transpose}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a column vector into a row vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_ga5d283de1d05c7493bc9409d12147e30d}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the number of elements in a column vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__vector_gacc0f0c0d157de326e370518055d4746f}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get\+\_\+mean}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Computes the mean of all elements in a column vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga455fc9a93df5c22a1896034908248f21}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a column vector to a CSV file with a header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga869b876bcfcc1d011ea55ec865aad593}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a column vector from a one-\/column CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+row\+\_\+vec\+\_\+string \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a row vector of strings. \end{DoxyCompactList}\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+column\+\_\+vec\+\_\+string \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a column vector of strings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns)
+\begin{DoxyCompactList}\small\item\em Creates a new row vector of strings of specified length. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+destroy}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a row vector of strings and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga377e8e2e9657ab5b3adeea30fef6f2da}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a row vector of strings from a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga04367dcd07eada45608edd1936fca609}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a row vector of strings to a CSV file with a header. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga5bf815d73d03538f322b7e13952ad7b7}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+get}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Retrieves a string element from a row vector by index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+set}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Sets a string element in the row vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_ga5bbd4645d30256f3cb7ccdc666f494fc}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the size (number of elements) in a row vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga69044e759e7d776be14d19cd3ce2811a}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+transpose}} (\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a row vector of strings into a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga460b366420918f2679204159a1500576}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows)
+\begin{DoxyCompactList}\small\item\em Creates a new column vector of strings of specified length. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga346fbe0621daaa0052ee266e78085a0d}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+destroy}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Destroys a column vector of strings and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_ga35448e7e5696dd69ad2bbfdb6c8662d8}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a column vector of strings from a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_ga8da1bfd2bc3b13c60bf2571df5e2d4c5}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Exports a column vector of strings to a CSV file with a header. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gaac0629082c71fcd565c46d6661489af2}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+get}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Retrieves a string element from a column vector by index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__vector_gab6c103ed7a05e0acbc5b9820941408f8}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+set}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} index, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Sets a string element in the column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \mbox{\hyperlink{group__vector_ga5d0d53a0b05e5535a8a6c340646372f8}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+get\+\_\+size}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector)
+\begin{DoxyCompactList}\small\item\em Returns the size (number of elements) in a column vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__vector_gaf5d66bd14cc1ccbd83e349d7c3210561}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+transpose}} (\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}vector, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}transposed\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Transposes a column vector of strings into a row vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Core vector data structures and utility functions. 
+
+
+
+\doxysubsubsection{Typedef Documentation}
+\Hypertarget{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}\label{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double@{dmlfw\_column\_vec\_double}}
+\index{dmlfw\_column\_vec\_double@{dmlfw\_column\_vec\_double}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double}{dmlfw\_column\_vec\_double}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+column\+\_\+vec\+\_\+double \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}}}
+
+
+
+Opaque structure representing a column vector of doubles. 
+
+The internal details are hidden. Use the provided API functions to create, manipulate, and destroy instances. \Hypertarget{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}\label{group__vector_ga8e69ba6078783d47b04f8d33a75e0660} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string@{dmlfw\_column\_vec\_string}}
+\index{dmlfw\_column\_vec\_string@{dmlfw\_column\_vec\_string}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string}{dmlfw\_column\_vec\_string}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+column\+\_\+vec\+\_\+string \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}}}
+
+
+
+Opaque structure representing a column vector of strings. 
+
+The internal details are hidden. Use the provided API functions to create, manipulate, and destroy instances. \Hypertarget{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}\label{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double@{dmlfw\_row\_vec\_double}}
+\index{dmlfw\_row\_vec\_double@{dmlfw\_row\_vec\_double}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double}{dmlfw\_row\_vec\_double}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+row\+\_\+vec\+\_\+double \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}}}
+
+
+
+Opaque structure representing a row vector of doubles. 
+
+The internal details are hidden. Use the provided API functions to create, manipulate, and destroy instances. \Hypertarget{group__vector_gaed399c1434010d8e284515501c1a7a18}\label{group__vector_gaed399c1434010d8e284515501c1a7a18} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string@{dmlfw\_row\_vec\_string}}
+\index{dmlfw\_row\_vec\_string@{dmlfw\_row\_vec\_string}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string}{dmlfw\_row\_vec\_string}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+row\+\_\+vec\+\_\+string \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}}}
+
+
+
+Opaque structure representing a row vector of strings. 
+
+The internal details are hidden. Use the provided API functions to create, manipulate, and destroy instances. 
+
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__vector_gafa67e4bf64807f5701cfed23ae11913f}\label{group__vector_gafa67e4bf64807f5701cfed23ae11913f} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_copy@{dmlfw\_column\_vec\_double\_copy}}
+\index{dmlfw\_column\_vec\_double\_copy@{dmlfw\_column\_vec\_double\_copy}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_copy()}{dmlfw\_column\_vec\_double\_copy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{target\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{source\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Copies the contents of one column vector to another. 
+
+Assumptions\+:
+\begin{DoxyItemize}
+\item Both vectors must be non-\/\+NULL and have the same size.
+\end{DoxyItemize}
+
+Error Cases\+:
+\begin{DoxyItemize}
+\item NULL target or source vectors.
+\item Size mismatch between vectors.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+vector} & \mbox{[}in,out\mbox{]} Destination column vector (must not be NULL). \\
+\hline
+{\em source\+\_\+vector} & \mbox{[}in\mbox{]} Source column vector (must not be NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gafa67e4bf64807f5701cfed23ae11913f}{dmlfw\_column\_vec\_double\_copy}}(target,\ source);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ copying\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}\label{group__vector_ga904e56c8db98d664d1c2cc221f80edd1} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_create\_new@{dmlfw\_column\_vec\_double\_create\_new}}
+\index{dmlfw\_column\_vec\_double\_create\_new@{dmlfw\_column\_vec\_double\_create\_new}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_create\_new()}{dmlfw\_column\_vec\_double\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{rows }\end{DoxyParamCaption})}
+
+
+
+Creates a new column vector of specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \mbox{[}in\mbox{]} Number of elements (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new vector, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free with \doxylink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+destroy()}. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vec\ =\ \mbox{\hyperlink{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}{dmlfw\_column\_vec\_double\_create\_new}}(10);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_math_operations_8c-example}{example\+\_\+dmlfw\+\_\+math\+\_\+operations.\+c}}, \mbox{\hyperlink{example_dmlfw_model_accuracy_score_8c-example}{example\+\_\+dmlfw\+\_\+model\+\_\+accuracy\+\_\+score.\+c}}, \mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_vec_double_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_gab00fab434cddf235a03066d050c600e2}\label{group__vector_gab00fab434cddf235a03066d050c600e2} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_create\_new\_filled@{dmlfw\_column\_vec\_double\_create\_new\_filled}}
+\index{dmlfw\_column\_vec\_double\_create\_new\_filled@{dmlfw\_column\_vec\_double\_create\_new\_filled}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_create\_new\_filled()}{dmlfw\_column\_vec\_double\_create\_new\_filled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+create\+\_\+new\+\_\+filled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{rows,  }\item[{double}]{value,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Creates or fills a column vector with a specified value. 
+
+
+\begin{DoxyItemize}
+\item If {\ttfamily vector} is NULL → allocates new vector of size {\ttfamily size} and fills with {\ttfamily value}.
+\item If {\ttfamily vector} exists and matches {\ttfamily size} → fills with {\ttfamily value}.
+\item If size mismatches → sets error and returns NULL.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \mbox{[}in\mbox{]} Number of elements (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+{\em value} & \mbox{[}in\mbox{]} Value to assign to all elements. \\
+\hline
+{\em vector} & \mbox{[}in,out\mbox{]} Optional existing vector to reuse, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to valid vector on success, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free newly allocated vectors. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vec\ =\ \mbox{\hyperlink{group__vector_gab00fab434cddf235a03066d050c600e2}{dmlfw\_column\_vec\_double\_create\_new\_filled}}(4,\ 3.14,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ filled\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga05c89c803dc41568a5069b5b66e2e054}\label{group__vector_ga05c89c803dc41568a5069b5b66e2e054} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_destroy@{dmlfw\_column\_vec\_double\_destroy}}
+\index{dmlfw\_column\_vec\_double\_destroy@{dmlfw\_column\_vec\_double\_destroy}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_destroy()}{dmlfw\_column\_vec\_double\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Destroys a column vector and frees its memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Pointer to the column vector, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(vec);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_linear_regression_8c-example}{example\+\_\+dmlfw\+\_\+linear\+\_\+regression.\+c}}, \mbox{\hyperlink{example_dmlfw_math_operations_8c-example}{example\+\_\+dmlfw\+\_\+math\+\_\+operations.\+c}}, \mbox{\hyperlink{example_dmlfw_model_accuracy_score_8c-example}{example\+\_\+dmlfw\+\_\+model\+\_\+accuracy\+\_\+score.\+c}}, \mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_vec_double_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga869b876bcfcc1d011ea55ec865aad593}\label{group__vector_ga869b876bcfcc1d011ea55ec865aad593} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_from\_csv@{dmlfw\_column\_vec\_double\_from\_csv}}
+\index{dmlfw\_column\_vec\_double\_from\_csv@{dmlfw\_column\_vec\_double\_from\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_from\_csv()}{dmlfw\_column\_vec\_double\_from\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+from\+\_\+csv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Loads a column vector from a one-\/column CSV file. 
+
+Expects a CSV file where\+:
+\begin{DoxyItemize}
+\item First row is a single header string.
+\item Each subsequent row contains one numeric value.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} CSV file path (must not be NULL). \\
+\hline
+{\em vector} & \mbox{[}in,out\mbox{]} Optional existing vector to reuse, or NULL. \\
+\hline
+{\em header} & \mbox{[}out\mbox{]} New single-\/element row vector containing header string (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to column vector, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must destroy both the returned vector and header. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+If {\ttfamily vector} is provided, its size must match the number of data rows.
+\end{DoxyNote}
+Error Cases\+:
+\begin{DoxyItemize}
+\item Invalid parameters, invalid CSV format, or file operation failure → sets error status and returns NULL.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string} 
+
+\doxylink{dmlfw__vec__string_8h}{dmlfw\+\_\+vec\+\_\+string.\+h}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vec\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ NULL;}
+\DoxyCodeLine{vec\ =\ \mbox{\hyperlink{group__vector_ga869b876bcfcc1d011ea55ec865aad593}{dmlfw\_column\_vec\_double\_from\_csv}}(\textcolor{stringliteral}{"{}data.csv"{}},\ NULL,\ \&header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ loading\ from\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(vec);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga38fb83c100ce68ed9cf0d17100ced98f}\label{group__vector_ga38fb83c100ce68ed9cf0d17100ced98f} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_get@{dmlfw\_column\_vec\_double\_get}}
+\index{dmlfw\_column\_vec\_double\_get@{dmlfw\_column\_vec\_double\_get}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_get()}{dmlfw\_column\_vec\_double\_get()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index }\end{DoxyParamCaption})}
+
+
+
+Retrieves the value of an element in a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index of the element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Element value, or 0.\+0 if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ val\ =\ \mbox{\hyperlink{group__vector_ga38fb83c100ce68ed9cf0d17100ced98f}{dmlfw\_column\_vec\_double\_get}}(vec,\ 1);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ getting\ value:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_gacc0f0c0d157de326e370518055d4746f}\label{group__vector_gacc0f0c0d157de326e370518055d4746f} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_get\_mean@{dmlfw\_column\_vec\_double\_get\_mean}}
+\index{dmlfw\_column\_vec\_double\_get\_mean@{dmlfw\_column\_vec\_double\_get\_mean}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_get\_mean()}{dmlfw\_column\_vec\_double\_get\_mean()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get\+\_\+mean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Computes the mean of all elements in a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mean value, or 0.\+0 if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function. 
+\end{DoxyNote}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_vec_double_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga5d283de1d05c7493bc9409d12147e30d}\label{group__vector_ga5d283de1d05c7493bc9409d12147e30d} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_get\_size@{dmlfw\_column\_vec\_double\_get\_size}}
+\index{dmlfw\_column\_vec\_double\_get\_size@{dmlfw\_column\_vec\_double\_get\_size}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_get\_size()}{dmlfw\_column\_vec\_double\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Returns the number of elements in a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements, or 0 if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function. 
+\end{DoxyNote}
+\Hypertarget{group__vector_ga8189602572f1bfbad06d3bd945da43af}\label{group__vector_ga8189602572f1bfbad06d3bd945da43af} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_set@{dmlfw\_column\_vec\_double\_set}}
+\index{dmlfw\_column\_vec\_double\_set@{dmlfw\_column\_vec\_double\_set}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_set()}{dmlfw\_column\_vec\_double\_set()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the value of an element in a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in,out\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index of the element. \\
+\hline
+{\em value} & \mbox{[}in\mbox{]} Value to set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If index is out of bounds, error status is set. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(vec,\ 2,\ 5.5);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ setting\ value:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_math_operations_8c-example}{example\+\_\+dmlfw\+\_\+math\+\_\+operations.\+c}}, \mbox{\hyperlink{example_dmlfw_model_accuracy_score_8c-example}{example\+\_\+dmlfw\+\_\+model\+\_\+accuracy\+\_\+score.\+c}}, \mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_vec_double_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga455fc9a93df5c22a1896034908248f21}\label{group__vector_ga455fc9a93df5c22a1896034908248f21} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_to\_csv@{dmlfw\_column\_vec\_double\_to\_csv}}
+\index{dmlfw\_column\_vec\_double\_to\_csv@{dmlfw\_column\_vec\_double\_to\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_to\_csv()}{dmlfw\_column\_vec\_double\_to\_csv()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Exports a column vector to a CSV file with a header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em header} & \mbox{[}in\mbox{]} Single-\/element row vector of strings (must not be NULL).\\
+\hline
+\end{DoxyParams}
+Assumptions\+:
+\begin{DoxyItemize}
+\item Header must have exactly one string element.
+\item File is overwritten if it exists.
+\end{DoxyItemize}
+
+Error Cases\+:
+\begin{DoxyItemize}
+\item Invalid parameters or file operation failure → sets error status, does nothing.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The file will be overwritten if it exists. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string} 
+
+\doxylink{dmlfw__vec__string_8h}{dmlfw\+\_\+vec\+\_\+string.\+h}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(1);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(header,\ 0,\ \textcolor{stringliteral}{"{}values"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga455fc9a93df5c22a1896034908248f21}{dmlfw\_column\_vec\_double\_to\_csv}}(vec,\ \textcolor{stringliteral}{"{}data.csv"{}},\ header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ exporting\ to\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9}\label{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_double\_transpose@{dmlfw\_column\_vec\_double\_transpose}}
+\index{dmlfw\_column\_vec\_double\_transpose@{dmlfw\_column\_vec\_double\_transpose}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_double\_transpose()}{dmlfw\_column\_vec\_double\_transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{transposed\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Transposes a column vector into a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em transposed\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional existing row vector to reuse, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to row vector, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free newly allocated row vectors. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *row\_vec\ =\ \mbox{\hyperlink{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9}{dmlfw\_column\_vec\_double\_transpose}}(vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ transposing\ to\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__vector_ga7d698fb0259adeadeef52c149dee2887}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+transpose} 
+\end{DoxySeeAlso}
+\Hypertarget{group__vector_ga460b366420918f2679204159a1500576}\label{group__vector_ga460b366420918f2679204159a1500576} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_create\_new@{dmlfw\_column\_vec\_string\_create\_new}}
+\index{dmlfw\_column\_vec\_string\_create\_new@{dmlfw\_column\_vec\_string\_create\_new}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_create\_new()}{dmlfw\_column\_vec\_string\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{rows }\end{DoxyParamCaption})}
+
+
+
+Creates a new column vector of strings of specified length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & \mbox{[}in\mbox{]} Number of string elements (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a new column vector, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free with \doxylink{group__vector_ga346fbe0621daaa0052ee266e78085a0d}{dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+destroy()}.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vec\ =\ \mbox{\hyperlink{group__vector_ga460b366420918f2679204159a1500576}{dmlfw\_column\_vec\_string\_create\_new}}(5);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga346fbe0621daaa0052ee266e78085a0d}\label{group__vector_ga346fbe0621daaa0052ee266e78085a0d} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_destroy@{dmlfw\_column\_vec\_string\_destroy}}
+\index{dmlfw\_column\_vec\_string\_destroy@{dmlfw\_column\_vec\_string\_destroy}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_destroy()}{dmlfw\_column\_vec\_string\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Destroys a column vector of strings and frees its memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Pointer to the column vector, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga346fbe0621daaa0052ee266e78085a0d}{dmlfw\_column\_vec\_string\_destroy}}(vec);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga35448e7e5696dd69ad2bbfdb6c8662d8}\label{group__vector_ga35448e7e5696dd69ad2bbfdb6c8662d8} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_from\_csv@{dmlfw\_column\_vec\_string\_from\_csv}}
+\index{dmlfw\_column\_vec\_string\_from\_csv@{dmlfw\_column\_vec\_string\_from\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_from\_csv()}{dmlfw\_column\_vec\_string\_from\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+from\+\_\+csv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Loads a column vector of strings from a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Path to CSV file (must not be NULL). \\
+\hline
+{\em vector} & \mbox{[}in,out\mbox{]} Optional existing vector to reuse, or NULL. \\
+\hline
+{\em header} & \mbox{[}out\mbox{]} Output pointer to a newly allocated row vector header. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the loaded column vector, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free both the returned vector and the header. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vec\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ NULL;}
+\DoxyCodeLine{vec\ =\ \mbox{\hyperlink{group__vector_ga35448e7e5696dd69ad2bbfdb6c8662d8}{dmlfw\_column\_vec\_string\_from\_csv}}(\textcolor{stringliteral}{"{}data.csv"{}},\ NULL,\ \&header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ loading\ from\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga346fbe0621daaa0052ee266e78085a0d}{dmlfw\_column\_vec\_string\_destroy}}(vec);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_gaac0629082c71fcd565c46d6661489af2}\label{group__vector_gaac0629082c71fcd565c46d6661489af2} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_get@{dmlfw\_column\_vec\_string\_get}}
+\index{dmlfw\_column\_vec\_string\_get@{dmlfw\_column\_vec\_string\_get}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_get()}{dmlfw\_column\_vec\_string\_get()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Retrieves a string element from a column vector by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index. \\
+\hline
+{\em string} & \mbox{[}out\mbox{]} Pointer to receive the string element.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The returned string pointer is managed by the vector and must not be freed by the caller.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ *val\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaac0629082c71fcd565c46d6661489af2}{dmlfw\_column\_vec\_string\_get}}(vec,\ 0,\ \&val);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ retrieving\ value:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Element\ at\ index\ 0:\ \%s\(\backslash\)n"{}},\ val);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga5d0d53a0b05e5535a8a6c340646372f8}\label{group__vector_ga5d0d53a0b05e5535a8a6c340646372f8} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_get\_size@{dmlfw\_column\_vec\_string\_get\_size}}
+\index{dmlfw\_column\_vec\_string\_get\_size@{dmlfw\_column\_vec\_string\_get\_size}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_get\_size()}{dmlfw\_column\_vec\_string\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Returns the size (number of elements) in a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements, or 0 on error. 
+\end{DoxyReturn}
+\Hypertarget{group__vector_gab6c103ed7a05e0acbc5b9820941408f8}\label{group__vector_gab6c103ed7a05e0acbc5b9820941408f8} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_set@{dmlfw\_column\_vec\_string\_set}}
+\index{dmlfw\_column\_vec\_string\_set@{dmlfw\_column\_vec\_string\_set}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_set()}{dmlfw\_column\_vec\_string\_set()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index,  }\item[{char \texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Sets a string element in the column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in,out\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index. \\
+\hline
+{\em string} & \mbox{[}in\mbox{]} Input string to copy into the vector (caller retains ownership).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gab6c103ed7a05e0acbc5b9820941408f8}{dmlfw\_column\_vec\_string\_set}}(vec,\ 1,\ \textcolor{stringliteral}{"{}example"{}});}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga8da1bfd2bc3b13c60bf2571df5e2d4c5}\label{group__vector_ga8da1bfd2bc3b13c60bf2571df5e2d4c5} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_to\_csv@{dmlfw\_column\_vec\_string\_to\_csv}}
+\index{dmlfw\_column\_vec\_string\_to\_csv@{dmlfw\_column\_vec\_string\_to\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_to\_csv()}{dmlfw\_column\_vec\_string\_to\_csv()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Exports a column vector of strings to a CSV file with a header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em header} & \mbox{[}in\mbox{]} Row vector of string header (must not be NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The file will be overwritten if it exists. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8da1bfd2bc3b13c60bf2571df5e2d4c5}{dmlfw\_column\_vec\_string\_to\_csv}}(vec,\ \textcolor{stringliteral}{"{}out.csv"{}},\ header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ writing\ to\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_gaf5d66bd14cc1ccbd83e349d7c3210561}\label{group__vector_gaf5d66bd14cc1ccbd83e349d7c3210561} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_column\_vec\_string\_transpose@{dmlfw\_column\_vec\_string\_transpose}}
+\index{dmlfw\_column\_vec\_string\_transpose@{dmlfw\_column\_vec\_string\_transpose}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_column\_vec\_string\_transpose()}{dmlfw\_column\_vec\_string\_transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+column\+\_\+vec\+\_\+string\+\_\+transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{transposed\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Transposes a column vector of strings into a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Column vector (must not be NULL). \\
+\hline
+{\em transposed\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional existing row vector to reuse, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new or reused row vector, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free newly allocated row vectors.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *row\_vec\ =\ \mbox{\hyperlink{group__vector_gaf5d66bd14cc1ccbd83e349d7c3210561}{dmlfw\_column\_vec\_string\_transpose}}(vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ transposing\ to\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga39afb92b941927734ed4fdf313426c27}\label{group__vector_ga39afb92b941927734ed4fdf313426c27} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_copy@{dmlfw\_row\_vec\_double\_copy}}
+\index{dmlfw\_row\_vec\_double\_copy@{dmlfw\_row\_vec\_double\_copy}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_copy()}{dmlfw\_row\_vec\_double\_copy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{target\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{source\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Copies the contents of one row vector to another. 
+
+Assumptions\+:
+\begin{DoxyItemize}
+\item Both vectors must be non-\/\+NULL and have the same size.
+\end{DoxyItemize}
+
+Error Cases\+:
+\begin{DoxyItemize}
+\item NULL target or source vectors.
+\item Size mismatch between vectors.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+vector} & \mbox{[}in,out\mbox{]} Destination row vector (must not be NULL). \\
+\hline
+{\em source\+\_\+vector} & \mbox{[}in\mbox{]} Source row vector (must not be NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga39afb92b941927734ed4fdf313426c27}{dmlfw\_row\_vec\_double\_copy}}(target,\ source);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ copying\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga6b5d3611f5e5b1339ae5718a5fc1ea2c}\label{group__vector_ga6b5d3611f5e5b1339ae5718a5fc1ea2c} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_create\_new@{dmlfw\_row\_vec\_double\_create\_new}}
+\index{dmlfw\_row\_vec\_double\_create\_new@{dmlfw\_row\_vec\_double\_create\_new}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_create\_new()}{dmlfw\_row\_vec\_double\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{columns }\end{DoxyParamCaption})}
+
+
+
+Creates a new row vector of specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \mbox{[}in\mbox{]} Number of elements (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to newly allocated row vector, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free with \doxylink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+destroy()}. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vec\ =\ \mbox{\hyperlink{group__vector_ga6b5d3611f5e5b1339ae5718a5fc1ea2c}{dmlfw\_row\_vec\_double\_create\_new}}(12);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga764802999ba53e6a8398a6707eed5992}\label{group__vector_ga764802999ba53e6a8398a6707eed5992} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_create\_new\_filled@{dmlfw\_row\_vec\_double\_create\_new\_filled}}
+\index{dmlfw\_row\_vec\_double\_create\_new\_filled@{dmlfw\_row\_vec\_double\_create\_new\_filled}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_create\_new\_filled()}{dmlfw\_row\_vec\_double\_create\_new\_filled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+create\+\_\+new\+\_\+filled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{columns,  }\item[{double}]{value,  }\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Creates or fills a row vector with a specified value. 
+
+
+\begin{DoxyItemize}
+\item If {\ttfamily vector} is NULL → allocates new vector of size {\ttfamily size} and fills with {\ttfamily value}.
+\item If {\ttfamily vector} exists and matches {\ttfamily size} → fills with {\ttfamily value}.
+\item If size mismatches → sets error and returns NULL.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \mbox{[}in\mbox{]} Number of elements (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+{\em value} & \mbox{[}in\mbox{]} Value to assign to all elements. \\
+\hline
+{\em vector} & \mbox{[}in,out\mbox{]} Optional existing vector to reuse, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to valid vector on success, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free newly allocated vectors. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vec\ =\ \mbox{\hyperlink{group__vector_ga764802999ba53e6a8398a6707eed5992}{dmlfw\_row\_vec\_double\_create\_new\_filled}}(10,\ 1.23,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ filled\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga52d24c29a8dc1cee9474771b141c1206}\label{group__vector_ga52d24c29a8dc1cee9474771b141c1206} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_destroy@{dmlfw\_row\_vec\_double\_destroy}}
+\index{dmlfw\_row\_vec\_double\_destroy@{dmlfw\_row\_vec\_double\_destroy}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_destroy()}{dmlfw\_row\_vec\_double\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Destroys a row vector and frees its memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Pointer to the row vector, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\_row\_vec\_double\_destroy}}(vec);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga7afb4564cf1866d196dddc95f29dc240}\label{group__vector_ga7afb4564cf1866d196dddc95f29dc240} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_from\_csv@{dmlfw\_row\_vec\_double\_from\_csv}}
+\index{dmlfw\_row\_vec\_double\_from\_csv@{dmlfw\_row\_vec\_double\_from\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_from\_csv()}{dmlfw\_row\_vec\_double\_from\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+from\+\_\+csv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Loads a row vector from a CSV file. 
+
+Reads a CSV file specified by {\ttfamily csv\+\_\+file\+\_\+name} and populates a row vector. The first line is parsed into a row vector of strings as header.
+
+Assumptions\+:
+\begin{DoxyItemize}
+\item Number of header strings must match the number of numeric data elements.
+\item If {\ttfamily vector} is NULL, a new row vector is allocated; otherwise, must match data size.
+\end{DoxyItemize}
+
+Error Cases\+:
+\begin{DoxyItemize}
+\item Invalid parameters (NULL csv\+\_\+file\+\_\+name or header pointer).
+\item File cannot be opened.
+\item Header size mismatch.
+\item Provided vector size mismatch.
+\item Invalid numeric values in CSV.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Input CSV file path (must not be NULL). \\
+\hline
+{\em vector} & \mbox{[}in,out\mbox{]} Optional existing row vector to reuse, or NULL. \\
+\hline
+{\em header} & \mbox{[}out\mbox{]} Output pointer to a newly allocated row vector containing header strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the populated row vector, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must destroy both the returned vector and header. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string} 
+
+\doxylink{dmlfw__vec__string_8h}{dmlfw\+\_\+vec\+\_\+string.\+h}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vec\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ NULL;}
+\DoxyCodeLine{vec\ =\ \mbox{\hyperlink{group__vector_ga7afb4564cf1866d196dddc95f29dc240}{dmlfw\_row\_vec\_double\_from\_csv}}(\textcolor{stringliteral}{"{}row\_data.csv"{}},\ NULL,\ \&header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ loading\ row\ vector\ from\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ use\ vec\ and\ header...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\_row\_vec\_double\_destroy}}(vec);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_gaff904fd14a48616b438379ff893abc69}\label{group__vector_gaff904fd14a48616b438379ff893abc69} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_get@{dmlfw\_row\_vec\_double\_get}}
+\index{dmlfw\_row\_vec\_double\_get@{dmlfw\_row\_vec\_double\_get}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_get()}{dmlfw\_row\_vec\_double\_get()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index }\end{DoxyParamCaption})}
+
+
+
+Retrieves the value of an element in a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index of the element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Element value, or 0.\+0 if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ val\ =\ \mbox{\hyperlink{group__vector_gaff904fd14a48616b438379ff893abc69}{dmlfw\_row\_vec\_double\_get}}(vec,\ 5);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ getting\ value:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_list_double_8c-example}{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga49f0e80baff95728d89fd93dbcd522b2}\label{group__vector_ga49f0e80baff95728d89fd93dbcd522b2} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_get\_mean@{dmlfw\_row\_vec\_double\_get\_mean}}
+\index{dmlfw\_row\_vec\_double\_get\_mean@{dmlfw\_row\_vec\_double\_get\_mean}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_get\_mean()}{dmlfw\_row\_vec\_double\_get\_mean()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get\+\_\+mean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Computes the mean of all elements in a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mean value, or 0.\+0 if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function. 
+\end{DoxyNote}
+\Hypertarget{group__vector_gaa564c0d14664a9049368e2a08574813e}\label{group__vector_gaa564c0d14664a9049368e2a08574813e} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_get\_size@{dmlfw\_row\_vec\_double\_get\_size}}
+\index{dmlfw\_row\_vec\_double\_get\_size@{dmlfw\_row\_vec\_double\_get\_size}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_get\_size()}{dmlfw\_row\_vec\_double\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Returns the number of elements in a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements, or 0 if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Check errors using the centralized error API after calling this function. 
+\end{DoxyNote}
+\Hypertarget{group__vector_ga69101f1cab5d3935cb374e5856227d0e}\label{group__vector_ga69101f1cab5d3935cb374e5856227d0e} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_set@{dmlfw\_row\_vec\_double\_set}}
+\index{dmlfw\_row\_vec\_double\_set@{dmlfw\_row\_vec\_double\_set}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_set()}{dmlfw\_row\_vec\_double\_set()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the value of an element in a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in,out\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index of the element. \\
+\hline
+{\em value} & \mbox{[}in\mbox{]} Value to set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If index is out of bounds, error status is set. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga69101f1cab5d3935cb374e5856227d0e}{dmlfw\_row\_vec\_double\_set}}(vec,\ 3,\ 7.7);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ setting\ value:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_operations_double_8c-example}{example\+\_\+dmlfw\+\_\+operations\+\_\+double.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga4c605a9d7a2313db87f2fb823792fccd}\label{group__vector_ga4c605a9d7a2313db87f2fb823792fccd} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_to\_csv@{dmlfw\_row\_vec\_double\_to\_csv}}
+\index{dmlfw\_row\_vec\_double\_to\_csv@{dmlfw\_row\_vec\_double\_to\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_to\_csv()}{dmlfw\_row\_vec\_double\_to\_csv()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Exports a row vector to a CSV file with a header. 
+
+Writes the elements of the row vector to a CSV file specified by {\ttfamily csv\+\_\+file\+\_\+name}, with a header row consisting of strings from the {\ttfamily header} row vector.
+
+Assumptions\+:
+\begin{DoxyItemize}
+\item Header size must exactly match the row vector size.
+\item File is overwritten if it exists.
+\end{DoxyItemize}
+
+Error Cases\+:
+\begin{DoxyItemize}
+\item Invalid parameters (NULL vector, csv\+\_\+file\+\_\+name, or header).
+\item File creation fails.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em header} & \mbox{[}in\mbox{]} Row vector of strings header (must not be NULL, size must match vector size).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The file will be overwritten if it exists. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string} 
+
+\doxylink{dmlfw__vec__string_8h}{dmlfw\+\_\+vec\+\_\+string.\+h}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(3);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(header,\ 0,\ \textcolor{stringliteral}{"{}x"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(header,\ 1,\ \textcolor{stringliteral}{"{}y"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(header,\ 2,\ \textcolor{stringliteral}{"{}z"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga4c605a9d7a2313db87f2fb823792fccd}{dmlfw\_row\_vec\_double\_to\_csv}}(vec,\ \textcolor{stringliteral}{"{}row\_data.csv"{}},\ header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ exporting\ row\ vector\ to\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga7d698fb0259adeadeef52c149dee2887}\label{group__vector_ga7d698fb0259adeadeef52c149dee2887} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_double\_transpose@{dmlfw\_row\_vec\_double\_transpose}}
+\index{dmlfw\_row\_vec\_double\_transpose@{dmlfw\_row\_vec\_double\_transpose}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_double\_transpose()}{dmlfw\_row\_vec\_double\_transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+double\+\_\+transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\+\_\+row\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{transposed\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Transposes a row vector into a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em transposed\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional existing column vector to reuse, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to column vector, or NULL if an error occurred.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free newly allocated column vectors. 
+
+Check errors using the centralized error API after calling this function. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9}{dmlfw\+\_\+column\+\_\+vec\+\_\+double\+\_\+transpose}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *col\_vec\ =\ \mbox{\hyperlink{group__vector_ga7d698fb0259adeadeef52c149dee2887}{dmlfw\_row\_vec\_double\_transpose}}(vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ transposing\ to\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga8046344951d74e2c0368bb0c187e99a0}\label{group__vector_ga8046344951d74e2c0368bb0c187e99a0} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_create\_new@{dmlfw\_row\_vec\_string\_create\_new}}
+\index{dmlfw\_row\_vec\_string\_create\_new@{dmlfw\_row\_vec\_string\_create\_new}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_create\_new()}{dmlfw\_row\_vec\_string\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{columns }\end{DoxyParamCaption})}
+
+
+
+Creates a new row vector of strings of specified length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em columns} & \mbox{[}in\mbox{]} Number of string elements (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a new row vector, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free with \doxylink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+destroy()}. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vec\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(5);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ row\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_data_encoder_8c-example}{example\+\_\+dmlfw\+\_\+data\+\_\+encoder.\+c}}, \mbox{\hyperlink{example_dmlfw_scale_double_8c-example}{example\+\_\+dmlfw\+\_\+scale\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_vec_string_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga733fbd92f257d9bbcfba4997efd22125}\label{group__vector_ga733fbd92f257d9bbcfba4997efd22125} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_destroy@{dmlfw\_row\_vec\_string\_destroy}}
+\index{dmlfw\_row\_vec\_string\_destroy@{dmlfw\_row\_vec\_string\_destroy}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_destroy()}{dmlfw\_row\_vec\_string\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Destroys a row vector of strings and frees its memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Pointer to the row vector, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(vec);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_data_encoder_8c-example}{example\+\_\+dmlfw\+\_\+data\+\_\+encoder.\+c}}, \mbox{\hyperlink{example_dmlfw_scale_double_8c-example}{example\+\_\+dmlfw\+\_\+scale\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_vec_string_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga377e8e2e9657ab5b3adeea30fef6f2da}\label{group__vector_ga377e8e2e9657ab5b3adeea30fef6f2da} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_from\_csv@{dmlfw\_row\_vec\_string\_from\_csv}}
+\index{dmlfw\_row\_vec\_string\_from\_csv@{dmlfw\_row\_vec\_string\_from\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_from\_csv()}{dmlfw\_row\_vec\_string\_from\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+from\+\_\+csv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Loads a row vector of strings from a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Path to CSV file (must not be NULL). \\
+\hline
+{\em vector} & \mbox{[}in,out\mbox{]} Optional existing vector to reuse, or NULL. \\
+\hline
+{\em header} & \mbox{[}out\mbox{]} Output pointer to a newly allocated header vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the loaded row vector, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free both the returned vector and the header. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vec\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ NULL;}
+\DoxyCodeLine{vec\ =\ \mbox{\hyperlink{group__vector_ga377e8e2e9657ab5b3adeea30fef6f2da}{dmlfw\_row\_vec\_string\_from\_csv}}(\textcolor{stringliteral}{"{}data.csv"{}},\ NULL,\ \&header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ loading\ from\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\ Use\ vec\ and\ header...}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(vec);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga5bf815d73d03538f322b7e13952ad7b7}\label{group__vector_ga5bf815d73d03538f322b7e13952ad7b7} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_get@{dmlfw\_row\_vec\_string\_get}}
+\index{dmlfw\_row\_vec\_string\_get@{dmlfw\_row\_vec\_string\_get}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_get()}{dmlfw\_row\_vec\_string\_get()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Retrieves a string element from a row vector by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index. \\
+\hline
+{\em string} & \mbox{[}out\mbox{]} Pointer to receive the string element.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The returned string pointer is managed by the vector and must not be freed by the caller.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ *val\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga5bf815d73d03538f322b7e13952ad7b7}{dmlfw\_row\_vec\_string\_get}}(vec,\ 2,\ \&val);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ retrieve\ value\ at\ index\ 2:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Element\ at\ index\ 2:\ \%s\(\backslash\)n"{}},\ val);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_vec_string_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga5bbd4645d30256f3cb7ccdc666f494fc}\label{group__vector_ga5bbd4645d30256f3cb7ccdc666f494fc} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_get\_size@{dmlfw\_row\_vec\_string\_get\_size}}
+\index{dmlfw\_row\_vec\_string\_get\_size@{dmlfw\_row\_vec\_string\_get\_size}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_get\_size()}{dmlfw\_row\_vec\_string\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Returns the size (number of elements) in a row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements, or 0 on error. 
+\end{DoxyReturn}
+\Hypertarget{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}\label{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_set@{dmlfw\_row\_vec\_string\_set}}
+\index{dmlfw\_row\_vec\_string\_set@{dmlfw\_row\_vec\_string\_set}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_set()}{dmlfw\_row\_vec\_string\_set()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{index,  }\item[{char \texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Sets a string element in the row vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in,out\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em index} & \mbox{[}in\mbox{]} Zero-\/based index. \\
+\hline
+{\em string} & \mbox{[}in\mbox{]} Input string to copy into the vector (caller retains ownership).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(vec,\ 0,\ \textcolor{stringliteral}{"{}example"{}});}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_data_encoder_8c-example}{example\+\_\+dmlfw\+\_\+data\+\_\+encoder.\+c}}, \mbox{\hyperlink{example_dmlfw_scale_double_8c-example}{example\+\_\+dmlfw\+\_\+scale\+\_\+double.\+c}}, and \mbox{\hyperlink{example_dmlfw_vec_string_8c-example}{example\+\_\+dmlfw\+\_\+vec\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{group__vector_ga04367dcd07eada45608edd1936fca609}\label{group__vector_ga04367dcd07eada45608edd1936fca609} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_to\_csv@{dmlfw\_row\_vec\_string\_to\_csv}}
+\index{dmlfw\_row\_vec\_string\_to\_csv@{dmlfw\_row\_vec\_string\_to\_csv}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_to\_csv()}{dmlfw\_row\_vec\_string\_to\_csv()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Exports a row vector of strings to a CSV file with a header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em header} & \mbox{[}in\mbox{]} Row vector of strings header (must not be NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The file will be overwritten if it exists. 
+
+The {\ttfamily header} is always a row vector, even when representing a column vector\textquotesingle{}s header. 
+
+Check errors using the centralized error API after calling this function.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga04367dcd07eada45608edd1936fca609}{dmlfw\_row\_vec\_string\_to\_csv}}(vec,\ \textcolor{stringliteral}{"{}out.csv"{}},\ header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ writing\ to\ CSV:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{group__vector_ga69044e759e7d776be14d19cd3ce2811a}\label{group__vector_ga69044e759e7d776be14d19cd3ce2811a} 
+\index{Vector Types and Utilities@{Vector Types and Utilities}!dmlfw\_row\_vec\_string\_transpose@{dmlfw\_row\_vec\_string\_transpose}}
+\index{dmlfw\_row\_vec\_string\_transpose@{dmlfw\_row\_vec\_string\_transpose}!Vector Types and Utilities@{Vector Types and Utilities}}
+\doxysubsubsubsection{\texorpdfstring{dmlfw\_row\_vec\_string\_transpose()}{dmlfw\_row\_vec\_string\_transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+row\+\_\+vec\+\_\+string\+\_\+transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{vector,  }\item[{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\+\_\+column\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{transposed\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Transposes a row vector of strings into a column vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & \mbox{[}in\mbox{]} Row vector (must not be NULL). \\
+\hline
+{\em transposed\+\_\+vector} & \mbox{[}in,out\mbox{]} Optional existing column vector to reuse, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new or reused column vector, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Caller must free newly allocated column vectors.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *col\_vec\ =\ \mbox{\hyperlink{group__vector_ga69044e759e7d776be14d19cd3ce2811a}{dmlfw\_row\_vec\_string\_transpose}}(vec,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ transposing\ to\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \input{group__vector__string}
+\input{group__vector__double}

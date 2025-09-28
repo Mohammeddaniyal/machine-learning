@@ -1,0 +1,160 @@
+\doxysection{ml-\/framework/include/encoder/dmlfw\+\_\+data\+\_\+encoder.h File Reference}
+\hypertarget{dmlfw__data__encoder_8h}{}\label{dmlfw__data__encoder_8h}\index{ml-\/framework/include/encoder/dmlfw\_data\_encoder.h@{ml-\/framework/include/encoder/dmlfw\_data\_encoder.h}}
+
+
+Categorical and binary feature encoding utilities.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+data\+\_\+encoder.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__data__encoder_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__data__encoder_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dmlfw__data__encoder_8h_ae0570c372b0c720572f1689daa98b3c2}{dmlfw\+\_\+encoder\+\_\+encode}} (char \texorpdfstring{$\ast$}{*}source, char \texorpdfstring{$\ast$}{*}target, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}columns\+\_\+to\+\_\+encode, char \texorpdfstring{$\ast$}{*}algorithm)
+\begin{DoxyCompactList}\small\item\em Generic encoder API. Dispatches by algorithm string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__data__encoder_8h_a8fb9bae7e6af7de02623099f39a33ca1}{dmlfw\+\_\+encoder\+\_\+encode\+\_\+binary}} (char \texorpdfstring{$\ast$}{*}source, char \texorpdfstring{$\ast$}{*}target, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}columns\+\_\+to\+\_\+encode)
+\begin{DoxyCompactList}\small\item\em Encodes specified columns in a CSV file using binary encoding. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__data__encoder_8h_a71e2d0b02de2f9204fe2804baa684188}{dmlfw\+\_\+encoder\+\_\+encode\+\_\+one\+\_\+hot}} (char \texorpdfstring{$\ast$}{*}source, char \texorpdfstring{$\ast$}{*}target, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}columns\+\_\+to\+\_\+encode)
+\begin{DoxyCompactList}\small\item\em Encodes specified columns in a CSV file using one-\/hot encoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Categorical and binary feature encoding utilities. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This module provides functions for encoding categorical/textual data columns from CSV files into numerical formats suitable for ML models. Supported encoding schemes include one-\/hot and binary encoding, with a generic dispatcher for algorithm selection.\hypertarget{dmlfw__data__encoder_8h_autotoc_md0}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__data__encoder_8h_autotoc_md0}
+All functions report errors via the centralized error API. Use {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} after function calls to check for errors. Retrieve error and diagnostic details with {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}}.\hypertarget{dmlfw__data__encoder_8h_autotoc_md1}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__data__encoder_8h_autotoc_md1}
+All allocated resources are cleaned up internally on error and after completion. No ownership is transferred to caller. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__data__encoder_8h_ae0570c372b0c720572f1689daa98b3c2}\label{dmlfw__data__encoder_8h_ae0570c372b0c720572f1689daa98b3c2} 
+\index{dmlfw\_data\_encoder.h@{dmlfw\_data\_encoder.h}!dmlfw\_encoder\_encode@{dmlfw\_encoder\_encode}}
+\index{dmlfw\_encoder\_encode@{dmlfw\_encoder\_encode}!dmlfw\_data\_encoder.h@{dmlfw\_data\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_encoder\_encode()}{dmlfw\_encoder\_encode()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+encoder\+\_\+encode (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{source,  }\item[{char \texorpdfstring{$\ast$}{*}}]{target,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{columns\+\_\+to\+\_\+encode,  }\item[{char \texorpdfstring{$\ast$}{*}}]{algorithm }\end{DoxyParamCaption})}
+
+
+
+Generic encoder API. Dispatches by algorithm string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & \mbox{[}in\mbox{]} Input CSV file path (must not be NULL). \\
+\hline
+{\em target} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em columns\+\_\+to\+\_\+encode} & \mbox{[}in\mbox{]} Vector of column names to encode (must not be NULL). \\
+\hline
+{\em algorithm} & \mbox{[}in\mbox{]} Algorithm name ("{}one-\/hot"{} or "{}binary"{}, case-\/insensitive).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *cols\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(1);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(cols,\ 0,\ \textcolor{stringliteral}{"{}feature"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__data__encoder_8h_ae0570c372b0c720572f1689daa98b3c2}{dmlfw\_encoder\_encode}}(\textcolor{stringliteral}{"{}data.csv"{}},\ \textcolor{stringliteral}{"{}encoded.csv"{}},\ cols,\ \textcolor{stringliteral}{"{}binary"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ encoding:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(cols);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(cols);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__data__encoder_8h_a8fb9bae7e6af7de02623099f39a33ca1}\label{dmlfw__data__encoder_8h_a8fb9bae7e6af7de02623099f39a33ca1} 
+\index{dmlfw\_data\_encoder.h@{dmlfw\_data\_encoder.h}!dmlfw\_encoder\_encode\_binary@{dmlfw\_encoder\_encode\_binary}}
+\index{dmlfw\_encoder\_encode\_binary@{dmlfw\_encoder\_encode\_binary}!dmlfw\_data\_encoder.h@{dmlfw\_data\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_encoder\_encode\_binary()}{dmlfw\_encoder\_encode\_binary()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+encoder\+\_\+encode\+\_\+binary (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{source,  }\item[{char \texorpdfstring{$\ast$}{*}}]{target,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{columns\+\_\+to\+\_\+encode }\end{DoxyParamCaption})}
+
+
+
+Encodes specified columns in a CSV file using binary encoding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & \mbox{[}in\mbox{]} Input CSV file path (must not be NULL). \\
+\hline
+{\em target} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em columns\+\_\+to\+\_\+encode} & \mbox{[}in\mbox{]} Vector of column names to encode (must not be NULL).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *columns\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(1);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(columns,\ 0,\ \textcolor{stringliteral}{"{}product"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__data__encoder_8h_a8fb9bae7e6af7de02623099f39a33ca1}{dmlfw\_encoder\_encode\_binary}}(\textcolor{stringliteral}{"{}data.csv"{}},\ \textcolor{stringliteral}{"{}binary.csv"{}},\ columns);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ binary\ encoding:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(columns);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(columns);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__data__encoder_8h_a71e2d0b02de2f9204fe2804baa684188}\label{dmlfw__data__encoder_8h_a71e2d0b02de2f9204fe2804baa684188} 
+\index{dmlfw\_data\_encoder.h@{dmlfw\_data\_encoder.h}!dmlfw\_encoder\_encode\_one\_hot@{dmlfw\_encoder\_encode\_one\_hot}}
+\index{dmlfw\_encoder\_encode\_one\_hot@{dmlfw\_encoder\_encode\_one\_hot}!dmlfw\_data\_encoder.h@{dmlfw\_data\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_encoder\_encode\_one\_hot()}{dmlfw\_encoder\_encode\_one\_hot()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+encoder\+\_\+encode\+\_\+one\+\_\+hot (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{source,  }\item[{char \texorpdfstring{$\ast$}{*}}]{target,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{columns\+\_\+to\+\_\+encode }\end{DoxyParamCaption})}
+
+
+
+Encodes specified columns in a CSV file using one-\/hot encoding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & \mbox{[}in\mbox{]} Input CSV file path (must not be NULL). \\
+\hline
+{\em target} & \mbox{[}in\mbox{]} Output CSV file path (must not be NULL). \\
+\hline
+{\em columns\+\_\+to\+\_\+encode} & \mbox{[}in\mbox{]} Vector of column names to encode (must not be NULL).\\
+\hline
+\end{DoxyParams}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *columns\ =\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(2);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(columns,\ 0,\ \textcolor{stringliteral}{"{}size"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(columns,\ 1,\ \textcolor{stringliteral}{"{}shape"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__data__encoder_8h_a71e2d0b02de2f9204fe2804baa684188}{dmlfw\_encoder\_encode\_one\_hot}}(\textcolor{stringliteral}{"{}data.csv"{}},\ \textcolor{stringliteral}{"{}ohe.csv"{}},\ columns);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ in\ one-\/hot\ encoding:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(columns);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(columns);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_data_encoder_8c-example}{example\+\_\+dmlfw\+\_\+data\+\_\+encoder.\+c}}.\end{Desc}

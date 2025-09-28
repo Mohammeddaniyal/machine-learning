@@ -1,0 +1,110 @@
+\doxysection{dmlfw\+\_\+vec\+\_\+double.\+h}
+\hypertarget{dmlfw__vec__double_8h_source}{}\label{dmlfw__vec__double_8h_source}\index{ml-\/framework/include/vector/dmlfw\_vec\_double.h@{ml-\/framework/include/vector/dmlfw\_vec\_double.h}}
+\mbox{\hyperlink{dmlfw__vec__double_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_DMLFW\_\_VEC\_\_DOUBLE\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_DMLFW\_\_VEC\_\_DOUBLE\_\_}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__types_8h}{dmlfw\_types.h}}>}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\_\_dmlfw\_column\_vec\_double;}
+\DoxyCodeLine{00074\ \textcolor{keyword}{struct\ }\_\_dmlfw\_row\_vec\_double;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_dmlfw\_column\_vec\_double\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_dmlfw\_row\_vec\_double\ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ Column\ vector\ API}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00120\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *}
+\DoxyCodeLine{00121\ \mbox{\hyperlink{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}{dmlfw\_column\_vec\_double\_create\_new}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ rows);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00133\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{double}}
+\DoxyCodeLine{00157\ \mbox{\hyperlink{group__vector_ga38fb83c100ce68ed9cf0d17100ced98f}{dmlfw\_column\_vec\_double\_get}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector,}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00182\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector,}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index,}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00213\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *}
+\DoxyCodeLine{00214\ \mbox{\hyperlink{group__vector_gab00fab434cddf235a03066d050c600e2}{dmlfw\_column\_vec\_double\_create\_new\_filled}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ rows,}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value,}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00242\ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *}
+\DoxyCodeLine{00243\ \mbox{\hyperlink{group__vector_gae5fbe4a5acbdf6ae603d87eba497cae9}{dmlfw\_column\_vec\_double\_transpose}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector,}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *transposed\_vector);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00254\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}}
+\DoxyCodeLine{00255\ \mbox{\hyperlink{group__vector_ga5d283de1d05c7493bc9409d12147e30d}{dmlfw\_column\_vec\_double\_get\_size}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00265\ \textcolor{keywordtype}{double}}
+\DoxyCodeLine{00266\ \mbox{\hyperlink{group__vector_gacc0f0c0d157de326e370518055d4746f}{dmlfw\_column\_vec\_double\_get\_mean}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00304\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00305\ \mbox{\hyperlink{group__vector_ga455fc9a93df5c22a1896034908248f21}{dmlfw\_column\_vec\_double\_to\_csv}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector,}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header);}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00348\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *}
+\DoxyCodeLine{00349\ \mbox{\hyperlink{group__vector_ga869b876bcfcc1d011ea55ec865aad593}{dmlfw\_column\_vec\_double\_from\_csv}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *vector,}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ **header);}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00382\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00383\ \mbox{\hyperlink{group__vector_gafa67e4bf64807f5701cfed23ae11913f}{dmlfw\_column\_vec\_double\_copy}}(\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *target\_vector,}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *source\_vector);}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{comment}{//}}
+\DoxyCodeLine{00389\ \textcolor{comment}{//\ Row\ vector\ API}}
+\DoxyCodeLine{00390\ \textcolor{comment}{//}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00414\ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *}
+\DoxyCodeLine{00415\ \mbox{\hyperlink{group__vector_ga6b5d3611f5e5b1339ae5718a5fc1ea2c}{dmlfw\_row\_vec\_double\_create\_new}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ columns);}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00428\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00429\ \mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\_row\_vec\_double\_destroy}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00453\ \textcolor{keywordtype}{double}}
+\DoxyCodeLine{00454\ \mbox{\hyperlink{group__vector_gaff904fd14a48616b438379ff893abc69}{dmlfw\_row\_vec\_double\_get}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index);}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00479\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00480\ \mbox{\hyperlink{group__vector_ga69101f1cab5d3935cb374e5856227d0e}{dmlfw\_row\_vec\_double\_set}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector,\ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index,\ \textcolor{keywordtype}{double}\ value);}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00510\ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *}
+\DoxyCodeLine{00511\ \mbox{\hyperlink{group__vector_ga764802999ba53e6a8398a6707eed5992}{dmlfw\_row\_vec\_double\_create\_new\_filled}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ columns,\ \textcolor{keywordtype}{double}\ value,\ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00537\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *}
+\DoxyCodeLine{00538\ \mbox{\hyperlink{group__vector_ga7d698fb0259adeadeef52c149dee2887}{dmlfw\_row\_vec\_double\_transpose}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector,\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *transposed\_vector);}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00549\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}}
+\DoxyCodeLine{00550\ \mbox{\hyperlink{group__vector_gaa564c0d14664a9049368e2a08574813e}{dmlfw\_row\_vec\_double\_get\_size}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00561\ \textcolor{keywordtype}{double}}
+\DoxyCodeLine{00562\ \mbox{\hyperlink{group__vector_ga49f0e80baff95728d89fd93dbcd522b2}{dmlfw\_row\_vec\_double\_get\_mean}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector);}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00607\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00608\ \mbox{\hyperlink{group__vector_ga4c605a9d7a2313db87f2fb823792fccd}{dmlfw\_row\_vec\_double\_to\_csv}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector,\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header);}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00657\ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *}
+\DoxyCodeLine{00658\ \mbox{\hyperlink{group__vector_ga7afb4564cf1866d196dddc95f29dc240}{dmlfw\_row\_vec\_double\_from\_csv}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vector,}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ **header);}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00690\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00691\ \mbox{\hyperlink{group__vector_ga39afb92b941927734ed4fdf313426c27}{dmlfw\_row\_vec\_double\_copy}}(\mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *target\_vector,}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *source\_vector);}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_DMLFW\_\_VEC\_\_DOUBLE\_\_}}
+\DoxyCodeLine{00696\ }
+ \textcolor{comment}{// end of vector group}
+\end{DoxyCode}

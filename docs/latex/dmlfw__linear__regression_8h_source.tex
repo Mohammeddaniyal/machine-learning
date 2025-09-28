@@ -1,0 +1,35 @@
+\doxysection{dmlfw\+\_\+linear\+\_\+regression.\+h}
+\hypertarget{dmlfw__linear__regression_8h_source}{}\label{dmlfw__linear__regression_8h_source}\index{ml-\/framework/include/ml\_algorithms/dmlfw\_linear\_regression.h@{ml-\/framework/include/ml\_algorithms/dmlfw\_linear\_regression.h}}
+\mbox{\hyperlink{dmlfw__linear__regression_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_DMLFW\_\_LINEAR\_REGRESSION\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_DMLFW\_\_LINEAR\_REGRESSION\_\_}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__vector_8h}{dmlfw\_vector.h}}>}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__matrix_8h}{dmlfw\_matrix.h}}>}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__algorithms_8h}{dmlfw\_algorithms.h}}>}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00110\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *\ \mbox{\hyperlink{dmlfw__linear__regression_8h_aa5a2fbb03c3c1530b1c21491e1e08cb9}{dmlfw\_linear\_regression\_fit\_using\_batch\_gradient\_descent}}(}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *x,}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *y,}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{double}\ regularization\_parameter,}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *model);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00138\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *\ \mbox{\hyperlink{dmlfw__linear__regression_8h_a7002a2db81f78a7ccf3836bfe496f267}{dmlfw\_linear\_regression\_predict}}(}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\_mat\_double}}\ *x,}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *model);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00150\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *\ \mbox{\hyperlink{dmlfw__linear__regression_8h_af4e91e5e704f45faaa82d34150f8b926}{dmlfw\_linear\_regression\_fit\_using\_stochastic\_gradient\_descent}}(}
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{double}\ regularization\_parameter,}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *model);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00163\ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *\ \mbox{\hyperlink{dmlfw__linear__regression_8h_a03f9cae79c667a94a20b501c4d4a6cfe}{dmlfw\_linear\_regression\_fit\_using\_mini\_batch\_gradient\_descent}}(}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{double}\ regularization\_parameter,}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *model);}
+\DoxyCodeLine{00167\ }
+ \DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_DMLFW\_\_LINEAR\_REGRESSION\_\_}}
+
+\end{DoxyCode}

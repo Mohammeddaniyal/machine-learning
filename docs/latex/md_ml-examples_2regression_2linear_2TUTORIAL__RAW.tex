@@ -1,0 +1,196 @@
+\chapter{Daniyal ML Framework -\/ Raw Data Preprocessing and Training Tutorial}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW}{}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW}\index{Daniyal ML Framework -\/ Raw Data Preprocessing and Training Tutorial@{Daniyal ML Framework -\/ Raw Data Preprocessing and Training Tutorial}}
+\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md28}%
+\Hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md28}%
+ \hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md29}{}\doxysection{\texorpdfstring{Overview}{Overview}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md29}
+This tutorial guides you through preprocessing {\bfseries{raw datasets}} and training models using ML example programs. ~\newline
+ We cover preprocessing, scaling, train/test split, model training, and evaluation with raw {\ttfamily Ice\+Cream\+Sales} and {\ttfamily trends} datasets.
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md30}{}\doxysection{\texorpdfstring{Important Note About Preprocessing Tools}{Important Note About Preprocessing Tools}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md30}
+The examples in this tutorial assume you have copied or installed the preprocessing tools (such as {\ttfamily create\+\_\+test\+\_\+train\+\_\+dataset}, {\ttfamily polynomial\+\_\+dataset\+\_\+generator}, {\ttfamily scale\+\_\+dataset}, etc.) into a directory included in your system\textquotesingle{}s executable {\ttfamily PATH}, for example {\ttfamily /usr/bin}. This allows you to run these tools simply by their names without specifying full or relative paths.
+
+If you have not done this, you need to run the tools by specifying their full or relative paths, for example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../tools/build/create\_test\_train\_dataset\ ...}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md31}{}\doxysection{\texorpdfstring{1. Ice\+Cream\+Sales Dataset Example}{1. IceCreamSales Dataset Example}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md31}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md32}{}\doxysubsection{\texorpdfstring{Step 1\+: Create Train/\+Test Split}{Step 1: Create Train/Test Split}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md32}
+From the {\ttfamily test/\+Ice\+Cream\+Sales} folder\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{create\_test\_train\_dataset\ IceCreamSales.csv\ IceCreamSales\_testing\_examples.csv\ IceCreamSales\_training\_examples.csv\ 20}
+
+\end{DoxyCode}
+
+
+Generates training and testing CSV files with 20\% test data.
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md33}{}\doxysubsection{\texorpdfstring{Step 2\+: Run Mini-\/\+Batch Gradient Descent Training}{Step 2: Run Mini-Batch Gradient Descent Training}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md33}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/mini\_batch\_gd}
+
+\end{DoxyCode}
+
+
+This will run all iterations configured in source and save the model as {\ttfamily example-\/3-\/model.\+csv}. {\bfseries{Do not interrupt early.}}
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md34}{}\doxysubsection{\texorpdfstring{Step 3\+: Evaluate the Model}{Step 3: Evaluate the Model}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md34}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/gd\_test\_model\ example-\/3-\/model.csv}
+
+\end{DoxyCode}
+
+
+Expected output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Accuracy\ score\ is\ :\ 0.965031}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md35}{}\doxysubsection{\texorpdfstring{Step 4\+: Running Other Algorithms}{Step 4: Running Other Algorithms}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md35}
+Stochastic Gradient Descent\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/stochastic\_gd}
+
+\end{DoxyCode}
+
+
+Evaluate\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/gd\_test\_model\ example-\/2-\/model.csv}
+
+\end{DoxyCode}
+
+
+Batch Gradient Descent\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/batch\_gd}
+
+\end{DoxyCode}
+
+
+Evaluate\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/gd\_test\_model\ example-\/1-\/model.csv}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md36}{}\doxysection{\texorpdfstring{2. Trends Dataset Example}{2. Trends Dataset Example}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md36}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md37}{}\doxysubsection{\texorpdfstring{Step 1\+: Generate Synthetic Dataset}{Step 1: Generate Synthetic Dataset}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md37}
+Using dataset generator\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{curve\_dataset\_generator\ trends.csv\ 10\ 120}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md38}{}\doxysubsection{\texorpdfstring{Step 2\+: Create Train/\+Test Split}{Step 2: Create Train/Test Split}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md38}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{create\_test\_train\_dataset\ trends.csv\ trends\_test.csv\ trends\_train.csv\ 20}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md39}{}\doxysubsection{\texorpdfstring{Step 3\+: Generate Polynomial Features}{Step 3: Generate Polynomial Features}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md39}
+For test and train sets\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{polynomial\_dataset\_generator\ trends\_test.csv\ poly\_trends\_test.csv\ 7}
+\DoxyCodeLine{polynomial\_dataset\_generator\ trends\_train.csv\ poly\_trends\_train.csv\ 7}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md40}{}\doxysubsection{\texorpdfstring{Step 4\+: Scale Datasets}{Step 4: Scale Datasets}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md40}
+Scale training data (using z-\/score)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{scale\_dataset\ poly\_trends\_train.csv\ scaled\_poly\_trends\_train.csv\ z-\/score\ z\_score.csv\ 0\ 1\ 2\ 3\ 4\ 5\ 6}
+
+\end{DoxyCode}
+
+
+Scale test data using training parameters\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{scale\_using\_parameters\_file\ poly\_trends\_test.csv\ scaled\_poly\_trends\_test.csv\ z-\/score\ z\_score.csv}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md41}{}\doxysubsection{\texorpdfstring{Step 5\+: Train Polynomial Batch Gradient Descent}{Step 5: Train Polynomial Batch Gradient Descent}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md41}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/polynomial\_batch\_gd}
+
+\end{DoxyCode}
+
+
+Wait for training completion to generate {\ttfamily example-\/4-\/model.\+csv}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md42}{}\doxysubsection{\texorpdfstring{Step 6\+: Evaluate the Model}{Step 6: Evaluate the Model}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md42}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{../../build/gd\_test\_model\ example-\/4-\/model.csv}
+
+\end{DoxyCode}
+
+
+Expected output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Accuracy\ score\ is\ :\ 0.943412}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md43}{}\doxysection{\texorpdfstring{3. Summary}{3. Summary}}\label{md_ml-examples_2regression_2linear_2TUTORIAL__RAW_autotoc_md43}
+
+\begin{DoxyItemize}
+\item Use the provided tools to split data, generate polynomial features, and scale datasets step-\/by-\/step. ~\newline
+
+\item Always let training finish the configured iterations to save the model. Interrupting early loses progress. ~\newline
+
+\item Evaluate models using {\ttfamily gd\+\_\+test\+\_\+model} on generated model CSV files. ~\newline
+
+\item Repeat for other datasets by following analogous preprocessing steps. 
+\end{DoxyItemize}

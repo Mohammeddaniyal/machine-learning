@@ -1,0 +1,92 @@
+\doxysection{ml-\/framework/include/model\+\_\+accuracy/dmlfw\+\_\+model\+\_\+accuracy\+\_\+score.h File Reference}
+\hypertarget{dmlfw__model__accuracy__score_8h}{}\label{dmlfw__model__accuracy__score_8h}\index{ml-\/framework/include/model\_accuracy/dmlfw\_model\_accuracy\_score.h@{ml-\/framework/include/model\_accuracy/dmlfw\_model\_accuracy\_score.h}}
+
+
+Regression model evaluation metrics.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+error.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+model\+\_\+accuracy\+\_\+score.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__model__accuracy__score_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__model__accuracy__score_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{dmlfw__model__accuracy__score_8h_a4d7e64be2ce8db0c8dab40fab19ed424}{dmlfw\+\_\+get\+\_\+r2\+\_\+score}} (\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}target\+\_\+values\+\_\+vector, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}predicted\+\_\+values\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Computes the R2 (coefficient of determination) score for regression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Regression model evaluation metrics. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header provides functions to evaluate the accuracy of regression models using numerical metrics such as the R2 score (coefficient of determination).\hypertarget{dmlfw__model__accuracy__score_8h_autotoc_md16}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__model__accuracy__score_8h_autotoc_md16}
+Functions validate inputs, check vector sizes, allocate necessary temporaries, and set errors on failure. After calling, check {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} and use {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}} for diagnostics.\hypertarget{dmlfw__model__accuracy__score_8h_autotoc_md17}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__model__accuracy__score_8h_autotoc_md17}
+Input vectors are owned by the caller; temporary allocations are freed internally. Returned scores are scalars. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__model__accuracy__score_8h_a4d7e64be2ce8db0c8dab40fab19ed424}\label{dmlfw__model__accuracy__score_8h_a4d7e64be2ce8db0c8dab40fab19ed424} 
+\index{dmlfw\_model\_accuracy\_score.h@{dmlfw\_model\_accuracy\_score.h}!dmlfw\_get\_r2\_score@{dmlfw\_get\_r2\_score}}
+\index{dmlfw\_get\_r2\_score@{dmlfw\_get\_r2\_score}!dmlfw\_model\_accuracy\_score.h@{dmlfw\_model\_accuracy\_score.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_get\_r2\_score()}{dmlfw\_get\_r2\_score()}}
+{\footnotesize\ttfamily double dmlfw\+\_\+get\+\_\+r2\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{target\+\_\+values\+\_\+vector,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}}]{predicted\+\_\+values\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Computes the R2 (coefficient of determination) score for regression. 
+
+The R2 score is calculated as\+:  \[
+R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2}
+\]
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+values\+\_\+vector} & \mbox{[}in\mbox{]} Pointer to true target value vector (non-\/\+NULL). \\
+\hline
+{\em predicted\+\_\+values\+\_\+vector} & \mbox{[}in\mbox{]} Pointer to predicted value vector (non-\/\+NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R2 score as double. Returns 0.\+0 and sets an appropriate error if inputs are invalid or computation fails.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Input vectors must be the same size. 
+
+Caller retains ownership of input vectors.
+\end{DoxyNote}
+Usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *target\ =\ ...;\ \ \ \textcolor{comment}{//\ Initialized\ true\ values}}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *predicted\ =\ ...;\textcolor{comment}{//\ Initialized\ predictions}}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ r2\ =\ \mbox{\hyperlink{dmlfw__model__accuracy__score_8h_a4d7e64be2ce8db0c8dab40fab19ed424}{dmlfw\_get\_r2\_score}}(target,\ predicted);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ computing\ R2\ score:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}R2\ score:\ \%lf\(\backslash\)n"{}},\ r2);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_dmlfw_model_accuracy_score_8c-example}{example\+\_\+dmlfw\+\_\+model\+\_\+accuracy\+\_\+score.\+c}}.\end{Desc}

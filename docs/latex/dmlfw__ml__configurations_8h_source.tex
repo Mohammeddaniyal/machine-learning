@@ -1,0 +1,75 @@
+\doxysection{dmlfw\+\_\+ml\+\_\+configurations.\+h}
+\hypertarget{dmlfw__ml__configurations_8h_source}{}\label{dmlfw__ml__configurations_8h_source}\index{ml-\/framework/include/ml\_algorithms/dmlfw\_ml\_configurations.h@{ml-\/framework/include/ml\_algorithms/dmlfw\_ml\_configurations.h}}
+\mbox{\hyperlink{dmlfw__ml__configurations_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_DMLFW\_\_ML\_CONFIGURATIONS\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_DMLFW\_\_ML\_CONFIGURATIONS\_\_}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517c}{MLFW\_GRADIENT\_DESCENT\_TYPE}}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca1d9b4f104a8f742e31386e0feec42acb}{MLFW\_BATCH\_GRADIENT\_DESCENT}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca515e7d8bd4a7f739ba64818444cd92b0}{MLFW\_STOCHASTIC\_GRADIENT\_DESCENT}},\ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a560798d0379ef1974a0c36b9d656517ca41d394edfb35e39218ff9f465f990cf1}{MLFW\_MINI\_BATCH\_GRADIENT\_DESCENT}}\ \ \ }
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{typedef}\ int\ (*\mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}})(}
+\DoxyCodeLine{00091\ \ \ \ \ uint64\_t\ iteration\_number,}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ *y,}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ *predicted\_y,}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ *model,}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{double}\ regularization\_parameter);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}})(}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ *x,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ *y,}
+\DoxyCodeLine{00111\ \ \ \ \ uint64\_t\ from\_row\_index,}
+\DoxyCodeLine{00112\ \ \ \ \ uint32\_t\ how\_many\_rows);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_dmlfw\_gradient\_descent\_options\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00160\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_ab5faae1d0482deb5d310257c7a35dfe8}{dmlfw\_gradient\_descent\_options\_create\_new}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00175\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa4a43f7ad1ec1109ce13ced9491d4282}{dmlfw\_gradient\_descent\_options\_destroy}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00194\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_ac1af0879cf0fe5aa48942a6d01bfd96b}{dmlfw\_gradient\_descent\_options\_set\_learning\_rate}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,\ \textcolor{keywordtype}{double}\ learning\_rate);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00213\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a54f8859d30c4f9bb69ff34500eb3d9c4}{dmlfw\_gradient\_descent\_options\_get\_learning\_rate}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00232\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a662f65aee3fa813528db5be5ffbaf175}{dmlfw\_gradient\_descent\_options\_set\_number\_of\_iterations}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,\ uint64\_t\ number\_of\_iterations);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00251\ uint64\_t\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a174d01bf3e329f6611b61838442b5544}{dmlfw\_gradient\_descent\_options\_get\_number\_of\_iterations}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa6711d8dbc27317398e29645925fa631}{dmlfw\_gradient\_descent\_options\_set\_gradient\_descent\_type}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,\ \textcolor{keywordtype}{int}\ gradient\_descent\_type);}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00290\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a96b730152f47cc6526cf4d19129f48b1}{dmlfw\_gradient\_descent\_options\_get\_gradient\_descent\_type}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00309\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a6e1927a6991787e03f567a98f86b292f}{dmlfw\_gradient\_descent\_options\_set\_progress\_callback}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}}\ progress\_callback);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00328\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_ad51f158aa104d7cd48fc9f244d615619}{dmlfw\_gradient\_descent\_lin\_reg\_progress\_callback\_t}}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a2ec8df2da87e75f9ff8f2a8acbb7a729}{dmlfw\_gradient\_descent\_options\_get\_progress\_callback}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00347\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a338b95cced425ea43cb84b162ed01556}{dmlfw\_gradient\_descent\_options\_set\_data\_provider}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}}\ data\_provider);}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00366\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_abcef80f2bb6f6a1029524a61225b27db}{dmlfw\_gradient\_descent\_lin\_reg\_data\_provider\_t}}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a1bdb148c587ea49afbd57b3b5d3aa159}{dmlfw\_gradient\_descent\_options\_get\_data\_provider}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00385\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a33732a39515c93c77d9171276dd29a61}{dmlfw\_gradient\_descent\_options\_set\_mini\_batch\_size}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options,\ uint32\_t\ mini\_batch\_size);}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00404\ uint32\_t\ \mbox{\hyperlink{dmlfw__ml__configurations_8h_a71d3d67c2943bf8d75470406bfee0454}{dmlfw\_gradient\_descent\_options\_get\_mini\_batch\_size}}(\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\_gradient\_descent\_options}}\ *gd\_options);}
+\DoxyCodeLine{00405\ }
+ \DoxyCodeLine{00407\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_DMLFW\_\_ML\_CONFIGURATIONS\_\_}}
+
+\end{DoxyCode}

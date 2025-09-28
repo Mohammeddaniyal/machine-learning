@@ -1,0 +1,78 @@
+\doxysection{tools/src/curve\+\_\+dataset\+\_\+generator.c File Reference}
+\hypertarget{curve__dataset__generator_8c}{}\label{curve__dataset__generator_8c}\index{tools/src/curve\_dataset\_generator.c@{tools/src/curve\_dataset\_generator.c}}
+
+
+Generates a CSV dataset representing a curve for ML testing.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Include dependency graph for curve\+\_\+dataset\+\_\+generator.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{curve__dataset__generator_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{curve__dataset__generator_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for the curve dataset generator tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Generates a CSV dataset representing a curve for ML testing. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool creates a CSV file with two columns\+: an integer X value range and a corresponding calculated Y value based on the formula y = (sin(x/15))\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} x + 10. It is useful for generating synthetic regression data for testing ML algorithms.
+
+Usage\+: ./curve\+\_\+dataset\+\_\+generator output.\+csv start\+\_\+x end\+\_\+x
+
+Parameters\+:
+\begin{DoxyItemize}
+\item output.\+csv\+: The path to the CSV file to be generated.
+\item start\+\_\+x\+: The start integer value for the X range.
+\item end\+\_\+x\+: The end integer value for the X range. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{curve__dataset__generator_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{curve__dataset__generator_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{curve\_dataset\_generator.c@{curve\_dataset\_generator.c}!main@{main}}
+\index{main@{main}!curve\_dataset\_generator.c@{curve\_dataset\_generator.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for the curve dataset generator tool. 
+
+Parses command-\/line arguments, generates curve data, and writes it to a CSV file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success or with usage info on incorrect arguments.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./curve\_dataset\_generator\ curve.csv\ 0\ 100}
+
+\end{DoxyCode}
+ 

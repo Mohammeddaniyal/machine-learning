@@ -1,0 +1,206 @@
+\doxysection{ml-\/examples/regression/linear/src/polynomial\+\_\+batch\+\_\+gd.c File Reference}
+\hypertarget{polynomial__batch__gd_8c}{}\label{polynomial__batch__gd_8c}\index{ml-\/examples/regression/linear/src/polynomial\_batch\_gd.c@{ml-\/examples/regression/linear/src/polynomial\_batch\_gd.c}}
+
+
+Batch gradient descent linear regression example using polynomial features.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for polynomial\+\_\+batch\+\_\+gd.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{polynomial__batch__gd_8c__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_a00140fd737f38698c3cbbb6549785f3e}{ACTUAL\+\_\+\+TRAINING\+\_\+\+DATASET}}~"{}trends\+\_\+train.\+csv"{}
+\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_a7513b0d99f0c7deabaff1659a8dda375}{FREQUENCY\+\_\+\+OF\+\_\+\+PRINTING\+\_\+\+COST}}~300000
+\item 
+\mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{polynomial__batch__gd_8c_a2754096c627697d74d32cbd750a2a69b}{get\+\_\+gradient\+\_\+descent\+\_\+options}} ()
+\begin{DoxyCompactList}\small\item\em Creates gradient descent configuration for batch gradient descent. \end{DoxyCompactList}\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{polynomial__batch__gd_8c_a25270fcb3ace46b90bdb1f80116728eb}{gnuplot}}
+\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_ac9d3b34ee7e35eab6a81ed21f18f6e64}{LEARNING\+\_\+\+RATE}}~0.\+09
+\item 
+void \mbox{\hyperlink{polynomial__batch__gd_8c_a498d89553acef8d5983b3277ac9d157e}{load\+\_\+dataset}} (\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}x, \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}y)
+\begin{DoxyCompactList}\small\item\em Loads features and target from scaled polynomial dataset with bias column. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{polynomial__batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main program execution for polynomial batch gradient descent linear regression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_ac94a9c9bf7748b94127b6a171fb2e535}{MODEL\+\_\+\+FILE\+\_\+\+NAME}}~"{}example-\/4-\/model.\+csv"{}
+\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_ac260198d25bc63d8715eea2518ead070}{NUMBER\+\_\+\+OF\+\_\+\+ITERATIONS}}~300000000
+\item 
+int \mbox{\hyperlink{polynomial__batch__gd_8c_a50ca0b3ab5a73f76a2d36062ee40c8c4}{on\+\_\+iteration\+\_\+complete}} (uint64\+\_\+t iteration\+\_\+number, void \texorpdfstring{$\ast$}{*}y, void \texorpdfstring{$\ast$}{*}predicted\+\_\+y, void \texorpdfstring{$\ast$}{*}model, double regularization\+\_\+parameter)
+\begin{DoxyCompactList}\small\item\em Callback invoked at each gradient descent iteration to log cost and update graphs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{polynomial__batch__gd_8c_a926dabe718454fc42513a0382f9a5e98}{print\+\_\+error\+\_\+and\+\_\+exit}} ()
+\begin{DoxyCompactList}\small\item\em Prints ml-\/framework error and exits. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_a384a53d551ae62a683d9955c58bce87b}{REGULARIZATION\+\_\+\+PARAMETER}}~0.\+0
+\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_ad2d31173df7fba3749f1d93713d41dc5}{SHOW\+\_\+\+GRAPH}}~1
+\item 
+\#define \mbox{\hyperlink{polynomial__batch__gd_8c_a7280eb48be50e267a940d1316f8156c0}{TRAINING\+\_\+\+DATASET}}~"{}scaled\+\_\+poly\+\_\+trends\+\_\+train.\+csv"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Batch gradient descent linear regression example using polynomial features. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26
+\end{DoxyDate}
+This example trains a linear regression model on the scaled polynomial trends training dataset. It tracks training cost with optional graphing, uses regularization, and saves the trained model. Includes custom progress callback with gnuplot visualization.
+
+Usage\+: ./polynomial\+\_\+batch\+\_\+gd 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{polynomial__batch__gd_8c_a00140fd737f38698c3cbbb6549785f3e}\label{polynomial__batch__gd_8c_a00140fd737f38698c3cbbb6549785f3e} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!ACTUAL\_TRAINING\_DATASET@{ACTUAL\_TRAINING\_DATASET}}
+\index{ACTUAL\_TRAINING\_DATASET@{ACTUAL\_TRAINING\_DATASET}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{ACTUAL\_TRAINING\_DATASET}{ACTUAL\_TRAINING\_DATASET}}
+{\footnotesize\ttfamily \#define ACTUAL\+\_\+\+TRAINING\+\_\+\+DATASET~"{}trends\+\_\+train.\+csv"{}}
+
+\Hypertarget{polynomial__batch__gd_8c_a7513b0d99f0c7deabaff1659a8dda375}\label{polynomial__batch__gd_8c_a7513b0d99f0c7deabaff1659a8dda375} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!FREQUENCY\_OF\_PRINTING\_COST@{FREQUENCY\_OF\_PRINTING\_COST}}
+\index{FREQUENCY\_OF\_PRINTING\_COST@{FREQUENCY\_OF\_PRINTING\_COST}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{FREQUENCY\_OF\_PRINTING\_COST}{FREQUENCY\_OF\_PRINTING\_COST}}
+{\footnotesize\ttfamily \#define FREQUENCY\+\_\+\+OF\+\_\+\+PRINTING\+\_\+\+COST~300000}
+
+\Hypertarget{polynomial__batch__gd_8c_ac9d3b34ee7e35eab6a81ed21f18f6e64}\label{polynomial__batch__gd_8c_ac9d3b34ee7e35eab6a81ed21f18f6e64} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!LEARNING\_RATE@{LEARNING\_RATE}}
+\index{LEARNING\_RATE@{LEARNING\_RATE}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{LEARNING\_RATE}{LEARNING\_RATE}}
+{\footnotesize\ttfamily \#define LEARNING\+\_\+\+RATE~0.\+09}
+
+\Hypertarget{polynomial__batch__gd_8c_ac94a9c9bf7748b94127b6a171fb2e535}\label{polynomial__batch__gd_8c_ac94a9c9bf7748b94127b6a171fb2e535} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!MODEL\_FILE\_NAME@{MODEL\_FILE\_NAME}}
+\index{MODEL\_FILE\_NAME@{MODEL\_FILE\_NAME}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{MODEL\_FILE\_NAME}{MODEL\_FILE\_NAME}}
+{\footnotesize\ttfamily \#define MODEL\+\_\+\+FILE\+\_\+\+NAME~"{}example-\/4-\/model.\+csv"{}}
+
+\Hypertarget{polynomial__batch__gd_8c_ac260198d25bc63d8715eea2518ead070}\label{polynomial__batch__gd_8c_ac260198d25bc63d8715eea2518ead070} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!NUMBER\_OF\_ITERATIONS@{NUMBER\_OF\_ITERATIONS}}
+\index{NUMBER\_OF\_ITERATIONS@{NUMBER\_OF\_ITERATIONS}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_OF\_ITERATIONS}{NUMBER\_OF\_ITERATIONS}}
+{\footnotesize\ttfamily \#define NUMBER\+\_\+\+OF\+\_\+\+ITERATIONS~300000000}
+
+\Hypertarget{polynomial__batch__gd_8c_a384a53d551ae62a683d9955c58bce87b}\label{polynomial__batch__gd_8c_a384a53d551ae62a683d9955c58bce87b} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!REGULARIZATION\_PARAMETER@{REGULARIZATION\_PARAMETER}}
+\index{REGULARIZATION\_PARAMETER@{REGULARIZATION\_PARAMETER}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{REGULARIZATION\_PARAMETER}{REGULARIZATION\_PARAMETER}}
+{\footnotesize\ttfamily \#define REGULARIZATION\+\_\+\+PARAMETER~0.\+0}
+
+\Hypertarget{polynomial__batch__gd_8c_ad2d31173df7fba3749f1d93713d41dc5}\label{polynomial__batch__gd_8c_ad2d31173df7fba3749f1d93713d41dc5} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!SHOW\_GRAPH@{SHOW\_GRAPH}}
+\index{SHOW\_GRAPH@{SHOW\_GRAPH}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{SHOW\_GRAPH}{SHOW\_GRAPH}}
+{\footnotesize\ttfamily \#define SHOW\+\_\+\+GRAPH~1}
+
+\Hypertarget{polynomial__batch__gd_8c_a7280eb48be50e267a940d1316f8156c0}\label{polynomial__batch__gd_8c_a7280eb48be50e267a940d1316f8156c0} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!TRAINING\_DATASET@{TRAINING\_DATASET}}
+\index{TRAINING\_DATASET@{TRAINING\_DATASET}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{TRAINING\_DATASET}{TRAINING\_DATASET}}
+{\footnotesize\ttfamily \#define TRAINING\+\_\+\+DATASET~"{}scaled\+\_\+poly\+\_\+trends\+\_\+train.\+csv"{}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{polynomial__batch__gd_8c_a2754096c627697d74d32cbd750a2a69b}\label{polynomial__batch__gd_8c_a2754096c627697d74d32cbd750a2a69b} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!get\_gradient\_descent\_options@{get\_gradient\_descent\_options}}
+\index{get\_gradient\_descent\_options@{get\_gradient\_descent\_options}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{get\_gradient\_descent\_options()}{get\_gradient\_descent\_options()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__ml__configurations_8h_aa694aae34d7f367d56f81e4643e2310b}{dmlfw\+\_\+gradient\+\_\+descent\+\_\+options}} \texorpdfstring{$\ast$}{*} get\+\_\+gradient\+\_\+descent\+\_\+options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates gradient descent configuration for batch gradient descent. 
+
+\begin{DoxyReturn}{Returns}
+Configured gradient descent options structure or NULL on error. 
+\end{DoxyReturn}
+\Hypertarget{polynomial__batch__gd_8c_a498d89553acef8d5983b3277ac9d157e}\label{polynomial__batch__gd_8c_a498d89553acef8d5983b3277ac9d157e} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!load\_dataset@{load\_dataset}}
+\index{load\_dataset@{load\_dataset}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{load\_dataset()}{load\_dataset()}}
+{\footnotesize\ttfamily void load\+\_\+dataset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__double_8h_a1882e01ea2eae9679c5419969c7428c0}{dmlfw\+\_\+mat\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{x,  }\item[{\mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\+\_\+column\+\_\+vec\+\_\+double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{y }\end{DoxyParamCaption})}
+
+
+
+Loads features and target from scaled polynomial dataset with bias column. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em x} & Pointer to features matrix pointer. \\
+\hline
+\mbox{\texttt{ out}}  & {\em y} & Pointer to target column vector pointer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{polynomial__batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{polynomial__batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!main@{main}}
+\index{main@{main}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main program execution for polynomial batch gradient descent linear regression. 
+
+\begin{DoxyReturn}{Returns}
+0 on success or an error code. 
+\end{DoxyReturn}
+\Hypertarget{polynomial__batch__gd_8c_a50ca0b3ab5a73f76a2d36062ee40c8c4}\label{polynomial__batch__gd_8c_a50ca0b3ab5a73f76a2d36062ee40c8c4} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!on\_iteration\_complete@{on\_iteration\_complete}}
+\index{on\_iteration\_complete@{on\_iteration\_complete}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{on\_iteration\_complete()}{on\_iteration\_complete()}}
+{\footnotesize\ttfamily int on\+\_\+iteration\+\_\+complete (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{iteration\+\_\+number,  }\item[{void \texorpdfstring{$\ast$}{*}}]{y,  }\item[{void \texorpdfstring{$\ast$}{*}}]{predicted\+\_\+y,  }\item[{void \texorpdfstring{$\ast$}{*}}]{model,  }\item[{double}]{regularization\+\_\+parameter }\end{DoxyParamCaption})}
+
+
+
+Callback invoked at each gradient descent iteration to log cost and update graphs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iteration\+\_\+number} & Current iteration index. \\
+\hline
+{\em y} & Actual target vector. \\
+\hline
+{\em predicted\+\_\+y} & Predicted target vector. \\
+\hline
+{\em model} & Current model parameters vector. \\
+\hline
+{\em regularization\+\_\+parameter} & Regularization coefficient. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 to continue gradient descent, negative to abort. 
+\end{DoxyReturn}
+\Hypertarget{polynomial__batch__gd_8c_a926dabe718454fc42513a0382f9a5e98}\label{polynomial__batch__gd_8c_a926dabe718454fc42513a0382f9a5e98} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!print\_error\_and\_exit@{print\_error\_and\_exit}}
+\index{print\_error\_and\_exit@{print\_error\_and\_exit}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{print\_error\_and\_exit()}{print\_error\_and\_exit()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+and\+\_\+exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints ml-\/framework error and exits. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{polynomial__batch__gd_8c_a25270fcb3ace46b90bdb1f80116728eb}\label{polynomial__batch__gd_8c_a25270fcb3ace46b90bdb1f80116728eb} 
+\index{polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}!gnuplot@{gnuplot}}
+\index{gnuplot@{gnuplot}!polynomial\_batch\_gd.c@{polynomial\_batch\_gd.c}}
+\doxysubsubsection{\texorpdfstring{gnuplot}{gnuplot}}
+{\footnotesize\ttfamily FILE\texorpdfstring{$\ast$}{*} gnuplot}
+

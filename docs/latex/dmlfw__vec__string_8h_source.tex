@@ -1,0 +1,78 @@
+\doxysection{dmlfw\+\_\+vec\+\_\+string.\+h}
+\hypertarget{dmlfw__vec__string_8h_source}{}\label{dmlfw__vec__string_8h_source}\index{ml-\/framework/include/vector/dmlfw\_vec\_string.h@{ml-\/framework/include/vector/dmlfw\_vec\_string.h}}
+\mbox{\hyperlink{dmlfw__vec__string_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_DMLFW\_\_VEC\_\_STRING\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_DMLFW\_\_VEC\_\_STRING\_\_}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__types_8h}{dmlfw\_types.h}}>}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{struct\ }\_\_dmlfw\_row\_vec\_string;}
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\_\_dmlfw\_column\_vec\_string;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_dmlfw\_row\_vec\_string\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_dmlfw\_column\_vec\_string\ \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ Row\ vector\ API}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00119\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *\ \mbox{\hyperlink{group__vector_ga8046344951d74e2c0368bb0c187e99a0}{dmlfw\_row\_vec\_string\_create\_new}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ columns);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00162\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *\ \mbox{\hyperlink{group__vector_ga377e8e2e9657ab5b3adeea30fef6f2da}{dmlfw\_row\_vec\_string\_from\_csv}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ **header);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga04367dcd07eada45608edd1936fca609}{dmlfw\_row\_vec\_string\_to\_csv}}(\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga5bf815d73d03538f322b7e13952ad7b7}{dmlfw\_row\_vec\_string\_get}}(\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index,}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ **\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00232\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_gabce90a181fc020f4d8ef2b64e8658b1d}{dmlfw\_row\_vec\_string\_set}}(\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index,}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00242\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ \mbox{\hyperlink{group__vector_ga5bbd4645d30256f3cb7ccdc666f494fc}{dmlfw\_row\_vec\_string\_get\_size}}(\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00265\ \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *\ \mbox{\hyperlink{group__vector_ga69044e759e7d776be14d19cd3ce2811a}{dmlfw\_row\_vec\_string\_transpose}}(\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *transposed\_vector);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{comment}{//}}
+\DoxyCodeLine{00269\ \textcolor{comment}{//\ Column\ vector\ API}}
+\DoxyCodeLine{00270\ \textcolor{comment}{//}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00292\ \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *\ \mbox{\hyperlink{group__vector_ga460b366420918f2679204159a1500576}{dmlfw\_column\_vec\_string\_create\_new}}(\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ rows);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00304\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga346fbe0621daaa0052ee266e78085a0d}{dmlfw\_column\_vec\_string\_destroy}}(\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector);}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00334\ \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *\ \mbox{\hyperlink{group__vector_ga35448e7e5696dd69ad2bbfdb6c8662d8}{dmlfw\_column\_vec\_string\_from\_csv}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ **header);}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00361\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_ga8da1bfd2bc3b13c60bf2571df5e2d4c5}{dmlfw\_column\_vec\_string\_to\_csv}}(\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *csv\_file\_name,}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header);}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00388\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_gaac0629082c71fcd565c46d6661489af2}{dmlfw\_column\_vec\_string\_get}}(\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index,}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ **\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00404\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__vector_gab6c103ed7a05e0acbc5b9820941408f8}{dmlfw\_column\_vec\_string\_set}}(\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ index,}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00414\ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ \mbox{\hyperlink{group__vector_ga5d0d53a0b05e5535a8a6c340646372f8}{dmlfw\_column\_vec\_string\_get\_size}}(\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector);}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00437\ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *\ \mbox{\hyperlink{group__vector_gaf5d66bd14cc1ccbd83e349d7c3210561}{dmlfw\_column\_vec\_string\_transpose}}(\mbox{\hyperlink{group__vector_ga8e69ba6078783d47b04f8d33a75e0660}{dmlfw\_column\_vec\_string}}\ *vector,}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *transposed\_vector);}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ }
+ \textcolor{comment}{// end of vector group}\DoxyCodeLine{00442\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_DMLFW\_\_VEC\_\_STRING\_\_}}
+
+\end{DoxyCode}

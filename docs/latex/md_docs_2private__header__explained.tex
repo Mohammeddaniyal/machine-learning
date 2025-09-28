@@ -1,0 +1,119 @@
+\chapter{Understanding Private Headers in C Libraries}
+\hypertarget{md_docs_2private__header__explained}{}\label{md_docs_2private__header__explained}\index{Understanding Private Headers in C Libraries@{Understanding Private Headers in C Libraries}}
+\label{md_docs_2private__header__explained_autotoc_md28}%
+\Hypertarget{md_docs_2private__header__explained_autotoc_md28}%
+ \hypertarget{md_docs_2private__header__explained_autotoc_md29}{}\doxysection{\texorpdfstring{1. Your Question}{1. Your Question}}\label{md_docs_2private__header__explained_autotoc_md29}
+You asked\+:
+\begin{DoxyItemize}
+\item How does keeping a header like {\ttfamily \+\_\+\+\_\+\+\_\+mlfw\+\_\+error.\+h} in {\ttfamily private/include/} make it private?
+\item If internal code uses that header, why don’t we need to ship it to users?
+\item Why are private headers only needed at compile time, not at runtime?
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2private__header__explained_autotoc_md31}{}\doxysection{\texorpdfstring{2. Public vs Private Headers}{2. Public vs Private Headers}}\label{md_docs_2private__header__explained_autotoc_md31}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Public headers ({\ttfamily include/mlfw\+\_\+error.\+h})\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\begin{DoxyItemize}
+\item Part of the official API of your library.
+\item Distributed to users along with the compiled library ({\ttfamily .a} or {\ttfamily .so}).
+\item Users include these in their code to use your library.
+\end{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Private headers ({\ttfamily private/include/\+\_\+\+\_\+\+\_\+mlfw\+\_\+error.\+h})\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\begin{DoxyItemize}
+\item Only used by the library’s internal {\ttfamily .c} files during compilation.
+\item Not distributed to users — kept internal.
+\item Users never need them, because the compiled library already contains the machine code.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2private__header__explained_autotoc_md33}{}\doxysection{\texorpdfstring{3. Why Private Headers Are Not Installed}{3. Why Private Headers Are Not Installed}}\label{md_docs_2private__header__explained_autotoc_md33}
+When you build a library\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{During compilation}}
+\begin{DoxyItemize}
+\item Your {\ttfamily .c} files include both public and private headers.
+\item The compiler uses macros, constants, and prototypes from the private headers.
+\item These get baked into the object files ({\ttfamily .o}) and then into your library ({\ttfamily .so}/{\ttfamily .a}).
+\end{DoxyItemize}
+\item {\bfseries{When distributing the library}}
+\begin{DoxyItemize}
+\item You install\+:
+\begin{DoxyItemize}
+\item {\ttfamily libmlfw.\+so} or {\ttfamily libmlfw.\+a}
+\item {\ttfamily include/mlfw\+\_\+error.\+h}
+\end{DoxyItemize}
+\item You do {\bfseries{not}} install\+:
+\begin{DoxyItemize}
+\item {\ttfamily private/include/\+\_\+\+\_\+\+\_\+mlfw\+\_\+error.\+h}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{When users link against your library}}
+\begin{DoxyItemize}
+\item They only include {\ttfamily mlfw\+\_\+error.\+h}.
+\item They link against the precompiled binary ({\ttfamily libmlfw.\+so}).
+\item They don’t need the private header, since it was only required during compilation.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2private__header__explained_autotoc_md35}{}\doxysection{\texorpdfstring{4. Compile-\/\+Time vs Runtime}{4. Compile-Time vs Runtime}}\label{md_docs_2private__header__explained_autotoc_md35}
+\hypertarget{md_docs_2private__header__explained_autotoc_md36}{}\doxysubsection{\texorpdfstring{a. Macros ($<$tt$>$\#define$<$/tt$>$)}{a. Macros (<tt>\#define</tt>)}}\label{md_docs_2private__header__explained_autotoc_md36}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ ERR\_CODE\ 42}}
+\DoxyCodeLine{\`{}\`{}\`{}\`{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{When\ used:}
+
+\end{DoxyCode}
+ c return ERR\+\_\+\+CODE; 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{The\ preprocessor\ replaces\ it\ with:}
+
+\end{DoxyCode}
+ c return 42; 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{✅\ At\ runtime,\ only\ the\ value\ \`{}42`\ exists\ —\ no\ macro.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ b.\ Inline\ or\ Static\ Helpers}
+
+\end{DoxyCode}
+ c static inline int helper(int x) \{ return x \texorpdfstring{$\ast$}{*} 2; \} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{The\ compiler\ inserts\ this\ directly\ into\ \`{}.c`\ code\ where\ it’s\ used.}
+\DoxyCodeLine{✅\ At\ runtime,\ just\ normal\ instructions\ exist.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ c.\ Function\ Prototypes}
+
+\end{DoxyCode}
+ c // in \+\_\+\+\_\+\+\_\+mlfw\+\_\+error.\+h int \+\_\+\+\_\+mlfw\+\_\+internal\+\_\+handler(int); 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{The\ function\ is\ actually\ implemented\ in\ a\ \`{}.c`\ file.}
+\DoxyCodeLine{✅\ At\ runtime,\ the\ binary\ code\ of\ the\ function\ is\ in\ \`{}libmlfw.so`\ —\ the\ header\ is\ not\ needed\ anymore.}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ 5.\ Core\ Idea}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ **Headers**:\ Instructions\ for\ the\ compiler\ (compile-\/time\ only).}
+\DoxyCodeLine{*\ **Libraries**:\ Compiled\ machine\ code\ (runtime).}
+\DoxyCodeLine{*\ **Private\ headers**\ are\ like\ blueprints:\ once\ the\ building\ (your\ library)\ is\ complete,\ you\ don’t\ give\ the\ blueprints\ to\ the\ user.}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ 6.\ Visual\ Pipeline}
+
+\end{DoxyCode}
+ Source Code (.c + .h) ↓ Preprocessor (\#include, macros) Expanded Source (macros replaced) ↓ Compiler Object Code (.o) ↓ Linker Library (.a / .so) ↓ Runtime Executable uses only the compiled library (no headers needed) \`{}\`{}\`{}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2private__header__explained_autotoc_md38}{}\doxysection{\texorpdfstring{✅ In Short}{✅ In Short}}\label{md_docs_2private__header__explained_autotoc_md38}
+
+\begin{DoxyItemize}
+\item Private headers are {\bfseries{needed to build the library}}, but not {\bfseries{needed to use it}}.
+\item At {\bfseries{compile-\/time}}, macros and declarations from private headers guide compilation.
+\item At {\bfseries{runtime}}, only the compiled machine code is used, so the private headers disappear. 
+\end{DoxyItemize}

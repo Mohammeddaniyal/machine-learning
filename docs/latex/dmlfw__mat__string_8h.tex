@@ -1,0 +1,494 @@
+\doxysection{ml-\/framework/include/matrix/dmlfw\+\_\+mat\+\_\+string.h File Reference}
+\hypertarget{dmlfw__mat__string_8h}{}\label{dmlfw__mat__string_8h}\index{ml-\/framework/include/matrix/dmlfw\_mat\_string.h@{ml-\/framework/include/matrix/dmlfw\_mat\_string.h}}
+
+
+Core string matrix types and utilities.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+types.\+h$>$}\newline
+Include dependency graph for dmlfw\+\_\+mat\+\_\+string.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{dmlfw__mat__string_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dmlfw__mat__string_8h__dep__incl}
+\end{center}
+\end{figure}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \+\_\+\+\_\+dmlfw\+\_\+mat\+\_\+string \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}}
+\begin{DoxyCompactList}\small\item\em Opaque structure representing a string matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__mat__string_8h_aa64d95723f50c989c40abcc6dc2f62f9}{dmlfw\+\_\+mat\+\_\+string\+\_\+copy}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}target, \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}source, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} target\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} target\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} source\+\_\+from\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} source\+\_\+from\+\_\+column\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} source\+\_\+to\+\_\+row\+\_\+index, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} source\+\_\+to\+\_\+column\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Copies a submatrix region from source to target matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35}{dmlfw\+\_\+mat\+\_\+string\+\_\+create\+\_\+new}} (\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} rows, \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} columns)
+\begin{DoxyCompactList}\small\item\em Creates a new string matrix with specified rows and columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__mat__string_8h_af97c1b6d006551c2450a8176adcc38d6}{dmlfw\+\_\+mat\+\_\+string\+\_\+delete\+\_\+columns}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} \texorpdfstring{$\ast$}{*}indexes, \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} indexes\+\_\+size, \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}new\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Deletes specified columns from the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\+\_\+mat\+\_\+string\+\_\+destroy}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix)
+\begin{DoxyCompactList}\small\item\em Destroys a string matrix and frees all allocated memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__mat__string_8h_a15a4cd285daee47a68c09c2bd7ccd964}{dmlfw\+\_\+mat\+\_\+string\+\_\+from\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Loads a matrix and header from a CSV file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__mat__string_8h_a5ad5040ec34df84387078e670fcca0bf}{dmlfw\+\_\+mat\+\_\+string\+\_\+get}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} row, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} column, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Retrieves the string at specified row and column. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__mat__string_8h_aeb29339d8f7ef4a3b10da0ce2f2aeb95}{dmlfw\+\_\+mat\+\_\+string\+\_\+get\+\_\+dimensions}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \texorpdfstring{$\ast$}{*}rows, \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \texorpdfstring{$\ast$}{*}columns)
+\begin{DoxyCompactList}\small\item\em Retrieves dimensions of the string matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__mat__string_8h_aa7a8d892c13cfd55897d38ceb8222801}{dmlfw\+\_\+mat\+\_\+string\+\_\+set}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} row, \mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} column, char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Sets the string at specified row and column. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__mat__string_8h_ae85c4b7e84cb20a7c4ebd90be729fc94}{dmlfw\+\_\+mat\+\_\+string\+\_\+shuffle}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, uint8\+\_\+t how\+\_\+many\+\_\+times\+\_\+to\+\_\+shuffle, \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}shuffled\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Shuffles rows of the string matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dmlfw__mat__string_8h_ab57cc016049e8a710bc5501250001caa}{dmlfw\+\_\+mat\+\_\+string\+\_\+to\+\_\+csv}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, const char \texorpdfstring{$\ast$}{*}csv\+\_\+file\+\_\+name, \mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}header)
+\begin{DoxyCompactList}\small\item\em Saves a string matrix and header to a CSV file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dmlfw__mat__string_8h_aef25a0e24aeeaa8f4a34ce18962e36c7}{dmlfw\+\_\+mat\+\_\+string\+\_\+transpose}} (\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}matrix, \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}transposed\+\_\+matrix)
+\begin{DoxyCompactList}\small\item\em Transposes a string matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core string matrix types and utilities. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/09-\/25
+\end{DoxyDate}
+This header defines opaque matrix structures specialized for string data. It provides APIs for creation, destruction, element access and mutation, CSV import/export, matrix transpose, shuffle, copy, and column deletion.\hypertarget{dmlfw__mat__string_8h_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Error Handling\+:}{Error Handling:}}\label{dmlfw__mat__string_8h_autotoc_md9}
+All functions report errors via the centralized error API. Use {\ttfamily \doxylink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\+\_\+error()}} to check for errors after calls. {\ttfamily \doxylink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\+\_\+get\+\_\+error\+\_\+string()}} and {\ttfamily \doxylink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\+\_\+get\+\_\+debug\+\_\+string()}} provide error information.\hypertarget{dmlfw__mat__string_8h_autotoc_md10}{}\doxysubsubsection{\texorpdfstring{Ownership\+:}{Ownership:}}\label{dmlfw__mat__string_8h_autotoc_md10}
+Functions returning new matrix pointers transfer ownership to the caller, who is responsible for freeing with {\ttfamily \doxylink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\+\_\+mat\+\_\+string\+\_\+destroy()}}.\hypertarget{dmlfw__mat__string_8h_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Indexing Notes\+:}{Indexing Notes:}}\label{dmlfw__mat__string_8h_autotoc_md11}
+All indices are zero-\/based. 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}\label{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string@{dmlfw\_mat\_string}}
+\index{dmlfw\_mat\_string@{dmlfw\_mat\_string}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string}{dmlfw\_mat\_string}}
+{\footnotesize\ttfamily typedef struct \+\_\+\+\_\+dmlfw\+\_\+mat\+\_\+string \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}}}
+
+
+
+Opaque structure representing a string matrix. 
+
+The internal representation is hidden. Use the provided API functions to create, manipulate, and destroy instances. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dmlfw__mat__string_8h_aa64d95723f50c989c40abcc6dc2f62f9}\label{dmlfw__mat__string_8h_aa64d95723f50c989c40abcc6dc2f62f9} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_copy@{dmlfw\_mat\_string\_copy}}
+\index{dmlfw\_mat\_string\_copy@{dmlfw\_mat\_string\_copy}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_copy()}{dmlfw\_mat\_string\_copy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+mat\+\_\+string\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{target,  }\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{source,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{target\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{target\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{source\+\_\+from\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{source\+\_\+from\+\_\+column\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{source\+\_\+to\+\_\+row\+\_\+index,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{source\+\_\+to\+\_\+column\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Copies a submatrix region from source to target matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & \mbox{[}in,out\mbox{]} Destination matrix (non-\/\+NULL). \\
+\hline
+{\em source} & \mbox{[}in\mbox{]} Source matrix (non-\/\+NULL). \\
+\hline
+{\em target\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Start row index in target. \\
+\hline
+{\em target\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Start column index in target. \\
+\hline
+{\em source\+\_\+from\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Starting row index in source. \\
+\hline
+{\em source\+\_\+from\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Starting column index in source. \\
+\hline
+{\em source\+\_\+to\+\_\+row\+\_\+index} & \mbox{[}in\mbox{]} Ending row index in source. \\
+\hline
+{\em source\+\_\+to\+\_\+column\+\_\+index} & \mbox{[}in\mbox{]} Ending column index in source.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_aef25a0e24aeeaa8f4a34ce18962e36c7}{dmlfw\+\_\+mat\+\_\+string\+\_\+transpose}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_aa64d95723f50c989c40abcc6dc2f62f9}{dmlfw\_mat\_string\_copy}}(dest,\ src,\ 0,\ 0,\ 1,\ 1,\ 3,\ 3);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ copying\ matrix:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35}\label{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_create\_new@{dmlfw\_mat\_string\_create\_new}}
+\index{dmlfw\_mat\_string\_create\_new@{dmlfw\_mat\_string\_create\_new}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_create\_new()}{dmlfw\_mat\_string\_create\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+mat\+\_\+string\+\_\+create\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{rows,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{columns }\end{DoxyParamCaption})}
+
+
+
+Creates a new string matrix with specified rows and columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & \mbox{[}in\mbox{]} Number of rows (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+{\em columns} & \mbox{[}in\mbox{]} Number of columns (must be \texorpdfstring{$>$}{>} 0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new matrix or NULL on allocation failure or invalid args.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\+\_\+mat\+\_\+string\+\_\+destroy}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+Caller must destroy with {\ttfamily \doxylink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\+\_\+mat\+\_\+string\+\_\+destroy()}}.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *mat\ =\ \mbox{\hyperlink{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35}{dmlfw\_mat\_string\_create\_new}}(5,\ 4);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Create\ failed:\ \%s\(\backslash\)nDebug:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_mat_string_8c-example}{example\+\_\+mat\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__mat__string_8h_af97c1b6d006551c2450a8176adcc38d6}\label{dmlfw__mat__string_8h_af97c1b6d006551c2450a8176adcc38d6} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_delete\_columns@{dmlfw\_mat\_string\_delete\_columns}}
+\index{dmlfw\_mat\_string\_delete\_columns@{dmlfw\_mat\_string\_delete\_columns}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_delete\_columns()}{dmlfw\_mat\_string\_delete\_columns()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+mat\+\_\+string\+\_\+delete\+\_\+columns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{indexes,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}}}]{indexes\+\_\+size,  }\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Deletes specified columns from the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Source matrix (non-\/\+NULL). \\
+\hline
+{\em indexes} & \mbox{[}in\mbox{]} Array of zero-\/based column indexes to delete. \\
+\hline
+{\em indexes\+\_\+size} & \mbox{[}in\mbox{]} Number of indexes to delete. \\
+\hline
+{\em new\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional matrix container for result, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new matrix after deletion, or NULL on error.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+dmlfw\+\_\+mat\+\_\+string\+\_\+clone
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\_t}}\ cols\_to\_delete[]\ =\ \{1,3\};}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *reduced\ =\ \mbox{\hyperlink{dmlfw__mat__string_8h_af97c1b6d006551c2450a8176adcc38d6}{dmlfw\_mat\_string\_delete\_columns}}(mat,\ cols\_to\_delete,\ 2,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ delete\ column\ at\ index\ 2\ from\ matrix:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\_mat\_string\_destroy}}(reduced);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}\label{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_destroy@{dmlfw\_mat\_string\_destroy}}
+\index{dmlfw\_mat\_string\_destroy@{dmlfw\_mat\_string\_destroy}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_destroy()}{dmlfw\_mat\_string\_destroy()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+mat\+\_\+string\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix }\end{DoxyParamCaption})}
+
+
+
+Destroys a string matrix and frees all allocated memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Pointer to matrix, or NULL (no-\/op).\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35}{dmlfw\+\_\+mat\+\_\+string\+\_\+create\+\_\+new}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\_mat\_string\_destroy}}(mat);}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_mat_string_8c-example}{example\+\_\+mat\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__mat__string_8h_a15a4cd285daee47a68c09c2bd7ccd964}\label{dmlfw__mat__string_8h_a15a4cd285daee47a68c09c2bd7ccd964} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_from\_csv@{dmlfw\_mat\_string\_from\_csv}}
+\index{dmlfw\_mat\_string\_from\_csv@{dmlfw\_mat\_string\_from\_csv}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_from\_csv()}{dmlfw\_mat\_string\_from\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+mat\+\_\+string\+\_\+from\+\_\+csv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Loads a matrix and header from a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} CSV file path (non-\/\+NULL). \\
+\hline
+{\em matrix} & \mbox{[}in,out\mbox{]} Optional matrix to reuse or NULL. \\
+\hline
+{\em header} & \mbox{[}out\mbox{]} Pointer to receive the newly allocated header row vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to loaded matrix or NULL on error.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_ab57cc016049e8a710bc5501250001caa}{dmlfw\+\_\+mat\+\_\+string\+\_\+to\+\_\+csv}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+Caller must destroy returned matrix and header. 
+
+Header is always a row vector.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *mat\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\_row\_vec\_string}}\ *header\ =\ NULL;}
+\DoxyCodeLine{mat\ =\ \mbox{\hyperlink{dmlfw__mat__string_8h_a15a4cd285daee47a68c09c2bd7ccd964}{dmlfw\_mat\_string\_from\_csv}}(\textcolor{stringliteral}{"{}data.csv"{}},\ NULL,\ \&header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Load\ failed:\ \%s\(\backslash\)nDebug:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\_mat\_string\_destroy}}(mat);}
+\DoxyCodeLine{\mbox{\hyperlink{group__vector_ga733fbd92f257d9bbcfba4997efd22125}{dmlfw\_row\_vec\_string\_destroy}}(header);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__mat__string_8h_a5ad5040ec34df84387078e670fcca0bf}\label{dmlfw__mat__string_8h_a5ad5040ec34df84387078e670fcca0bf} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_get@{dmlfw\_mat\_string\_get}}
+\index{dmlfw\_mat\_string\_get@{dmlfw\_mat\_string\_get}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_get()}{dmlfw\_mat\_string\_get()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+mat\+\_\+string\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{row,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{column,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Retrieves the string at specified row and column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Matrix (non-\/\+NULL). \\
+\hline
+{\em row} & \mbox{[}in\mbox{]} Zero-\/based row index. \\
+\hline
+{\em column} & \mbox{[}in\mbox{]} Zero-\/based column index. \\
+\hline
+{\em string} & \mbox{[}out\mbox{]} Allocation pointer to receive string copy (must not be NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_aa7a8d892c13cfd55897d38ceb8222801}{dmlfw\+\_\+mat\+\_\+string\+\_\+set}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+Returned string must be freed by caller.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ *str\ =\ NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_a5ad5040ec34df84387078e670fcca0bf}{dmlfw\_mat\_string\_get}}(mat,\ 0,\ 0,\ \&str);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ retrieve\ value\ from\ (1,2)\ :\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;\ \ }
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Value\ at\ (0,0):\ \%s\(\backslash\)n"{}},\ str);}
+\DoxyCodeLine{\ \ \ \ free(str);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_mat_string_8c-example}{example\+\_\+mat\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__mat__string_8h_aeb29339d8f7ef4a3b10da0ce2f2aeb95}\label{dmlfw__mat__string_8h_aeb29339d8f7ef4a3b10da0ce2f2aeb95} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_get\_dimensions@{dmlfw\_mat\_string\_get\_dimensions}}
+\index{dmlfw\_mat\_string\_get\_dimensions@{dmlfw\_mat\_string\_get\_dimensions}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_get\_dimensions()}{dmlfw\_mat\_string\_get\_dimensions()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+mat\+\_\+string\+\_\+get\+\_\+dimensions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rows,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{columns }\end{DoxyParamCaption})}
+
+
+
+Retrieves dimensions of the string matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Matrix (non-\/\+NULL). \\
+\hline
+{\em rows} & \mbox{[}out\mbox{]} Pointer to receive row count (non-\/\+NULL). \\
+\hline
+{\em columns} & \mbox{[}out\mbox{]} Pointer to receive column count (non-\/\+NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_af9595603c147f79808a70c6f12655b35}{dmlfw\+\_\+mat\+\_\+string\+\_\+create\+\_\+new}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ rows,\ cols;}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_aeb29339d8f7ef4a3b10da0ce2f2aeb95}{dmlfw\_mat\_string\_get\_dimensions}}(mat,\ \&rows,\ \&cols);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__mat__string_8h_aa7a8d892c13cfd55897d38ceb8222801}\label{dmlfw__mat__string_8h_aa7a8d892c13cfd55897d38ceb8222801} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_set@{dmlfw\_mat\_string\_set}}
+\index{dmlfw\_mat\_string\_set@{dmlfw\_mat\_string\_set}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_set()}{dmlfw\_mat\_string\_set()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+mat\+\_\+string\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{row,  }\item[{\mbox{\hyperlink{dmlfw__types_8h_a049e023695b2695e3e72354baf3d46f6}{index\+\_\+t}}}]{column,  }\item[{char \texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Sets the string at specified row and column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in,out\mbox{]} Matrix (non-\/\+NULL). \\
+\hline
+{\em row} & \mbox{[}in\mbox{]} Zero-\/based row index. \\
+\hline
+{\em column} & \mbox{[}in\mbox{]} Zero-\/based column index. \\
+\hline
+{\em string} & \mbox{[}in\mbox{]} String value to copy into matrix (non-\/\+NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_a5ad5040ec34df84387078e670fcca0bf}{dmlfw\+\_\+mat\+\_\+string\+\_\+get}
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_aa7a8d892c13cfd55897d38ceb8222801}{dmlfw\_mat\_string\_set}}(mat,\ 0,\ 0,\ \textcolor{stringliteral}{"{}example"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ set\ value\ at\ (1,2)\ :\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_mat_string_8c-example}{example\+\_\+mat\+\_\+string.\+c}}.\end{Desc}
+\Hypertarget{dmlfw__mat__string_8h_ae85c4b7e84cb20a7c4ebd90be729fc94}\label{dmlfw__mat__string_8h_ae85c4b7e84cb20a7c4ebd90be729fc94} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_shuffle@{dmlfw\_mat\_string\_shuffle}}
+\index{dmlfw\_mat\_string\_shuffle@{dmlfw\_mat\_string\_shuffle}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_shuffle()}{dmlfw\_mat\_string\_shuffle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+mat\+\_\+string\+\_\+shuffle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{uint8\+\_\+t}]{how\+\_\+many\+\_\+times\+\_\+to\+\_\+shuffle,  }\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{shuffled\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Shuffles rows of the string matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Matrix to shuffle (non-\/\+NULL). \\
+\hline
+{\em how\+\_\+many\+\_\+times\+\_\+to\+\_\+shuffle} & \mbox{[}in\mbox{]} Number of shuffle iterations. \\
+\hline
+{\em shuffled\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional matrix container for result, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to shuffled matrix or NULL on error.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+dmlfw\+\_\+mat\+\_\+string\+\_\+clone
+\end{DoxySeeAlso}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *shuffled\ =\ \mbox{\hyperlink{dmlfw__mat__string_8h_ae85c4b7e84cb20a7c4ebd90be729fc94}{dmlfw\_mat\_string\_shuffle}}(mat,\ 10,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ shuffling\ matrix:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\_mat\_string\_destroy}}(shuffled);}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__mat__string_8h_ab57cc016049e8a710bc5501250001caa}\label{dmlfw__mat__string_8h_ab57cc016049e8a710bc5501250001caa} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_to\_csv@{dmlfw\_mat\_string\_to\_csv}}
+\index{dmlfw\_mat\_string\_to\_csv@{dmlfw\_mat\_string\_to\_csv}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_to\_csv()}{dmlfw\_mat\_string\_to\_csv()}}
+{\footnotesize\ttfamily void dmlfw\+\_\+mat\+\_\+string\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{csv\+\_\+file\+\_\+name,  }\item[{\mbox{\hyperlink{group__vector_gaed399c1434010d8e284515501c1a7a18}{dmlfw\+\_\+row\+\_\+vec\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{header }\end{DoxyParamCaption})}
+
+
+
+Saves a string matrix and header to a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Matrix to save (non-\/\+NULL). \\
+\hline
+{\em csv\+\_\+file\+\_\+name} & \mbox{[}in\mbox{]} Output CSV file path (non-\/\+NULL). \\
+\hline
+{\em header} & \mbox{[}in\mbox{]} Header row vector (non-\/\+NULL).\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{dmlfw__mat__string_8h_a15a4cd285daee47a68c09c2bd7ccd964}{dmlfw\+\_\+mat\+\_\+string\+\_\+from\+\_\+csv}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+File will be overwritten if it exists.
+\end{DoxyNote}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_ab57cc016049e8a710bc5501250001caa}{dmlfw\_mat\_string\_to\_csv}}(mat,\ \textcolor{stringliteral}{"{}out.csv"{}},\ header);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ exporting\ matrix:\ \%s\(\backslash\)nDebug:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{dmlfw__mat__string_8h_aef25a0e24aeeaa8f4a34ce18962e36c7}\label{dmlfw__mat__string_8h_aef25a0e24aeeaa8f4a34ce18962e36c7} 
+\index{dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}!dmlfw\_mat\_string\_transpose@{dmlfw\_mat\_string\_transpose}}
+\index{dmlfw\_mat\_string\_transpose@{dmlfw\_mat\_string\_transpose}!dmlfw\_mat\_string.h@{dmlfw\_mat\_string.h}}
+\doxysubsubsection{\texorpdfstring{dmlfw\_mat\_string\_transpose()}{dmlfw\_mat\_string\_transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*} dmlfw\+\_\+mat\+\_\+string\+\_\+transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{matrix,  }\item[{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\+\_\+mat\+\_\+string}} \texorpdfstring{$\ast$}{*}}]{transposed\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Transposes a string matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{[}in\mbox{]} Matrix to transpose (non-\/\+NULL). \\
+\hline
+{\em transposed\+\_\+matrix} & \mbox{[}in,out\mbox{]} Optional matrix container to receive transpose, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to transposed matrix or NULL on error.
+\end{DoxyReturn}
+Usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_ad8fb70d9cbb036f6734220613dcbab18}{dmlfw\_mat\_string}}\ *transposed\ =\ \mbox{\hyperlink{dmlfw__mat__string_8h_aef25a0e24aeeaa8f4a34ce18962e36c7}{dmlfw\_mat\_string\_transpose}}(mat,\ NULL);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ transposing\ matrix:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{dmlfw__mat__string_8h_a955ef259ca85279ff3939af6c0a9212c}{dmlfw\_mat\_string\_destroy}}(transposed);}
+
+\end{DoxyCode}
+ 

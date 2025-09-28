@@ -1,0 +1,51 @@
+\doxysection{example\+\_\+dmlfw\+\_\+list\+\_\+double.\+c}
+\hypertarget{example_dmlfw_list_double_8c-example}{}\label{example_dmlfw_list_double_8c-example}Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__list_8h}{dmlfw\_list.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__error_8h}{dmlfw\_error.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__list__double_8h_a6bae1ba268ef02a3494e3dea6e3813bd}{dmlfw\_forward\_list\_double}}\ *list\ =\ \mbox{\hyperlink{dmlfw__list__double_8h_a0d6dc4b25709543425de95fb8d7997b8}{dmlfw\_forward\_list\_double\_create\_new}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ create\ forward\ list:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__list__double_8h_a92573efef5c55c0ef7621576d178f451}{dmlfw\_forward\_list\_double\_insert}}(list,\ 3.14);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__list__double_8h_a92573efef5c55c0ef7621576d178f451}{dmlfw\_forward\_list\_double\_insert}}(list,\ 2.71);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__types_8h_ae41ee72966b214b807e6942d361dfed1}{dimension\_t}}\ size\ =\ \mbox{\hyperlink{dmlfw__list__double_8h_a8c920fedf2bb644ebc07d15d39742890}{dmlfw\_forward\_list\_double\_get\_size}}(list);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}List\ size:\ \%u\(\backslash\)n"{}},\ size);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga7a7eead43d6ffe17ca1f2b4911b92f06}{dmlfw\_row\_vec\_double}}\ *vec\ =\ \mbox{\hyperlink{dmlfw__list__double_8h_aefbb9b59cc869096b87fb889e340e0db}{dmlfw\_forward\_list\_double\_get\_row\_vector}}(list);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ convert\ list\ to\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__list__double_8h_aa2d3c38ef8c749806cb1ecf58f740ec6}{dmlfw\_forward\_list\_double\_destroy}}(list);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ val\ =\ \mbox{\hyperlink{group__vector_gaff904fd14a48616b438379ff893abc69}{dmlfw\_row\_vec\_double\_get}}(vec,\ 0);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}First\ element\ in\ vector:\ \%lf\(\backslash\)n"{}},\ val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga52d24c29a8dc1cee9474771b141c1206}{dmlfw\_row\_vec\_double\_destroy}}(vec);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__list__double_8h_a62b890d447b6ca2e4052ae302bc9c5a0}{dmlfw\_forward\_list\_double\_clear}}(list);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{dmlfw__list__double_8h_aa2d3c38ef8c749806cb1ecf58f740ec6}{dmlfw\_forward\_list\_double\_destroy}}(list);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

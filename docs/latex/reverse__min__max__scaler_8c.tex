@@ -1,0 +1,79 @@
+\doxysection{tools/src/reverse\+\_\+min\+\_\+max\+\_\+scaler.c File Reference}
+\hypertarget{reverse__min__max__scaler_8c}{}\label{reverse__min__max__scaler_8c}\index{tools/src/reverse\_min\_max\_scaler.c@{tools/src/reverse\_min\_max\_scaler.c}}
+
+
+Reverses min-\/max scaling on specified columns of a dataset CSV.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+matrix.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+Include dependency graph for reverse\+\_\+min\+\_\+max\+\_\+scaler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{reverse__min__max__scaler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{reverse__min__max__scaler_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for reversing min-\/max scaling on dataset columns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Reverses min-\/max scaling on specified columns of a dataset CSV. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool reads a scaled dataset CSV and a min-\/max parameters CSV, reverses the scaling on the last two columns of the dataset using the min and max from the parameters file, and writes the unscaled dataset back to a CSV file.
+
+Usage\+: ./reverse\+\_\+scale\+\_\+output.out input\+\_\+file output\+\_\+file min\+\_\+max\+\_\+file
+
+Parameters\+:
+\begin{DoxyItemize}
+\item input\+\_\+file\+: Path to the scaled input CSV dataset.
+\item output\+\_\+file\+: Path to save the unscaled dataset CSV.
+\item min\+\_\+max\+\_\+file\+: CSV file containing min and max values used for original scaling. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{reverse__min__max__scaler_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{reverse__min__max__scaler_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{reverse\_min\_max\_scaler.c@{reverse\_min\_max\_scaler.c}!main@{main}}
+\index{main@{main}!reverse\_min\_max\_scaler.c@{reverse\_min\_max\_scaler.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for reversing min-\/max scaling on dataset columns. 
+
+Reads scaled dataset and min-\/max parameters, reverses scaling on last two columns, and outputs unscaled dataset CSV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command line arguments. \\
+\hline
+{\em argv} & Command line arguments vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, prints usage on incorrect args.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./reverse\_scale\_output.out\ scaled.csv\ unscaled.csv\ min\_max\_params.csv}
+
+\end{DoxyCode}
+ 

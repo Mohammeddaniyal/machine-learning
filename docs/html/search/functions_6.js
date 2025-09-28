@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['on_5fiteration_5fcomplete_0',['on_iteration_complete',['../batch__gd_8c.html#a50ca0b3ab5a73f76a2d36062ee40c8c4',1,'on_iteration_complete(uint64_t iteration_number, void *y, void *predicted_y, void *model, double regularization_parameter):&#160;batch_gd.c'],['../mini__batch__gd_8c.html#a50ca0b3ab5a73f76a2d36062ee40c8c4',1,'on_iteration_complete(uint64_t iteration_number, void *y, void *predicted_y, void *model, double regularization_parameter):&#160;mini_batch_gd.c'],['../polynomial__batch__gd_8c.html#a50ca0b3ab5a73f76a2d36062ee40c8c4',1,'on_iteration_complete(uint64_t iteration_number, void *y, void *predicted_y, void *model, double regularization_parameter):&#160;polynomial_batch_gd.c'],['../stochastic__gd_8c.html#a50ca0b3ab5a73f76a2d36062ee40c8c4',1,'on_iteration_complete(uint64_t iteration_number, void *y, void *predicted_y, void *model, double regularization_parameter):&#160;stochastic_gd.c']]]
+];

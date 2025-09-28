@@ -1,0 +1,88 @@
+\doxysection{tools/src/binary\+\_\+encode.c File Reference}
+\hypertarget{binary__encode_8c}{}\label{binary__encode_8c}\index{tools/src/binary\_encode.c@{tools/src/binary\_encode.c}}
+
+
+Command-\/line tool to encode specified CSV columns into binary format.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+encoder.\+h$>$}\newline
+{\ttfamily \#include $<$dmlfw\+\_\+vector.\+h$>$}\newline
+Include dependency graph for binary\+\_\+encode.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{binary__encode_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{binary__encode_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for the binary encoding tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Command-\/line tool to encode specified CSV columns into binary format. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool reads an input CSV file and converts specified columns to binary encoding, which is useful for preprocessing categorical features for machine learning models using the ml-\/framework\textquotesingle{}s encoder module.
+
+Usage\+: ./binary\+\_\+encode source.\+csv target.\+csv column1 column2 ...
+
+Parameters\+:
+\begin{DoxyItemize}
+\item source\+\_\+csv\+: Path to the input CSV file.
+\item target\+\_\+csv\+: Path to the output CSV file where encoded data will be saved.
+\item columns\+\_\+to\+\_\+encode\+: List of column names to apply binary encoding on.
+\end{DoxyItemize}
+
+This tool uses the functions from the ml-\/framework encoder and vector modules ({\ttfamily \doxylink{dmlfw__encoder_8h}{dmlfw\+\_\+encoder.\+h}}, {\ttfamily \doxylink{dmlfw__vector_8h}{dmlfw\+\_\+vector.\+h}}).
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{binary__encode_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{binary__encode_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{binary\_encode.c@{binary\_encode.c}!main@{main}}
+\index{main@{main}!binary\_encode.c@{binary\_encode.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for the binary encoding tool. 
+
+Parses command-\/line arguments for input/output CSV files and column names, creates a vector of columns to encode, and applies binary encoding on the specified columns.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on successful encoding, or 0 with usage info or memory error message.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./binary\_encode\ data.csv\ encoded\_data.csv\ Gender\ Occupation}
+
+\end{DoxyCode}
+ 

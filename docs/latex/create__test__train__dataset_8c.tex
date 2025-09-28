@@ -1,0 +1,81 @@
+\doxysection{tools/src/create\+\_\+test\+\_\+train\+\_\+dataset.c File Reference}
+\hypertarget{create__test__train__dataset_8c}{}\label{create__test__train__dataset_8c}\index{tools/src/create\_test\_train\_dataset.c@{tools/src/create\_test\_train\_dataset.c}}
+
+
+Command-\/line tool to split a dataset CSV into test and training sets. \texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+matrix.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for create\+\_\+test\+\_\+train\+\_\+dataset.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__test__train__dataset_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{create__test__train__dataset_8c_a7be7b3f3b810d259483db57fef9b4c4c}{main}} (int args, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for the dataset splitter tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Command-\/line tool to split a dataset CSV into test and training sets. \texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>} 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool loads a dataset as a double matrix, shuffles it multiple times, and splits it into a test (minor) set and a training (major) set based on a specified minor percentage. The resulting datasets are saved to two separate CSV files.
+
+Usage\+: ./create\+\_\+test\+\_\+train\+\_\+dataset dataset.\+csv test.\+csv train.\+csv minor\+\_\+percentage
+
+Parameters\+:
+\begin{DoxyItemize}
+\item dataset.\+csv\+: Input dataset CSV file path.
+\item test.\+csv\+: Output CSV file path for test subset.
+\item train.\+csv\+: Output CSV file path for training subset.
+\item minor\+\_\+percentage\+: Percentage of rows for the test set (1-\/50).
+\end{DoxyItemize}
+
+This tool uses ml-\/framework matrix modules for data manipulation. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{create__test__train__dataset_8c_a7be7b3f3b810d259483db57fef9b4c4c}\label{create__test__train__dataset_8c_a7be7b3f3b810d259483db57fef9b4c4c} 
+\index{create\_test\_train\_dataset.c@{create\_test\_train\_dataset.c}!main@{main}}
+\index{main@{main}!create\_test\_train\_dataset.c@{create\_test\_train\_dataset.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{args,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for the dataset splitter tool. 
+
+Validates inputs, loads dataset matrix, shuffles rows, splits into test/train sets, and writes subsets to CSV files.
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Command-\/line argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on success or with usage/error messages.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./create\_test\_train\_dataset\ dataset.csv\ test.csv\ train.csv\ 20}
+
+\end{DoxyCode}
+ 

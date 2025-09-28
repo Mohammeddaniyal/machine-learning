@@ -1,0 +1,69 @@
+\chapter{Daniyal Machine Learning Framework (DMLFW)}
+\hypertarget{index}{}\label{index}\index{Daniyal Machine Learning Framework (DMLFW)@{Daniyal Machine Learning Framework (DMLFW)}}
+\hypertarget{index_intro}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro}
+DMLFW is a hands-\/on educational framework to learn core machine learning concepts in C, from scratch. It provides core data structures, gradient descent implementations, preprocessing utilities, and evaluation metrics with visual outputs.
+
+Git\+Hub repository\+: \href{https://github.com/Mohammeddaniyal/machine-learning.git}{\texttt{ https\+://github.\+com/\+Mohammeddaniyal/machine-\/learning.\+git}}\hypertarget{index_features}{}\doxysection{\texorpdfstring{Features}{Features}}\label{index_features}
+
+\begin{DoxyItemize}
+\item {\bfseries{Data Structures\+:}} Vectors, matrices, lists (double and string). ~\newline
+
+\item {\bfseries{Mathematical Utilities\+:}} Algebra, statistics, transformations. ~\newline
+
+\item {\bfseries{Algorithms\+:}} Batch, stochastic, and mini-\/batch gradient descent. ~\newline
+
+\item {\bfseries{Data Preprocessing\+:}} Encoding, normalization, scaling. ~\newline
+
+\item {\bfseries{Evaluation Metrics\+:}} R2 score, accuracy. ~\newline
+
+\item {\bfseries{Error Handling \& Utilities\+:}} Centralized error reporting and file/string tools.
+\end{DoxyItemize}\hypertarget{index_quickstart}{}\doxysection{\texorpdfstring{Quick Start}{Quick Start}}\label{index_quickstart}
+Minimal example demonstrating column vector usage\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__vector_8h}{dmlfw\_vector.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dmlfw__error_8h}{dmlfw\_error.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{batch__gd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ err[512],\ dbg[512];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8f2723ccb8a0b9551c9dcd46b807c948}{dmlfw\_column\_vec\_double}}\ *col\_vec\ =\ \mbox{\hyperlink{group__vector_ga904e56c8db98d664d1c2cc221f80edd1}{dmlfw\_column\_vec\_double\_create\_new}}(3);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dmlfw__error_8h_a3e8543135c572122fa434e82586b04fe}{dmlfw\_error}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_a2a80986d26481880229bd8371445c125}{dmlfw\_get\_error\_string}}(err,\ \textcolor{keyword}{sizeof}(err));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dmlfw__error_8h_ad50e40b8f20fac982ff9d41c1b3648b2}{dmlfw\_get\_debug\_string}}(dbg,\ \textcolor{keyword}{sizeof}(dbg));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error\ creating\ column\ vector:\ \%s\(\backslash\)nDebug\ info:\ \%s\(\backslash\)n"{}},\ err,\ dbg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(col\_vec,\ 0,\ 1.0);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(col\_vec,\ 1,\ 2.0);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga8189602572f1bfbad06d3bd945da43af}{dmlfw\_column\_vec\_double\_set}}(col\_vec,\ 2,\ 3.0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ mean\ =\ \mbox{\hyperlink{group__vector_gacc0f0c0d157de326e370518055d4746f}{dmlfw\_column\_vec\_double\_get\_mean}}(col\_vec);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Mean\ of\ column\ vector:\ \%lf\(\backslash\)n"{}},\ mean);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__vector_ga05c89c803dc41568a5069b5b66e2e054}{dmlfw\_column\_vec\_double\_destroy}}(col\_vec);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{index_visuals}{}\doxysection{\texorpdfstring{Visual Previews}{Visual Previews}}\label{index_visuals}
+See graphical output from core ML algorithms\+:
+
+  \hypertarget{index_structure}{}\doxysection{\texorpdfstring{Project Structure}{Project Structure}}\label{index_structure}
+
+\begin{DoxyItemize}
+\item {\bfseries{ml-\/framework/}}\+: Core framework code (data structures, ML algorithms). ~\newline
+
+\item {\bfseries{ml-\/examples/}}\+: Example programs demonstrating workflows. ~\newline
+
+\item {\bfseries{tools/}}\+: Command-\/line utilities for dataset preprocessing. ~\newline
+
+\item {\bfseries{docs/}}\+: Generated Doxygen documentation files.
+\end{DoxyItemize}\hypertarget{index_contact}{}\doxysection{\texorpdfstring{Contact}{Contact}}\label{index_contact}
+Maintainer\+: Mohammed Daniyal ~\newline
+ Email\+: \href{mailto:mohammeddaniyal453@gmail.com}{\texttt{ mohammeddaniyal453@gmail.\+com}} ~\newline
+ Linked\+In\+: \href{https://www.linkedin.com/in/mohammeddaniyalali}{\texttt{ mohammeddaniyalali}}\hypertarget{index_acknowledgments}{}\doxysection{\texorpdfstring{Acknowledgments}{Acknowledgments}}\label{index_acknowledgments}
+Special thanks to mentor Prafull Kelkar Sir for invaluable guidance and support. 

@@ -1,0 +1,80 @@
+\doxysection{tools/src/encode\+\_\+one\+\_\+hot.c File Reference}
+\hypertarget{encode__one__hot_8c}{}\label{encode__one__hot_8c}\index{tools/src/encode\_one\_hot.c@{tools/src/encode\_one\_hot.c}}
+
+
+Command-\/line tool for one-\/hot encoding specified CSV columns.  
+
+
+{\ttfamily \#include $<$dmlfw\+\_\+encoder.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for encode\+\_\+one\+\_\+hot.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encode__one__hot_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{encode__one__hot_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main entry point for the one-\/hot encoding tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+Command-\/line tool for one-\/hot encoding specified CSV columns. 
+
+\begin{DoxyAuthor}{Author}
+Mohammed Daniyal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/09-\/26 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This tool reads an input CSV file and applies one-\/hot encoding to selected categorical columns using the ml-\/framework\textquotesingle{}s encoder capabilities, producing an output CSV with encoded features.
+
+Usage\+: ./encode\+\_\+one\+\_\+hot input\+\_\+file output\+\_\+file column\+\_\+name1 column\+\_\+name2 ...
+
+Parameters\+:
+\begin{DoxyItemize}
+\item input\+\_\+file\+: Path to the input CSV file.
+\item output\+\_\+file\+: Path to the output CSV file with one-\/hot encoded columns.
+\item column\+\_\+name(s)\+: One or more column names to apply one-\/hot encoding.
+\end{DoxyItemize}
+
+This tool uses the ml-\/framework dmlfw\+\_\+encoder and dmlfw\+\_\+row\+\_\+vec\+\_\+string modules. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{encode__one__hot_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{encode__one__hot_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{encode\_one\_hot.c@{encode\_one\_hot.c}!main@{main}}
+\index{main@{main}!encode\_one\_hot.c@{encode\_one\_hot.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main entry point for the one-\/hot encoding tool. 
+
+Parses command-\/line arguments for input/output files and column names, collects them into a vector, and calls encoder to perform one-\/hot encoding.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Command-\/line argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on success or with usage/memory error message.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./encode\_one\_hot\ data.csv\ encoded\_data.csv\ Gender\ Occupation}
+
+\end{DoxyCode}
+ 
