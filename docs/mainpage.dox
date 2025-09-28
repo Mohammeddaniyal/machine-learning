@@ -1,44 +1,69 @@
 /**
  * @mainpage Daniyal Machine Learning Framework (DMLFW)
  *
- * @section about About This Project
+ * @section intro Introduction
  *
- * The Daniyal Machine Learning Framework (DMLFW) is a personal, educational project
- * designed to deepen understanding of machine learning by implementing its foundations
- * from scratch in C.
+ * DMLFW is a hands-on educational framework to learn core machine learning concepts in C,
+ * from scratch. It provides core data structures, gradient descent implementations,
+ * preprocessing utilities, and evaluation metrics with visual outputs.
  *
- * The primary focus is clarity, simplicity, and learning rather than production-level performance.
- * DMLFW serves as a toolkit and journal for experimenting with core ML concepts.
+ * GitHub repository: <a href="https://github.com/Mohammeddaniyal/machine-learning.git">https://github.com/Mohammeddaniyal/machine-learning.git</a>
  *
  * @section features Features
  *
- * - Core data structures: vectors, matrices, and lists (supporting double and string data types).  
- * - Mathematical utilities for basic algebra, statistics, and transformations.  
- * - Machine learning algorithms: batch, stochastic, and mini-batch gradient descent implementations.  
- * - Data preprocessing utilities: encoding, normalization, and scaling.  
- * - Model evaluation metrics such as R² score and accuracy.  
- * - Centralized error handling and general file/string utilities.  
+ * - **Data Structures:** Vectors, matrices, lists (double and string).  
+ * - **Mathematical Utilities:** Algebra, statistics, transformations.  
+ * - **Algorithms:** Batch, stochastic, and mini-batch gradient descent.  
+ * - **Data Preprocessing:** Encoding, normalization, scaling.  
+ * - **Evaluation Metrics:** R2 score, accuracy.  
+ * - **Error Handling & Utilities:** Centralized error reporting and file/string tools.
  *
- * @section usage Usage
+ * @section quickstart Quick Start
  *
- * The framework is distributed as source code. Build with a standard C compiler.
- * Include framework headers and link against the static library.
- * Examples and tools provide practical usage demos.
+ * Minimal example demonstrating column vector usage:
+ *
+ * \code{.c}
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <dmlfw_vector.h>
+ * #include <dmlfw_error.h>
+ *
+ * int main(void) {
+ *     char err[512], dbg[512];
+ *     dmlfw_column_vec_double *col_vec = dmlfw_column_vec_double_create_new(3);
+ *     if (dmlfw_error()) {
+ *         dmlfw_get_error_string(err, sizeof(err));
+ *         dmlfw_get_debug_string(dbg, sizeof(dbg));
+ *         printf("Error creating column vector: %s\nDebug info: %s\n", err, dbg);
+ *         return EXIT_FAILURE;
+ *     }
+ *
+ *     dmlfw_column_vec_double_set(col_vec, 0, 1.0);
+ *     dmlfw_column_vec_double_set(col_vec, 1, 2.0);
+ *     dmlfw_column_vec_double_set(col_vec, 2, 3.0);
+ *
+ *     double mean = dmlfw_column_vec_double_get_mean(col_vec);
+ *     printf("Mean of column vector: %lf\n", mean);
+ *
+ *     dmlfw_column_vec_double_destroy(col_vec);
+ *     return EXIT_SUCCESS;
+ * }
+ * \endcode
+ *
+ * @section visuals Visual Previews
+ *
+ * See graphical output from core ML algorithms:
+ *
+ * \image html line_fitting.gif "Batch Gradient Descent: Line fitting"
+ * \image html cost_descent.gif "Cost reduction during training"
+ * \image html curve_fitting.gif "Polynomial curve fitting"
  *
  * @section structure Project Structure
  *
- * - ml-framework: Core framework modules including data structures and ML algorithms.  
- * - ml-examples: Example programs demonstrating ML workflows.  
- * - tools: Command-line tools for dataset preprocessing and encoding.  
- *
- * @section documentation Documentation
- *
- * Detailed API references are available in this generated documentation.
- *
- * @section contributions Contributions
- *
- * Contributions to improve clarity, add examples, or extend educational coverage are welcome.
- * Please open an issue or contact the maintainer before submitting pull requests.
+ * - **ml-framework/**: Core framework code (data structures, ML algorithms).  
+ * - **ml-examples/**: Example programs demonstrating workflows.  
+ * - **tools/**: Command-line utilities for dataset preprocessing.  
+ * - **docs/**: Generated Doxygen documentation files.
  *
  * @section contact Contact
  *
@@ -50,3 +75,4 @@
  *
  * Special thanks to mentor Prafull Kelkar Sir for invaluable guidance and support.
  */
+
