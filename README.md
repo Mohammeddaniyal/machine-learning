@@ -63,7 +63,7 @@ Get a firsthand look at the graphical output from the core ML algorithms:
 
 **Cost reduction over training:**
 
-![Cost reduction during batch gradient descent](docs/gifs/output.gif)
+![Cost reduction during batch gradient descent](docs/gifs/cost_descent.gif)
 
 ---
 
