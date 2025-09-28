@@ -38,7 +38,7 @@ Daniyal Machine Learning Framework (DMLFW) is a personal educational project to 
 1. **Create a C file** anywhere you like — for example, in the **root folder** where `ml-framework/` exists:
 
 ```bash
-cd ~/ml-course        # root folder where ml-framework exists
+cd ~/machine-learning      # root folder where ml-framework exists
 nano myprogram.c      # or create the file with any editor
 ```
 
@@ -93,7 +93,7 @@ Mean of column vector: 2.000000
 
 ---
 
-### **Notes / Guidance**
+### **Notes**
 
 * You can place your C file **anywhere**, as long as you provide the **correct `-I` and `-L` paths** to GCC.
 * The `-I` flag points to the **header files** (`ml-framework/include`).
