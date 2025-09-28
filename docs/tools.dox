@@ -1,0 +1,47 @@
+/**
+ * @defgroup ml-tools Tools
+ * @brief Tools and utilities supporting the ML framework.
+ * @{
+ */
+
+/**
+ * @defgroup ml-tools-encoding Encoding Tools
+ * @ingroup ml-tools
+ * @brief Tools for encoding categorical and binary data.
+ * @{
+ */
+/** @} */ // closes ml-tools-encoding
+
+/**
+ * @defgroup ml-tools-scaling Scaling Tools
+ * @ingroup ml-tools
+ * @brief Tools for feature scaling and normalization.
+ * @{
+ */
+/** @} */ // closes ml-tools-scaling
+
+/**
+ * @defgroup ml-tools-dataset Dataset Tools
+ * @ingroup ml-tools
+ * @brief Tools for dataset generation, splitting, and manipulation.
+ * @{
+ */
+/** @} */ // closes ml-tools-dataset
+
+/**
+ * @defgroup ml-tools-metrics Metrics Tools
+ * @ingroup ml-tools
+ * @brief Tools for computing evaluation metrics.
+ * @{
+ */
+/** @} */ // closes ml-tools-metrics
+
+/**
+ * @defgroup ml-tools-other Miscellaneous Tools
+ * @ingroup ml-tools
+ * @brief Miscellaneous tools not covered by other categories.
+ * @{
+ */
+/** @} */ // closes ml-tools-other
+
+/** @} */ // closes ml-tools

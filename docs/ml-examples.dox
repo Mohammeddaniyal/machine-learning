@@ -1,0 +1,23 @@
+/**
+ * @defgroup ml-examples Machine Learning Examples
+ * @brief Example code demonstrating the use of the ML Framework.
+ * @{
+ */
+
+/**
+ * @defgroup ml-examples-regression Regression Examples
+ * @ingroup ml-examples
+ * @brief Regression algorithm example implementations.
+ * @{
+ */
+
+/**
+ * @defgroup ml-examples-regression-linear Linear Regression Examples
+ * @ingroup ml-examples-regression
+ * @brief Source code examples for linear regression using gradient descent.
+ * @{
+ */
+
+/** @} */ // closes ml-examples-regression-linear
+/** @} */ // closes ml-examples-regression
+/** @} */ // closes ml-examples

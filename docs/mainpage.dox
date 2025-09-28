@@ -1,0 +1,52 @@
+/**
+ * @mainpage Daniyal Machine Learning Framework (DMLFW)
+ *
+ * @section about About This Project
+ *
+ * The Daniyal Machine Learning Framework (DMLFW) is a personal, educational project
+ * designed to deepen understanding of machine learning by implementing its foundations
+ * from scratch in C.
+ *
+ * The primary focus is clarity, simplicity, and learning rather than production-level performance.
+ * DMLFW serves as a toolkit and journal for experimenting with core ML concepts.
+ *
+ * @section features Features
+ *
+ * - Core data structures: vectors, matrices, and lists (supporting double and string data types).  
+ * - Mathematical utilities for basic algebra, statistics, and transformations.  
+ * - Machine learning algorithms: batch, stochastic, and mini-batch gradient descent implementations.  
+ * - Data preprocessing utilities: encoding, normalization, and scaling.  
+ * - Model evaluation metrics such as R² score and accuracy.  
+ * - Centralized error handling and general file/string utilities.  
+ *
+ * @section usage Usage
+ *
+ * The framework is distributed as source code. Build with a standard C compiler.
+ * Include framework headers and link against the static library.
+ * Examples and tools provide practical usage demos.
+ *
+ * @section structure Project Structure
+ *
+ * - ml-framework: Core framework modules including data structures and ML algorithms.  
+ * - ml-examples: Example programs demonstrating ML workflows.  
+ * - tools: Command-line tools for dataset preprocessing and encoding.  
+ *
+ * @section documentation Documentation
+ *
+ * Detailed API references are available in this generated documentation.
+ *
+ * @section contributions Contributions
+ *
+ * Contributions to improve clarity, add examples, or extend educational coverage are welcome.
+ * Please open an issue or contact the maintainer before submitting pull requests.
+ *
+ * @section contact Contact
+ *
+ * Maintainer: Mohammed Daniyal  
+ * Email: mohammeddaniyal453@gmail.com  
+ * LinkedIn: <a href="https://www.linkedin.com/in/mohammeddaniyalali">mohammeddaniyalali</a>
+ *
+ * @section acknowledgments Acknowledgments
+ *
+ * Special thanks to mentor Prafull Kelkar Sir for invaluable guidance and support.
+ */

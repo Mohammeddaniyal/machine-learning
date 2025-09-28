@@ -1,0 +1,242 @@
+/**
+ * @defgroup ml-framework Daniyal Machine Learning Framework
+ * @brief Core modules and components of the Daniyal Machine Learning framework.
+ * @{
+ */
+
+/**
+ * @defgroup core_types Core Type Definitions
+ * @ingroup ml-framework
+ * @brief Fundamental scalar typedefs used across the Daniyal Machine Learning Framework.
+ * @{
+ */
+/** @} */ // closes core_types
+
+/**
+ * @defgroup utils Utility Functions
+ * @ingroup ml-framework
+ * @brief Core utility functions providing foundational support such as file and string handling.
+ * @{
+ */
+
+/**
+ * @defgroup utils_string String Utilities
+ * @ingroup utils
+ * @brief Core string-related utility functions for comparison and conversions.
+ * @{
+ */
+/** @} */ // closes utils_string
+
+/**
+ * @defgroup utils_file File Utilities
+ * @ingroup utils
+ * @brief Functions for retrieving dimension information and inspecting CSV files.
+ * @{
+ */
+/** @} */ // closes utils_file
+
+/** @} */ // closes utils
+
+/**
+ * @defgroup encoder Data Encoding
+ * @ingroup ml-framework
+ * @brief Core utilities for encoding and transforming categorical and binary features.
+ * @{
+ */
+
+/**
+ * @defgroup data_encoder Feature Encoding
+ * @ingroup encoder
+ * @brief Utilities for encoding categorical and binary features from CSV data.
+ * @{
+ */
+/** @} */ // closes data_encoder
+
+/** @} */ // closes encoder
+
+/**
+ * @defgroup vector Vector Types and Utilities
+ * @ingroup ml-framework
+ * @brief Core vector data structures and utility functions.
+ * @{
+ */
+
+/**
+ * @defgroup vector_string String Vectors
+ * @ingroup vector
+ * @brief Opaque vector data structures and utilities for string values.
+ * @{
+ */
+/** @} */ // closes vector_string
+
+/**
+ * @defgroup vector_double Double Precision Vectors
+ * @ingroup vector
+ * @brief Opaque vector data structures and utilities for double precision floating-point values.
+ * @{
+ */
+/** @} */ // closes vector_double
+
+/** @} */ // closes vector
+
+/**
+ * @defgroup list Double Precision List
+ * @ingroup ml-framework
+ * @brief Core list types and utilities providing dynamic, lightweight collections.
+ * @{
+ */
+
+/**
+ * @defgroup list_double Forward List (Double)
+ * @ingroup list
+ * @brief Singly linked list implementation specialized for double precision data.
+ * @{
+ */
+/** @} */ // closes list_double
+
+/** @} */ // closes list
+
+/**
+ * @defgroup matrix Matrix Types and Utilities
+ * @ingroup ml-framework
+ * @brief Core matrix types and utilities for managing double and string data.
+ * @{
+ */
+
+/**
+ * @defgroup matrix_string String Matrices
+ * @ingroup matrix
+ * @brief Opaque string matrix data structures and utilities.
+ * @{
+ */
+/** @} */ // closes matrix_string
+
+/**
+ * @defgroup matrix_double Double Precision Matrices
+ * @ingroup matrix
+ * @brief Opaque double precision matrix data structures and utilities.
+ * @{
+ */
+/** @} */ // closes matrix_double
+
+/** @} */ // closes matrix
+
+/**
+ * @defgroup set Unordered Sets
+ * @ingroup ml-framework
+ * @brief Core unordered set types and utilities for managing unique string elements efficiently.
+ * @{
+ */
+
+/**
+ * @defgroup set_string Unordered String Sets
+ * @ingroup set
+ * @brief Opaque unordered set data structures and utilities specialized for string data.
+ * @{
+ */
+/** @} */ // closes set_string
+
+/** @} */ // closes set
+
+/**
+ * @defgroup math Mathematical Operations
+ * @ingroup ml-framework
+ * @brief Core mathematical operations and transformations on vectors and matrices.
+ * @{
+ */
+
+/**
+ * @defgroup math_ops Mathematical Functions
+ * @ingroup math
+ * @brief Core mathematical transformations and reduction functions for vectors and matrices.
+ * @{
+ */
+/** @} */ // closes math_ops
+
+/** @} */ // closes math
+
+/**
+ * @defgroup operations Vector and Matrix Arithmetic
+ * @ingroup ml-framework
+ * @brief Fundamental arithmetic operations on double precision vectors and matrices.
+ * @{
+ */
+
+/**
+ * @defgroup operations_double Double Precision Arithmetic
+ * @ingroup operations
+ * @brief Core double precision vector and matrix arithmetic operations including advanced algorithms.
+ * @{
+ */
+/** @} */ // closes operations_double
+
+/** @} */ // closes operations
+
+/**
+ * @defgroup scale Feature Scaling
+ * @ingroup ml-framework
+ * @brief Feature scaling algorithms and utilities for preprocessing numerical data.
+ * @{
+ */
+
+/**
+ * @defgroup scale_double Double Precision Scaling
+ * @ingroup scale
+ * @brief Scaling and normalization operations for double precision matrix data.
+ * @{
+ */
+/** @} */ // closes scale_double
+
+/** @} */ // closes scale
+
+/**
+ * @defgroup algorithms Machine Learning Algorithms
+ * @ingroup ml-framework
+ * @brief Core machine learning algorithms and configuration modules.
+ * @{
+ */
+
+/**
+ * @defgroup configurations Gradient Descent Configuration
+ * @ingroup algorithms
+ * @brief Configuration structures and APIs for customizing gradient descent optimization.
+ * @{
+ */
+/** @} */ // closes configurations
+
+/**
+ * @defgroup linear_regression Linear Regression
+ * @ingroup algorithms
+ * @brief APIs for training and prediction using gradient descent-based linear regression.
+ * @{
+ */
+/** @} */ // closes linear_regression
+
+/** @} */ // closes algorithms
+
+/**
+ * @defgroup model_accuracy Model Accuracy
+ * @ingroup ml-framework
+ * @brief Core accuracy scoring utilities and evaluation metrics for machine learning models.
+ * @{
+ */
+
+/**
+ * @defgroup model_accuracy_score Regression Metrics
+ * @ingroup model_accuracy
+ * @brief Evaluation metrics for assessing regression model accuracy.
+ * @{
+ */
+/** @} */ // closes model_accuracy_score
+
+/** @} */ // closes model_accuracy
+
+/**
+ * @defgroup error_handling Error Handling
+ * @ingroup ml-framework
+ * @brief Centralized error management and reporting utilities for the framework.
+ * @{
+ */
+/** @} */ // closes error_handling
+
+/** @} */ // closes ml-framework
