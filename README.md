@@ -33,6 +33,77 @@ Daniyal Machine Learning Framework (DMLFW) is a personal educational project to 
 
 ***
 
+## **Quick Start Example (Anywhere on your system)**
+
+1. **Create a C file** anywhere you like — for example, in the **root folder** where `ml-framework/` exists:
+
+```bash
+cd ~/ml-course        # root folder where ml-framework exists
+nano myprogram.c      # or create the file with any editor
+```
+
+2. **Paste this code**:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <dmlfw_vector.h>
+#include <dmlfw_error.h>
+
+int main(void) {
+    char err[512], dbg[512];
+
+    dmlfw_column_vec_double *col_vec = dmlfw_column_vec_double_create_new(3);
+    if (dmlfw_error()) {
+        dmlfw_get_error_string(err, sizeof(err));
+        dmlfw_get_debug_string(dbg, sizeof(dbg));
+        printf("Error creating column vector: %s\nDebug info: %s\n", err, dbg);
+        return EXIT_FAILURE;
+    }
+
+    dmlfw_column_vec_double_set(col_vec, 0, 1.0);
+    dmlfw_column_vec_double_set(col_vec, 1, 2.0);
+    dmlfw_column_vec_double_set(col_vec, 2, 3.0);
+
+    double mean = dmlfw_column_vec_double_get_mean(col_vec);
+    printf("Mean of column vector: %lf\n", mean);
+
+    dmlfw_column_vec_double_destroy(col_vec);
+    return EXIT_SUCCESS;
+}
+```
+
+3. **Compile the program** using GCC, pointing to the framework’s include and lib directories:
+
+```bash
+gcc myprogram.c -I ./ml-framework/include -L ./ml-framework/lib -lml-framework -lm -o myprogram
+```
+
+4. **Run the program**:
+
+```bash
+./myprogram
+```
+
+5. **Expected Output:**
+
+```
+Mean of column vector: 2.000000
+```
+
+---
+
+### **Notes / Guidance**
+
+* You can place your C file **anywhere**, as long as you provide the **correct `-I` and `-L` paths** to GCC.
+* The `-I` flag points to the **header files** (`ml-framework/include`).
+* The `-L` flag points to the **library files** (`ml-framework/lib`) and `-lml-framework` tells GCC to link the static library.
+* `-lm` links the math library (needed for operations in the framework).
+
+
+
+***
+
 ## Usage
 
 * Prebuilt example programs are in the [`ml-examples/`](ml-examples/) folder. Explore, compile, and run to understand framework usage.  
