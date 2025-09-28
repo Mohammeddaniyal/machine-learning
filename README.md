@@ -51,6 +51,34 @@ Daniyal Machine Learning Framework (DMLFW) is a personal educational project to 
 
 ***
 
+## Visual Preview
+
+Get a firsthand look at the graphical output from the core ML algorithms:
+
+### Batch Gradient Descent
+
+**Line fitting process:**
+
+![Line fitting during batch gradient descent](docs/gifs/line_fitting.gif)
+
+**Cost reduction over training:**
+
+![Cost reduction during batch gradient descent](docs/gifs/cost_descent.gif)
+
+---
+
+### Polynomial Batch Gradient Descent
+
+**Curve fitting process:**
+
+![Polynomial curve fitting](docs/gifs/curve_fitting.gif)
+
+---
+
+*GNUPLOT must be installed to view these graphical outputs when running example programs.*
+
+***
+
 ## Project Structure
 
 * `ml-framework/` – Core framework source code, headers, and build scripts.  
